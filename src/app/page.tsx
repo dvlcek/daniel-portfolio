@@ -1,28 +1,29 @@
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SiteFooter } from "@/components/site/SiteFooter";
-
 import { Hero } from "@/components/sections/Hero";
+import { ProofStrip } from "@/components/sections/ProofStrip";
 import { Problem } from "@/components/sections/Problem";
-import { Philosophy } from "@/components/sections/Philosophy";
-import { Services } from "@/components/sections/Services";
-import { Work } from "@/components/sections/Work";
+import { SolutionPillars } from "@/components/sections/SolutionPillars";
+import { FeaturedOutcomes } from "@/components/sections/FeaturedOutcomes";
 import { Process } from "@/components/sections/Process";
-import { Mindset } from "@/components/sections/Mindset";
+import { PackagesSection } from "@/components/sections/PackagesSection";
+import { Capabilities } from "@/components/sections/Capabilities";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
     <main>
-      <SiteHeader />
       <Hero />
+      <ProofStrip />
       <Problem />
-      <Philosophy />
-      <Services />
-      <Work />
+      <SolutionPillars />
+      <FeaturedOutcomes />
       <Process />
-      <Mindset />
+      <PackagesSection />
+      <Capabilities />
+      <Testimonials />
+      <FAQ />
       <FinalCTA />
-      <SiteFooter />
     </main>
   );
 }

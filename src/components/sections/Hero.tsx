@@ -17,10 +17,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
-      {/* THREE background */}
       <DottedSurface mode="hero" theme="dark" className="opacity-70" />
-
-      {/* Optional: vignette + gradient overlay (makes it premium) */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
@@ -36,23 +33,26 @@ export function Hero() {
           </p>
 
           <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            I Build Scalable Digital Systems <br className="hidden md:block" />
-            That Make Companies Operate Faster.
+            Build systems that make your company faster.
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-            Automation infrastructure, modern web engineering, and full rebuilds for
-            companies ready to eliminate inefficiency.
+            I design and ship automation workflows and modern Next.js rebuilds that
+            reduce manual work, increase conversion, and scale cleanly as you grow.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button ref={ctaRef} href="#contact" variant="primary" className="w-full sm:w-auto">
-              Book a Strategy Call
+            <Button ref={ctaRef} href="/contact" variant="primary" className="w-full sm:w-auto">
+              Book a 20-min Systems Call
             </Button>
-            <Button href="#work" variant="secondary" className="w-full sm:w-auto">
-              View Selected Work
+            <Button href="/work" variant="secondary" className="w-full sm:w-auto">
+              View Case Studies
             </Button>
           </div>
+
+          <p className="mt-4 text-sm text-white/55">
+            Trusted builds. Clean handover. Built for maintainability.
+          </p>
         </div>
       </Container>
     </section>

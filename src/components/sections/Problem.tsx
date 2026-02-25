@@ -15,27 +15,29 @@ export function Problem() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="The Problem"
-            title="Most Companies Don’t Have a Growth Problem. They Have a Systems Problem."
-            desc="Manual processes. Disconnected tools. Outdated websites that don’t convert. Teams compensate with effort instead of better infrastructure."
+            title="Most companies don't have a growth problem. They have a systems problem."
+            desc="Manual processes, disconnected tools, and outdated web experiences force teams to compensate with effort. That works until it doesn't."
           />
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2">
             {[
-              { t: "Manual Ops", d: "Repeated tasks consume hours every week." },
-              { t: "Tool Chaos", d: "CRMs, sheets, and apps that don’t talk." },
-              { t: "Slow Web", d: "Outdated builds hurt trust and conversions." },
+              { t: "Repeated admin tasks eating hours every week" },
+              { t: "Tools that don't talk to each other" },
+              { t: "Websites that look fine but don't convert" },
+              { t: "No reliable tracking, handover, or scalability" },
             ].map((x) => (
               <div
                 key={x.t}
                 className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
               >
                 <p className="text-base font-semibold text-white">{x.t}</p>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {x.d}
-                </p>
               </div>
             ))}
           </div>
+
+          <p className="mt-8 text-lg text-white/75">
+            You don&apos;t need more hustle. You need better infrastructure.
+          </p>
         </div>
       </Container>
     </section>

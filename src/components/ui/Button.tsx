@@ -11,8 +11,10 @@ export const Button = React.forwardRef<
     children: React.ReactNode;
     variant?: Variant;
     className?: string;
+    target?: React.HTMLAttributeAnchorTarget;
+    rel?: string;
   }
->(function Button({ href, children, variant = "primary", className }, ref) {
+>(function Button({ href, children, variant = "primary", className, target, rel }, ref) {
   const base =
     "inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-medium transition will-change-transform";
   const styles: Record<Variant, string> = {
@@ -25,7 +27,13 @@ export const Button = React.forwardRef<
   };
 
   return (
-    <Link ref={ref} href={href} className={cn(base, styles[variant], className)}>
+    <Link
+      ref={ref}
+      href={href}
+      target={target}
+      rel={rel}
+      className={cn(base, styles[variant], className)}
+    >
       {children}
     </Link>
   );

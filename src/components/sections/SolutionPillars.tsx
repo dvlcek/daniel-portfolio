@@ -39,7 +39,7 @@ export function SolutionPillars() {
 
           <div className="grid gap-4 md:grid-cols-3">
             {pillars.map((pillar) => (
-              <article key={pillar.title} className="pillar-card rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
+              <article key={pillar.title} className="pillar-card rounded-2xl bg-white/3 backdrop-blur-sm p-7 ring-1 ring-white/10">
                 <h3 className="text-lg font-semibold text-white">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/70">{pillar.description}</p>
               </article>

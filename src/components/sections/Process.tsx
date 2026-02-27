@@ -11,7 +11,7 @@ export function Process() {
   useStagger(ref, ".step", { y: 16, stagger: 0.08 });
 
   return (
-    <section id="process" className="border-y border-white/5 py-20 md:py-28">
+    <section id="process" className=" py-20 md:py-28">
       <Container>
         <div ref={ref}>
           <SectionTitle

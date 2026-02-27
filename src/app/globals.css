@@ -1,40 +1,63 @@
 @import "tailwindcss";
 
-/* ---------- Base ---------- */
+/* ---------- Theme Tokens ---------- */
 :root {
-  --bg: 10 10 12;        /* near-black */
-  --fg: 235 235 245;     /* off-white */
-  --muted: 155 155 170;  /* muted text */
-  --card: 16 16 20;      /* cards */
-  --border: 255 255 255; /* used with low opacity */
-  --accent: 110 231 183; /* emerald-ish (subtle) */
+  --bg: 6 6 9;
+  --fg: 235 235 245;
+  --muted: 160 160 175;
+  --card: 14 14 18;
+  --accent: 110 231 183;
+  --nav-height: 80px;
 }
 
-html, body {
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 64px;
+  }
+}
+
+/* ---------- Base ---------- */
+html,
+body {
   height: 100%;
 }
 
+/* IMPORTANT: do NOT enable CSS smooth scroll when using JS smooth scroll */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
-  background: rgb(var(--bg));
   color: rgb(var(--fg));
+  background:
+    radial-gradient(
+      900px circle at 18% 22%,
+      rgba(71, 74, 201, 0.08),
+      transparent 42%
+    ),
+    radial-gradient(
+      900px circle at 78% 75%,
+      rgba(255, 255, 255, 0.045),
+      transparent 45%
+    ),
+    
+    rgb(0,0,0);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(var(--accent), 0.25);
+  background: rgba(var(--accent), 0.22);
 }
 
-/* Optional subtle noise layer helper */
-.noise {
-  position: relative;
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
-.noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+
+/* Offset anchors for fixed header */
+:where(section, [id]) {
+  scroll-margin-top: var(--nav-height);
 }

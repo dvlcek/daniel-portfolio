@@ -7,6 +7,11 @@ import { useReveal } from "@/components/animations/useReveal";
 import { useMagnetic } from "@/components/animations/useMagnetic";
 import { DottedSurface } from "@/components/visuals/DottedSurface";
 
+const outcomes = [
+  "Automation that reduces manual work",
+  "Web platforms built to convert",
+  "Scalable systems that stay maintainable",
+];
 
 export function Hero() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -16,45 +21,78 @@ export function Hero() {
   useMagnetic(ctaRef, 0.18);
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
-      <DottedSurface mode="hero" theme="dark" className="opacity-70" />
-      <div
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.08), #00000040 55%), radial-gradient(circle at 70% 70%, rgba(110, 231, 183, 0.10), #0000008a 55%)",
-        }}
-      />
+    <section className="relative overflow-hidden">
+      <div className="relative min-h-[calc(100vh-65px)]  flex items-center py-16 md:py-24">
+        {/* Background */}
+        <DottedSurface
+          mode="hero"
+          theme="dark"
+          className="absolute inset-0 -z-20 opacity-60"
+        />
 
-      <Container>
-        <div ref={wrapRef} className="relative">
-          <p className="text-xs uppercase tracking-[0.25em] text-white/50">
-            Software Developer & Automation Architect
-          </p>
+        {/* Subtle overlay */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-black/10 via-black/40 to-black/90" />
 
-          <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            Build systems that make your company faster.
-          </h1>
+        <Container>
+          <div ref={wrapRef} className="mx-auto w-full max-w-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/60">
+                    Software Developer & Automation Architect
+                  </p>
+                </div>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-            I design and ship automation workflows and modern Next.js rebuilds that
-            reduce manual work, increase conversion, and scale cleanly as you grow.
-          </p>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+              I build digital systems that make companies faster.
+            </h1>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button ref={ctaRef} href="/contact" variant="primary" className="w-full sm:w-auto">
-              Book a 20-min Systems Call
-            </Button>
-            <Button href="/work" variant="secondary" className="w-full sm:w-auto">
-              View Case Studies
-            </Button>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
+              I help teams remove operational friction with automation, scalable architecture,
+              and modern web experiences designed to perform.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button
+                // ref={ctaRef}
+                href="/contact"
+                variant="primary"
+                className="w-full sm:w-auto"
+              >
+                Book a Strategy Call
+              </Button>
+
+              <Button
+                href="/work"
+                variant="secondary"
+                className="w-full sm:w-auto"
+              >
+                View Work
+              </Button>
+            </div>
+
+            <div className="mt-12 border-t border-white/10 pt-6">
+              <div className="grid gap-2 md:grid-cols-3">
+                {outcomes.map((item) => (
+                  <p key={item} className="text-sm text-white/55">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
+          {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="flex flex-col items-center gap-2 text-white/40">
+            <span className="text-[10px] uppercase tracking-[0.3em]">
+              Scroll
+            </span>
 
-          <p className="mt-4 text-sm text-white/55">
-            Trusted builds. Clean handover. Built for maintainability.
-          </p>
-        </div>
-      </Container>
+            <div className="relative h-10 w-[1px] overflow-hidden bg-white/20">
+              <div className="scroll-line absolute top-0 left-0 w-full bg-white/70" />
+            </div>
+          </div>
+        </div> */}
+        </Container>
+      </div>
     </section>
   );
 }

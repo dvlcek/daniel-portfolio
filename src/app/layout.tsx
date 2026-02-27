@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { RouteProgress } from "@/components/site/RouteProgress";
+import { PageTransition } from "@/components/transition/PageTransition";
 
 const headingFont = Space_Grotesk({
   subsets: ["latin"],
@@ -25,9 +26,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`noise ${headingFont.variable} ${bodyFont.variable}`}>
+      <body className={`tech-bg ${headingFont.variable} ${bodyFont.variable}`}>
+        <PageTransition/>
         <SmoothScroll />
-        <RouteProgress />
+        {/* <RouteProgress /> */}
         <SiteHeader />
         {children}
         <SiteFooter />

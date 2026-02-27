@@ -17,7 +17,7 @@ export function Testimonials() {
   useStagger(ref, ".testimonial-item", { y: 14, stagger: 0.06 });
 
   return (
-    <section className="border-y border-white/5 py-20 md:py-28">
+    <section className=" py-20 md:py-28">
       <Container>
         <div ref={ref}>
           <SectionTitle eyebrow="What teams value most" title="Trust transfer from how the work is delivered." />

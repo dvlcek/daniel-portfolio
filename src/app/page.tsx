@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <ProofStrip />
+      {/* <ProofStrip /> */}
       <Problem />
       <SolutionPillars />
       <FeaturedOutcomes />

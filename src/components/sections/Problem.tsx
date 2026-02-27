@@ -10,7 +10,7 @@ export function Problem() {
   useReveal(ref);
 
   return (
-    <section className="border-y border-white/5 py-20 md:py-28">
+    <section className=" py-20 md:py-28">
       <Container>
         <div ref={ref}>
           <SectionTitle
@@ -28,7 +28,7 @@ export function Problem() {
             ].map((x) => (
               <div
                 key={x.t}
-                className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
+                className="rounded-2xl bg-white/3 backdrop-blur-sm p-6 ring-1 ring-white/10"
               >
                 <p className="text-base font-semibold text-white">{x.t}</p>
               </div>

@@ -2,13 +2,22 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { primaryCta } from "@/lib/siteContent";
+import Image from "next/image"
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0d14]/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-xl bg-white/10 ring-1 ring-white/15" />
+          <div className="relative h-8 w-8 overflow-hidden rounded-xl ring-1 ring-white/15 bg-white/5">
+            <Image
+              src="/logo.svg"
+              alt="Daniel Vlcek Logo"
+              fill
+              className="object-contain p-1"
+              priority
+            />
+          </div>
           <div className="leading-tight">
             <p className="text-sm font-semibold tracking-tight">Daniel Vlcek</p>
             <p className="text-xs text-white/55">Systems Architect</p>

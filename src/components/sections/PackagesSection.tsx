@@ -12,7 +12,7 @@ export function PackagesSection() {
   useStagger(ref, ".pkg-card", { y: 18, stagger: 0.08 });
 
   return (
-    <section id="services" className="border-y border-white/5 py-20 md:py-28">
+    <section id="services" className=" py-20 md:py-28">
       <Container>
         <div ref={ref}>
           <SectionTitle
@@ -31,7 +31,7 @@ export function PackagesSection() {
                     <li key={item}>- {item}</li>
                   ))}
                 </ul>
-                <Button href={pkg.cta.href} variant="secondary" className="mt-5">{pkg.cta.label}</Button>
+                <Button href={pkg.cta.href} variant="primary" className="mt-5">{pkg.cta.label}</Button>
               </article>
             ))}
           </div>

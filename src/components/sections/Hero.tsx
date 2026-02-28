@@ -62,7 +62,7 @@ export function Hero() {
               </Button>
 
               <Button
-                href="/work"
+                href="/portfolio"
                 variant="secondary"
                 className="w-full sm:w-auto"
               >

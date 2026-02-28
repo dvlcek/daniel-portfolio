@@ -17,9 +17,19 @@ export function SmoothScroll() {
     };
 
     raf = requestAnimationFrame(loop);
+
+    // Listen for modal open/close events
+    const stop = () => lenis.stop();
+    const start = () => lenis.start();
+
+    window.addEventListener("lenis:stop", stop);
+    window.addEventListener("lenis:start", start);
+
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      window.removeEventListener("lenis:stop", stop);
+      window.removeEventListener("lenis:start", start);
     };
   }, []);
 

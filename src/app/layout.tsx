@@ -5,7 +5,8 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { RouteProgress } from "@/components/site/RouteProgress";
-import { PageTransition } from "@/components/transition/PageTransition";
+import { PageTransition } from "@/components/transition/PageTransitionFour";
+import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
 const headingFont = Space_Grotesk({
   subsets: ["latin"],
@@ -27,12 +28,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`tech-bg ${headingFont.variable} ${bodyFont.variable}`}>
-        <PageTransition/>
-        <SmoothScroll />
-        {/* <RouteProgress /> */}
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <TransitionProvider>
+          <PageTransition/>
+          <SmoothScroll />
+          {/* <RouteProgress /> */}
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </TransitionProvider>
       </body>
     </html>
   );

@@ -32,10 +32,10 @@ export function RouteProgress() {
   }, [pathname]);
 
   return (
-    <div className="pointer-events-none fixed left-0 top-0 z-[70] h-[2px] w-full">
+    <div className="pointer-events-none fixed left-0 top-0 z-70 h-2px w-full">
       <div
         ref={barRef}
-        className="h-full w-full origin-left bg-gradient-to-r from-cyan-300/75 via-emerald-300/70 to-cyan-300/75"
+        className="h-full w-full origin-left bg-linear-to-r from-cyan-300/75 via-emerald-300/70 to-cyan-300/75"
       />
     </div>
   );

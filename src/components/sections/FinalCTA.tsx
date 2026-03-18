@@ -15,11 +15,10 @@ export function FinalCTA() {
         <div ref={ref} className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              Want to move faster with less manual work?
+              Planning a platform or automation project?
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/65 md:text-base">
-              Book a short call and I&apos;ll outline the highest-leverage
-              improvements for your website or operations.
+              Book a short strategy call and I’ll help you identify the highest-leverage improvements for your website, workflows, or internal systems.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -27,7 +26,7 @@ export function FinalCTA() {
                 Book a 20-min Systems Call
               </Button>
             </div>
-            <p className="mt-4 text-sm text-white/55">No fluff. You&apos;ll leave with a clear next step.</p>
+            <p className="mt-4 text-sm text-white/55">Clear advice, no wasted time, and a realistic next step.</p>
           </div>
 
           <div className="rounded-3xl bg-white/5 p-8 ring-1 ring-white/10">

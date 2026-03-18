@@ -15,16 +15,16 @@ export function Problem() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="The Problem"
-            title="Most companies don't have a growth problem. They have a systems problem."
-            desc="Manual processes, disconnected tools, and outdated web experiences force teams to compensate with effort. That works until it doesn't."
+            title="Most small companies don’t need more effort. They need better systems."
+            desc="When tasks are handled manually, tools don’t connect, and the website is not built around real operations, growth starts depending on extra effort instead of better systems."
           />
 
           <div className="grid gap-4 md:grid-cols-2">
             {[
-              { t: "Repeated admin tasks eating hours every week" },
-              { t: "Tools that don't talk to each other" },
-              { t: "Websites that look fine but don't convert" },
-              { t: "No reliable tracking, handover, or scalability" },
+              { t: "Repetitive admin tasks eating hours every week" },
+              { t: "Tools and processes that don’t connect properly" },
+              { t: "Websites that look acceptable but don’t support growth" },
+              { t: "No clear tracking, workflow structure, or scalable backend" },
             ].map((x) => (
               <div
                 key={x.t}

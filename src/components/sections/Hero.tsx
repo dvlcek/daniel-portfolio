@@ -8,9 +8,9 @@ import { useMagnetic } from "@/components/animations/useMagnetic";
 import { DottedSurface } from "@/components/visuals/DottedSurface";
 
 const outcomes = [
-  "Automation that reduces manual work",
-  "Web platforms built to convert",
-  "Scalable systems that stay maintainable",
+  "Reduce repetitive admin work",
+  "Build web platforms that convert",
+  "Create systems that stay scalable",
 ];
 
 export function Hero() {
@@ -38,17 +38,16 @@ export function Hero() {
             <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
                   <p className="text-xs uppercase tracking-[0.22em] text-white/60">
-                    Software Developer & Automation Architect
+                    Software Developer & Systems Builder
                   </p>
                 </div>
 
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl">
-              I build digital systems that make companies faster.
+              I build web platforms and automation systems that make companies run faster.
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              I help teams remove operational friction with automation, scalable architecture,
-              and modern web experiences designed to perform.
+              From premium websites and custom web apps to workflow automation and AI-supported operations, I build systems that improve how businesses look, work, and grow.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -66,7 +65,7 @@ export function Hero() {
                 variant="secondary"
                 className="w-full sm:w-auto"
               >
-                View Work
+                View Selected Work
               </Button>
             </div>
 

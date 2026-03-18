@@ -19,6 +19,7 @@ interface FormState {
   timeline: string;
   budgetRange: string;
   currentSite: string;
+  projectGoal: string;
 }
 
 // ─── Dropdown ─────────────────────────────────────────────────────────────────
@@ -51,11 +52,11 @@ function Dropdown({ label, options, value, onChange }: DropdownProps) {
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="inline-flex items-center justify-between w-full rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none focus:border-blue-400/60 hover:bg-white/5 transition-colors"
+          className="inline-flex w-full items-center justify-between rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors hover:bg-white/5 focus:border-blue-400/60"
         >
           <span>{value}</span>
           <svg
-            className={`w-4 h-4 ml-2 shrink-0 transition-transform duration-200 text-white/40 ${
+            className={`ml-2 h-4 w-4 shrink-0 text-white/40 transition-transform duration-200 ${
               open ? "rotate-180" : ""
             }`}
             xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +74,7 @@ function Dropdown({ label, options, value, onChange }: DropdownProps) {
         </button>
 
         {open && (
-          <div className="absolute z-20 mt-1.5 w-full bg-zinc-900 border border-white/10 rounded-xl shadow-xl overflow-hidden">
+          <div className="absolute z-20 mt-1.5 w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-900 shadow-xl">
             <ul className="p-1.5 text-sm font-medium">
               {options.map((option) => (
                 <li key={option}>
@@ -83,7 +84,7 @@ function Dropdown({ label, options, value, onChange }: DropdownProps) {
                       onChange(option);
                       setOpen(false);
                     }}
-                    className={`w-full text-left px-3 py-2 rounded-lg transition-colors hover:bg-white/5 hover:text-white ${
+                    className={`w-full rounded-lg px-3 py-2 text-left transition-colors hover:bg-white/5 hover:text-white ${
                       value === option ? "bg-white/5 text-white" : "text-white/60"
                     }`}
                   >
@@ -122,7 +123,7 @@ function Field({
     <div className="flex flex-col gap-2">
       <span className="text-sm text-white/75">
         {label}
-        {required && <span className="text-blue-400 ml-0.5">*</span>}
+        {required && <span className="ml-0.5 text-blue-400">*</span>}
       </span>
       <input
         type={type}
@@ -130,7 +131,42 @@ function Field({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-blue-400/60 transition-colors"
+        className="w-full rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-blue-400/60"
+      />
+    </div>
+  );
+}
+
+// ─── Textarea Field ───────────────────────────────────────────────────────────
+
+interface TextareaFieldProps {
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  value: string;
+  onChange: (v: string) => void;
+}
+
+function TextareaField({
+  label,
+  placeholder,
+  required,
+  value,
+  onChange,
+}: TextareaFieldProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      <span className="text-sm text-white/75">
+        {label}
+        {required && <span className="ml-0.5 text-blue-400">*</span>}
+      </span>
+      <textarea
+        required={required}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={4}
+        className="w-full resize-none rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-blue-400/60"
       />
     </div>
   );
@@ -140,16 +176,16 @@ function Field({
 
 function StepIndicator({ step }: { step: 1 | 2 }) {
   return (
-    <div className="flex items-center gap-3 mb-8">
+    <div className="mb-8 flex items-center gap-3">
       {([1, 2] as const).map((s) => (
         <div key={s} className="flex items-center gap-2">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
+            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300 ${
               step >= s ? "bg-blue-500 text-white" : "bg-white/10 text-white/40"
             }`}
           >
             {step > s ? (
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
                 <path
                   stroke="currentColor"
                   strokeLinecap="round"
@@ -171,7 +207,7 @@ function StepIndicator({ step }: { step: 1 | 2 }) {
           </span>
           {s < 2 && (
             <div
-              className={`w-8 h-px mx-1 ${
+              className={`mx-1 h-px w-8 ${
                 step > s ? "bg-blue-500/50" : "bg-white/10"
               }`}
             />
@@ -194,10 +230,11 @@ export default function ContactPage() {
     email: "",
     phone: "",
     companySize: "",
-    bottleneck: "Automation",
-    timeline: "ASAP (within 2 weeks)",
+    bottleneck: "Automation / Workflows",
+    timeline: "As soon as possible",
     budgetRange: "",
     currentSite: "",
+    projectGoal: "",
   });
 
   const set = (field: keyof FormState) => (v: string) =>
@@ -218,11 +255,9 @@ export default function ContactPage() {
   };
 
   // ✅ Replace this with your Cal.com event link slug:
-  // Example: "daniel/intro-call"
-  const CAL_LINK = "daniel-i0cc0w/test";
-  const CAL_NAMESPACE = "test";
+  const CAL_LINK = "daniel-i0cc0w/30min";
+  const CAL_NAMESPACE = "30min";
 
-  // ✅ Optional: set Cal UI theme when step 2 is shown
   useEffect(() => {
     if (step !== 2) return;
 
@@ -231,32 +266,31 @@ export default function ContactPage() {
       cal("ui", {
         theme: "dark",
         styles: {
-          branding: { brandColor: "#3B82F6" }, // Tailwind blue-500
+          branding: { brandColor: "#3B82F6" },
         },
         layout: "month_view",
       });
     })();
   }, [step]);
 
-  // Used only for "Open in new tab →" (keeps your existing UI)
   const CAL_OPEN_URL = `https://cal.com/daniel-i0cc0w/30min`;
 
   const expectations = [
     {
       icon: "M9 12l2 2 4-4",
-      text: "Weekly progress updates and clear milestones",
+      text: "Clear milestones and structured communication",
     },
     {
       icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-      text: "Documented architecture and handover plan",
+      text: "Clean documentation and handover planning",
     },
     {
       icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-      text: "Measurable outcomes tied to operations or conversion",
+      text: "Focus on measurable business improvements",
     },
     {
       icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
-      text: "Option to continue through monthly retainer",
+      text: "Clear scope before any build starts",
     },
   ];
 
@@ -265,20 +299,24 @@ export default function ContactPage() {
       <Container>
         <SectionTitle
           eyebrow="Contact"
-          title="Let's get to work"
-          desc="No fluff. You'll leave with a clear next step and highest-leverage priorities."
+          title="Start with a strategy call"
+          desc="A short call to understand your business, current bottlenecks, and whether the right next step is a platform build, rebuild, or automation project."
         />
+
+        <p className="mt-4 max-w-2xl text-sm text-white/55">
+          Best fit for businesses looking for a serious website, platform, or
+          automation build.
+        </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {/* ── Left panel ── */}
           <section className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
             <StepIndicator step={step} />
 
-            {/* STEP 1 */}
             {step === 1 && (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h2 className="text-lg font-semibold text-white mb-5">
-                  Tell me about your company
+                <h2 className="mb-5 text-lg font-semibold text-white">
+                  A few details before we speak
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -310,18 +348,25 @@ export default function ContactPage() {
                 <Field
                   label="Phone number"
                   type="tel"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+43 15123457"
                   value={form.phone}
                   onChange={set("phone")}
                 />
 
                 <div className="flex items-center gap-3 py-1">
-                  <div className="flex-1 h-px bg-white/10" />
-                  <span className="text-xs text-white/30 font-medium">
+                  <div className="h-px flex-1 bg-white/10" />
+                  <span className="text-xs font-medium text-white/30">
                     Project context
                   </span>
-                  <div className="flex-1 h-px bg-white/10" />
+                  <div className="h-px flex-1 bg-white/10" />
                 </div>
+
+                <TextareaField
+                  label="Project goal"
+                  placeholder="Briefly describe what you want to improve, build, or automate."
+                  value={form.projectGoal}
+                  onChange={set("projectGoal")}
+                />
 
                 <Field
                   label="Company size"
@@ -332,21 +377,29 @@ export default function ContactPage() {
 
                 <Dropdown
                   label="Biggest bottleneck"
-                  options={["Automation", "Website", "Both"]}
+                  options={[
+                    "Website / Platform",
+                    "Automation / Workflows",
+                    "Both",
+                  ]}
                   value={form.bottleneck}
                   onChange={set("bottleneck")}
                 />
 
                 <Dropdown
                   label="Timeline urgency"
-                  options={["ASAP (within 2 weeks)", "1–2 months", "Quarter planning"]}
+                  options={[
+                    "As soon as possible",
+                    "Within 1–2 months",
+                    "Planning for a later phase",
+                  ]}
                   value={form.timeline}
                   onChange={set("timeline")}
                 />
 
                 <Field
-                  label="Budget range"
-                  placeholder="e.g. $5k–$15k"
+                  label="Planned budget range"
+                  placeholder="e.g. €5k–€15k"
                   value={form.budgetRange}
                   onChange={set("budgetRange")}
                 />
@@ -362,7 +415,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                  className="mt-2 w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submitting ? "Saving…" : "Continue — Pick a time →"}
                 </button>
@@ -378,9 +431,9 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="text-xs text-white/40 hover:text-white/70 transition-colors flex items-center gap-1"
+                    className="flex items-center gap-1 text-xs text-white/40 transition-colors hover:text-white/70"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24">
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
                       <path
                         stroke="currentColor"
                         strokeLinecap="round"
@@ -393,21 +446,19 @@ export default function ContactPage() {
                   </button>
                 </div>
 
-                {/* Confirmation pill + embed container (keeps your classes/layout) */}
-                <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 relative">
-                  <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/30">
+                <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black/20">
+                  <div className="flex items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3">
                     <span className="text-xs text-white/50">Booking</span>
                     <a
                       href={CAL_OPEN_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-white/50 hover:text-white/80 transition"
+                      className="text-xs text-white/50 transition hover:text-white/80"
                     >
                       Open in new tab →
                     </a>
                   </div>
 
-                  {/* ✅ Cal.com inline embed (replaces Google iframe) */}
                   <Cal
                     namespace={CAL_NAMESPACE}
                     calLink={CAL_LINK}
@@ -415,8 +466,6 @@ export default function ContactPage() {
                     config={{
                       name: form.fullName || undefined,
                       email: form.email || undefined,
-
-                      // Optional: pass context for your automations/webhooks
                       "metadata[fullName]": form.fullName || "",
                       "metadata[companyName]": form.companyName || "",
                       "metadata[phone]": form.phone || "",
@@ -425,11 +474,12 @@ export default function ContactPage() {
                       "metadata[timeline]": form.timeline || "",
                       "metadata[budgetRange]": form.budgetRange || "",
                       "metadata[currentSite]": form.currentSite || "",
+                      "metadata[projectGoal]": form.projectGoal || "",
                     }}
                   />
                 </div>
 
-                <p className="text-xs text-white/30 text-center">
+                <p className="text-center text-xs text-white/30">
                   A confirmation will be sent to{" "}
                   <span className="text-white/50">{form.email}</span>
                 </p>
@@ -438,17 +488,17 @@ export default function ContactPage() {
           </section>
 
           {/* ── Right panel ── */}
-          <section className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10 flex flex-col justify-between">
+          <section className="flex flex-col justify-between rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
             <div>
               <h2 className="text-lg font-semibold text-white">
-                Engagement expectations
+                What working together looks like
               </h2>
               <ul className="mt-5 space-y-3.5">
                 {expectations.map(({ icon, text }) => (
                   <li key={text} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-500/10">
                       <svg
-                        className="w-3.5 h-3.5 text-blue-400"
+                        className="h-3.5 w-3.5 text-blue-400"
                         fill="none"
                         viewBox="0 0 24 24"
                       >
@@ -461,7 +511,7 @@ export default function ContactPage() {
                         />
                       </svg>
                     </span>
-                    <span className="text-sm text-white/70 leading-relaxed">
+                    <span className="text-sm leading-relaxed text-white/70">
                       {text}
                     </span>
                   </li>
@@ -470,12 +520,12 @@ export default function ContactPage() {
             </div>
 
             <div className="mt-8 rounded-xl border border-white/10 bg-black/20 px-5 py-4">
-              <p className="text-xs text-white/40 uppercase tracking-widest font-medium mb-1">
+              <p className="mb-1 text-xs font-medium uppercase tracking-widest text-white/40">
                 What to expect
               </p>
-              <p className="text-sm text-white/70 leading-relaxed">
-                A focused 20-minute call. No sales pitch — just a clear diagnosis
-                of your highest-leverage systems gap and a concrete next step.
+              <p className="text-sm leading-relaxed text-white/70">
+                A focused 20-minute call to review your current setup, identify
+                the main bottleneck, and clarify the most realistic next step.
               </p>
             </div>
           </section>

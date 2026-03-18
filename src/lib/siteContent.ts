@@ -1,12 +1,13 @@
 export const primaryCta = {
-  label: "Book a 20-min Systems Call",
+  label: "Book a 20-min Strategy Call",
   href: "/contact",
 };
 
 export const secondaryCtas = {
   caseStudies: { label: "View Case Studies", href: "/work" },
-  audit: { label: "Request Audit", href: "/audit" },
-  sprint: { label: "Start a Sprint", href: "/contact" },
+  platform: { label: "Discuss Your Project", href: "/contact" },
+  rebuild: { label: "Discuss Rebuild", href: "/contact" },
+  automation: { label: "Book Automation Call", href: "/contact" },
 };
 
 export type CaseStudy = {
@@ -28,58 +29,58 @@ export const caseStudies: CaseStudy[] = [
     company: "B2B SaaS Team",
     industry: "Software",
     result: "Reduced lead handling from 12 steps to 3 and cut response time by 68%.",
-    whatIDid: ["Automation", "Tracking", "Integration Architecture"],
+    whatIDid: ["Workflow automation", "Lead routing", "Integration architecture"],
     stack: ["Next.js", "TypeScript", "HubSpot API", "Zapier", "Postmark"],
     summary:
-      "Disconnected forms, CRM pipelines, and follow-up tasks were slowing sales velocity.",
+      "Disconnected lead intake, CRM routing, and follow-up processes were slowing down sales response and creating avoidable manual work.",
     challenge:
-      "Leads arrived from three sources with no standardized routing. Sales reps manually triaged every lead and missed SLA windows.",
+      "Leads were coming in from multiple sources with no consistent routing logic. Sales had to manually review, assign, and follow up, which slowed response times and increased the risk of missed opportunities.",
     solution:
-      "Built an automation layer that normalized incoming lead data, routed by territory, assigned ownership, and triggered follow-up sequences with alerting.",
+      "Built an automation layer that standardized incoming lead data, routed leads by rules, assigned ownership automatically, and triggered follow-up sequences with alerting.",
     outcome: [
-      "Lead routing time dropped from ~45 minutes to under 5 minutes.",
-      "Weekly manual ops effort reduced by 10+ hours.",
-      "Created clear handover docs for internal ops ownership.",
+      "Lead routing time dropped from around 45 minutes to under 5 minutes.",
+      "Weekly manual operations work was reduced by more than 10 hours.",
+      "The team gained a more reliable and scalable lead handling process.",
     ],
   },
   {
     slug: "services-company-nextjs-rebuild",
     company: "Multi-location Services Company",
     industry: "Home Services",
-    result: "Increased qualified lead conversion by 32% after a full Next.js rebuild.",
-    whatIDid: ["Rebuild", "UX", "Performance", "Analytics"],
+    result: "Increased qualified lead conversion by 32% after a full platform rebuild.",
+    whatIDid: ["Platform rebuild", "UX restructuring", "Performance optimization", "Tracking setup"],
     stack: ["Next.js", "TypeScript", "Tailwind", "GSAP", "GA4"],
     summary:
-      "Legacy marketing site looked acceptable but underperformed in speed and conversion.",
+      "The existing website looked acceptable on the surface but underperformed in speed, clarity, and lead generation.",
     challenge:
-      "No clear conversion path, weak trust signals, and missing instrumentation made optimization impossible.",
+      "The business had no clear conversion structure, weak trust presentation, and limited tracking, making it difficult to improve performance or understand what users were doing.",
     solution:
-      "Redesigned information architecture, rebuilt frontend in Next.js App Router, and added event-based conversion tracking with dashboard-ready taxonomy.",
+      "Redesigned the site structure, rebuilt the frontend on a more scalable architecture, and implemented conversion-focused tracking for better visibility and future optimization.",
     outcome: [
-      "Core pages moved into high Lighthouse performance ranges.",
+      "Qualified lead conversion increased by 32%.",
       "CTA click-through improved by 24%.",
-      "Team now ships updates through a maintainable component system.",
+      "The team now works with a cleaner and more maintainable website foundation.",
     ],
   },
   {
     slug: "internal-reporting-automation",
     company: "Growth Operations Team",
     industry: "Ecommerce",
-    result: "Replaced manual reporting with scheduled dashboards and saved 14 hours per week.",
-    whatIDid: ["Automation", "Data Flow", "Reporting"],
+    result: "Replaced manual reporting with automated dashboards and saved 14 hours per week.",
+    whatIDid: ["Reporting automation", "Data flow design", "Dashboard infrastructure"],
     stack: ["Node.js", "Google Sheets API", "BigQuery", "Looker Studio"],
     summary:
-      "Weekly reporting depended on multiple copy-paste workflows and ad-hoc spreadsheet logic.",
+      "Reporting depended on repetitive manual work, inconsistent spreadsheets, and delayed data delivery.",
     challenge:
-      "Leadership got delayed or inconsistent data, and analysts spent too much time preparing reports.",
+      "Leadership received updates too late, analysts spent too much time preparing reports, and teams lacked a clear single source of truth.",
     solution:
-      "Automated extraction and normalization of campaign + revenue data, then published structured datasets to dashboards with alerting on anomalies.",
+      "Automated the extraction and normalization of campaign and revenue data, then published structured datasets into dashboards with anomaly alerting.",
     outcome: [
-      "Data freshness moved from weekly to daily.",
-      "Manual reporting steps reduced from 9 to 2.",
-      "Single source of truth established for cross-team reviews.",
+      "Reporting moved from weekly updates to daily visibility.",
+      "Manual reporting steps were reduced from 9 to 2.",
+      "A reliable reporting foundation was created for cross-team decision-making.",
     ],
-  },
+  }
 ];
 
 export type InsightPost = {
@@ -119,97 +120,103 @@ export const insightPosts: InsightPost[] = [
 
 export const processSteps = [
   {
-    title: "Diagnose",
+    title: "Discovery",
     description:
-      "Identify bottlenecks, data flow issues, and conversion friction in current systems.",
+      "Understand the business, bottlenecks, and project goals.",
   },
   {
-    title: "Design the system",
+    title: "System Planning",
     description:
-      "Define architecture, UX, integrations, and tracking before build execution.",
+      "Define the platform structure, workflows, and technical approach.",
   },
   {
-    title: "Ship in iterations",
+    title: "Design & Build",
     description:
-      "Deliver weekly milestones with transparent scope and measurable outcomes.",
+      "Create the experience, develop the system, and connect key tools.",
   },
   {
-    title: "Document and handover",
+    title: "Launch & Optimization",
     description:
-      "Provide maintainable code, clear docs, and onboarding for your team.",
+      "Ship cleanly, test properly, and refine based on real usage.",
   },
 ];
 
 export const packages = [
   {
-    name: "Systems Audit",
-    level: "Entry",
-    bestFor: "Teams feeling operational friction",
+    name: "Platform Build",
+    bestFor:
+      "For businesses launching a new website, webshop, or custom web platform with a strong technical foundation.",
     includes: [
-      "Bottleneck map",
-      "Automation opportunities",
-      "Quick wins",
-      "Execution roadmap",
+      "project strategy",
+      "UX/UI direction",
+      "custom development",
+      "core integrations",
+      "launch support",
     ],
-    cta: secondaryCtas.audit,
+    cta: secondaryCtas.platform,
   },
   {
-    name: "Automation Sprint",
-    level: "Core",
-    bestFor: "Teams needing workflows now",
+    name: "Rebuild & Upgrade",
+    bestFor:
+      "For businesses with an outdated website or platform that no longer supports growth, conversion, or internal operations.",
     includes: [
-      "1-3 automations shipped",
-      "Tool integrations",
-      "Monitoring setup",
-      "Documentation",
+      "redesign and rebuild",
+      "performance improvements",
+      "structure cleanup",
+      "feature expansion",
+      "tracking and conversion setup",
     ],
-    cta: secondaryCtas.sprint,
+    cta: secondaryCtas.rebuild,
   },
   {
-    name: "Next.js Rebuild",
-    level: "Premium",
-    bestFor: "Companies outgrowing their current site",
+    name: "Automation Systems",
+    bestFor:
+      "For businesses that want to reduce manual work, connect tools, and improve operations with automation and AI-supported workflows.",
     includes: [
-      "Redesigned experience",
-      "Rebuilt codebase",
-      "Performance baseline",
-      "Tracking foundation",
+      "workflow mapping",
+      "automation architecture",
+      "CRM and tool integrations",
+      "AI-assisted process support",
+      "operational optimization",
     ],
-    cta: { label: "Discuss Rebuild", href: "/nextjs-rebuilds-for-growth" },
-  },
-  {
-    name: "Optimization Retainer",
-    level: "Scale",
-    bestFor: "Ongoing optimization and system expansion",
-    includes: [
-      "Monthly improvements",
-      "Conversion experiments",
-      "Automation expansion",
-      "Support",
-    ],
-    cta: { label: "Explore Retainer", href: "/contact" },
+    cta: secondaryCtas.automation,
   },
 ];
 
 export const faqItems = [
   {
-    question: "Are you a freelancer?",
+    question: "What kind of projects are the best fit?",
     answer:
-      "I work as a technical growth partner, shipping systems and infrastructure with defined deliverables, documentation, and scalable architecture.",
+      "The best fit is a business that needs more than just a nice-looking website. I work best on projects where the goal is to improve operations, reduce manual work, or build a scalable platform that supports growth.",
   },
   {
-    question: "How long does a rebuild take?",
+    question: "Do you work with small businesses?",
     answer:
-      "Rebuilds ship in phases. The first usable version lands quickly, then we iterate with prioritized improvements.",
+      "Yes. I primarily work with solo founders, small businesses, and growing teams that want serious systems without the complexity of a large agency process.",
   },
   {
-    question: "What do you need from us?",
+    question: "Do you offer automation without a new website?",
     answer:
-      "Access to current tools, stakeholders for workflow mapping, and one decision-maker for approvals.",
+      "Yes. Automation projects can be delivered independently if the main need is workflow improvement, tool integration, or reducing repetitive admin work.",
   },
   {
-    question: "Do you support what you build?",
+    question: "Can you improve an existing platform?",
     answer:
-      "Yes. Handover is structured and ongoing support is available through a retainer.",
+      "Yes. I can rebuild or upgrade an existing website or platform when the current setup no longer supports performance, conversion, scalability, or internal processes.",
+  },
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "It depends on scope. Smaller website builds can move quickly, while larger platforms and automation systems require more planning and implementation. After a short discovery phase, I define the realistic timeline clearly.",
+  },
+  {
+    question: "Do you offer ongoing support after launch?",
+    answer:
+      "Yes. For selected projects, I offer ongoing support, improvements, and automation expansion after launch so the system can continue evolving with the business.",
+  },
+  {
+    question: "Do you work internationally?",
+    answer:
+      "Yes. I am based in Austria and work with clients across Austria, Germany, Slovakia, and other international markets depending on project fit.",
   },
 ];

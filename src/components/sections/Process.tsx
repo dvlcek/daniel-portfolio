@@ -16,8 +16,8 @@ export function Process() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="Process"
-            title="A clear build process with clean handover."
-            desc="You'll always know what's shipping, why it matters, and what comes next."
+            title="A structured process from strategy to launch."
+            desc="Clear scope, clean execution, and a system you can actually use after handover."
           />
 
           <div className="grid gap-4 md:grid-cols-4">

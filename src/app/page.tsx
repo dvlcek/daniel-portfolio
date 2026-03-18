@@ -20,7 +20,7 @@ export default function Home() {
       <FeaturedOutcomes />
       <Process />
       <PackagesSection />
-      <Capabilities />
+      {/* <Capabilities /> */}
       <Testimonials />
       <FAQ />
       <FinalCTA />

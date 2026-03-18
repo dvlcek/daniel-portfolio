@@ -8,8 +8,7 @@ export default function AutomationSystemsLandingPage() {
         <p className="text-xs uppercase tracking-[0.2em] text-white/45">Landing Page</p>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">Automation Systems for Teams</h1>
         <p className="mt-6 text-base text-white/70">
-          Design and ship automation workflows that remove repetitive operations, connect your tools, and make execution reliable.
-        </p>
+          I design and build custom automation systems that reduce repetitive work, connect key tools, and make day-to-day operations more reliable.        </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[

@@ -23,7 +23,7 @@ export function PackagesSection() {
           <div className="grid gap-4 md:grid-cols-2">
             {packages.map((pkg) => (
               <article key={pkg.name} className="pkg-card rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
-                <p className="text-xs uppercase tracking-[0.2em] text-white/45">{pkg.level}</p>
+                {/* <p className="text-xs uppercase tracking-[0.2em] text-white/45">{pkg.level}</p> */}
                 <h3 className="mt-2 text-xl font-semibold text-white">{pkg.name}</h3>
                 <p className="mt-3 text-sm text-white/65"><span className="text-white/45">Best for:</span> {pkg.bestFor}</p>
                 <ul className="mt-4 space-y-2 text-sm text-white/70">

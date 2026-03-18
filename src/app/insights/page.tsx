@@ -9,8 +9,8 @@ export default function InsightsPage() {
       <Container>
         <SectionTitle
           eyebrow="Insights"
-          title="Short notes on automation, rebuilds, and performance"
-          desc="Focused writing for teams deciding what to optimize next."
+          title="Insights on automation, platforms, and operational systems"
+          desc="Practical notes for businesses deciding what to improve, rebuild, or automate next."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">

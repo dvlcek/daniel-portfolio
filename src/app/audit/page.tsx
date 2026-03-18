@@ -8,8 +8,8 @@ export default function AuditPage() {
       <Container className="max-w-4xl">
         <SectionTitle
           eyebrow="Audit"
-          title="Website and System Audit"
-          desc="Get a focused bottleneck map, quick wins, and execution roadmap for your growth stack."
+          title="Platform & Automation Audit"
+          desc="A focused review of your website, workflows, and systems to identify the highest-leverage improvements before a rebuild or automation project."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">

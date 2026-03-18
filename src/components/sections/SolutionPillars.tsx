@@ -8,19 +8,19 @@ import { Button } from "@/components/ui/Button";
 
 const pillars = [
   {
+    title: "Web Platforms",
+    description:
+      "Custom websites, web applications, and webshops built to support growth, conversion, and long-term maintainability.",
+  },
+  {
     title: "Automation Systems",
     description:
-      "Reduce manual work with workflows that connect your tools, standardize operations, and trigger actions automatically.",
+      "Workflows and connected systems that reduce manual work, improve speed, and make operations more reliable.",
   },
   {
-    title: "Modern Web Builds",
+    title: "Rebuilds & Optimization",
     description:
-      "High-performing Next.js sites built to convert, load fast, and stay maintainable.",
-  },
-  {
-    title: "Full Redesigns and Rebuilds",
-    description:
-      "When you've outgrown your current stack: redesign the experience, rebuild the architecture, and ship a scalable foundation.",
+      "For businesses that already have a website or platform but need a stronger structure, better performance, and more capable systems.",
   },
 ];
 
@@ -34,7 +34,7 @@ export function SolutionPillars() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="What I build"
-            title="Automation + modern web builds, engineered as one system."
+            title="I build the front-end platform and the operational system behind it."
           />
 
           <div className="grid gap-4 md:grid-cols-3">

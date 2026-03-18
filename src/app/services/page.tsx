@@ -4,9 +4,9 @@ import { packages, primaryCta } from "@/lib/siteContent";
 import Link from "next/link";
 
 const pillars = [
+  "Web Platforms",
   "Automation Systems",
-  "Modern Web Builds",
-  "Full Redesigns and Rebuilds",
+  "Rebuilds & Upgrades",
 ];
 
 export default function ServicesPage() {
@@ -15,7 +15,7 @@ export default function ServicesPage() {
       <Container>
         <SectionTitle
           eyebrow="Services"
-          title="Productized systems packages for teams that need speed"
+          title="Web platforms, rebuilds, and automation systems"
           desc="Clear scope, measurable outcomes, and maintainable delivery."
         />
 
@@ -30,7 +30,7 @@ export default function ServicesPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {packages.map((pkg) => (
             <article key={pkg.name} className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/45">{pkg.level}</p>
+              {/* <p className="text-xs uppercase tracking-[0.2em] text-white/45">{pkg.level}</p> */}
               <h3 className="mt-3 text-xl font-semibold text-white">{pkg.name}</h3>
               <p className="mt-3 text-sm text-white/65"><span className="text-white/45">Best for:</span> {pkg.bestFor}</p>
               <ul className="mt-4 space-y-2 text-sm text-white/70">
@@ -47,7 +47,7 @@ export default function ServicesPage() {
 
         <div className="mt-10 rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
           <h3 className="text-xl font-semibold text-white">Primary engagement path</h3>
-          <p className="mt-3 text-sm text-white/65">Most teams start with a systems call, then choose a sprint, rebuild, or audit based on current bottlenecks.</p>
+          <p className="mt-3 text-sm text-white/65">Most projects start with a short strategy call to identify the business bottleneck, define scope, and decide whether the right next step is a rebuild, platform build, or automation project.</p>
           <Link href={primaryCta.href} className="mt-5 inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90">
             {primaryCta.label}
           </Link>

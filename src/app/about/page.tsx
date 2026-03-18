@@ -14,18 +14,18 @@ export default function AboutPage() {
       <Container>
         <SectionTitle
           eyebrow="About"
-          title="Technical growth partner with an operator mindset"
-          desc="I help teams build the infrastructure behind speed: automation workflows, modern web architecture, and scalable handover standards."
+          title="I build the systems behind faster, more efficient businesses"
+          desc="I work with businesses that need more than just a nice website. I build web platforms, automation systems, and the technical structure behind smoother operations."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           <article className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10 md:col-span-2">
             <h2 className="text-lg font-semibold text-white">How I approach engagements</h2>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
-              I focus on bottlenecks that directly affect execution speed and conversion. Projects are structured as systems work: diagnose friction, design architecture, ship in phases, then transfer ownership with documentation.
+              I focus on the bottlenecks that slow a business down — manual tasks, disconnected tools, weak conversion flows, or outdated digital infrastructure.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
-              The goal is durable infrastructure, not short-term patches. Teams should be faster and less dependent after the engagement.
+              Every project is approached as a system: understand the friction, design the right structure, build cleanly, and leave the client with something reliable and maintainable.
             </p>
           </article>
 

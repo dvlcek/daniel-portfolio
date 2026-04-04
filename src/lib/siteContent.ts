@@ -14,6 +14,7 @@ export type CaseStudy = {
   slug: string;
   company: string;
   industry: string;
+  category: "websites" | "automation" | "rebuilds";
   result: string;
   whatIDid: string[];
   stack: string[];
@@ -21,66 +22,53 @@ export type CaseStudy = {
   challenge: string;
   solution: string;
   outcome: string[];
+  image: string;
+  featuredMetric?: string;
+  intro?: string;
 };
-
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "saas-lead-ops-automation",
-    company: "B2B SaaS Team",
-    industry: "Software",
-    result: "Reduced lead handling from 12 steps to 3 and cut response time by 68%.",
-    whatIDid: ["Workflow automation", "Lead routing", "Integration architecture"],
-    stack: ["Next.js", "TypeScript", "HubSpot API", "Zapier", "Postmark"],
-    summary:
-      "Disconnected lead intake, CRM routing, and follow-up processes were slowing down sales response and creating avoidable manual work.",
-    challenge:
-      "Leads were coming in from multiple sources with no consistent routing logic. Sales had to manually review, assign, and follow up, which slowed response times and increased the risk of missed opportunities.",
-    solution:
-      "Built an automation layer that standardized incoming lead data, routed leads by rules, assigned ownership automatically, and triggered follow-up sequences with alerting.",
-    outcome: [
-      "Lead routing time dropped from around 45 minutes to under 5 minutes.",
-      "Weekly manual operations work was reduced by more than 10 hours.",
-      "The team gained a more reliable and scalable lead handling process.",
+    slug: "storage-rental-platform",
+    company: "Self-Storage Rental Company",
+    industry: "Storage Rental",
+    category: "automation",
+    result:
+      "Built a fully automated rental platform enabling the business to operate without manual administration or additional staff.",
+    whatIDid: [
+      "Full platform development",
+      "Payment automation",
+      "Customer lifecycle system",
+      "Email automation infrastructure",
+      "Admin system design",
     ],
+    stack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "Node.js",
+      "Stripe API",
+      "Resend",
+      "Google APIs",
+    ],
+    summary:
+      "A storage rental startup needed a complete digital platform to launch and operate without relying on manual processes or additional staff.",
+    challenge:
+      "The business started with only an idea and no technical infrastructure. There was no system for handling rentals, payments, or customer communication, which would normally require multiple employees and manual coordination.",
+    solution:
+      "Designed and built a full-stack rental platform from scratch, including automated payments, customer self-service flows, email automation, and an admin system. The platform allows users to rent, manage, and cancel storage units independently, while handling invoicing and communication automatically in the background.",
+    outcome: [
+      "Enabled the business to launch and operate without hiring administrative staff.",
+      "Established a fully automated rental and payment workflow from day one.",
+      "Reduced operational overhead by eliminating manual processes.",
+      "Created a scalable platform that supports recurring monthly customers.",
+      "Improved customer experience through instant access, automated emails, and self-service management.",
+    ],
+    image: "/images/case-studies/storage-platform.png",
+    featuredMetric: "0 admin staff needed",
+    intro:
+      "This project was built for a company that needed more than a website. It needed an operational system that could handle rentals, payments, and customer management with minimal manual involvement.",
   },
-  {
-    slug: "services-company-nextjs-rebuild",
-    company: "Multi-location Services Company",
-    industry: "Home Services",
-    result: "Increased qualified lead conversion by 32% after a full platform rebuild.",
-    whatIDid: ["Platform rebuild", "UX restructuring", "Performance optimization", "Tracking setup"],
-    stack: ["Next.js", "TypeScript", "Tailwind", "GSAP", "GA4"],
-    summary:
-      "The existing website looked acceptable on the surface but underperformed in speed, clarity, and lead generation.",
-    challenge:
-      "The business had no clear conversion structure, weak trust presentation, and limited tracking, making it difficult to improve performance or understand what users were doing.",
-    solution:
-      "Redesigned the site structure, rebuilt the frontend on a more scalable architecture, and implemented conversion-focused tracking for better visibility and future optimization.",
-    outcome: [
-      "Qualified lead conversion increased by 32%.",
-      "CTA click-through improved by 24%.",
-      "The team now works with a cleaner and more maintainable website foundation.",
-    ],
-  },
-  {
-    slug: "internal-reporting-automation",
-    company: "Growth Operations Team",
-    industry: "Ecommerce",
-    result: "Replaced manual reporting with automated dashboards and saved 14 hours per week.",
-    whatIDid: ["Reporting automation", "Data flow design", "Dashboard infrastructure"],
-    stack: ["Node.js", "Google Sheets API", "BigQuery", "Looker Studio"],
-    summary:
-      "Reporting depended on repetitive manual work, inconsistent spreadsheets, and delayed data delivery.",
-    challenge:
-      "Leadership received updates too late, analysts spent too much time preparing reports, and teams lacked a clear single source of truth.",
-    solution:
-      "Automated the extraction and normalization of campaign and revenue data, then published structured datasets into dashboards with anomaly alerting.",
-    outcome: [
-      "Reporting moved from weekly updates to daily visibility.",
-      "Manual reporting steps were reduced from 9 to 2.",
-      "A reliable reporting foundation was created for cross-team decision-making.",
-    ],
-  }
 ];
 
 export type InsightPost = {

@@ -8,10 +8,10 @@ import { processSteps } from "@/lib/siteContent";
 
 export function Process() {
   const ref = useRef<HTMLDivElement>(null);
-  useStagger(ref, ".step", { y: 16, stagger: 0.08 });
+  useStagger(ref, ".step", { y: 24, stagger: 0.1 });
 
   return (
-    <section id="process" className=" py-20 md:py-28">
+    <section id="process" className="py-20 md:py-32">
       <Container>
         <div ref={ref}>
           <SectionTitle
@@ -20,21 +20,44 @@ export function Process() {
             desc="Clear scope, clean execution, and a system you can actually use after handover."
           />
 
-          <div className="grid gap-4 md:grid-cols-4">
-            {processSteps.map((s, idx) => (
-              <div
-                key={s.title}
-                className="step rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
-              >
-                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                  Step {idx + 1}
-                </p>
-                <p className="mt-3 text-base font-semibold text-white">{s.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {s.description}
-                </p>
-              </div>
-            ))}
+          <div className="relative mt-16">
+            {/* Mobile timeline line */}
+            <div className="absolute left-5 top-0 h-full w-px bg-white/10 md:hidden" />
+
+            {/* Desktop timeline line */}
+            <div className="absolute left-0 top-8 hidden h-px w-full bg-white/10 md:block" />
+
+            <div className="grid gap-12 md:grid-cols-4 md:gap-8">
+              {processSteps.map((s, idx) => (
+                <div key={s.title} className="step relative">
+                  {/* Node + line interaction */}
+                  <div className="relative flex items-start gap-5 md:block">
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black text-sm font-medium text-white shadow-[0_0_0_8px_rgba(0,0,0,1)] md:mx-auto">
+                      {idx + 1}
+                    </div>
+
+                    <div className="min-w-0 md:mt-8 md:text-center">
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/35">
+                        Step {idx + 1}
+                      </p>
+
+                      <h3 className="mt-3 text-lg font-semibold tracking-tight text-white md:text-xl">
+                        {s.title}
+                      </h3>
+
+                      <p className="mt-3 max-w-[28ch] text-sm leading-relaxed text-white/60 md:mx-auto">
+                        {s.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Optional connector accent for desktop except last */}
+                  {idx < processSteps.length - 1 && (
+                    <div className="absolute left-[2.5rem] top-5 h-px w-[calc(100%-2.5rem)] bg-gradient-to-r from-white/20 to-white/0 md:hidden" />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Container>

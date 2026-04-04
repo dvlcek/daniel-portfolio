@@ -8,9 +8,36 @@ import { useMagnetic } from "@/components/animations/useMagnetic";
 import { DottedSurface } from "@/components/visuals/DottedSurface";
 
 const outcomes = [
-  "Reduce repetitive admin work",
-  "Build web platforms that convert",
-  "Create systems that stay scalable",
+  {
+    label: "Reduce repetitive admin work",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12.5" cy="10.5" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M14.5 12.5l1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Build web platforms that convert",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="1" y="2" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M5 14h6M8 12v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M4.5 8.5l2-2 2 2 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Create systems that stay scalable",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="1" y="9" width="4" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="6" y="5" width="4" height="10" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="11" y="1" width="4" height="14" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+      </svg>
+    ),
+  },
 ];
 
 export function Hero() {
@@ -22,7 +49,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="relative min-h-[calc(100vh-65px)]  flex items-center py-16 md:py-24">
+      <div className="relative min-h-[calc(100vh-65px)] flex items-center py-16 md:py-24">
         {/* Background */}
         <DottedSurface
           mode="hero"
@@ -35,12 +62,13 @@ export function Hero() {
 
         <Container>
           <div ref={wrapRef} className="mx-auto w-full max-w-5xl">
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
-                  <p className="text-xs uppercase tracking-[0.22em] text-white/60">
-                    Software Developer & Systems Builder
-                  </p>
-                </div>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
+              <p className="text-xs uppercase tracking-[0.22em] text-white/60">
+                Software Developer & Systems Builder
+              </p>
+            </div>
 
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl">
               I build web platforms and automation systems that make companies run faster.
@@ -51,45 +79,29 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                // ref={ctaRef}
-                href="/contact"
-                variant="primary"
-                className="w-full sm:w-auto"
-              >
+              <Button href="/contact" variant="primary" className="w-full sm:w-auto">
                 Book a Strategy Call
               </Button>
-
-              <Button
-                href="/portfolio"
-                variant="secondary"
-                className="w-full sm:w-auto"
-              >
+              <Button href="/portfolio" variant="secondary" className="w-full sm:w-auto">
                 View Selected Work
               </Button>
             </div>
 
-            <div className="mt-12 border-t border-white/10 pt-6">
-              <div className="grid gap-2 md:grid-cols-3">
-                {outcomes.map((item) => (
-                  <p key={item} className="text-sm text-white/55">
-                    {item}
-                  </p>
-                ))}
-              </div>
+            {/* Outcome cards */}
+            <div className="mt-12 grid gap-3 md:grid-cols-3">
+              {outcomes.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex gap-3 rounded-xl bg-white/3 px-4 py-4 ring-1 ring-white/8"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/6 text-white/50 ring-1 ring-white/10">
+                    {item.icon}
+                  </span>
+                  <p className="text-sm leading-snug text-white/60">{item.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-          {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2 text-white/40">
-            <span className="text-[10px] uppercase tracking-[0.3em]">
-              Scroll
-            </span>
-
-            <div className="relative h-10 w-[1px] overflow-hidden bg-white/20">
-              <div className="scroll-line absolute top-0 left-0 w-full bg-white/70" />
-            </div>
-          </div>
-        </div> */}
         </Container>
       </div>
     </section>

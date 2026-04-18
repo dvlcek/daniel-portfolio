@@ -26,48 +26,40 @@ export type CaseStudy = {
   featuredMetric?: string;
   intro?: string;
 };
+
 export const caseStudies: CaseStudy[] = [
   {
     slug: "storage-rental-platform",
-    company: "Self-Storage Rental Company",
+    company: "Self-Storage Rental Co.",
     industry: "Storage Rental",
     category: "automation",
     result:
-      "Built a fully automated rental platform enabling the business to operate without manual administration or additional staff.",
+      "Built a fully automated rental system that allows the business to operate with zero administrative staff while handling payments, customers, and communication end-to-end.",
     whatIDid: [
-      "Full platform development",
-      "Payment automation",
-      "Customer lifecycle system",
-      "Email automation infrastructure",
-      "Admin system design",
+      "End-to-end system architecture",
+      "Automated payment & billing system",
+      "Customer self-service platform",
+      "Email & notification automation",
+      "Admin & operations dashboard",
     ],
-    stack: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "PHP",
-      "Node.js",
-      "Stripe API",
-      "Resend",
-      "Google APIs",
-    ],
+    stack: ["Node.js", "PHP", "Stripe API", "Resend", "Google APIs"],
     summary:
-      "A storage rental startup needed a complete digital platform to launch and operate without relying on manual processes or additional staff.",
+      "A storage rental startup needed a complete operational system — not just a website — to launch and run the business without hiring staff.",
     challenge:
-      "The business started with only an idea and no technical infrastructure. There was no system for handling rentals, payments, or customer communication, which would normally require multiple employees and manual coordination.",
+      "Without a system, the business would require manual handling of bookings, payments, customer communication, and contract management. This would increase operational costs and slow down growth from day one.",
     solution:
-      "Designed and built a full-stack rental platform from scratch, including automated payments, customer self-service flows, email automation, and an admin system. The platform allows users to rent, manage, and cancel storage units independently, while handling invoicing and communication automatically in the background.",
+      "Designed and built a fully automated rental infrastructure. Customers can rent, manage, and cancel units independently, while payments, invoicing, and communication are handled automatically.",
     outcome: [
-      "Enabled the business to launch and operate without hiring administrative staff.",
-      "Established a fully automated rental and payment workflow from day one.",
-      "Reduced operational overhead by eliminating manual processes.",
-      "Created a scalable platform that supports recurring monthly customers.",
-      "Improved customer experience through instant access, automated emails, and self-service management.",
+      "Eliminated the need for administrative staff from day one.",
+      "Reduced operational workload by automating core business processes.",
+      "Enabled fully automated monthly recurring revenue handling.",
+      "Improved customer experience through instant booking and self-service.",
+      "Created a scalable system ready for growth without increasing costs.",
     ],
     image: "/images/case-studies/storage-platform.png",
     featuredMetric: "0 admin staff needed",
     intro:
-      "This project was built for a company that needed more than a website. It needed an operational system that could handle rentals, payments, and customer management with minimal manual involvement.",
+      "Instead of building just a website, this project focused on creating a complete operational system — replacing manual work with automation and enabling the business to scale from day one.",
   },
 ];
 

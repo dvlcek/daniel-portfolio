@@ -68,7 +68,7 @@ export function SolutionPillars() {
                     <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
                       {pillar.number}
                     </span>
-                    <div className="h-px w-14 bg-white/10 transition-all duration-300 group-hover:w-50 group-hover:bg-white/20" />
+                    <div className="h-px w-14 bg-white/10 transition-[width,background-color] duration-300 group-hover:w-52 group-hover:bg-white/20" />
                   </div>
 
                   <h3 className="text-xl font-semibold tracking-tight text-white">

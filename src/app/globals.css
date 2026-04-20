@@ -25,6 +25,7 @@ body {
 /* IMPORTANT: do NOT enable CSS smooth scroll when using JS smooth scroll */
 html {
   scrollbar-gutter: stable;
+  color-scheme: dark;
 }
 
 body {
@@ -45,6 +46,7 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -60,4 +62,27 @@ video {
 /* Offset anchors for fixed header */
 :where(section, [id]) {
   scroll-margin-top: var(--nav-height);
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(6, 6, 9, 0.95);
+  padding: 0.75rem 1rem;
+  color: rgb(var(--fg));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  border-color: rgba(96, 165, 250, 0.75);
+  outline: none;
 }

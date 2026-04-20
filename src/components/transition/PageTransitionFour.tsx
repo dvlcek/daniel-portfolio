@@ -2,9 +2,15 @@
 
 import Image from "next/image";
 import { usePageTransition } from "./TransitionProvider";
+import { usePrefersReducedMotion } from "@/components/animations/usePrefersReducedMotion";
 
 export function PageTransition() {
   const { phase } = usePageTransition();
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  if (prefersReducedMotion) {
+    return null;
+  }
 
   const active = phase !== "idle";
   const covering =
@@ -63,7 +69,7 @@ export function PageTransition() {
           >
             <Image
               src="/part1.svg"
-              alt="Logo part 1"
+              alt=""
               fill
               priority
               className="object-contain"
@@ -84,7 +90,7 @@ export function PageTransition() {
           >
             <Image
               src="/part2.svg"
-              alt="Logo part 2"
+              alt=""
               fill
               priority
               className="object-contain"
@@ -105,7 +111,7 @@ export function PageTransition() {
           >
             <Image
               src="/part3.svg"
-              alt="Logo part 3"
+              alt=""
               fill
               priority
               className="object-contain"
@@ -126,7 +132,7 @@ export function PageTransition() {
           >
             <Image
               src="/part4.svg"
-              alt="Logo part 4"
+              alt=""
               fill
               priority
               className="object-contain"

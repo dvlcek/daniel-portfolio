@@ -3,7 +3,6 @@ import { Space_Grotesk, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { RouteProgress } from "@/components/site/RouteProgress";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
@@ -34,11 +33,18 @@ export default function RootLayout({
       <body
         className={`tech-bg min-h-screen overflow-x-hidden ${headingFont.variable} ${bodyFont.variable}`}
       >
+        <a
+          href="#main-content"
+          className="skip-link"
+        >
+          Skip to content
+        </a>
         <TransitionProvider>
           <PageTransition />
           {/* <SmoothScroll /> */}
           {/* <RouteProgress /> */}
           <SiteHeader />
+          <div id="main-content" tabIndex={-1} />
           {children}
           <SiteFooter />
         </TransitionProvider>

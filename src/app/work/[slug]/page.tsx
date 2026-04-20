@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { caseStudies } from "@/lib/siteContent";
@@ -56,12 +57,12 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     <main className="min-h-screen overflow-x-hidden py-16 md:py-24">
       <Container className="max-w-6xl">
         <div className="mx-auto max-w-5xl">
-          <a
+          <Link
             href="/work"
             className="inline-flex text-sm text-white/55 transition hover:text-white"
           >
             ← Back to case studies
-          </a>
+          </Link>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
             <div>
@@ -234,19 +235,19 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90"
                 >
                   Book a 20-min Systems Call
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/work"
                   className="inline-flex rounded-2xl border border-white/10 px-5 py-3 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white"
                 >
                   View more case studies
-                </a>
+                </Link>
               </div>
             </div>
           </section>

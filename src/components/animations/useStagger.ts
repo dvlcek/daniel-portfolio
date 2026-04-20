@@ -2,15 +2,18 @@
 
 import { useEffect } from "react";
 import { ensureGsap, gsap } from "./gsapClient";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 export function useStagger<T extends HTMLElement>(
   containerRef: React.RefObject<T | null>,
   itemSelector: string,
   opts?: { y?: number; stagger?: number }
 ) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   useEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
+    if (!el || prefersReducedMotion) return;
 
     ensureGsap();
 
@@ -36,5 +39,5 @@ export function useStagger<T extends HTMLElement>(
     }, el);
 
     return () => ctx.revert();
-  }, [containerRef, itemSelector, opts?.y, opts?.stagger]);
+  }, [containerRef, itemSelector, opts?.stagger, opts?.y, prefersReducedMotion]);
 }

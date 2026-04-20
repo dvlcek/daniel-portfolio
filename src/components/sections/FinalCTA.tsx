@@ -14,7 +14,7 @@ export function FinalCTA() {
       <Container>
         <div ref={ref} className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
               Planning a platform or automation project?
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/65 md:text-base">

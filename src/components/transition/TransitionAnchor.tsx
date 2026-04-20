@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { usePageTransition } from "@/components/transition/TransitionProvider";
+import { useTransitionLink } from "@/components/transition/useTransitionLink";
 
 type Props = React.PropsWithChildren<{
   href: string;
@@ -22,17 +22,7 @@ export function TransitionAnchor({
   onClick,
   children,
 }: Props) {
-  const { start, isTransitioning } = usePageTransition();
-
-  const isHashOnly = href.startsWith("#");
-  const isSamePageAnchor = href.startsWith("/#");
-  const isExternal =
-    href.startsWith("http://") ||
-    href.startsWith("https://") ||
-    href.startsWith("mailto:") ||
-    href.startsWith("tel:");
-
-  const shouldUseTransition = !target && !isHashOnly && !isSamePageAnchor && !isExternal;
+  const handleClick = useTransitionLink({ href, onClick, target });
 
   return (
     <Link
@@ -41,17 +31,7 @@ export function TransitionAnchor({
       prefetch={prefetch}
       target={target}
       rel={rel}
-      onClick={(e) => {
-        onClick?.(e);
-        if (e.defaultPrevented) return;
-
-        if (!shouldUseTransition) return;
-
-        e.preventDefault();
-        if (isTransitioning) return;
-
-        start(href);
-      }}
+      onClick={handleClick}
     >
       {children}
     </Link>

@@ -27,7 +27,7 @@ export function PackagesSection() {
                 key={pkg.name}
                 className="pkg-card group relative border-t border-white/12 pt-6"
               >
-                <div className="absolute left-0 top-0 h-px w-20 bg-white/35 transition-all duration-500 group-hover:w-132" />
+                <div className="absolute left-0 top-0 h-px w-20 bg-white/35 transition-[width] duration-500 group-hover:w-[33rem]" />
 
                 <div className="flex h-full flex-col">
                   <div>

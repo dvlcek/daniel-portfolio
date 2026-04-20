@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, useRef } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
 
 interface TransitionContextType {
@@ -50,23 +57,20 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
     [router]
   );
 
-  // First load boot
-  const bootRef = useRef(false);
-  if (!bootRef.current) {
-    bootRef.current = true;
-    if (typeof window !== "undefined") {
-      setTimeout(() => {
-        setPhase("logo-in");
-        setTimeout(() => setPhase("logo-hold"), 600);
-        setTimeout(() => setPhase("logo-out"), 1300);
-        setTimeout(() => setPhase("uncover"), 1700);
-        setTimeout(() => {
-          setPhase("idle");
-          document.documentElement.classList.remove("loading");
-        }, 2300);
-      }, 50);
-    }
-  }
+  useEffect(() => {
+    const bootDelayId = window.setTimeout(() => {
+      setPhase("logo-in");
+      window.setTimeout(() => setPhase("logo-hold"), 600);
+      window.setTimeout(() => setPhase("logo-out"), 1300);
+      window.setTimeout(() => setPhase("uncover"), 1700);
+      window.setTimeout(() => {
+        setPhase("idle");
+        document.documentElement.classList.remove("loading");
+      }, 2300);
+    }, 50);
+
+    return () => window.clearTimeout(bootDelayId);
+  }, []);
 
   return (
     <TransitionContext.Provider value={{ navigate: runExit, phase }}>

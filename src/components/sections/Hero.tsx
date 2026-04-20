@@ -132,7 +132,7 @@ export function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
+            <h1 className="mt-6 max-w-5xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl">
               I build systems that reduce manual work and make businesses
               operate faster.
             </h1>
@@ -168,7 +168,7 @@ export function Hero() {
               {outcomes.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center justify-left gap-3 rounded-xl bg-white/3 px-6 py-5 ring-1 ring-white/8 transition-all hover:bg-white/5 hover:ring-white/12"
+                  className="flex items-center justify-start gap-3 rounded-xl bg-white/3 px-6 py-5 ring-1 ring-white/8 transition-[background-color,border-color] hover:bg-white/5 hover:ring-white/12"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/6 text-white/60 ring-1 ring-white/10">
                     {item.icon}

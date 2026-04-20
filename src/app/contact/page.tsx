@@ -1,13 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useId, useState } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-
-// ✅ Cal.com embed
-import Cal, { getCalApi } from "@calcom/embed-react";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface FormState {
   fullName: string;
@@ -22,169 +18,175 @@ interface FormState {
   projectGoal: string;
 }
 
-// ─── Dropdown ─────────────────────────────────────────────────────────────────
+const fieldClassName =
+  "w-full rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white transition-colors placeholder:text-white/30 focus-visible:border-blue-400/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/35";
 
-interface DropdownProps {
+interface SelectFieldProps {
   label: string;
+  name: keyof FormState;
   options: string[];
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
 }
 
-function Dropdown({ label, options, value, onChange }: DropdownProps) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+function SelectField({
+  label,
+  name,
+  options,
+  value,
+  onChange,
+}: SelectFieldProps) {
+  const id = useId();
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm text-white/75">{label}</span>
-      <div className="relative" ref={ref}>
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          className="inline-flex w-full items-center justify-between rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors hover:bg-white/5 focus:border-blue-400/60"
+      <label htmlFor={id} className="text-sm text-white/75">
+        {label}
+      </label>
+      <div className="relative">
+        <select
+          id={id}
+          name={name}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          className={`${fieldClassName} appearance-none pr-10`}
         >
-          <span>{value}</span>
-          <svg
-            className={`ml-2 h-4 w-4 shrink-0 text-white/40 transition-transform duration-200 ${
-              open ? "rotate-180" : ""
-            }`}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m19 9-7 7-7-7"
-            />
-          </svg>
-        </button>
-
-        {open && (
-          <div className="absolute z-20 mt-1.5 w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-900 shadow-xl">
-            <ul className="p-1.5 text-sm font-medium">
-              {options.map((option) => (
-                <li key={option}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onChange(option);
-                      setOpen(false);
-                    }}
-                    className={`w-full rounded-lg px-3 py-2 text-left transition-colors hover:bg-white/5 hover:text-white ${
-                      value === option ? "bg-white/5 text-white" : "text-white/60"
-                    }`}
-                  >
-                    {option}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+          {options.map((option) => (
+            <option key={option} value={option} className="bg-zinc-950 text-white">
+              {option}
+            </option>
+          ))}
+        </select>
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m19 9-7 7-7-7"
+          />
+        </svg>
       </div>
     </div>
   );
 }
 
-// ─── Field ────────────────────────────────────────────────────────────────────
-
 interface FieldProps {
   label: string;
+  name: keyof FormState;
   type?: string;
   placeholder?: string;
   required?: boolean;
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
+  autoComplete?: string;
+  inputMode?:
+    | "text"
+    | "email"
+    | "tel"
+    | "url"
+    | "search"
+    | "numeric"
+    | "decimal"
+    | "none";
+  spellCheck?: boolean;
 }
 
 function Field({
   label,
+  name,
   type = "text",
   placeholder,
   required,
   value,
   onChange,
+  autoComplete,
+  inputMode,
+  spellCheck,
 }: FieldProps) {
+  const id = useId();
+
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm text-white/75">
+      <label htmlFor={id} className="text-sm text-white/75">
         {label}
-        {required && <span className="ml-0.5 text-blue-400">*</span>}
-      </span>
+        {required ? <span className="ml-0.5 text-blue-400">*</span> : null}
+      </label>
       <input
+        id={id}
+        name={name}
         type={type}
         required={required}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        spellCheck={spellCheck}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-blue-400/60"
+        onChange={(event) => onChange(event.target.value)}
+        className={fieldClassName}
       />
     </div>
   );
 }
 
-// ─── Textarea Field ───────────────────────────────────────────────────────────
-
 interface TextareaFieldProps {
   label: string;
+  name: keyof FormState;
   placeholder?: string;
   required?: boolean;
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
 }
 
 function TextareaField({
   label,
+  name,
   placeholder,
   required,
   value,
   onChange,
 }: TextareaFieldProps) {
+  const id = useId();
+
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm text-white/75">
+      <label htmlFor={id} className="text-sm text-white/75">
         {label}
-        {required && <span className="ml-0.5 text-blue-400">*</span>}
-      </span>
+        {required ? <span className="ml-0.5 text-blue-400">*</span> : null}
+      </label>
       <textarea
+        id={id}
+        name={name}
         required={required}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         rows={4}
-        className="w-full resize-none rounded-xl border border-white/15 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-blue-400/60"
+        className={`${fieldClassName} resize-none`}
       />
     </div>
   );
 }
 
-// ─── Step Indicator ───────────────────────────────────────────────────────────
-
 function StepIndicator({ step }: { step: 1 | 2 }) {
   return (
     <div className="mb-8 flex items-center gap-3">
-      {([1, 2] as const).map((s) => (
-        <div key={s} className="flex items-center gap-2">
+      {([1, 2] as const).map((currentStep) => (
+        <div key={currentStep} className="flex items-center gap-2">
           <div
             className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300 ${
-              step >= s ? "bg-blue-500 text-white" : "bg-white/10 text-white/40"
+              step >= currentStep
+                ? "bg-blue-500 text-white"
+                : "bg-white/10 text-white/40"
             }`}
           >
-            {step > s ? (
+            {step > currentStep ? (
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
                 <path
                   stroke="currentColor"
@@ -195,30 +197,28 @@ function StepIndicator({ step }: { step: 1 | 2 }) {
                 />
               </svg>
             ) : (
-              s
+              currentStep
             )}
           </div>
           <span
             className={`text-xs font-medium ${
-              step >= s ? "text-white/80" : "text-white/30"
+              step >= currentStep ? "text-white/80" : "text-white/30"
             }`}
           >
-            {s === 1 ? "Your details" : "Pick a time"}
+            {currentStep === 1 ? "Your details" : "Pick a time"}
           </span>
-          {s < 2 && (
+          {currentStep < 2 ? (
             <div
               className={`mx-1 h-px w-8 ${
-                step > s ? "bg-blue-500/50" : "bg-white/10"
+                step > currentStep ? "bg-blue-500/50" : "bg-white/10"
               }`}
             />
-          )}
+          ) : null}
         </div>
       ))}
     </div>
   );
 }
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ContactPage() {
   const [step, setStep] = useState<1 | 2>(1);
@@ -237,31 +237,33 @@ export default function ContactPage() {
     projectGoal: "",
   });
 
-  const set = (field: keyof FormState) => (v: string) =>
-    setForm((f) => ({ ...f, [field]: v }));
+  const set = (field: keyof FormState) => (value: string) =>
+    setForm((current) => ({ ...current, [field]: value }));
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setSubmitting(true);
+
     try {
       console.log("New lead:", form);
       await new Promise((resolve) => setTimeout(resolve, 400));
       setStep(2);
-    } catch (err) {
-      console.error("Submit error:", err);
+    } catch (error) {
+      console.error("Submit error:", error);
     } finally {
       setSubmitting(false);
     }
   };
 
-  // ✅ Replace this with your Cal.com event link slug:
   const CAL_LINK = "daniel-i0cc0w/30min";
   const CAL_NAMESPACE = "30min";
 
   useEffect(() => {
-    if (step !== 2) return;
+    if (step !== 2) {
+      return;
+    }
 
-    (async () => {
+    void (async () => {
       const cal = await getCalApi({ namespace: CAL_NAMESPACE });
       cal("ui", {
         theme: "dark",
@@ -273,7 +275,7 @@ export default function ContactPage() {
     })();
   }, [step]);
 
-  const CAL_OPEN_URL = `https://cal.com/daniel-i0cc0w/30min`;
+  const calOpenUrl = "https://cal.com/daniel-i0cc0w/30min";
 
   const expectations = [
     {
@@ -309,28 +311,31 @@ export default function ContactPage() {
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {/* ── Left panel ── */}
           <section className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
             <StepIndicator step={step} />
 
-            {step === 1 && (
+            {step === 1 ? (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="mb-5 text-lg font-semibold text-white">
                   A few details before we speak
                 </h2>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <Field
                     label="Full name"
-                    placeholder="Jane Smith"
+                    name="fullName"
+                    placeholder="Jane Smith…"
                     required
+                    autoComplete="name"
                     value={form.fullName}
                     onChange={set("fullName")}
                   />
                   <Field
                     label="Company name"
-                    placeholder="Acme Inc."
+                    name="companyName"
+                    placeholder="Acme Inc.…"
                     required
+                    autoComplete="organization"
                     value={form.companyName}
                     onChange={set("companyName")}
                   />
@@ -338,17 +343,25 @@ export default function ContactPage() {
 
                 <Field
                   label="Email"
+                  name="email"
                   type="email"
-                  placeholder="jane@acme.com"
+                  placeholder="jane@acme.com…"
                   required
+                  autoComplete="email"
+                  inputMode="email"
+                  spellCheck={false}
                   value={form.email}
                   onChange={set("email")}
                 />
 
                 <Field
                   label="Phone number"
+                  name="phone"
                   type="tel"
-                  placeholder="+43 15123457"
+                  placeholder="+43 15123457…"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  spellCheck={false}
                   value={form.phone}
                   onChange={set("phone")}
                 />
@@ -363,20 +376,23 @@ export default function ContactPage() {
 
                 <TextareaField
                   label="Project goal"
-                  placeholder="Briefly describe what you want to improve, build, or automate."
+                  name="projectGoal"
+                  placeholder="Briefly describe what you want to improve, build, or automate…"
                   value={form.projectGoal}
                   onChange={set("projectGoal")}
                 />
 
                 <Field
                   label="Company size"
-                  placeholder="e.g. 10–50 employees"
+                  name="companySize"
+                  placeholder="e.g. 10–50 employees…"
                   value={form.companySize}
                   onChange={set("companySize")}
                 />
 
-                <Dropdown
+                <SelectField
                   label="Biggest bottleneck"
+                  name="bottleneck"
                   options={[
                     "Website / Platform",
                     "Automation / Workflows",
@@ -386,8 +402,9 @@ export default function ContactPage() {
                   onChange={set("bottleneck")}
                 />
 
-                <Dropdown
+                <SelectField
                   label="Timeline urgency"
+                  name="timeline"
                   options={[
                     "As soon as possible",
                     "Within 1–2 months",
@@ -399,15 +416,20 @@ export default function ContactPage() {
 
                 <Field
                   label="Planned budget range"
-                  placeholder="e.g. €5k–€15k"
+                  name="budgetRange"
+                  placeholder="e.g. €5k–€15k…"
                   value={form.budgetRange}
                   onChange={set("budgetRange")}
                 />
 
                 <Field
                   label="Current site / tools"
+                  name="currentSite"
                   type="url"
-                  placeholder="https://"
+                  placeholder="https://…"
+                  autoComplete="url"
+                  inputMode="url"
+                  spellCheck={false}
                   value={form.currentSite}
                   onChange={set("currentSite")}
                 />
@@ -415,14 +437,12 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-2 w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-2 w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {submitting ? "Saving…" : "Continue — Pick a time →"}
+                  {submitting ? "Saving…" : "Continue to Scheduling"}
                 </button>
               </form>
-            )}
-
-            {step === 2 && (
+            ) : (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-white">
@@ -431,7 +451,7 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex items-center gap-1 text-xs text-white/40 transition-colors hover:text-white/70"
+                    className="flex items-center gap-1 text-xs text-white/40 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
                       <path
@@ -450,7 +470,7 @@ export default function ContactPage() {
                   <div className="flex items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3">
                     <span className="text-xs text-white/50">Booking</span>
                     <a
-                      href={CAL_OPEN_URL}
+                      href={calOpenUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="text-xs text-white/50 transition hover:text-white/80"
@@ -464,8 +484,8 @@ export default function ContactPage() {
                     calLink={CAL_LINK}
                     style={{ width: "100%", height: "480px", overflow: "auto" }}
                     config={{
-                      name: form.fullName || undefined,
-                      email: form.email || undefined,
+                      name: form.fullName || "",
+                      email: form.email || "",
                       "metadata[fullName]": form.fullName || "",
                       "metadata[companyName]": form.companyName || "",
                       "metadata[phone]": form.phone || "",
@@ -479,7 +499,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <p className="text-center text-xs text-white/30">
+                <p className="text-center text-xs text-white/30" aria-live="polite">
                   A confirmation will be sent to{" "}
                   <span className="text-white/50">{form.email}</span>
                 </p>
@@ -487,7 +507,6 @@ export default function ContactPage() {
             )}
           </section>
 
-          {/* ── Right panel ── */}
           <section className="flex flex-col justify-between rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
             <div>
               <h2 className="text-lg font-semibold text-white">
@@ -501,6 +520,7 @@ export default function ContactPage() {
                         className="h-3.5 w-3.5 text-blue-400"
                         fill="none"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           stroke="currentColor"

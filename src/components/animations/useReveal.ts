@@ -2,14 +2,17 @@
 
 import { useEffect } from "react";
 import { ensureGsap, gsap } from "./gsapClient";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 export function useReveal<T extends HTMLElement>(
   ref: React.RefObject<T | null>,
   opts?: { delay?: number }
 ) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || prefersReducedMotion) return;
 
     ensureGsap();
 
@@ -32,5 +35,5 @@ export function useReveal<T extends HTMLElement>(
     }, el);
 
     return () => ctx.revert();
-  }, [ref, opts?.delay]);
+  }, [prefersReducedMotion, ref, opts?.delay]);
 }

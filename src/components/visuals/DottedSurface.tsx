@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { cn } from "@/app/lib/cn";
+import { usePrefersReducedMotion } from "@/components/animations/usePrefersReducedMotion";
 
 type DottedSurfaceProps = Omit<React.ComponentProps<"div">, "ref"> & {
   /** Set true if you want it only inside hero (absolute), false for full-screen */
@@ -19,10 +20,11 @@ export function DottedSurface({
 }: DottedSurfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || prefersReducedMotion) return;
 
     // ---- Grid config ----
     const SEPARATION = 120;
@@ -142,7 +144,12 @@ export function DottedSurface({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [theme]);
+  }, [prefersReducedMotion, theme]);
+
+  const staticBackground =
+    theme === "dark"
+      ? "radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1.5px)"
+      : "radial-gradient(circle, rgba(10,10,12,0.18) 1px, transparent 1.5px)";
 
   return (
     <div
@@ -154,6 +161,15 @@ export function DottedSurface({
           : "absolute inset-0 -z-10",
         className
       )}
+      style={
+        prefersReducedMotion
+          ? {
+              backgroundImage: staticBackground,
+              backgroundSize: "120px 120px",
+              opacity: theme === "dark" ? 0.28 : 0.14,
+            }
+          : undefined
+      }
       {...props}
     />
   );

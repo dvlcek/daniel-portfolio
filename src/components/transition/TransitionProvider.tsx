@@ -1,7 +1,17 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
+import React, {
+  createContext,
+  startTransition,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
+import { usePrefersReducedMotion } from "@/components/animations/usePrefersReducedMotion";
 
 type Phase = "idle" | "cover" | "logo-in" | "logo-hold" | "logo-out" | "uncover";
 
@@ -32,30 +42,59 @@ export function usePageTransition() {
 
 export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [phase, setPhase] = useState<Phase>("idle");
   const lockRef = useRef(false);
+  const timeoutIdsRef = useRef<number[]>([]);
+
+  const clearScheduledTransitions = useCallback(() => {
+    for (const timeoutId of timeoutIdsRef.current) {
+      window.clearTimeout(timeoutId);
+    }
+
+    timeoutIdsRef.current = [];
+  }, []);
+
+  const schedule = useCallback((callback: () => void, delay: number) => {
+    const timeoutId = window.setTimeout(callback, delay);
+    timeoutIdsRef.current.push(timeoutId);
+  }, []);
+
+  useEffect(() => clearScheduledTransitions, [clearScheduledTransitions]);
 
   const start = useCallback(
     (href: string) => {
       if (lockRef.current) return;
       lockRef.current = true;
 
+      clearScheduledTransitions();
+
+      if (prefersReducedMotion) {
+        startTransition(() => {
+          router.push(href);
+        });
+        lockRef.current = false;
+        return;
+      }
+
       setPhase("cover");
 
-      setTimeout(() => {
-        router.push(href);
+      schedule(() => {
+        startTransition(() => {
+          router.push(href);
+        });
       }, 420);
 
-      setTimeout(() => setPhase("logo-in"),   550);   // parts start animating
-      setTimeout(() => setPhase("logo-hold"), 2000);  // all 4 parts fully in
-      setTimeout(() => setPhase("logo-out"),  2500);  // hold for 1s, then exit
-      setTimeout(() => setPhase("uncover"),   3000);  // bg starts uncovering
-      setTimeout(() => {
+      schedule(() => setPhase("logo-in"), 550);
+      schedule(() => setPhase("logo-hold"), 2000);
+      schedule(() => setPhase("logo-out"), 2500);
+      schedule(() => setPhase("uncover"), 3000);
+      schedule(() => {
         setPhase("idle");
         lockRef.current = false;
       }, 4200);
     },
-    [router]
+    [clearScheduledTransitions, prefersReducedMotion, router, schedule]
   );
 
   const value = useMemo(

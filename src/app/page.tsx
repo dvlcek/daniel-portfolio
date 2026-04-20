@@ -14,14 +14,12 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      {/* <ProofStrip /> */}
       <Problem />
-      <SolutionPillars />
       <FeaturedOutcomes />
+      <SolutionPillars />
       <Process />
-      <PackagesSection />
-      {/* <Capabilities /> */}
       <Testimonials />
+      <PackagesSection />
       <FAQ />
       <FinalCTA />
     </main>

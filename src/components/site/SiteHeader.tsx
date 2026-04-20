@@ -22,7 +22,7 @@ export function SiteHeader() {
             <p className="text-sm font-semibold tracking-tight text-white">
               Daniel Vlcek
             </p>
-            <p className="text-xs text-white/55">Web Platforms & Automation</p>
+            <p className="text-xs text-white/55">Systems & Automation</p>
           </div>
         </TransitionAnchor>
 

@@ -30,7 +30,7 @@ export function FeaturedOutcomes() {
       <Container>
         <div ref={ref}>
           <SectionTitle
-            eyebrow="Selected Work"
+            eyebrow="Business outcomes from better systems"
             title="Case studies built around business outcomes."
             desc="A preview of projects focused on conversion, automation, and scalable digital infrastructure."
           />

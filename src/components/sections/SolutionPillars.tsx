@@ -11,27 +11,27 @@ const pillars = [
     number: "01",
     title: "Web Platforms",
     description:
-      "Custom websites, web applications, and webshops built to support growth, conversion, and long-term maintainability.",
-    button: {
-      label: "See examples of this",
-      href: "/work#web-platforms",
-    },
+      "Websites, portals, and digital platforms designed to build trust, improve conversion, and support business growth.",
+    // button: {
+    //   label: "See examples of this",
+    //   href: "/work#web-platforms",
+    // },
   },
   {
     number: "02",
-    title: "Automation Systems",
+    title: "Operational Automation",
     description:
-      "Workflows and connected systems that reduce manual work, improve speed, and make operations more reliable.",
-    button: {
-      label: "See examples of this",
-      href: "/work#automation",
-    },
+      "Connected workflows and systems that reduce manual work, increase speed, and make daily operations more reliable.",
+    // button: {
+    //   label: "See examples of this",
+    //   href: "/work#automation",
+    // },
   },
   {
     number: "03",
     title: "Rebuilds & Optimization",
     description:
-      "For businesses that already have a website or platform but need a stronger structure, better performance, and more capable systems.",
+      "For businesses with an existing website or platform that needs better structure, stronger performance, and more useful underlying systems.",
   },
 ];
 
@@ -50,9 +50,9 @@ export function SolutionPillars() {
       <Container>
         <div ref={ref} className="relative z-10">
           <SectionTitle
-            eyebrow="What I build"
-            title="I build the front-end platform and the operational system behind it."
-            desc="The goal is not just a better-looking digital presence. It is a stronger system that helps the business operate faster, convert better, and scale with less friction."
+            eyebrow="How I solve it"
+            title="I build the platform your clients see and the system your business runs on."
+            desc="The goal is not just a better-looking website. It is a stronger system that helps the business operate faster, win more trust, and scale with less friction."
           />
 
           <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -79,7 +79,7 @@ export function SolutionPillars() {
                     {pillar.description}
                   </p>
 
-                  <div className="mt-8 pt-6">
+                  {/* <div className="mt-8 pt-6">
                     {pillar.button && (
                       <Button
                         href={pillar.button.href}
@@ -88,7 +88,7 @@ export function SolutionPillars() {
                         {pillar.button.label}
                       </Button>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </article>
             ))}
@@ -96,11 +96,10 @@ export function SolutionPillars() {
 
           <div className="mt-10 flex flex-col items-start gap-4 md:mt-12 md:flex-row md:items-center md:justify-between">
             <p className="max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">
-              Each pillar is designed to strengthen both the customer-facing experience
-              and the internal business infrastructure behind it.
+              Each pillar is designed to strengthen both the customer-facing experience and the internal infrastructure behind it.
             </p>
 
-            <Button href="/work" variant="secondary">
+            <Button href="/work" variant="primary">
               See how this looks in real projects
             </Button>
           </div>

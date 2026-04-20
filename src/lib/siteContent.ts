@@ -102,22 +102,22 @@ export const processSteps = [
   {
     title: "Discovery",
     description:
-      "Understand the business, bottlenecks, and project goals.",
+      "Understand the business, identify bottlenecks, and define project goals.",
   },
   {
     title: "System Planning",
     description:
-      "Define the platform structure, workflows, and technical approach.",
+      "Define the platform structure, workflows, and technical direction.",
   },
   {
     title: "Design & Build",
     description:
-      "Create the experience, develop the system, and connect key tools.",
+      "Design the experience, build the system, and connect the key tools.",
   },
   {
     title: "Launch & Optimization",
     description:
-      "Ship cleanly, test properly, and refine based on real usage.",
+      "Launch cleanly, test thoroughly, and refine based on real usage.",
   },
 ];
 

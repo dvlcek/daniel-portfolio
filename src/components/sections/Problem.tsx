@@ -8,11 +8,11 @@ import { useReveal } from "@/components/animations/useReveal";
 
 const problems = [
   {
-    label: "Repetitive admin tasks eating hours every week",
+    label: "Manual admin work eating hours every week",
     icon: "/icons/problems/repetitive-tasks.png",
   },
   {
-    label: "Tools and processes that don't connect properly",
+    label: "Disconnected tools and processes slowing down business",
     icon: "/icons/problems/disconnected.png",
   },
   {
@@ -20,7 +20,7 @@ const problems = [
     icon: "/icons/problems/stagnant-website.png",
   },
   {
-    label: "No clear tracking, workflow structure, or scalable backend",
+    label: "No clear tracking, workflow logic, or scalable backend",
     icon: "/icons/problems/no-tracking.png",
   },
 ];
@@ -42,8 +42,8 @@ export function Problem() {
         <div ref={ref} className="relative z-10">
           <SectionTitle
             eyebrow="The Problem"
-            title="Most small companies don't need more effort. They need better systems."
-            desc="When tasks are handled manually, tools don't connect, and the website is not built around real operations, growth starts depending on extra effort instead of better systems."
+            title="Most businesses do not need more effort. They need better systems."
+            desc="When work is handled manually, tools do not connect, and the website is not built to support operations, growth starts depending on extra effort instead of better systems."
           />
 
           <div className="mt-14 grid gap-5 md:grid-cols-2">
@@ -76,10 +76,9 @@ export function Problem() {
 
           <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-6 md:p-8 backdrop-blur-md">
             <p className="max-w-3xl text-lg leading-relaxed text-white/75 md:text-xl">
-              You don&apos;t need more hustle.
+              You don&apos;t need more manual effort.
               <span className="ml-2 font-semibold text-white">
-                You need infrastructure that removes friction, connects workflows,
-                and supports scale.
+                You need infrastructure that removes friction, connects workflows, and supports growth.
               </span>
             </p>
           </div>

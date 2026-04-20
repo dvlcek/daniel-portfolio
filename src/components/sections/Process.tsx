@@ -16,8 +16,8 @@ export function Process() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="Process"
-            title="A structured process from strategy to launch."
-            desc="Clear scope, clean execution, and a system you can actually use after handover."
+            title="A structured process from strategy to launch and beyond."
+            desc="A clear process and a system that actually improves how your business runs."
           />
 
           <div className="relative mt-16">
@@ -45,7 +45,7 @@ export function Process() {
                         {s.title}
                       </h3>
 
-                      <p className="mt-3 max-w-[28ch] text-sm leading-relaxed text-white/60 md:mx-auto">
+                      <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-white/60 md:mx-auto">
                         {s.description}
                       </p>
                     </div>

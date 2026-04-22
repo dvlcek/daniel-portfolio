@@ -17,30 +17,25 @@ export function PackagesSection() {
         <div ref={ref}>
           <SectionTitle
             eyebrow="Services"
-            title="Packages built around the work you actually need."
-            desc="Clear service offers for companies that need stronger websites, better systems, and clean execution."
+            title="Offers built around the systems your business needs."
+            desc="Clear offers for businesses that need stronger websites, better operations, and systems built to support growth."
           />
 
-          <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-12">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {packages.map((pkg) => (
               <article
                 key={pkg.name}
-                className="pkg-card group relative border-t border-white/12 pt-6"
+                className="pkg-card group relative overflow-hidden rounded-3xl border border-white/6 bg-white/[0.02] p-7 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-white/[0.04] md:p-8"
               >
-                <div className="absolute left-0 top-0 h-px w-20 bg-white/35 transition-[width] duration-500 group-hover:w-[33rem]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-80" />
 
-                <div className="flex h-full flex-col">
+                <div className="relative z-10 flex h-full flex-col">
                   <div>
-                    {/* Optional level */}
-                    {/* <p className="text-[11px] uppercase tracking-[0.22em] text-white/35">
-                      {pkg.level}
-                    </p> */}
-
-                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                    <h3 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
                       {pkg.name}
                     </h3>
 
-                    <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-white/65">
+                    <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-white/68">
                       <span className="text-white/40">Best for:</span> {pkg.bestFor}
                     </p>
                   </div>

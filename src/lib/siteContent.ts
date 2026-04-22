@@ -5,9 +5,9 @@ export const primaryCta = {
 
 export const secondaryCtas = {
   caseStudies: { label: "View Case Studies", href: "/work" },
-  platform: { label: "Discuss Your Project", href: "/contact" },
-  rebuild: { label: "Discuss Rebuild", href: "/contact" },
-  automation: { label: "Book Automation Call", href: "/contact" },
+  platform: { label: "Book a Strategy Call", href: "/contact" },
+  rebuild: { label: "Book a Strategy Call", href: "/contact" },
+  automation: { label: "Book a Strategy Call", href: "/contact" },
 };
 
 export type CaseStudy = {
@@ -123,41 +123,41 @@ export const processSteps = [
 
 export const packages = [
   {
-    name: "Platform Build",
+    name: "New Platform Build",
     bestFor:
-      "For businesses launching a new website, webshop, or custom web platform with a strong technical foundation.",
+      "For businesses launching a new website, webshop, or custom platform with the right structure from the start.",
     includes: [
-      "project strategy",
+      "Project strategy",
       "UX/UI direction",
-      "custom development",
-      "core integrations",
-      "launch support",
+      "Custom development",
+      "Core integrations",
+      "Launch support",
     ],
     cta: secondaryCtas.platform,
   },
   {
     name: "Rebuild & Upgrade",
     bestFor:
-      "For businesses with an outdated website or platform that no longer supports growth, conversion, or internal operations.",
+      "For businesses with an outdated website or platform that no longer supports growth, conversion, or day-to-day operations.",
     includes: [
-      "redesign and rebuild",
-      "performance improvements",
-      "structure cleanup",
-      "feature expansion",
-      "tracking and conversion setup",
+      "Redesign and rebuild",
+      "Performance improvements",
+      "Structure cleanup",
+      "Feature expansion",
+      "Tracking and conversion setup",
     ],
     cta: secondaryCtas.rebuild,
   },
   {
-    name: "Automation Systems",
+    name: "Operational Automation",
     bestFor:
-      "For businesses that want to reduce manual work, connect tools, and improve operations with automation and AI-supported workflows.",
+      "For businesses that want to reduce manual work, connect tools, and improve operations through automation.",
     includes: [
-      "workflow mapping",
-      "automation architecture",
+      "Workflow mapping",
+      "Automation architecture",
       "CRM and tool integrations",
-      "AI-assisted process support",
-      "operational optimization",
+      "Process automation support",
+      "Operational optimization",
     ],
     cta: secondaryCtas.automation,
   },
@@ -165,38 +165,38 @@ export const packages = [
 
 export const faqItems = [
   {
-    question: "What kind of projects are the best fit?",
+    question: "What kind of businesses are the best fit?",
     answer:
-      "The best fit is a business that needs more than just a nice-looking website. I work best on projects where the goal is to improve operations, reduce manual work, or build a scalable platform that supports growth.",
+      "The best fit is a business that needs more than just a better-looking website. I work best with companies that want stronger systems, less manual work, and a digital setup that supports growth.",
   },
   {
-    question: "Do you work with small businesses?",
+    question: "Do you only build websites?",
     answer:
-      "Yes. I primarily work with solo founders, small businesses, and growing teams that want serious systems without the complexity of a large agency process.",
+      "No. Websites are only one part of the system. I also build automations, connect tools, improve workflows, and help businesses create a stronger operational setup behind the front end.",
   },
   {
-    question: "Do you offer automation without a new website?",
+    question: "Can you improve what we already have?",
     answer:
-      "Yes. Automation projects can be delivered independently if the main need is workflow improvement, tool integration, or reducing repetitive admin work.",
+      "Yes. Not every project needs to start from zero. If the current website, platform, or workflow has a usable foundation, I can rebuild, optimize, and improve the system around it.",
   },
   {
-    question: "Can you improve an existing platform?",
+    question: "Can automation be done without a new website?",
     answer:
-      "Yes. I can rebuild or upgrade an existing website or platform when the current setup no longer supports performance, conversion, scalability, or internal processes.",
+      "Yes. If the main problem is manual work, disconnected tools, or inefficient internal processes, automation can be built independently from a website project.",
   },
   {
-    question: "How long does a typical project take?",
+    question: "How does a project usually start?",
     answer:
-      "It depends on scope. Smaller website builds can move quickly, while larger platforms and automation systems require more planning and implementation. After a short discovery phase, I define the realistic timeline clearly.",
+      "It starts with a strategy call and a discovery phase. First I look at the business, the bottlenecks, and the goals. Then I define the right structure, scope, and direction before anything is built.",
   },
   {
-    question: "Do you offer ongoing support after launch?",
+    question: "Do you offer support after launch?",
     answer:
-      "Yes. For selected projects, I offer ongoing support, improvements, and automation expansion after launch so the system can continue evolving with the business.",
+      "Yes. Depending on the project, I can continue with improvements, optimization, automation expansion, and support after launch so the system keeps evolving with the business.",
   },
   {
-    question: "Do you work internationally?",
+    question: "What makes your approach different?",
     answer:
-      "Yes. I am based in Austria and work with clients across Austria, Germany, Slovakia, and other international markets depending on project fit.",
+      "I do not treat the project as just a website task. The focus is on the whole system: how the business operates, where manual work can be removed, and how the digital setup can perform better long-term.",
   },
 ];

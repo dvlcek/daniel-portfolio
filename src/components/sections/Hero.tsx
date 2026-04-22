@@ -11,25 +11,9 @@ const outcomes = [
     label: "Reduce repetitive manual work",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path
-          d="M3 4.5h6M3 8h5M3 11.5h4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M10 5.5h3v3"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M13 5.5l-3.5 3.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
+        <path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12.5" cy="10.5" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M14.5 12.5l1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -37,35 +21,9 @@ const outcomes = [
     label: "Turn your website into a business asset",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect
-          x="2"
-          y="2.5"
-          width="12"
-          height="9"
-          rx="1.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M5 9l2-2 1.5 1.5L11 6"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M10.5 6H11v.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M6 13.5h4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
+        <rect x="1" y="2" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M5 14h6M8 12v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M4.5 8.5l2-2 2 2 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
@@ -73,33 +31,9 @@ const outcomes = [
     label: "Build systems that scale with your business",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect
-          x="2"
-          y="9"
-          width="3"
-          height="4"
-          rx="0.8"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <rect
-          x="6.5"
-          y="6.5"
-          width="3"
-          height="6.5"
-          rx="0.8"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <rect
-          x="11"
-          y="3.5"
-          width="3"
-          height="9.5"
-          rx="0.8"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
+        <rect x="1" y="9" width="4" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="6" y="5" width="4" height="10" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="11" y="1" width="4" height="14" rx="1" stroke="currentColor" strokeWidth="1.5"/>
       </svg>
     ),
   },

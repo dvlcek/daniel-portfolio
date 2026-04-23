@@ -10,19 +10,26 @@ type PageProps = {
   }>;
 };
 
-function getCategoryLabel(category: "websites" | "automation" | "rebuilds") {
+function getCategoryLabel(
+  category: "system_build" | "websites" | "automation" | "rebuilds"
+) {
   switch (category) {
-    case "websites":
-      return "Website Build";
+    case "system_build":
+      return "Business System Build";
+
     case "automation":
-      return "Automation System";
+      return "Operations Optimization";
+
     case "rebuilds":
       return "Platform Rebuild";
+
+    case "websites":
+      return "Growth Platform";
+
     default:
       return "Project";
   }
 }
-
 export async function generateStaticParams() {
   return caseStudies.map((study) => ({
     slug: study.slug,
@@ -172,7 +179,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
             <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/40">
-                Project Scope
+                System Components
               </p>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-white/72">
                 {study.whatIDid.map((item) => (
@@ -188,7 +195,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 Project Summary
               </p>
               <h2 className="mt-4 text-2xl font-semibold text-white md:text-3xl">
-                Building the system behind the business, not just the front-end.
+                Building the business infrastructure from day one.
               </h2>
               <p className="mt-6 text-base leading-8 text-white/70">
                 {study.summary}
@@ -229,9 +236,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 Need a system that improves operations, not just appearance?
               </h2>
               <p className="mt-5 text-base leading-8 text-white/70">
-                I build websites, platforms, and automation systems designed to
-                reduce manual work, support growth, and create a stronger digital
-                foundation for the business.
+                I design and build the systems businesses run on — combining websites, platforms, and automation into a single operational infrastructure that reduces manual work and supports growth.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">

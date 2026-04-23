@@ -45,17 +45,22 @@ export function PackagesSection() {
                       Included
                     </p>
 
-                    <ul className="mt-4 space-y-3">
+                    <ul className="mt-4 space-y-2">
                       {pkg.includes.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-3 text-sm leading-relaxed text-white/72"
+                          className="flex items-start gap-3 text-sm leading-relaxed text-white/75"
                         >
-                          <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/45" />
+                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/40" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
+
+                    {/* subtle line */}
+                    <p className="mt-4 text-xs pl-4  text-white/30 italic">
+                      {pkg.subtle}
+                    </p>
                   </div>
 
                   <div className="mt-8 pt-2">

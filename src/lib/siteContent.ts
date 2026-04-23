@@ -14,7 +14,7 @@ export type CaseStudy = {
   slug: string;
   company: string;
   industry: string;
-  category: "websites" | "automation" | "rebuilds";
+  category: "system_build" | "websites" | "automation" | "rebuilds";
   result: string;
   whatIDid: string[];
   stack: string[];
@@ -32,34 +32,80 @@ export const caseStudies: CaseStudy[] = [
     slug: "storage-rental-platform",
     company: "Self-Storage Rental Co.",
     industry: "Storage Rental",
-    category: "automation",
+    category: "system_build",
     result:
-      "Built a fully automated rental system that allows the business to operate with zero administrative staff while handling payments, customers, and communication end-to-end.",
+      "Built the entire system that allows a storage rental business to run without administrative overhead — from brand to operations.",
     whatIDid: [
-      "End-to-end system architecture",
-      "Automated payment & billing system",
-      "Customer self-service platform",
-      "Email & notification automation",
-      "Admin & operations dashboard",
+      "Brand and digital presence setup",
+      "Customer-facing rental platform",
+      "Payment and billing automation",
+      "Customer lifecycle system",
+      "Email and notification automation",
+      "Admin and operations dashboard",
     ],
     stack: ["Node.js", "PHP", "Stripe API", "Resend", "Google APIs"],
     summary:
-      "A storage rental startup needed a complete operational system — not just a website — to launch and run the business without hiring staff.",
+      "This project was about building the business infrastructure from the ground up. Instead of launching with manual processes and gradually improving them, the company started with a complete system that handles bookings, payments, communication, and operations automatically. This allowed the business to operate efficiently from day one and scale without increasing administrative overhead.",
     challenge:
-      "Without a system, the business would require manual handling of bookings, payments, customer communication, and contract management. This would increase operational costs and slow down growth from day one.",
+      "The business started without any digital infrastructure. There was no platform, no booking system, no payment handling, and no operational setup. Without the right system, the business would rely entirely on manual work, making it difficult to launch efficiently or scale without hiring.",
     solution:
-      "Designed and built a fully automated rental infrastructure. Customers can rent, manage, and cancel units independently, while payments, invoicing, and communication are handled automatically.",
+      "Designed and built the full operational platform for the business — combining a customer-facing rental system with automated payments, booking management, communication workflows, and internal operations. The system was built to allow customers to manage everything independently while reducing the need for manual administration.",
     outcome: [
-      "Eliminated the need for administrative staff from day one.",
-      "Reduced operational workload by automating core business processes.",
-      "Enabled fully automated monthly recurring revenue handling.",
-      "Improved customer experience through instant booking and self-service.",
-      "Created a scalable system ready for growth without increasing costs.",
+      "Launched the business with a complete operational system from day one",
+      "Removed the need for administrative staff through automation",
+      "Reduced manual workload across bookings, payments, and communication",
+      "Enabled recurring revenue through automated billing",
+      "Improved customer experience with self-service and instant booking",
+      "Created a scalable system ready for growth without increasing operational costs",
     ],
     image: "/images/case-studies/storage-platform.png",
-    featuredMetric: "0 admin staff needed",
+    featuredMetric: "Operates without administrative overhead",
     intro:
-      "Instead of building just a website, this project focused on creating a complete operational system — replacing manual work with automation and enabling the business to scale from day one.",
+      "This project was not just about building a website or adding automation. It was about building the entire system the business runs on — from brand and customer-facing platform to payments, workflows, and internal operations.",
+  },
+  {
+    slug: "artist-growth-platform",
+    company: "Independent Artist",
+    industry: "Creative / Art",
+    category: "websites",
+
+    result:
+      "Built a platform that allows an independent artist to present, manage, and sell their work professionally — replacing manual communication with a structured system.",
+
+    intro:
+      "This project focused on creating a professional digital presence for an artist who previously operated without any online system. The goal was to centralize their work, make it accessible, and introduce a structured way to handle interest, reservations, and communication.",
+
+    whatIDid: [
+      "Artist portfolio platform",
+      "Artwork presentation and availability system",
+      "Reservation and inquiry flow",
+      "Email communication setup",
+      "Admin panel for content and artwork management",
+    ],
+
+    stack: ["Next.js", "Node.js", "Email APIs"],
+
+    challenge:
+      "The artist had no online presence, no structured way to present their work, and no system for handling interest or reservations. Everything was managed manually through messages, making it difficult to showcase available pieces, communicate consistently, or appear as a professional business.",
+
+    solution:
+      "Designed and built a centralized platform where all artwork is presented in one place with clear structure, pricing, and availability. Introduced a reservation and inquiry system with automated email responses, along with an admin panel that allows the artist to manage content, update artwork, and control availability without technical knowledge.",
+
+    summary:
+      "Instead of relying on manual communication and scattered interactions, the artist now operates with a structured platform that supports presentation, inquiries, and basic sales processes. This creates a more professional impression and allows the artist to focus on their work rather than managing requests manually.",
+
+    outcome: [
+      "Created a professional online presence for the artist",
+      "Centralized all artwork with clear availability and pricing",
+      "Reduced manual communication through structured inquiries",
+      "Made it easier to manage and update artwork independently",
+      "Improved how the artist is perceived by potential clients and collaborators",
+    ],
+
+    featuredMetric:
+      "From no presence to a structured platform for showcasing and managing artwork",
+
+    image: "/images/case-studies/artist-platform.png",
   },
 ];
 
@@ -123,42 +169,45 @@ export const processSteps = [
 
 export const packages = [
   {
-    name: "New Platform Build",
+    name: "Business System Build",
     bestFor:
-      "For businesses launching a new website, webshop, or custom platform with the right structure from the start.",
+      "For companies that need a complete system to operate and scale.",
     includes: [
-      "Project strategy",
-      "UX/UI direction",
-      "Custom development",
-      "Core integrations",
-      "Launch support",
+      "Platform built around your business model",
+      "Automated workflows, payments, and operations",
+      "Customer-facing system (website or platform)",
+      "Internal tools and admin structure",
+      "Scalable architecture for long-term growth",
     ],
+    subtle: "and more — tailored to your business",
     cta: secondaryCtas.platform,
   },
   {
     name: "Rebuild & Upgrade",
     bestFor:
-      "For businesses with an outdated website or platform that no longer supports growth, conversion, or day-to-day operations.",
+      "For businesses with an existing platform that needs a stronger structure and performance.",
     includes: [
-      "Redesign and rebuild",
-      "Performance improvements",
-      "Structure cleanup",
-      "Feature expansion",
-      "Tracking and conversion setup",
+      "Rebuild of outdated website or platform",
+      "Improved structure, speed, and reliability",
+      "Conversion and tracking optimization",
+      "System cleanup and better integrations",
+      "Prepared for future expansion",
     ],
+    subtle: "and more — based on your current setup",
     cta: secondaryCtas.rebuild,
   },
   {
-    name: "Operational Automation",
+    name: "Operations & Automation",
     bestFor:
-      "For businesses that want to reduce manual work, connect tools, and improve operations through automation.",
+      "For businesses that need to reduce manual work and streamline operations.",
     includes: [
-      "Workflow mapping",
-      "Automation architecture",
-      "CRM and tool integrations",
-      "Process automation support",
-      "Operational optimization",
+      "Workflow analysis and bottleneck identification",
+      "Automation of repetitive processes",
+      "Tool and system integrations",
+      "AI-supported workflows where relevant",
+      "Ongoing operational improvements",
     ],
+    subtle: "and more — depending on system complexity",
     cta: secondaryCtas.automation,
   },
 ];

@@ -5,26 +5,38 @@ import { useMemo, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { caseStudies, type CaseStudy } from "@/lib/siteContent";
 
-type CategoryFilter = "all" | "websites" | "automation" | "rebuilds";
+type CategoryFilter =
+  | "all"
+  | "system_build"
+  | "websites"
+  | "automation"
+  | "rebuilds";
 
 function getCategoryLabel(category: CaseStudy["category"]) {
   switch (category) {
-    case "websites":
-      return "Website Build";
+    case "system_build":
+      return "Business System Build";
+
     case "automation":
-      return "Automation System";
+      return "Operations Optimization";
+
     case "rebuilds":
       return "Platform Rebuild";
+
+    case "websites":
+      return "Growth Platform";
+
     default:
       return "Project";
   }
 }
 
 const filters: { label: string; value: CategoryFilter }[] = [
-  { label: "All", value: "all" },
-  { label: "Websites", value: "websites" },
-  { label: "Automation", value: "automation" },
-  { label: "Rebuilds", value: "rebuilds" },
+  { label: "All Projects", value: "all" },
+  { label: "System Builds", value: "system_build" },
+  { label: "Operations Optimization", value: "automation" },
+  { label: "Platform Rebuilds", value: "rebuilds" },
+  { label: "Growth Platforms", value: "websites" },
 ];
 
 export default function WorkPage() {

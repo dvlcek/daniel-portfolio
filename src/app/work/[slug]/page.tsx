@@ -145,18 +145,32 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             </aside>
           </div>
 
-          <div className="relative mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03]">
-            <div className="relative aspect-[16/9]">
+          <div className="relative mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] transition duration-500 hover:border-white/25 hover:bg-white/[0.06] hover:shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+          <Link
+            href={study.liveUrl || study.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block"
+          >
+            <div className="relative aspect-[16/9] cursor-pointer overflow-hidden">
               <Image
                 src={study.image}
                 alt={`${study.company} case study preview`}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition duration-500 group-hover:from-black/75" />
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition duration-300 group-hover:opacity-100">
+                <span className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black shadow-2xl transition duration-300 group-hover:scale-105">
+                  Open Full Project →
+                </span>
+              </div>
             </div>
-          </div>
+          </Link>
+        </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">

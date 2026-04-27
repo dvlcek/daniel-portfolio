@@ -9,14 +9,22 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useStagger } from "@/components/animations/useStagger";
 import { caseStudies } from "@/lib/siteContent";
 
-function getCategoryLabel(category: "websites" | "automation" | "rebuilds") {
+function getCategoryLabel(category: "system_build" | "websites" | "automation" | "rebuilds") {
   switch (category) {
-    case "websites":
-      return "Website Build";
+    case "system_build":
+      return "Business System Build";
+
     case "automation":
-      return "Automation System";
+      return "Operations Optimization";
+
     case "rebuilds":
-      return "Rebuild";
+      return "Platform Rebuild";
+
+    case "websites":
+      return "Growth Platform";
+
+    default:
+      return "Project";
   }
 }
 

@@ -15,6 +15,7 @@ export type CaseStudy = {
   company: string;
   industry: string;
   category: "system_build" | "websites" | "automation" | "rebuilds";
+  liveUrl: string;
   result: string;
   whatIDid: string[];
   stack: string[];
@@ -30,9 +31,10 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "storage-rental-platform",
-    company: "Self-Storage Rental Co.",
+    company: "Mini sklady self storage s.r.o.",
     industry: "Storage Rental",
     category: "system_build",
+    liveUrl: "https://miniskladyslovensko.sk", 
     result:
       "Built the entire system that allows a storage rental business to run without administrative overhead — from brand to operations.",
     whatIDid: [
@@ -65,9 +67,10 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "artist-growth-platform",
-    company: "Independent Artist",
+    company: "Vlka ART",
     industry: "Creative / Art",
     category: "websites",
+    liveUrl: "https://vlkaart.sk",
 
     result:
       "Built a platform that allows an independent artist to present, manage, and sell their work professionally — replacing manual communication with a structured system.",

@@ -97,7 +97,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <aside className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+            <aside className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
               <div>
                 <p className="text-xs uppercase tracking-[0.18em] text-white/40">
                   Client
@@ -173,7 +173,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+            <article className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/40">
                 Challenge
               </p>
@@ -182,7 +182,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </p>
             </article>
 
-            <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+            <article className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/40">
                 Solution
               </p>
@@ -191,7 +191,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </p>
             </article>
 
-            <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+            <article className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/40">
                 System Components
               </p>
@@ -209,7 +209,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 Project Summary
               </p>
               <h2 className="mt-4 text-2xl font-semibold text-white md:text-3xl">
-                Building the business infrastructure from day one.
+                What this created for the business.
               </h2>
               <p className="mt-6 text-base leading-8 text-white/70">
                 {study.summary}
@@ -233,7 +233,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               {study.outcome.map((item) => (
                 <article
                   key={item}
-                  className="rounded-3xl border border-white/10 bg-white/[0.03] p-6"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
                 >
                   <p className="text-sm leading-7 text-white/78">{item}</p>
                 </article>
@@ -247,10 +247,10 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 Next Step
               </p>
               <h2 className="mt-4 text-2xl font-semibold text-white md:text-3xl">
-                Need a system that improves operations, not just appearance?
+                Need a website, platform, or automation system built around a real business outcome?
               </h2>
               <p className="mt-5 text-base leading-8 text-white/70">
-                I design and build the systems businesses run on — combining websites, platforms, and automation into a single operational infrastructure that reduces manual work and supports growth.
+                I design and build premium websites, custom platforms, and automation systems that improve trust, reduce manual work, and support growth.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { caseStudies, type CaseStudy } from "@/lib/siteContent";
@@ -11,25 +12,6 @@ type CategoryFilter =
   | "websites"
   | "automation"
   | "rebuilds";
-
-function getCategoryLabel(category: CaseStudy["category"]) {
-  switch (category) {
-    case "system_build":
-      return "Business System Build";
-
-    case "automation":
-      return "Operations Optimization";
-
-    case "rebuilds":
-      return "Platform Rebuild";
-
-    case "websites":
-      return "Growth Platform";
-
-    default:
-      return "Project";
-  }
-}
 
 const filters: { label: string; value: CategoryFilter }[] = [
   { label: "All Projects", value: "all" },
@@ -60,9 +42,9 @@ export default function WorkPage() {
           </h1>
 
           <p className="mt-6 text-base leading-8 text-white/70 md:text-lg">
-            A portfolio of websites, platform rebuilds, and automation systems
-            designed to improve conversion, reduce manual work, and build a
-            stronger digital foundation for growth.
+            A portfolio of premium websites, custom platforms, business systems,
+            and automation workflows designed to improve trust, reduce manual
+            work, and create scalable digital infrastructure.
           </p>
         </div>
 
@@ -89,67 +71,7 @@ export default function WorkPage() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {filteredStudies.map((study) => (
-            <a
-              key={study.slug}
-              href={`/work/${study.slug}`}
-              className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10">
-                <Image
-                  src={study.image}
-                  alt={`${study.company} case study preview`}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/80 backdrop-blur">
-                  {getCategoryLabel(study.category)}
-                </div>
-
-                {study.featuredMetric && (
-                  <div className="absolute bottom-4 left-4 rounded-2xl border border-white/15 bg-black/45 px-3 py-2 backdrop-blur">
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-white/55">
-                      Highlight
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-white">
-                      {study.featuredMetric}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div className="p-6">
-                <p className="text-xs uppercase tracking-[0.18em] text-white/45">
-                  {study.company} / {study.industry}
-                </p>
-
-                <h2 className="mt-4 text-xl font-semibold leading-tight text-white">
-                  {study.result}
-                </h2>
-
-                <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/65">
-                  {study.summary}
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {study.whatIDid.slice(0, 3).map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/70"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6 border-t border-white/10 pt-5">
-                  <span className="text-sm font-medium text-white/75 transition group-hover:text-white">
-                    View case study →
-                  </span>
-                </div>
-              </div>
-            </a>
+            <CaseStudyCard key={study.slug} study={study} />
           ))}
         </div>
 
@@ -162,5 +84,76 @@ export default function WorkPage() {
         )}
       </Container>
     </main>
+  );
+}
+
+function CaseStudyCard({ study }: { study: CaseStudy }) {
+  const cardSummary = study.subtitle || study.summary;
+  const cardTags = study.whatIDid.slice(0, 3);
+
+  return (
+    <Link
+      href={`/work/${study.slug}`}
+      className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10">
+        <Image
+          src={study.image}
+          alt={`${study.company} case study preview`}
+          fill
+          className="object-cover transition duration-500 group-hover:scale-[1.04]"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+        <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/80 backdrop-blur">
+          {study.categoryLabel}
+        </div>
+
+        {study.featuredMetric && (
+          <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/15 bg-black/45 px-3 py-2 backdrop-blur">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-white/55">
+              Main Result
+            </p>
+            <p className="mt-1 text-sm font-semibold leading-snug text-white">
+              {study.featuredMetric}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="p-6">
+        <p className="text-xs uppercase tracking-[0.18em] text-white/45">
+          {study.company} / {study.industry}
+        </p>
+
+        <h2 className="mt-4 text-xl font-semibold leading-tight text-white">
+          {study.title}
+        </h2>
+
+        <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/65">
+          {cardSummary}
+        </p>
+
+        {cardTags.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {cardTags.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/70"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6 border-t border-white/10 pt-5">
+          <span className="text-sm font-medium text-white/75 transition group-hover:text-white">
+            View case study →
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }

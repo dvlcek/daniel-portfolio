@@ -56,7 +56,7 @@ export function Hero() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-black/10 via-black/40 to-black/90" />
 
         <Container>
-          <div ref={wrapRef} className="mx-auto w-full max-w-5xl">
+          <div ref={wrapRef} className="mx-auto w-full">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
@@ -67,15 +67,12 @@ export function Hero() {
 
             {/* Headline */}
             <h1 className="mt-6 max-w-5xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl">
-              I build systems that reduce manual work and make businesses
-              operate faster.
+              I build digital systems that help businesses scale faster.
             </h1>
 
             {/* Subtext */}
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              From websites to internal workflows, these systems simplify
-              operations, reduce manual work, and improve how your business
-              runs.
+              From high-performing websites to automated internal workflows, I create systems that replace repetitive tasks, improve efficiency, and give companies more room to grow.
             </p>
 
             {/* CTA */}

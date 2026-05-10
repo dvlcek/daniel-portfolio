@@ -3,13 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useStagger } from "@/components/animations/useStagger";
 import { caseStudies } from "@/lib/siteContent";
 
-function getCategoryLabel(category: "system_build" | "websites" | "automation" | "rebuilds") {
+function getCategoryLabel(
+  category: "system_build" | "websites" | "automation" | "rebuilds"
+) {
   switch (category) {
     case "system_build":
       return "Business System Build";
@@ -30,34 +32,67 @@ function getCategoryLabel(category: "system_build" | "websites" | "automation" |
 
 export function FeaturedOutcomes() {
   const ref = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
 
   useStagger(ref, ".case-card", { y: 20, stagger: 0.08 });
+
+  function scrollRail(direction: "left" | "right") {
+    railRef.current?.scrollBy({
+      left: direction === "left" ? -460 : 460,
+      behavior: "smooth",
+    });
+  }
 
   return (
     <section id="work" className="py-20 md:py-28">
       <Container>
         <div ref={ref}>
-          <SectionTitle
-            eyebrow="Business outcomes from better systems"
-            title="Case studies built around business outcomes."
-            desc="A preview of projects focused on conversion, automation, and scalable digital infrastructure."
-          />
+          <div className="flex items-end justify-between gap-6">
+            <SectionTitle
+              eyebrow="Business outcomes from better systems"
+              title="Case studies built around business outcomes."
+              desc="A preview of projects focused on conversion, automation, and scalable digital infrastructure."
+            />
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            <div className="hidden shrink-0 items-center gap-2 md:flex">
+              <button
+                type="button"
+                aria-label="Scroll case studies left"
+                onClick={() => scrollRail("left")}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+              >
+                <ChevronLeft size={18} />
+              </button>
+
+              <button
+                type="button"
+                aria-label="Scroll case studies right"
+                onClick={() => scrollRail("right")}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={railRef}
+            className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
             {caseStudies.map((study) => (
               <Link
                 key={study.slug}
                 href={`/work/${study.slug}`}
                 aria-label={`View case study: ${study.result}`}
-                className="case-card group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]"
+                className="case-card group flex h-[560px] min-w-[86%] snap-start flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05] sm:min-w-[420px] lg:min-w-[430px]"
               >
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10">
+                <div className="relative h-[230px] shrink-0 overflow-hidden border-b border-white/10">
                   <Image
                     src={study.image}
                     alt={`${study.company} project preview`}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 86vw, 430px"
                     className="object-cover transition duration-500 group-hover:scale-[1.04]"
                   />
 
@@ -70,11 +105,11 @@ export function FeaturedOutcomes() {
 
                   {/* Metric badge — bottom left */}
                   {study.featuredMetric && (
-                    <div className="absolute bottom-3 left-3 rounded-xl border border-white/15 bg-black/50 px-3 py-2 backdrop-blur">
+                    <div className="absolute bottom-3 left-3 right-3 rounded-xl border border-white/15 bg-black/50 px-3 py-2 backdrop-blur">
                       <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/50">
                         Highlight
                       </p>
-                      <p className="mt-0.5 text-sm font-semibold text-white">
+                      <p className="mt-0.5 line-clamp-2 text-sm font-semibold leading-snug text-white">
                         {study.featuredMetric}
                       </p>
                     </div>
@@ -82,15 +117,16 @@ export function FeaturedOutcomes() {
                 </div>
 
                 {/* Body */}
-                <div className="flex flex-1 flex-col p-5">
-
+                <div className="flex min-h-0 flex-1 flex-col p-5">
                   {/* Company row */}
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-h-[42px] items-start justify-between gap-3">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/40">
+                      <p className="line-clamp-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/40">
                         {study.company}
                       </p>
-                      <p className="mt-0.5 text-xs text-white/55">{study.industry}</p>
+                      <p className="mt-0.5 line-clamp-1 text-xs text-white/55">
+                        {study.industry}
+                      </p>
                     </div>
 
                     <span className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition group-hover:border-white/25 group-hover:text-white">
@@ -99,45 +135,61 @@ export function FeaturedOutcomes() {
                   </div>
 
                   {/* Result headline */}
-                  <h3 className="mt-4 text-[15px] font-semibold leading-snug text-white">
+                  <h3 className="mt-4 line-clamp-2 min-h-[42px] text-[15px] font-semibold leading-snug text-white">
                     {study.result}
                   </h3>
 
                   {/* Summary */}
-                  <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-white/60">
+                  <p className="mt-3 line-clamp-3 min-h-[76px] text-sm leading-relaxed text-white/60">
                     {study.summary}
                   </p>
 
                   {/* Tags with overflow count */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex min-h-[62px] flex-wrap content-start gap-1.5 overflow-hidden">
                     {study.whatIDid.slice(0, 3).map((item) => (
                       <span
                         key={item}
-                        className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/65"
+                        className="h-fit rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/65"
                       >
                         {item}
                       </span>
                     ))}
+
                     {study.whatIDid.length > 3 && (
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/40">
+                      <span className="h-fit rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/40">
                         +{study.whatIDid.length - 3}
                       </span>
                     )}
                   </div>
 
                   {/* Footer */}
-                  <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-                    <p className="flex items-center gap-1.5 text-sm font-medium text-white/80">
+                  <div className="mt-auto flex min-h-[45px] items-center justify-between gap-3 border-t border-white/10 pt-4">
+                    <p className="flex shrink-0 items-center gap-1.5 text-sm font-medium text-white/80">
                       View case study
                       <ArrowUpRight size={13} className="opacity-60" />
                     </p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-white/35">
+
+                    <p className="line-clamp-1 text-right font-mono text-[10px] uppercase tracking-[0.1em] text-white/35">
                       {study.stack.slice(0, 3).join(" · ")}
                     </p>
                   </div>
                 </div>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <p className="text-sm text-white/40">
+              Swipe horizontally or use the arrows to explore projects.
+            </p>
+
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-white/70 transition hover:text-white"
+            >
+              View all work
+              <ArrowUpRight size={14} />
+            </Link>
           </div>
         </div>
       </Container>

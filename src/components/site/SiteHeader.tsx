@@ -9,9 +9,9 @@ import { TransitionAnchor } from "@/components/transition/TransitionAnchor";
 
 const navItems = [
   { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
+  { href: "#services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/insights", label: "Insights" },
+  // { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

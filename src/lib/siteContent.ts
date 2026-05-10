@@ -571,6 +571,366 @@ export const caseStudies: CaseStudy[] = [
       secondaryText: "View more case studies",
     },
   },
+  {
+    slug: "silver-oakstones-member-club-platform",
+    company: "Silver Oakstones Member Club Platform",
+    industry: "Private Club / Membership Organization / Premium Lifestyle Club",
+    category: "system_build",
+    categoryLabel: "Business System Build",
+    liveUrl: "",
+
+    projectAccess: {
+      type: "private",
+      label: "Private Concept Platform",
+      description:
+        "This is a private portfolio concept platform built to demonstrate a structured application and candidate review workflow. There is no public live URL, but the preview shows the landing page, guided application flow, candidate grouping logic, and admin review structure.",
+    },
+
+    title: "Private Club Application & Candidate Review Platform",
+
+    subtitle:
+      "A structured application system for private clubs and membership-based organizations, combining a premium landing page, guided form flow, candidate grouping, admin review, and email follow-up support.",
+
+    result:
+      "Built a private member club application platform that turns a basic contact process into a structured workflow for collecting applicant information, grouping candidates, and supporting admin review.",
+
+    intro:
+      "Silver Oakstones was built as a private platform concept for clubs, communities, and premium service businesses that need to review people before accepting them. Instead of relying on a basic contact form or scattered email communication, the system guides applicants through structured questions and gives staff a cleaner way to review, group, and follow up with candidates.",
+
+    whatIDid: [
+      "Premium landing page",
+      "Step-by-step application form",
+      "Structured applicant questions",
+      "Candidate grouping logic",
+      "PHP form and backend handling",
+      "JavaScript form logic",
+      "Admin panel for candidate review",
+      "Candidate entry creation after submission",
+      "Contact information handling",
+      "Email workflow support",
+      "Responsive frontend implementation",
+    ],
+
+    stack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "Form Logic",
+      "Email Handling",
+      "Admin Panel",
+      "Responsive Design"
+    ],
+
+    summary:
+      "Silver Oakstones demonstrates how a simple application or contact process can become a more useful business workflow. Applicants are guided through a structured form instead of submitting unclear messages, their answers are processed through candidate grouping logic, and new entries are created for staff review inside an admin panel. The result is a cleaner application journey, more consistent applicant information, and a stronger foundation for private club or membership-based selection workflows.",
+
+    challenge:
+      "A basic contact form or email-based application process creates unstructured information. Applicants may skip important details, write inconsistent answers, or require manual back-and-forth before staff can understand who they are and where they belong. For a private club or membership organization, this makes candidate review slower, less consistent, and harder to manage. The process needed a more professional structure for collecting applications, grouping candidates, and supporting follow-up from one place.",
+
+    solution:
+      "I built a private member club application platform with a premium landing page, a guided step-by-step application form, candidate grouping logic, and an admin review panel. Applicants move through structured questions one step at a time, giving the club more consistent and useful information. After submission, the system processes the answers, assigns the applicant into a candidate group, creates a new candidate entry, and supports the staff review and email follow-up workflow.",
+
+    outcome: [
+      "Turned a basic contact/application idea into a structured candidate workflow",
+      "Created a more professional first impression through a premium landing page",
+      "Guided applicants through step-by-step questions instead of one generic form",
+      "Collected cleaner and more consistent applicant information",
+      "Added candidate grouping logic based on submitted answers",
+      "Created new candidate entries for staff review after form submission",
+      "Built an admin panel for reviewing applicants, groups, and contact details",
+      "Supported follow-up through email and contact workflow handling",
+      "Created a reusable application workflow concept for clubs, communities, and premium service businesses",
+      "Strengthened the system foundation beyond a static website by combining UI, form logic, backend handling, and admin review",
+    ],
+
+    image: "/images/case-studies/silver-oakstones-member-club-platform.png",
+
+    featuredMetric: "Guided application workflow with candidate grouping",
+
+    proof: [
+      {
+        label: "Application Flow",
+        value: "Step-by-step form",
+        text: "Applicants are guided through structured questions instead of submitting unclear information through a basic contact form.",
+      },
+      {
+        label: "Candidate Logic",
+        value: "Automatic grouping",
+        text: "Submitted answers are processed and used to assign applicants into candidate groups for cleaner internal review.",
+      },
+      {
+        label: "Admin Review",
+        value: "Candidate panel",
+        text: "Staff can review applicant details, assigned groups, and contact information from an internal admin panel.",
+      },
+    ],
+
+    preview: {
+      label: "Platform Preview",
+      title:
+        "A private club application workflow showing a premium landing page, guided applicant form, candidate grouping logic, admin review, and email follow-up support.",
+    },
+
+    summarySection: {
+      label: "Project Summary",
+      title: "What this created for the application process.",
+    },
+
+    transformation: {
+      label: "Workflow Transformation",
+      title: "From unstructured inquiries to a guided candidate review system.",
+      beforeTitle: "Before",
+      afterTitle: "After",
+      before: [
+        "Applicants would submit information through a basic contact form or email",
+        "Candidate details could be incomplete, inconsistent, or difficult to compare",
+        "Staff would need manual back-and-forth to collect missing information",
+        "There was no structured way to group applicants based on their answers",
+        "Application review depended on reading unstructured messages manually",
+        "Follow-up and contact handling were disconnected from the application flow",
+      ],
+      after: [
+        "Applicants move through a guided step-by-step application form",
+        "Structured questions collect more consistent and useful candidate information",
+        "Submitted answers are processed by candidate grouping logic",
+        "New candidate entries are created for staff review inside the admin panel",
+        "Staff can review applicant details, assigned groups, and contact information in one place",
+        "The workflow supports cleaner follow-up through email and contact handling",
+      ],
+    },
+
+    detailSections: {
+      challengeLabel: "Challenge",
+      solutionLabel: "Solution",
+      componentsLabel: "System Components",
+    },
+
+    impact: {
+      label: "System Impact",
+      title: "How the platform improves application review.",
+      description:
+        "The platform replaces unstructured application messages with a guided workflow that collects better applicant information, groups candidates automatically, and gives staff a clearer review process before follow-up.",
+      items: [
+        "Premium landing page",
+        "Guided application form",
+        "Structured applicant questions",
+        "Candidate qualification flow",
+        "Candidate grouping logic",
+        "Form submission handling",
+        "New candidate entry creation",
+        "Admin review panel",
+        "Contact detail management",
+        "Email workflow support",
+        "Responsive frontend experience",
+        "Private club application workflow",
+      ],
+    },
+
+    outcomesSection: {
+      label: "Outcomes",
+      title: "What changed after delivery",
+    },
+
+    cta: {
+      label: "Next Step",
+      title:
+        "Want to turn unstructured inquiries into a smarter application workflow?",
+      description:
+        "I build custom platforms that help clubs, communities, service businesses, and organizations collect better information, qualify applicants, reduce manual review work, and manage follow-up through structured digital systems.",
+      primaryText: "Build an application system",
+      secondaryText: "View more case studies",
+    },
+  },
+  {
+    slug: "client-communication-automation-portal",
+    company: "Client Communication Automation Portal",
+    industry: "Creator Management Agency / Digital Operations / Client Communication",
+    category: "automation",
+    categoryLabel: "Operations Optimization",
+    liveUrl: "",
+
+    projectAccess: {
+      type: "private",
+      label: "Private Internal Automation",
+      description:
+        "This is a private internal automation portal built for agency operations, so there is no public live URL. The preview shows the structure behind profile management, AI-assisted draft generation, workflow settings, and VM-based automation support.",
+    },
+
+    title: "Client Communication Automation Portal",
+
+    subtitle:
+      "A private internal portal that helps an agency centralize profile data, communication context, personality settings, AI-assisted response drafts, and VM-based workflow automation.",
+
+    result:
+      "Built a private AI-assisted workflow portal that centralizes profile management, supports context-aware draft generation, and connects internal settings to a VM-based automation layer.",
+
+    intro:
+      "This project was built for a private creator-management agency that needed a more scalable way to manage multiple client profiles and communication workflows. Instead of relying on scattered context, manual switching, and repeated communication tasks, the portal brings profile information, tone settings, communication rules, AI-assisted drafts, and workflow automation into one internal system.",
+
+    whatIDid: [
+      "Secure internal agency login",
+      "Multi-profile management portal",
+      "Profile information management",
+      "Personality and communication settings",
+      "AI-assisted response draft generation",
+      "Backend workflow logic",
+      "Database-backed profile storage",
+      "VM-based automation layer",
+      "Python and PyWinAuto workflow automation",
+      "Windows application automation support",
+      "JavaScript frontend interactions",
+      "PHP backend implementation",
+      "MySQL database structure",
+      "Scalable multi-profile system architecture",
+    ],
+
+    stack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "Python",
+      "PyWinAuto",
+      "ChatGPT API",
+      "JSON",
+      "User Authentication",
+      "VM Automation",
+      "Windows App Automation",
+      "Backend Workflow Logic",
+      "Responsive Design"
+    ],
+
+    summary:
+      "The Client Communication Automation Portal turns a scattered agency workflow into a centralized internal system. Agency staff can log in, create and manage client profiles, define communication style, store context rules, and generate profile-aware response drafts. The system separates profile data, database logic, AI-assisted draft generation, and VM-based workflow support into one scalable structure, helping the agency reduce repetitive manual work and manage multiple profiles more consistently.",
+
+    challenge:
+      "Before the portal, the agency had to manage multiple client profiles across separate tools, manual notes, and disconnected workflows. Staff needed to remember profile context, communication preferences, tone, and operational settings manually while switching between different tools and remote environments. This created repetitive work, inconsistent response style, slower profile setup, scattered information, and a workflow that became harder to scale as more profiles were added.",
+
+    solution:
+      "I built a private internal automation portal with secure login, multi-profile management, profile-specific communication settings, AI-assisted response draft generation, and a VM-based automation layer. Staff can create profiles, define personality and tone settings, manage communication context, and use the portal as a control layer for workflow support. The backend stores structured profile data, the AI layer generates context-aware drafts for staff review, and the Python/PyWinAuto automation layer supports interaction with a Windows-based workflow environment.",
+
+    outcome: [
+      "Centralized profile information, communication context, and operational settings in one internal portal",
+      "Reduced repetitive manual communication work by supporting profile-aware draft generation",
+      "Improved consistency across managed profiles with structured personality and tone settings",
+      "Created a scalable multi-profile system for agency operations",
+      "Separated portal logic, database storage, AI-assisted workflows, and VM automation into a clearer architecture",
+      "Added secure login and internal access control for staff usage",
+      "Built a backend structure for storing and managing profile-specific settings",
+      "Connected AI-assisted draft generation with selected profile context and communication rules",
+      "Created a VM-based automation layer using Python and PyWinAuto for workflow support",
+      "Built a reusable foundation for future internal agency automation tools",
+    ],
+
+    image: "/images/case-studies/client-communication-automation-portal.png",
+
+    featuredMetric: "AI-assisted multi-profile workflow",
+
+    proof: [
+      {
+        label: "Profile Management",
+        value: "Centralized portal",
+        text: "Staff can manage multiple client profiles, context details, communication preferences, and operational settings from one internal system.",
+      },
+      {
+        label: "AI Support",
+        value: "Profile-aware drafts",
+        text: "The system supports AI-assisted communication by generating draft responses based on selected profile context and rules for staff review.",
+      },
+      {
+        label: "Automation Layer",
+        value: "VM-based workflow",
+        text: "A Python and PyWinAuto automation layer supports controlled workflow actions inside a Windows-based environment.",
+      },
+    ],
+
+    preview: {
+      label: "System Preview",
+      title:
+        "A private internal automation portal showing profile management, communication settings, AI-assisted draft workflows, backend data structure, and VM-based automation support.",
+    },
+
+    summarySection: {
+      label: "Project Summary",
+      title: "What this created for the agency workflow.",
+    },
+
+    transformation: {
+      label: "Workflow Transformation",
+      title: "From scattered profile management to a centralized AI-assisted operations portal.",
+      beforeTitle: "Before",
+      afterTitle: "After",
+      before: [
+        "Profile information and communication context were scattered across separate tools and manual notes",
+        "Staff had to remember personality, tone, preferences, and context for each managed profile",
+        "Similar communication tasks were repeated manually across multiple accounts",
+        "Response style could become inconsistent between profiles",
+        "Profile setup and management became slower as more profiles were added",
+        "Staff had to switch between different tools and remote environments without one central control layer",
+        "There was no structured system for profile-specific AI-assisted workflow settings",
+      ],
+      after: [
+        "Staff can log into one internal portal to manage multiple profiles",
+        "Each profile stores structured information, personality settings, tone, and communication rules",
+        "AI-assisted draft generation uses selected profile context to support staff workflows",
+        "Profile management becomes more consistent and easier to scale",
+        "Backend storage keeps profile data and workflow settings organized",
+        "A VM-based automation layer supports controlled workflow execution in a Windows environment",
+        "The system creates a reusable foundation for future internal agency automation tools",
+      ],
+    },
+
+    detailSections: {
+      challengeLabel: "Challenge",
+      solutionLabel: "Solution",
+      componentsLabel: "Automation Components",
+    },
+
+    impact: {
+      label: "Automation Impact",
+      title: "How the portal supports scalable agency operations.",
+      description:
+        "The system connects profile management, communication context, AI-assisted draft generation, backend data storage, and VM-based workflow support into one structured internal operations portal.",
+      items: [
+        "Secure agency login",
+        "Multi-profile management",
+        "Profile information storage",
+        "Personality settings",
+        "Tone of voice settings",
+        "Communication context rules",
+        "AI-assisted draft generation",
+        "Staff review workflow",
+        "Backend profile database",
+        "PHP workflow logic",
+        "MySQL data structure",
+        "JSON-based data handling",
+        "Python automation layer",
+        "PyWinAuto workflow support",
+        "Windows app automation",
+        "VM-based operations support",
+        "Internal portal interface",
+        "Scalable agency workflow foundation",
+      ],
+    },
+
+    outcomesSection: {
+      label: "Outcomes",
+      title: "What changed after delivery",
+    },
+
+    cta: {
+      label: "Next Step",
+      title:
+        "Want to centralize repetitive client communication workflows?",
+      description:
+        "I build private internal systems and automation portals that help agencies centralize profile data, reduce repetitive tasks, support staff with AI-assisted workflows, and create scalable operational infrastructure.",
+      primaryText: "Build an automation portal",
+      secondaryText: "View more case studies",
+    },
+  },
+  
 ];
 
 export type InsightPost = {

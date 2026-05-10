@@ -16,9 +16,9 @@ type CategoryFilter =
 const filters: { label: string; value: CategoryFilter }[] = [
   { label: "All Projects", value: "all" },
   { label: "System Builds", value: "system_build" },
-  { label: "Operations Optimization", value: "automation" },
-  { label: "Platform Rebuilds", value: "rebuilds" },
   { label: "Growth Platforms", value: "websites" },
+  { label: "Operations Optimization", value: "automation" },
+  { label: "Platform Rebuilds", value: "rebuilds" }
 ];
 
 export default function WorkPage() {

@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
-import { useReveal } from "@/components/animations/useReveal";
+import { Reveal } from "@/components/animations/ScrollAnimation";
 
 const problems = [
   {
@@ -36,10 +33,6 @@ const signals = [
 ];
 
 export function Problem() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useReveal(ref);
-
   return (
     <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       {/* Background atmosphere */}
@@ -55,7 +48,7 @@ export function Problem() {
       </div>
 
       <Container>
-        <div ref={ref} className="relative z-10">
+        <Reveal className="relative z-10">
           {/* Header */}
           <div className="grid gap-10 lg:grid-cols-[0.95fr_0.75fr] lg:items-end">
             <div>
@@ -212,7 +205,7 @@ export function Problem() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

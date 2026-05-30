@@ -1,9 +1,6 @@
-"use client";
-
-import { useRef } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { useStagger } from "@/components/animations/useStagger";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 import { Button } from "@/components/ui/Button";
 import { packages } from "@/lib/siteContent";
 
@@ -12,10 +9,6 @@ function isMainPackage(index: number) {
 }
 
 export function PackagesSection() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useStagger(ref, ".pkg-card", { y: 18, stagger: 0.08 });
-
   return (
     <section
       id="services"
@@ -28,8 +21,10 @@ export function PackagesSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_60%,rgba(22,46,147,0.055),transparent_34%)]" />
       </div>
 
-      <div
-        ref={ref}
+      <Stagger
+        itemSelector=".pkg-card"
+        y={18}
+        stagger={0.08}
         className="relative z-10 w-full px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20"
       >
         <div className="mx-auto max-w-[1800px]">
@@ -139,7 +134,7 @@ export function PackagesSection() {
             </p>
           </div>
         </div>
-      </div>
+      </Stagger>
     </section>
   );
 }

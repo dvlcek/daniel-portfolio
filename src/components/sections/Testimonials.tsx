@@ -1,9 +1,6 @@
-"use client";
-
-import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { useStagger } from "@/components/animations/useStagger";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 
 const principles = [
   {
@@ -29,10 +26,6 @@ const principles = [
 ];
 
 export function Testimonials() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useStagger(ref, ".delivery-item", { y: 14, stagger: 0.06 });
-
   return (
     <section className="relative overflow-hidden bg-site-bg py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0">
@@ -42,7 +35,12 @@ export function Testimonials() {
       </div>
 
       <Container>
-        <div ref={ref} className="relative z-10">
+        <Stagger
+          itemSelector=".delivery-item"
+          y={14}
+          stagger={0.06}
+          className="relative z-10"
+        >
           <SectionTitle
             eyebrow="Delivery Standards"
             title="What clients can expect when the work starts."
@@ -84,7 +82,7 @@ export function Testimonials() {
             is judged by whether it makes the website, lead flow, or internal
             operation easier to use and improve.
           </p>
-        </div>
+        </Stagger>
       </Container>
     </section>
   );

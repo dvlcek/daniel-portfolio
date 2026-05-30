@@ -1,10 +1,7 @@
-"use client";
-
-import { useRef } from "react";
 import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { useStagger } from "@/components/animations/useStagger";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 import { processSteps } from "@/lib/siteContent";
 
 const phaseOutputs = [
@@ -34,10 +31,6 @@ const phaseTransitions = [
 ];
 
 export function Process() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useStagger(ref, ".process-step", { y: 24, stagger: 0.1 });
-
   return (
     <section
       id="process"
@@ -56,7 +49,12 @@ export function Process() {
       </div>
 
       <Container>
-        <div ref={ref} className="relative z-10">
+        <Stagger
+          itemSelector=".process-step"
+          y={24}
+          stagger={0.1}
+          className="relative z-10"
+        >
           {/* Header */}
           <div className="grid gap-10 lg:grid-cols-[0.9fr_0.72fr] lg:items-end">
             <div>
@@ -257,7 +255,7 @@ export function Process() {
               </Button>
             </div>
           </div>
-        </div>
+        </Stagger>
       </Container>
     </section>
   );

@@ -1,10 +1,7 @@
-"use client";
-
-import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { useReveal } from "@/components/animations/useReveal";
+import { Reveal } from "@/components/animations/ScrollAnimation";
 
 const callPoints = [
   "Where your website, lead flow, or internal tools slow the team down",
@@ -13,10 +10,6 @@ const callPoints = [
 ];
 
 export function FinalCTA() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useReveal(ref);
-
   return (
     <section
       id="contact"
@@ -28,10 +21,7 @@ export function FinalCTA() {
       </div>
 
       <Container>
-        <div
-          ref={ref}
-          className="relative z-10 border-y border-white/[0.08] py-10 md:py-12"
-        >
+        <Reveal className="relative z-10 border-y border-white/[0.08] py-10 md:py-12">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue">
@@ -86,7 +76,7 @@ export function FinalCTA() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

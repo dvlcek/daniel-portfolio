@@ -29,16 +29,8 @@ export function usePageTransition() {
   return ctx;
 }
 
-// Animation timeline:
-// 0ms      — cover (black bg fades in)
-// 420ms    — router.push (navigate)
-// 550ms    — logo-in starts (parts begin animating in)
-//            part1 @ 50ms, part2 @ 450ms, part3 @ 900ms, part4 @ 1300ms
-//            part4 fully done at ~550 + 1300 + 850 = ~2700ms
-// 2900ms   — logo-hold (all parts in, pause here)
-// 3800ms   — logo-out (logo fades out)
-// 4000ms   — uncover (black bg fades away)
-// 4600ms   — idle
+// Keep the transition short enough that navigation stays responsive while the
+// existing logo sequence still has room to read.
 
 export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -83,16 +75,16 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
         startTransition(() => {
           router.push(href);
         });
-      }, 420);
+      }, 220);
 
-      schedule(() => setPhase("logo-in"), 550);
-      schedule(() => setPhase("logo-hold"), 2000);
-      schedule(() => setPhase("logo-out"), 2500);
-      schedule(() => setPhase("uncover"), 3000);
+      schedule(() => setPhase("logo-in"), 280);
+      schedule(() => setPhase("logo-hold"), 1200);
+      schedule(() => setPhase("logo-out"), 1450);
+      schedule(() => setPhase("uncover"), 1650);
       schedule(() => {
         setPhase("idle");
         lockRef.current = false;
-      }, 4200);
+      }, 2200);
     },
     [clearScheduledTransitions, prefersReducedMotion, router, schedule]
   );

@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
@@ -62,6 +62,15 @@ type TextareaFieldProps = {
 const CAL_LINK = "daniel-i0cc0w/30min";
 const CAL_NAMESPACE = "30min";
 const CAL_OPEN_URL = "https://cal.com/daniel-i0cc0w/30min";
+
+const CalEmbed = dynamic(() => import("@calcom/embed-react"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[540px] items-center justify-center text-sm text-white/42">
+      Loading calendar...
+    </div>
+  ),
+});
 
 const fieldClassName =
   "w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.018] px-4 py-3 text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-white/28 hover:border-white/[0.12] hover:bg-white/[0.026] focus:border-brand-blue/40 focus:bg-white/[0.028] focus:ring-2 focus:ring-brand-blue/10";
@@ -353,6 +362,7 @@ export default function ContactPage() {
     if (step !== 2) return;
 
     void (async () => {
+      const { getCalApi } = await import("@calcom/embed-react");
       const cal = await getCalApi({ namespace: CAL_NAMESPACE });
 
       cal("ui", {
@@ -567,7 +577,7 @@ export default function ContactPage() {
                       </a>
                     </div>
 
-                    <Cal
+                    <CalEmbed
                       namespace={CAL_NAMESPACE}
                       calLink={CAL_LINK}
                       style={{

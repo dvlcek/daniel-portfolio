@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { caseStudies, insightPosts } from "@/lib/siteContent";
 
 const baseUrl = "https://danielvlcek.com";
-const lastModified = new Date("2026-05-30");
+const lastModified = new Date("2026-05-31");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const mainRoutes: MetadataRoute.Sitemap = [

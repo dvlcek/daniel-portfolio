@@ -34,7 +34,7 @@ export function Testimonials() {
   useStagger(ref, ".delivery-item", { y: 14, stagger: 0.06 });
 
   return (
-    <section className="relative overflow-hidden bg-[#080616] py-16 md:py-24">
+    <section className="relative overflow-hidden bg-site-bg py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
@@ -56,11 +56,11 @@ export function Testimonials() {
                   key={item.title}
                   className="delivery-item group relative border-b border-white/[0.07] p-6 transition-[background-color] duration-300 last:border-b-0 hover:bg-white/[0.025] md:border-r md:last:border-b md:[&:nth-child(even)]:border-r-0 md:[&:nth-last-child(-n+2)]:border-b-0"
                 >
-                  <div className="absolute left-0 top-0 h-full w-px bg-[#2F2FE4]/0 transition duration-300 group-hover:bg-[#2F2FE4]/70" />
-                  <div className="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-[#6D73FF]/45" />
+                  <div className="absolute left-0 top-0 h-full w-px bg-brand-blue/0 transition duration-300 group-hover:bg-brand-blue/70" />
+                  <div className="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/45" />
 
                   <div className="flex gap-5">
-                    <span className="font-mono text-xs text-[#2F2FE4] transition duration-300 group-hover:text-[#A7AEFF]">
+                    <span className="font-mono text-xs text-brand-blue transition duration-300 group-hover:text-brand-blue-light">
                       {item.number}
                     </span>
 

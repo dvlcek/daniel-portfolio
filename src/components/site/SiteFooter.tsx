@@ -11,9 +11,9 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#2F2FE4]/20 bg-[#03030A]">
+    <footer className="relative overflow-hidden border-t border-brand-blue/20 bg-site-bg-deep">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#6D73FF]/55 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/55 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.08),transparent_34%)]" />
       </div>
 
@@ -30,7 +30,7 @@ export function SiteFooter() {
             <div>
               <Link
                 href="/"
-                className="inline-flex text-sm font-semibold tracking-tight text-white transition-colors duration-300 hover:text-[#A7AEFF]"
+                className="inline-flex text-sm font-semibold tracking-tight text-white transition-colors duration-300 hover:text-brand-blue-light"
               >
                 Daniel Vlcek
               </Link>
@@ -57,7 +57,7 @@ export function SiteFooter() {
 
               <Link
                 href={primaryCta.href}
-                className="text-sm font-medium text-[#A7AEFF] transition-colors duration-300 hover:text-white"
+                className="text-sm font-medium text-brand-blue-light transition-colors duration-300 hover:text-white"
               >
                 {primaryCta.label}
               </Link>

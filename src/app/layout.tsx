@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headingFont.variable} ${bodyFont.variable} tech-bg min-h-screen overflow-x-hidden bg-[#080616] text-white antialiased`}
+        className={`${headingFont.variable} ${bodyFont.variable} tech-bg min-h-screen overflow-x-hidden bg-site-bg text-white antialiased`}
       >
         <a href="#main-content" className="skip-link">
           Skip to content

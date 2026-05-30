@@ -115,26 +115,26 @@ export function CableFlow({ className = "" }: CableFlowProps) {
       >
         <defs>
           <linearGradient id="cableBase" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#080616" stopOpacity="0" />
-            <stop offset="18%" stopColor="#162E93" stopOpacity="0.42" />
-            <stop offset="52%" stopColor="#2F2FE4" stopOpacity="0.72" />
-            <stop offset="100%" stopColor="#162E93" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="var(--color-site-bg)" stopOpacity="0" />
+            <stop offset="18%" stopColor="var(--color-brand-blue-deep)" stopOpacity="0.42" />
+            <stop offset="52%" stopColor="var(--color-brand-blue)" stopOpacity="0.72" />
+            <stop offset="100%" stopColor="var(--color-brand-blue-deep)" stopOpacity="0.2" />
           </linearGradient>
 
           <linearGradient id="cableDepth" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#1A1953" stopOpacity="0.08" />
-            <stop offset="46%" stopColor="#162E93" stopOpacity="0.36" />
-            <stop offset="100%" stopColor="#080616" stopOpacity="0" />
+            <stop offset="46%" stopColor="var(--color-brand-blue-deep)" stopOpacity="0.36" />
+            <stop offset="100%" stopColor="var(--color-site-bg)" stopOpacity="0" />
           </linearGradient>
 
           <linearGradient id="signalGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#2F2FE4" stopOpacity="0" />
-            <stop offset="38%" stopColor="#2F2FE4" stopOpacity="0" />
-            <stop offset="47%" stopColor="#6D73FF" stopOpacity="0.85" />
+            <stop offset="0%" stopColor="var(--color-brand-blue)" stopOpacity="0" />
+            <stop offset="38%" stopColor="var(--color-brand-blue)" stopOpacity="0" />
+            <stop offset="47%" stopColor="var(--color-brand-blue-soft)" stopOpacity="0.85" />
             <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-            <stop offset="53%" stopColor="#6D73FF" stopOpacity="0.85" />
-            <stop offset="62%" stopColor="#2F2FE4" stopOpacity="0" />
-            <stop offset="100%" stopColor="#2F2FE4" stopOpacity="0" />
+            <stop offset="53%" stopColor="var(--color-brand-blue-soft)" stopOpacity="0.85" />
+            <stop offset="62%" stopColor="var(--color-brand-blue)" stopOpacity="0" />
+            <stop offset="100%" stopColor="var(--color-brand-blue)" stopOpacity="0" />
           </linearGradient>
 
           <filter id="softCableGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -211,7 +211,7 @@ export function CableFlow({ className = "" }: CableFlowProps) {
             <path
               key={`signal-core-${index}`}
               d={cable.d}
-              stroke="#E6EAFF"
+              stroke="var(--color-brand-blue-glow)"
               strokeWidth={Math.max(cable.width + 0.4, 1.35)}
               strokeOpacity="0.92"
               strokeLinecap="round"
@@ -235,7 +235,7 @@ export function CableFlow({ className = "" }: CableFlowProps) {
             <path
               key={`secondary-signal-${index}`}
               d={cable.d}
-              stroke="#2F2FE4"
+              stroke="var(--color-brand-blue)"
               strokeWidth={cable.width + 0.8}
               strokeOpacity="0.72"
               strokeLinecap="round"

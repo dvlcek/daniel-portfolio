@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
 /* ---------- Theme Tokens ---------- */
+@theme {
+  --color-site-bg: #020209;
+  --color-site-bg-deep: #000004;
+
+  --color-brand-blue: #1A32E8;
+  --color-brand-blue-vivid: #1427C9;
+  --color-brand-blue-deep: #060A35;
+  --color-brand-blue-soft: #3448E6;
+  --color-brand-blue-light: #838FFF;
+  --color-brand-blue-pale: #B9C0FF;
+  --color-brand-blue-glow: #E7EAFF;
+
+  --color-surface-soft: rgba(255, 255, 255, 0.012);
+  --color-surface-card: rgba(255, 255, 255, 0.018);
+  --color-border-soft: rgba(255, 255, 255, 0.065);
+}
+
 :root {
   --bg: 6 6 9;
   --fg: 235 235 245;

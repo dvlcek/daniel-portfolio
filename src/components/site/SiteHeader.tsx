@@ -26,7 +26,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#080616]/82 backdrop-blur-2xl">
+    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-site-bg/82 backdrop-blur-2xl">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.14),transparent_38%)]" />
 
       <div className="relative flex h-16 w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
@@ -35,7 +35,7 @@ export function SiteHeader() {
           className="group flex items-center gap-3"
           onClick={closeMenu}
         >
-          <div className="relative h-9 w-9 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.04] shadow-lg shadow-black/30 ring-1 ring-white/[0.06] transition duration-300 group-hover:border-[#2F2FE4]/40 group-hover:bg-[#2F2FE4]/10 group-hover:shadow-[#2F2FE4]/10">
+          <div className="relative h-9 w-9 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.04] shadow-lg shadow-black/30 ring-1 ring-white/[0.06] transition duration-300 group-hover:border-brand-blue/40 group-hover:bg-brand-blue/10 group-hover:shadow-brand-blue/10">
             <Image
               src="/logo.svg"
               alt="Daniel Vlcek Logo"
@@ -46,7 +46,7 @@ export function SiteHeader() {
           </div>
 
           <div className="leading-tight">
-            <p className="text-sm font-semibold tracking-tight text-white transition duration-300 group-hover:text-[#C8CBFF]">
+            <p className="text-sm font-semibold tracking-tight text-white transition duration-300 group-hover:text-brand-blue-pale">
               Daniel Vlcek
             </p>
             <p className="text-xs text-white/45 transition duration-300 group-hover:text-white/60">
@@ -68,9 +68,9 @@ export function SiteHeader() {
                 href={item.href}
                 className={[
                   "rounded-full px-4 py-2 text-sm transition duration-300",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F2FE4]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080616]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/70 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
                   active
-                    ? "bg-[#2F2FE4]/16 text-white ring-1 ring-[#2F2FE4]/25"
+                    ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
                     : "text-white/58 hover:bg-white/[0.06] hover:text-white",
                 ].join(" ")}
               >
@@ -99,7 +99,7 @@ export function SiteHeader() {
             aria-controls="mobile-navigation"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.05] text-white shadow-lg shadow-black/25 transition duration-300 hover:border-[#2F2FE4]/35 hover:bg-[#2F2FE4]/10 hover:text-[#C8CBFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F2FE4]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080616]"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.05] text-white shadow-lg shadow-black/25 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-brand-blue-pale focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/80 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
           >
             {isMenuOpen ? (
               <X size={18} aria-hidden="true" />
@@ -113,7 +113,7 @@ export function SiteHeader() {
           <nav
             id="mobile-navigation"
             aria-label="Mobile"
-            className="absolute inset-x-5 top-[calc(100%+0.75rem)] overflow-hidden rounded-3xl border border-white/[0.10] bg-[#080616]/96 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:inset-x-8 md:hidden"
+            className="absolute inset-x-5 top-[calc(100%+0.75rem)] overflow-hidden rounded-3xl border border-white/[0.10] bg-site-bg/96 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:inset-x-8 md:hidden"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.16),transparent_42%)]" />
 
@@ -129,7 +129,7 @@ export function SiteHeader() {
                     className={[
                       "flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition duration-300",
                       active
-                        ? "bg-[#2F2FE4]/16 text-white ring-1 ring-[#2F2FE4]/25"
+                        ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
                         : "text-white/65 hover:bg-white/[0.06] hover:text-white",
                     ].join(" ")}
                   >

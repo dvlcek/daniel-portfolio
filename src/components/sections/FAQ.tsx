@@ -13,7 +13,7 @@ export function FAQ() {
   useStagger(ref, ".faq-item", { y: 14, stagger: 0.06 });
 
   return (
-    <section className="relative overflow-hidden bg-[#080616] py-20 md:py-28">
+    <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
@@ -50,8 +50,8 @@ export function FAQ() {
                         className={[
                           "w-6 shrink-0 font-mono text-xs transition-colors duration-300",
                           isOpen
-                            ? "text-[#A7AEFF]"
-                            : "text-white/28 group-hover:text-[#2F2FE4]",
+                            ? "text-brand-blue-light"
+                            : "text-white/28 group-hover:text-brand-blue",
                         ].join(" ")}
                       >
                         {String(index + 1).padStart(2, "0")}
@@ -73,8 +73,8 @@ export function FAQ() {
                       className={[
                         "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
                         isOpen
-                          ? "text-[#A7AEFF]"
-                          : "text-white/36 group-hover:text-[#A7AEFF]",
+                          ? "text-brand-blue-light"
+                          : "text-white/36 group-hover:text-brand-blue-light",
                       ].join(" ")}
                     >
                       <span className="absolute h-px w-3.5 bg-current" />

@@ -74,7 +74,7 @@ function SpotlightCard({
       />
 
       <div
-        className={`relative h-full overflow-hidden rounded-[23px] bg-[#080616]/88 backdrop-blur-xl ${innerClassName}`}
+        className={`relative h-full overflow-hidden rounded-[23px] bg-site-bg/88 backdrop-blur-xl ${innerClassName}`}
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -113,7 +113,7 @@ export function FeaturedOutcomes() {
   return (
     <section
       id="work"
-      className="relative overflow-hidden bg-[#080616] py-20 md:py-28"
+      className="relative overflow-hidden bg-site-bg py-20 md:py-28"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(47,47,228,0.08),transparent_30%)]" />
@@ -130,7 +130,7 @@ export function FeaturedOutcomes() {
         <div ref={ref} className="relative z-10">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_0.7fr] lg:items-end">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
                 Selected Work
               </p>
 
@@ -148,7 +148,7 @@ export function FeaturedOutcomes() {
 
               <Link
                 href="/work"
-                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.035] px-5 py-3 text-sm font-medium text-white/75 transition duration-300 hover:border-[#2F2FE4]/35 hover:bg-[#2F2FE4]/10 hover:text-white"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.035] px-5 py-3 text-sm font-medium text-white/75 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-white"
               >
                 View all work
                 <ArrowUpRight size={15} />
@@ -174,16 +174,16 @@ export function FeaturedOutcomes() {
                       priority
                     />
 
-                    <div className="absolute inset-0 bg-linear-to-t from-[#080616] via-[#080616]/30 to-transparent" />
-                    <div className="absolute inset-0 bg-linear-to-r from-[#080616]/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/30 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-r from-site-bg/40 via-transparent to-transparent" />
 
                     <div className="absolute left-5 top-5 inline-flex rounded-full border border-white/[0.12] bg-black/45 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/70 backdrop-blur-xl">
                       {getCategoryLabel(featuredStudy.category)}
                     </div>
 
                     {featuredStudy.featuredMetric ? (
-                      <div className="absolute bottom-5 left-5 right-5 max-w-xl rounded-2xl border border-white/[0.12] bg-[#080616]/72 p-4 backdrop-blur-xl">
-                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#A7AEFF]">
+                      <div className="absolute bottom-5 left-5 right-5 max-w-xl rounded-2xl border border-white/[0.12] bg-site-bg/72 p-4 backdrop-blur-xl">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-blue-light">
                           Featured outcome
                         </p>
                         <p className="mt-2 text-lg font-semibold leading-snug text-white">
@@ -204,7 +204,7 @@ export function FeaturedOutcomes() {
                         </p>
                       </div>
 
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.035] text-white/60 transition duration-300 group-hover:border-[#2F2FE4]/30 group-hover:bg-[#2F2FE4]/10 group-hover:text-white">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.035] text-white/60 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10 group-hover:text-white">
                         <ArrowUpRight size={18} />
                       </span>
                     </div>
@@ -221,7 +221,7 @@ export function FeaturedOutcomes() {
                       {featuredStudy.whatIDid.slice(0, 5).map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-white/[0.10] bg-white/[0.035] px-3 py-1.5 text-xs text-white/60 transition duration-300 group-hover:border-[#2F2FE4]/25 group-hover:text-white/72"
+                          className="rounded-full border border-white/[0.10] bg-white/[0.035] px-3 py-1.5 text-xs text-white/60 transition duration-300 group-hover:border-brand-blue/25 group-hover:text-white/72"
                         >
                           {item}
                         </span>
@@ -251,7 +251,7 @@ export function FeaturedOutcomes() {
                           className="object-cover opacity-80 transition duration-700 group-hover:scale-[1.04] group-hover:opacity-100"
                         />
 
-                        <div className="absolute inset-0 bg-linear-to-t from-[#080616]/80 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-site-bg/80 via-transparent to-transparent" />
 
                         <span className="absolute left-3 top-3 rounded-full border border-white/[0.12] bg-black/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white/65 backdrop-blur-xl">
                           0{index + 2}
@@ -270,7 +270,7 @@ export function FeaturedOutcomes() {
                             </p>
                           </div>
 
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.035] text-white/55 transition duration-300 group-hover:border-[#2F2FE4]/30 group-hover:bg-[#2F2FE4]/10 group-hover:text-white">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.035] text-white/55 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10 group-hover:text-white">
                             <ArrowUpRight size={15} />
                           </span>
                         </div>

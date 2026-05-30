@@ -20,7 +20,7 @@ export function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#080616] py-16 md:py-20"
+      className="relative overflow-hidden bg-site-bg py-16 md:py-20"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
@@ -34,7 +34,7 @@ export function FinalCTA() {
         >
           <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4]">
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue">
                 Start with clarity
               </p>
 
@@ -68,7 +68,7 @@ export function FinalCTA() {
               <div className="mt-5 space-y-4">
                 {callPoints.map((item, index) => (
                   <div key={item} className="flex gap-4">
-                    <span className="w-6 shrink-0 font-mono text-xs text-[#2F2FE4]">
+                    <span className="w-6 shrink-0 font-mono text-xs text-brand-blue">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 

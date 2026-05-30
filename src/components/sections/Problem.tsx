@@ -41,7 +41,7 @@ export function Problem() {
   useReveal(ref);
 
   return (
-    <section className="relative overflow-hidden bg-[#080616] py-20 md:py-28">
+    <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       {/* Background atmosphere */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(47,47,228,0.08),transparent_30%)]" />
@@ -59,7 +59,7 @@ export function Problem() {
           {/* Header */}
           <div className="grid gap-10 lg:grid-cols-[0.95fr_0.75fr] lg:items-end">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
                 The Problem
               </p>
 
@@ -79,9 +79,9 @@ export function Problem() {
             <div className="group relative overflow-hidden rounded-3xl p-px transition duration-500 hover:shadow-[0_24px_80px_rgba(47,47,228,0.12)]">
               <div className="absolute inset-0 rounded-3xl bg-white/[0.08] transition duration-500 group-hover:bg-[linear-gradient(135deg,rgba(47,47,228,0.65),rgba(255,255,255,0.12),rgba(22,46,147,0.20))]" />
 
-              <div className="relative rounded-[23px] bg-[#080616]/80 p-5 backdrop-blur-xl">
-                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-[#6D73FF]/80" />
-                <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#2F2FE4]/0 blur-3xl transition duration-500 group-hover:bg-[#2F2FE4]/14" />
+              <div className="relative rounded-[23px] bg-site-bg/80 p-5 backdrop-blur-xl">
+                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-brand-blue-soft/80" />
+                <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/14" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
@@ -94,7 +94,7 @@ export function Problem() {
                       </p>
                     </div>
 
-                    <span className="rounded-full border border-[#2F2FE4]/30 bg-[#2F2FE4]/10 px-3 py-1 text-xs text-[#A7AEFF]">
+                    <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
                       Before build
                     </span>
                   </div>
@@ -103,10 +103,10 @@ export function Problem() {
                     {signals.map((item) => (
                       <div
                         key={item}
-                        className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-[#080616]/45 px-4 py-3 transition duration-300 hover:border-[#2F2FE4]/25 hover:bg-[#2F2FE4]/10"
+                        className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-site-bg/45 px-4 py-3 transition duration-300 hover:border-brand-blue/25 hover:bg-brand-blue/10"
                       >
                         <span className="text-sm text-white/60">{item}</span>
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#2F2FE4] shadow-[0_0_16px_rgba(47,47,228,0.75)]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shadow-[0_0_16px_rgba(47,47,228,0.75)]" />
                       </div>
                     ))}
                   </div>
@@ -125,18 +125,18 @@ export function Problem() {
                 {/* Premium edge highlight */}
                 <div className="absolute inset-0 rounded-3xl bg-white/[0.08] transition duration-500 group-hover:bg-[linear-gradient(135deg,rgba(47,47,228,0.70),rgba(255,255,255,0.14),rgba(22,46,147,0.18))]" />
 
-                <div className="relative h-full overflow-hidden rounded-[23px] bg-[#080616]/78 p-6 backdrop-blur-xl md:p-7">
+                <div className="relative h-full overflow-hidden rounded-[23px] bg-site-bg/78 p-6 backdrop-blur-xl md:p-7">
                   {/* Top light edge */}
-                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-[#6D73FF]/90" />
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-brand-blue-soft/90" />
 
                   {/* Soft hover glow */}
-                  <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#2F2FE4]/0 blur-3xl transition duration-500 group-hover:bg-[#2F2FE4]/12" />
+                  <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/12" />
 
                   {/* Subtle inner shine */}
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/[0.04] via-transparent to-transparent opacity-60 transition duration-500 group-hover:opacity-100" />
 
                   <div className="relative z-10 flex gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-[#080616]/60 text-[#2F2FE4] transition duration-300 group-hover:border-[#2F2FE4]/35 group-hover:bg-[#2F2FE4]/12 group-hover:shadow-[0_0_28px_rgba(47,47,228,0.18)]">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-site-bg/60 text-brand-blue transition duration-300 group-hover:border-brand-blue/35 group-hover:bg-brand-blue/12 group-hover:shadow-[0_0_28px_rgba(47,47,228,0.18)]">
                       <Image
                         src={item.icon}
                         alt=""
@@ -148,10 +148,10 @@ export function Problem() {
 
                     <div>
                       <div className="mb-3 flex items-center gap-3">
-                        <span className="text-xs font-medium text-[#2F2FE4] transition duration-300 group-hover:text-[#A7AEFF]">
+                        <span className="text-xs font-medium text-brand-blue transition duration-300 group-hover:text-brand-blue-light">
                           0{index + 1}
                         </span>
-                        <span className="h-px w-8 bg-[#2F2FE4]/35 transition duration-300 group-hover:w-12 group-hover:bg-[#A7AEFF]/70" />
+                        <span className="h-px w-8 bg-brand-blue/35 transition duration-300 group-hover:w-12 group-hover:bg-brand-blue-light/70" />
                       </div>
 
                       <h3 className="text-lg font-semibold leading-snug text-white">
@@ -172,9 +172,9 @@ export function Problem() {
           <div className="group mt-10 overflow-hidden rounded-3xl p-px transition duration-500 hover:shadow-[0_24px_90px_rgba(47,47,228,0.10)]">
             <div className="absolute rounded-3xl bg-white/[0.08]" />
 
-            <div className="relative overflow-hidden rounded-[23px] border border-[#2F2FE4]/20 bg-white/[0.035] p-6 shadow-2xl shadow-black/25 backdrop-blur-xl md:p-8">
-              <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-[#6D73FF]/0 to-transparent transition duration-500 group-hover:via-[#6D73FF]/80" />
-              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#2F2FE4]/0 blur-3xl transition duration-500 group-hover:bg-[#2F2FE4]/12" />
+            <div className="relative overflow-hidden rounded-[23px] border border-brand-blue/20 bg-white/[0.035] p-6 shadow-2xl shadow-black/25 backdrop-blur-xl md:p-8">
+              <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/0 to-transparent transition duration-500 group-hover:via-brand-blue-soft/80" />
+              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/12" />
 
               <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
@@ -185,8 +185,8 @@ export function Problem() {
                   </span>
                 </p>
 
-                <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#080616]/55 px-4 py-3 transition duration-300 group-hover:border-[#2F2FE4]/30 group-hover:bg-[#2F2FE4]/10">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#2F2FE4]/10 text-[#A7AEFF] ring-1 ring-[#2F2FE4]/25">
+                <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-white/[0.08] bg-site-bg/55 px-4 py-3 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue-light ring-1 ring-brand-blue/25">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path
                         d="M2.5 11.5L6 8L8.5 10.5L13.5 4.5"

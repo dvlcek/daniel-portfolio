@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import {
+  type FormEvent,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionTitle } from "@/components/ui/SectionTitle";
 
 interface FormState {
   fullName: string;
@@ -15,119 +21,15 @@ interface FormState {
   projectGoal: string;
 }
 
-const fieldClassName =
-  "w-full appearance-none rounded-xl border border-white/8 bg-black/30 px-3 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/30 hover:border-white/12 focus:border-white/14 focus:ring-1 focus:ring-white/10";
-interface SelectFieldProps {
+type SelectFieldProps = {
   label: string;
   name: keyof FormState;
   options: string[];
   value: string;
   onChange: (value: string) => void;
-}
+};
 
-function SelectField({
-  label,
-  name,
-  options,
-  value,
-  onChange,
-}: SelectFieldProps) {
-  const id = useId();
-  const [open, setOpen] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (!wrapperRef.current) return;
-      if (!wrapperRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  return (
-    <div className="flex flex-col gap-2" ref={wrapperRef}>
-      <label htmlFor={id} className="text-sm text-white/75">
-        {label}
-      </label>
-
-      <div className="relative">
-        <button
-          id={id}
-          type="button"
-          onClick={() => setOpen((prev) => !prev)}
-          className={`group flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-left text-sm text-white outline-none transition-all duration-200 ${
-            open
-              ? "border-white/16 bg-white/[0.05]"
-              : "border-white/10 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.045]"
-          } focus-visible:ring-2 focus-visible:ring-white/10`}
-          aria-expanded={open}
-          aria-haspopup="listbox"
-        >
-          <span className="truncate">{value}</span>
-
-          <svg
-            aria-hidden="true"
-            className={`h-4 w-4 shrink-0 text-white/40 transition-transform duration-200 ${
-              open ? "rotate-180" : ""
-            }`}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m19 9-7 7-7-7"
-            />
-          </svg>
-        </button>
-
-        <div
-          className={`absolute left-0 right-0 top-[calc(100%+6px)] z-50 origin-top overflow-hidden rounded-xl border border-white/10 bg-zinc-950/98 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 ${
-            open
-              ? "pointer-events-auto translate-y-0 opacity-100"
-              : "pointer-events-none -translate-y-1 opacity-0"
-          }`}
-        >
-          <div className="p-1.5">
-            {options.map((option) => {
-              const selected = value === option;
-
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => {
-                    onChange(option);
-                    setOpen(false);
-                  }}
-                  className={`flex w-full items-center rounded-lg px-3 py-2.5 text-sm transition-colors ${
-                    selected
-                      ? "bg-white/[0.08] text-white"
-                      : "text-white/72 hover:bg-white/[0.06] hover:text-white"
-                  }`}
-                  role="option"
-                  aria-selected={selected}
-                >
-                  <span className="truncate">{option}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-interface FieldProps {
+type FieldProps = {
   label: string;
   name: keyof FormState;
   type?: string;
@@ -146,6 +48,153 @@ interface FieldProps {
     | "decimal"
     | "none";
   spellCheck?: boolean;
+};
+
+type TextareaFieldProps = {
+  label: string;
+  name: keyof FormState;
+  placeholder?: string;
+  required?: boolean;
+  value: string;
+  onChange: (value: string) => void;
+};
+
+const CAL_LINK = "daniel-i0cc0w/30min";
+const CAL_NAMESPACE = "30min";
+const CAL_OPEN_URL = "https://cal.com/daniel-i0cc0w/30min";
+
+const fieldClassName =
+  "w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.018] px-4 py-3 text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-white/28 hover:border-white/[0.12] hover:bg-white/[0.026] focus:border-brand-blue/40 focus:bg-white/[0.028] focus:ring-2 focus:ring-brand-blue/10";
+
+const expectations = [
+  "Your current setup and business context",
+  "Where manual work or weak structure slows growth",
+  "Whether a website, rebuild, automation, or full system makes sense",
+  "A realistic next step based on priority, timeline, and scope",
+];
+
+const callFit = [
+  "Businesses that need stronger digital infrastructure",
+  "Teams losing time through manual or disconnected workflows",
+  "Companies planning a serious website, platform, or automation build",
+];
+
+function SelectField({
+  label,
+  name,
+  options,
+  value,
+  onChange,
+}: SelectFieldProps) {
+  const id = useId();
+  const listboxId = useId();
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (!wrapperRef.current) return;
+
+      if (!wrapperRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div ref={wrapperRef} className="flex flex-col gap-2">
+      <label htmlFor={id} className="text-sm font-medium text-white/68">
+        {label}
+      </label>
+
+      <input type="hidden" name={name} value={value} />
+
+      <div className="relative">
+        <button
+          id={id}
+          type="button"
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-controls={listboxId}
+          onClick={() => setOpen((current) => !current)}
+          className={[
+            "group flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300",
+            open
+              ? "border-brand-blue/35 bg-brand-blue/[0.055] ring-2 ring-brand-blue/10"
+              : "border-white/[0.08] bg-white/[0.018] hover:border-white/[0.12] hover:bg-white/[0.026]",
+          ].join(" ")}
+        >
+          <span className="truncate">{value}</span>
+
+          <span
+            className={[
+              "flex h-5 w-5 shrink-0 items-center justify-center text-white/38 transition-transform duration-300 group-hover:text-brand-blue-light",
+              open ? "rotate-180 text-brand-blue-light" : "",
+            ].join(" ")}
+          >
+            <svg
+              aria-hidden="true"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="m19 9-7 7-7-7"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id={listboxId}
+          role="listbox"
+          className={[
+            "absolute left-0 right-0 top-[calc(100%+8px)] z-50 origin-top overflow-hidden rounded-2xl border border-white/[0.10] bg-site-bg-deep/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200",
+            open
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none -translate-y-1 opacity-0",
+          ].join(" ")}
+        >
+          {options.map((option) => {
+            const selected = value === option;
+
+            return (
+              <button
+                key={option}
+                type="button"
+                role="option"
+                aria-selected={selected}
+                onClick={() => {
+                  onChange(option);
+                  setOpen(false);
+                }}
+                className={[
+                  "flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors duration-200",
+                  selected
+                    ? "bg-brand-blue/10 text-brand-blue-light"
+                    : "text-white/68 hover:bg-white/[0.045] hover:text-white",
+                ].join(" ")}
+              >
+                <span className="truncate">{option}</span>
+
+                {selected ? <Check size={14} /> : null}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function Field({
@@ -164,10 +213,11 @@ function Field({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm text-white/75">
+      <label htmlFor={id} className="text-sm font-medium text-white/68">
         {label}
-        {required ? <span className="ml-0.5 text-white/55">*</span> : null}
+        {required ? <span className="ml-1 text-brand-blue-light">*</span> : null}
       </label>
+
       <input
         id={id}
         name={name}
@@ -185,15 +235,6 @@ function Field({
   );
 }
 
-interface TextareaFieldProps {
-  label: string;
-  name: keyof FormState;
-  placeholder?: string;
-  required?: boolean;
-  value: string;
-  onChange: (value: string) => void;
-}
-
 function TextareaField({
   label,
   name,
@@ -206,10 +247,11 @@ function TextareaField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm text-white/75">
+      <label htmlFor={id} className="text-sm font-medium text-white/68">
         {label}
-        {required ? <span className="ml-0.5 text-white/55">*</span> : null}
+        {required ? <span className="ml-1 text-brand-blue-light">*</span> : null}
       </label>
+
       <textarea
         id={id}
         name={name}
@@ -217,7 +259,7 @@ function TextareaField({
         placeholder={placeholder}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        rows={4}
+        rows={5}
         className={`${fieldClassName} resize-none`}
       />
     </div>
@@ -225,49 +267,52 @@ function TextareaField({
 }
 
 function StepIndicator({ step }: { step: 1 | 2 }) {
+  const steps = [
+    { value: 1, label: "Project details" },
+    { value: 2, label: "Schedule call" },
+  ] as const;
+
   return (
-    <div className="mb-8 flex items-center gap-3">
-      {([1, 2] as const).map((currentStep) => (
-        <div key={currentStep} className="flex items-center gap-2">
-          <div
-            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300 ${
-              step >= currentStep
-                ? "bg-white text-black"
-                : "bg-white/10 text-white/40"
-            }`}
-          >
-            {step > currentStep ? (
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            ) : (
-              currentStep
-            )}
+    <div className="flex items-center gap-3">
+      {steps.map((item, index) => {
+        const active = step >= item.value;
+        const completed = step > item.value;
+
+        return (
+          <div key={item.value} className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
+              <span
+                className={[
+                  "flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition duration-300",
+                  active
+                    ? "border-brand-blue/35 bg-brand-blue/10 text-brand-blue-light"
+                    : "border-white/[0.08] bg-white/[0.018] text-white/32",
+                ].join(" ")}
+              >
+                {completed ? <Check size={14} /> : item.value}
+              </span>
+
+              <span
+                className={[
+                  "text-xs font-medium transition duration-300",
+                  active ? "text-white/78" : "text-white/32",
+                ].join(" ")}
+              >
+                {item.label}
+              </span>
+            </div>
+
+            {index < steps.length - 1 ? (
+              <span
+                className={[
+                  "h-px w-8 transition duration-300",
+                  step > item.value ? "bg-brand-blue/40" : "bg-white/[0.08]",
+                ].join(" ")}
+              />
+            ) : null}
           </div>
-
-          <span
-            className={`text-xs font-medium ${
-              step >= currentStep ? "text-white/80" : "text-white/30"
-            }`}
-          >
-            {currentStep === 1 ? "Project details" : "Schedule call"}
-          </span>
-
-          {currentStep < 2 ? (
-            <div
-              className={`mx-1 h-px w-8 ${
-                step > currentStep ? "bg-white/30" : "bg-white/10"
-              }`}
-            />
-          ) : null}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -275,7 +320,6 @@ function StepIndicator({ step }: { step: 1 | 2 }) {
 export default function ContactPage() {
   const [step, setStep] = useState<1 | 2>(1);
   const [submitting, setSubmitting] = useState(false);
-  const rightPanelRef = useRef<HTMLElement>(null);
 
   const [form, setForm] = useState<FormState>({
     fullName: "",
@@ -290,7 +334,7 @@ export default function ContactPage() {
   const set = (field: keyof FormState) => (value: string) =>
     setForm((current) => ({ ...current, [field]: value }));
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);
 
@@ -303,88 +347,90 @@ export default function ContactPage() {
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const CAL_LINK = "daniel-i0cc0w/30min";
-  const CAL_NAMESPACE = "30min";
+  }
 
   useEffect(() => {
     if (step !== 2) return;
 
     void (async () => {
       const cal = await getCalApi({ namespace: CAL_NAMESPACE });
+
       cal("ui", {
         theme: "dark",
         styles: {
-          branding: { brandColor: "#ffffff" },
+          branding: { brandColor: "#1E3CFF" },
         },
         layout: "month_view",
       });
     })();
   }, [step]);
 
-  const calOpenUrl = "https://cal.com/daniel-i0cc0w/30min";
-
-  const expectations = [
-    {
-      icon: "M4 6h16M4 12h10M4 18h7",
-      text: "Clear scope and structured communication from the start",
-    },
-    {
-      icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-      text: "Focus on real business improvements, not just visual changes",
-    },
-    {
-      icon: "M4 7h16M7 4v16M17 4v16",
-      text: "A system built to be maintainable and usable long-term",
-    },
-    {
-      icon: "M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-      text: "A realistic next step based on your actual bottleneck",
-    },
-  ];
-
   return (
-    <main className="py-16 md:py-24">
-      <Container>
-        <SectionTitle
-          eyebrow="Contact"
-          title="Start with a strategy call"
-          desc="A short call to understand your business, identify the main bottleneck, and decide on the right next step."
-        />
+    <main className="relative min-h-screen overflow-hidden bg-site-bg py-16 md:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-blue/[0.07] blur-3xl" />
+        <div className="absolute -right-44 top-[28rem] h-[34rem] w-[34rem] rounded-full bg-brand-blue-deep/20 blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 h-80 bg-linear-to-t from-site-bg-deep/70 to-transparent" />
+      </div>
 
-        <p className="mt-4 max-w-2xl text-sm text-white/55">
-          Best fit for businesses that need stronger systems, less manual work,
-          and a clearer digital foundation.
-        </p>
+      <Container className="relative z-10 max-w-7xl">
+        <header className="border-b border-white/[0.08] pb-10 md:pb-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
+                Contact
+              </p>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          <section className="relative overflow-hidden rounded-3xl border border-white/6 bg-white/[0.03] p-7 ring-1 ring-white/8 backdrop-blur-sm">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-80" />
+              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
+                Start with a strategy call.
+              </h1>
+            </div>
+
+            <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
+              A short call to understand your business, identify the main
+              bottleneck, and decide whether a website, rebuild, automation, or
+              full system is the right next step.
+            </p>
+          </div>
+        </header>
+
+        <section className="mt-10 grid gap-6 lg:grid-cols-[1.08fr_0.72fr] lg:items-start">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022] p-5 backdrop-blur-xl md:p-7">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/60 to-transparent" />
 
             <div className="relative z-10">
-              <StepIndicator step={step} />
+              <div className="flex flex-col gap-5 border-b border-white/[0.08] pb-6 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-white">
+                    Strategy call intake
+                  </p>
+
+                  <p className="mt-1 text-sm text-white/42">
+                    Add the context first, then pick a time.
+                  </p>
+                </div>
+
+                <StepIndicator step={step} />
+              </div>
 
               {step === 1 ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <h2 className="mb-5 text-lg font-semibold text-white">
-                    A few details before the call
-                  </h2>
-
+                <form onSubmit={handleSubmit} className="mt-7 space-y-5">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field
                       label="Full name"
                       name="fullName"
-                      placeholder="Jane Smith…"
+                      placeholder="Jane Smith"
                       required
                       autoComplete="name"
                       value={form.fullName}
                       onChange={set("fullName")}
                     />
+
                     <Field
                       label="Company name"
                       name="companyName"
-                      placeholder="Acme Inc.…"
+                      placeholder="Acme Inc."
                       required
                       autoComplete="organization"
                       value={form.companyName}
@@ -396,7 +442,7 @@ export default function ContactPage() {
                     label="Email"
                     name="email"
                     type="email"
-                    placeholder="jane@acme.com…"
+                    placeholder="jane@company.com"
                     required
                     autoComplete="email"
                     inputMode="email"
@@ -405,52 +451,54 @@ export default function ContactPage() {
                     onChange={set("email")}
                   />
 
-                  <div className="flex items-center gap-3 py-1">
-                    <div className="h-px flex-1 bg-white/10" />
-                    <span className="text-xs font-medium text-white/30">
+                  <div className="my-2 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-white/[0.08]" />
+                    <span className="text-xs uppercase tracking-[0.22em] text-white/30">
                       Project context
                     </span>
-                    <div className="h-px flex-1 bg-white/10" />
+                    <span className="h-px flex-1 bg-white/[0.08]" />
                   </div>
 
                   <TextareaField
                     label="What do you want to improve?"
                     name="projectGoal"
-                    placeholder="Briefly describe what you want to improve, build, or automate."
+                    placeholder="Briefly describe what you want to improve, build, rebuild, or automate."
                     required
                     value={form.projectGoal}
                     onChange={set("projectGoal")}
                   />
 
-                  <SelectField
-                    label="Biggest bottleneck"
-                    name="bottleneck"
-                    options={[
-                      "Website or platform",
-                      "Automation or workflows",
-                      "Both",
-                    ]}
-                    value={form.bottleneck}
-                    onChange={set("bottleneck")}
-                  />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <SelectField
+                      label="Biggest bottleneck"
+                      name="bottleneck"
+                      options={[
+                        "Website or platform",
+                        "Automation or workflows",
+                        "Both",
+                      ]}
+                      value={form.bottleneck}
+                      onChange={set("bottleneck")}
+                    />
 
-                  <SelectField
-                    label="Timeline"
-                    name="timeline"
-                    options={[
-                      "As soon as possible",
-                      "Within 1–2 months",
-                      "Planning for a later phase",
-                    ]}
-                    value={form.timeline}
-                    onChange={set("timeline")}
-                  />
+                    <SelectField
+                      label="Timeline"
+                      name="timeline"
+                      options={[
+                        "As soon as possible",
+                        "Within 1–2 months",
+                        "Planning for a later phase",
+                      ]}
+                      value={form.timeline}
+                      onChange={set("timeline")}
+                    />
+                  </div>
 
                   <Field
                     label="Current website or tools"
                     name="currentSite"
                     type="url"
-                    placeholder="https://…"
+                    placeholder="https://..."
                     autoComplete="url"
                     inputMode="url"
                     spellCheck={false}
@@ -461,52 +509,69 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="mt-2 w-full rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50"
+                    className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    {submitting ? "Saving…" : "Continue to booking"}
+                    <span>{submitting ? "Saving..." : "Continue to booking"}</span>
+                    {!submitting ? (
+                      <ArrowRight
+                        size={15}
+                        className="transition duration-300 group-hover:translate-x-0.5"
+                      />
+                    ) : null}
                   </button>
+
+                  <p className="text-center text-xs leading-relaxed text-white/34">
+                    This helps make the call focused instead of generic.
+                  </p>
                 </form>
               ) : (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-white">
-                      Pick a time that works
-                    </h2>
+                <div className="mt-7 space-y-5">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-lg font-semibold text-white">
+                        Pick a time that works
+                      </p>
+
+                      <p className="mt-1 text-sm text-white/42">
+                        Your details will be attached to the booking.
+                      </p>
+                    </div>
+
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="flex items-center gap-1 text-xs text-white/40 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      className="inline-flex items-center gap-2 text-sm text-white/42 transition-colors duration-300 hover:text-white"
                     >
-                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                      Back
+                      <ArrowLeft size={14} />
+                      Edit details
                     </button>
                   </div>
 
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black/20">
-                    <div className="flex items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3">
-                      <span className="text-xs text-white/50">Booking</span>
+                  <div className="overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-site-bg-deep/55">
+                    <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
+                      <span className="text-xs uppercase tracking-[0.2em] text-white/35">
+                        Booking
+                      </span>
+
                       <a
-                        href={calOpenUrl}
+                        href={CAL_OPEN_URL}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs text-white/50 transition hover:text-white/80"
+                        className="inline-flex items-center gap-1.5 text-xs text-white/42 transition-colors duration-300 hover:text-white"
                       >
-                        Open in new tab →
+                        Open in new tab
+                        <ExternalLink size={12} />
                       </a>
                     </div>
 
                     <Cal
                       namespace={CAL_NAMESPACE}
                       calLink={CAL_LINK}
-                      style={{ width: "100%", height: "480px", overflow: "auto" }}
+                      style={{
+                        width: "100%",
+                        height: "540px",
+                        overflow: "auto",
+                      }}
                       config={{
                         name: form.fullName || "",
                         email: form.email || "",
@@ -520,66 +585,76 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <p className="text-center text-xs text-white/30" aria-live="polite">
+                  <p
+                    className="text-center text-xs leading-relaxed text-white/34"
+                    aria-live="polite"
+                  >
                     A confirmation will be sent to{" "}
-                    <span className="text-white/50">{form.email}</span>
+                    <span className="text-white/55">{form.email}</span>
                   </p>
                 </div>
               )}
             </div>
-          </section>
+          </div>
 
-          <section
-            ref={rightPanelRef}
-            className="relative self-start overflow-hidden rounded-3xl border border-white/6 bg-white/[0.03] p-7 ring-1 ring-white/8 backdrop-blur-sm"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-80" />
+          <aside className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.018] p-6 backdrop-blur-xl md:p-7 lg:sticky lg:top-28">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/45 to-transparent" />
 
-            <div className="relative z-10 flex flex-col gap-8">
-              <div>
-                <h2 className="text-lg font-semibold text-white">What to expect</h2>
+            <div className="relative z-10">
+              <p className="text-xs uppercase tracking-[0.24em] text-brand-blue">
+                What we clarify
+              </p>
 
-                <ul className="mt-5 space-y-3.5">
-                  {expectations.map(({ icon, text }) => (
-                    <li key={text} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04]">
-                        <svg
-                          className="h-3.5 w-3.5 text-white/70"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d={icon}
-                          />
-                        </svg>
+              <h2 className="mt-4 max-w-md text-2xl font-semibold tracking-tight text-white">
+                The goal is clarity before building.
+              </h2>
+
+              <p className="mt-4 text-sm leading-relaxed text-white/52">
+                The call is used to understand where the highest-leverage
+                improvement is, not to push unnecessary features.
+              </p>
+
+              <div className="mt-7 space-y-4">
+                {expectations.map((item, index) => (
+                  <div key={item} className="flex gap-4">
+                    <span className="w-6 shrink-0 font-mono text-xs text-brand-blue-light">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <p className="text-sm leading-relaxed text-white/60">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-white/[0.08] bg-site-bg/45 p-5">
+                <p className="text-xs uppercase tracking-[0.22em] text-white/30">
+                  Best fit
+                </p>
+
+                <div className="mt-4 space-y-3">
+                  {callFit.map((item) => (
+                    <div key={item} className="flex gap-3">
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light">
+                        <Check size={12} />
                       </span>
 
-                      <span className="text-sm leading-relaxed text-white/70">
-                        {text}
-                      </span>
-                    </li>
+                      <p className="text-sm leading-relaxed text-white/58">
+                        {item}
+                      </p>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              <div className="rounded-xl border border-white/10 bg-black/20 px-5 py-4">
-                <p className="mb-1 text-xs font-medium uppercase tracking-widest text-white/40">
-                  On the first call
-                </p>
-                <p className="text-sm leading-relaxed text-white/70">
-                  A focused 20-minute conversation to review your current setup,
-                  identify the main bottleneck, and decide on the most realistic
-                  next step.
-                </p>
-              </div>
+              <p className="mt-6 text-sm leading-relaxed text-white/38">
+                Clear direction, honest feedback, and a realistic next step for
+                your website, workflow, or internal system.
+              </p>
             </div>
-          </section>
-        </div>
+          </aside>
+        </section>
       </Container>
     </main>
   );

@@ -48,7 +48,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative overflow-hidden bg-[#080616] py-20 md:py-32"
+      className="relative overflow-hidden bg-site-bg py-20 md:py-32"
     >
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
@@ -67,7 +67,7 @@ export function Process() {
           {/* Header */}
           <div className="grid gap-10 lg:grid-cols-[0.9fr_0.72fr] lg:items-end">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
                 Process
               </p>
 
@@ -89,12 +89,12 @@ export function Process() {
               {processOverview.map((item, index) => (
                 <div
                   key={item}
-                  className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#080616]/55 px-4 py-4"
+                  className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-site-bg/55 px-4 py-4"
                 >
-                  <div className="absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-[#2F2FE4]/35 to-transparent" />
+                  <div className="absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-brand-blue/35 to-transparent" />
 
                   <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 font-mono text-xs text-[#A7AEFF]">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-brand-blue/25 bg-brand-blue/10 font-mono text-xs text-brand-blue-light">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -115,7 +115,7 @@ export function Process() {
 
           {/* Process timeline */}
           <div className="relative mt-16">
-            <div className="absolute left-5 top-0 h-full w-px bg-linear-to-b from-[#2F2FE4]/0 via-[#2F2FE4]/30 to-[#2F2FE4]/0 lg:left-1/2 lg:-translate-x-1/2" />
+            <div className="absolute left-5 top-0 h-full w-px bg-linear-to-b from-brand-blue/0 via-brand-blue/30 to-brand-blue/0 lg:left-1/2 lg:-translate-x-1/2" />
 
             <div className="space-y-10 lg:space-y-14">
               {processSteps.map((step, index) => {
@@ -134,18 +134,18 @@ export function Process() {
                       ].join(" ")}
                     >
                       {/* Timeline node */}
-                      <div className="absolute left-5 top-6 z-20 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-2xl border border-[#2F2FE4]/30 bg-[#080616] font-mono text-xs text-[#A7AEFF] shadow-[0_0_0_8px_#080616] lg:left-1/2">
+                      <div className="absolute left-5 top-6 z-20 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-2xl border border-brand-blue/30 bg-site-bg font-mono text-xs text-brand-blue-light shadow-[0_0_0_8px_var(--color-site-bg)] lg:left-1/2">
                         {String(index + 1).padStart(2, "0")}
                       </div>
 
                       {/* Main phase card */}
                       <div
                         className={[
-                          "ml-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-xl transition-[border-color,background-color] duration-300 hover:border-[#2F2FE4]/22 hover:bg-white/[0.035] md:p-7 lg:ml-0",
+                          "ml-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-xl transition-[border-color,background-color] duration-300 hover:border-brand-blue/22 hover:bg-white/[0.035] md:p-7 lg:ml-0",
                           isEven ? "lg:mr-14" : "lg:ml-14",
                         ].join(" ")}
                       >
-                        <div className="h-px w-full bg-linear-to-r from-[#2F2FE4]/40 via-white/[0.08] to-transparent" />
+                        <div className="h-px w-full bg-linear-to-r from-brand-blue/40 via-white/[0.08] to-transparent" />
 
                         <div className="mt-6">
                           <p className="text-xs uppercase tracking-[0.24em] text-white/35">
@@ -161,7 +161,7 @@ export function Process() {
                           </p>
 
                           <div className="mt-6">
-                            <p className="text-xs uppercase tracking-[0.22em] text-[#A7AEFF]">
+                            <p className="text-xs uppercase tracking-[0.22em] text-brand-blue-light">
                               {phase.label}
                             </p>
 
@@ -169,9 +169,9 @@ export function Process() {
                               {phase.items.map((item) => (
                                 <div
                                   key={item}
-                                  className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-[#080616]/45 px-4 py-3"
+                                  className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-site-bg/45 px-4 py-3"
                                 >
-                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 text-[#A7AEFF]">
+                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light">
                                     <Check size={13} />
                                   </span>
 
@@ -194,7 +194,7 @@ export function Process() {
                             : "lg:col-start-1 lg:row-start-1 lg:pr-14",
                         ].join(" ")}
                       >
-                        <div className="rounded-3xl border border-white/[0.06] bg-[#080616]/35 p-5">
+                        <div className="rounded-3xl border border-white/[0.06] bg-site-bg/35 p-5">
                           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/30">
                             Phase purpose
                           </p>
@@ -217,15 +217,15 @@ export function Process() {
                               isEven ? "lg:col-start-1 lg:pr-14" : "lg:col-start-2 lg:pl-14",
                             ].join(" ")}
                           >
-                            <div className="relative rounded-2xl border border-[#2F2FE4]/18 bg-[#2F2FE4]/[0.035] px-4 py-3">
-                              <div className="absolute left-[-31px] top-1/2 hidden h-px w-8 bg-[#2F2FE4]/28 lg:block" />
+                            <div className="relative rounded-2xl border border-brand-blue/18 bg-brand-blue/[0.035] px-4 py-3">
+                              <div className="absolute left-[-31px] top-1/2 hidden h-px w-8 bg-brand-blue/28 lg:block" />
 
                               <div className="flex items-center justify-between gap-4">
-                                <p className="text-xs uppercase tracking-[0.22em] text-[#A7AEFF]/80">
+                                <p className="text-xs uppercase tracking-[0.22em] text-brand-blue-light/80">
                                   Transition
                                 </p>
 
-                                <span className="h-px flex-1 bg-linear-to-r from-[#2F2FE4]/35 to-transparent" />
+                                <span className="h-px flex-1 bg-linear-to-r from-brand-blue/35 to-transparent" />
 
                                 <p className="text-sm font-medium text-white/62">
                                   {transition}

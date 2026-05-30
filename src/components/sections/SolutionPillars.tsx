@@ -167,7 +167,7 @@ function SpotlightPanel({
       />
 
       <div
-        className={`relative h-full overflow-hidden rounded-[23px] bg-[#080616]/88 backdrop-blur-xl ${innerClassName}`}
+        className={`relative h-full overflow-hidden rounded-[23px] bg-site-bg/88 backdrop-blur-xl ${innerClassName}`}
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -197,7 +197,7 @@ export function SolutionPillars() {
   useStagger(ref, ".pillar-card", { y: 18, stagger: 0.08 });
 
   return (
-    <section className="relative overflow-hidden bg-[#080616] py-20 md:py-28">
+    <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(47,47,228,0.07),transparent_30%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_84%_48%,rgba(22,46,147,0.09),transparent_34%)]" />
@@ -213,7 +213,7 @@ export function SolutionPillars() {
         <div ref={ref} className="relative z-10">
           <div className="grid gap-10 lg:grid-cols-[0.95fr_0.7fr] lg:items-end">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
                 How I solve it
               </p>
 
@@ -244,21 +244,21 @@ export function SolutionPillars() {
                     </h3>
                   </div>
 
-                  <span className="rounded-full border border-[#2F2FE4]/30 bg-[#2F2FE4]/10 px-3 py-1 text-xs text-[#A7AEFF]">
+                  <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
                     Connected
                   </span>
                 </div>
 
                 <div className="relative mt-8 flex flex-1 flex-col justify-between gap-4">
-                  <div className="absolute bottom-10 left-[19px] top-10 w-px bg-linear-to-b from-[#2F2FE4]/0 via-[#2F2FE4]/35 to-[#2F2FE4]/0" />
+                  <div className="absolute bottom-10 left-[19px] top-10 w-px bg-linear-to-b from-brand-blue/0 via-brand-blue/35 to-brand-blue/0" />
 
                   {systemFlow.map((item, index) => (
                     <div key={item} className="relative flex items-center gap-4">
-                      <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 font-mono text-[11px] text-[#A7AEFF] shadow-[0_0_24px_rgba(47,47,228,0.12)]">
+                      <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-brand-blue/25 bg-brand-blue/10 font-mono text-[11px] text-brand-blue-light shadow-[0_0_24px_rgba(47,47,228,0.12)]">
                         0{index + 1}
                       </span>
 
-                      <div className="flex-1 rounded-2xl border border-white/[0.07] bg-[#080616]/45 px-4 py-3">
+                      <div className="flex-1 rounded-2xl border border-white/[0.07] bg-site-bg/45 px-4 py-3">
                         <p className="text-sm font-medium text-white/75">
                           {item}
                         </p>
@@ -283,15 +283,15 @@ export function SolutionPillars() {
                   <SpotlightPanel innerClassName="p-6 md:p-7">
                     <div className="grid gap-6 md:grid-cols-[auto_1fr]">
                       <div className="flex md:flex-col md:items-center">
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 text-[#A7AEFF] transition duration-300 group-hover:border-[#2F2FE4]/40 group-hover:bg-[#2F2FE4]/15">
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light transition duration-300 group-hover:border-brand-blue/40 group-hover:bg-brand-blue/15">
                           {pillar.icon}
                         </div>
 
                         <div className="ml-4 flex items-center gap-3 md:ml-0 md:mt-5 md:flex-col">
-                          <span className="font-mono text-xs text-[#2F2FE4] transition duration-300 group-hover:text-[#A7AEFF]">
+                          <span className="font-mono text-xs text-brand-blue transition duration-300 group-hover:text-brand-blue-light">
                             {pillar.number}
                           </span>
-                          <span className="hidden h-12 w-px bg-[#2F2FE4]/25 transition duration-300 group-hover:bg-[#A7AEFF]/55 md:block" />
+                          <span className="hidden h-12 w-px bg-brand-blue/25 transition duration-300 group-hover:bg-brand-blue-light/55 md:block" />
                         </div>
                       </div>
 
@@ -307,7 +307,7 @@ export function SolutionPillars() {
                             </h3>
                           </div>
 
-                          <span className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.025] text-white/45 transition duration-300 group-hover:border-[#2F2FE4]/30 group-hover:bg-[#2F2FE4]/10 group-hover:text-white sm:flex">
+                          <span className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.025] text-white/45 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10 group-hover:text-white sm:flex">
                             <ArrowUpRight size={16} />
                           </span>
                         </div>
@@ -320,7 +320,7 @@ export function SolutionPillars() {
                           {pillar.points.map((point) => (
                             <span
                               key={point}
-                              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-xs text-white/55 transition duration-300 group-hover:border-[#2F2FE4]/20 group-hover:text-white/70"
+                              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-xs text-white/55 transition duration-300 group-hover:border-brand-blue/20 group-hover:text-white/70"
                             >
                               {point}
                             </span>

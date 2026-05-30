@@ -213,10 +213,10 @@ function ArrowIcon() {
 function HeroDashboard() {
   return (
     <div className="relative mx-auto hidden h-[620px] w-full max-w-[680px] [perspective:1400px] lg:block">
-      <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2F2FE4]/10 blur-3xl" />
+      <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-blue/10 blur-3xl" />
 
       <div
-        className="group absolute right-0 top-8 w-[390px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-8deg)_translateZ(0)] hover:border-[#2F2FE4]/35 hover:bg-white/[0.065] hover:shadow-[#2F2FE4]/20 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(-13deg)_translateY(-14px)_translateZ(24px)]"
+        className="group absolute right-0 top-8 w-[390px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-8deg)_translateZ(0)] hover:border-brand-blue/35 hover:bg-white/[0.065] hover:shadow-brand-blue/20 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(-13deg)_translateY(-14px)_translateZ(24px)]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.16),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -232,7 +232,7 @@ function HeroDashboard() {
               </h3>
             </div>
 
-            <span className="rounded-full border border-[#2F2FE4]/30 bg-[#2F2FE4]/10 px-3 py-1 text-xs text-[#A7AEFF]">
+            <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
               Estimated
             </span>
           </div>
@@ -241,7 +241,7 @@ function HeroDashboard() {
             {impactCards.map((item) => (
               <div
                 key={item.label}
-                className="rounded-2xl border border-white/[0.08] bg-[#080616]/50 p-3 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-[#080616]/65"
+                className="rounded-2xl border border-white/[0.08] bg-site-bg/50 p-3 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-site-bg/65"
               >
                 <p className="text-[11px] text-white/40">{item.label}</p>
 
@@ -262,11 +262,11 @@ function HeroDashboard() {
             ))}
           </div>
 
-          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-[#080616]/50 p-4 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-[#080616]/65">
+          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-site-bg/50 p-4 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-site-bg/65">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm text-white/70">Efficiency gain</p>
 
-              <p className="text-xs text-[#A7AEFF]">
+              <p className="text-xs text-brand-blue-light">
                 +
                 <CountUp value={42} suffix="%" duration={550} />
               </p>
@@ -276,7 +276,7 @@ function HeroDashboard() {
               {[28, 42, 36, 58, 52, 76, 68, 92].map((height, index) => (
                 <div
                   key={index}
-                  className="flex-1 rounded-t-md bg-linear-to-t from-[#162E93]/40 to-[#2F2FE4]/90 transition-all duration-500 group-hover:to-[#6D73FF]"
+                  className="flex-1 rounded-t-md bg-linear-to-t from-brand-blue-deep/40 to-brand-blue/90 transition-all duration-500 group-hover:to-brand-blue-soft"
                   style={{ height: `${height}%` }}
                 />
               ))}
@@ -286,7 +286,7 @@ function HeroDashboard() {
       </div>
 
       <div
-        className="group absolute left-0 top-52 w-[270px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/35 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(10deg)_translateZ(0)] hover:border-[#2F2FE4]/30 hover:bg-white/[0.055] hover:shadow-[#2F2FE4]/15 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(15deg)_translateY(-12px)_translateZ(24px)]"
+        className="group absolute left-0 top-52 w-[270px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/35 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(10deg)_translateZ(0)] hover:border-brand-blue/30 hover:bg-white/[0.055] hover:shadow-brand-blue/15 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(15deg)_translateY(-12px)_translateZ(24px)]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.13),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -300,10 +300,10 @@ function HeroDashboard() {
             {systemItems.map((item) => (
               <div
                 key={item}
-                className="flex items-center justify-between rounded-xl border border-white/[0.08] bg-[#080616]/50 px-3 py-2 transition duration-300 hover:border-[#2F2FE4]/30 hover:bg-[#2F2FE4]/10"
+                className="flex items-center justify-between rounded-xl border border-white/[0.08] bg-site-bg/50 px-3 py-2 transition duration-300 hover:border-brand-blue/30 hover:bg-brand-blue/10"
               >
                 <span className="text-sm text-white/65">{item}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#2F2FE4] shadow-[0_0_14px_rgba(47,47,228,0.9)]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shadow-[0_0_14px_rgba(47,47,228,0.9)]" />
               </div>
             ))}
           </div>
@@ -311,13 +311,13 @@ function HeroDashboard() {
       </div>
 
       <div
-        className="group absolute bottom-10 right-24 w-[310px] overflow-hidden rounded-3xl border border-[#2F2FE4]/20 bg-white/[0.04] p-5 shadow-2xl shadow-[#2F2FE4]/10 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-6deg)_translateZ(0)] hover:border-[#2F2FE4]/45 hover:bg-white/[0.06] hover:shadow-[#2F2FE4]/25 hover:[transform:perspective(1000px)_rotateX(-4deg)_rotateY(-12deg)_translateY(-12px)_translateZ(24px)]"
+        className="group absolute bottom-10 right-24 w-[310px] overflow-hidden rounded-3xl border border-brand-blue/20 bg-white/[0.04] p-5 shadow-2xl shadow-brand-blue/10 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-6deg)_translateZ(0)] hover:border-brand-blue/45 hover:bg-white/[0.06] hover:shadow-brand-blue/25 hover:[transform:perspective(1000px)_rotateX(-4deg)_rotateY(-12deg)_translateY(-12px)_translateZ(24px)]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.14),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
         <div className="relative z-10 flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 text-[#A7AEFF] transition duration-300 group-hover:scale-110 group-hover:border-[#2F2FE4]/50 group-hover:bg-[#2F2FE4]/20">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light transition duration-300 group-hover:scale-110 group-hover:border-brand-blue/50 group-hover:bg-brand-blue/20">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path
                 d="M4 16.5L9 11.5L13 15.5L20 7.5"
@@ -356,13 +356,13 @@ export function Hero() {
   useReveal(wrapRef);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#080616]">
+    <section className="relative w-full overflow-hidden bg-site-bg">
       <div className="pointer-events-none absolute inset-0 z-0 bg-black">
-        <div className="absolute inset-0 bg-[#080616]" />
+        <div className="absolute inset-0 bg-site-bg" />
 
         <CableFlow className="absolute inset-y-0 right-[-8%] w-[130%] opacity-100" />
 
-        <div className="absolute inset-0 bg-linear-to-b from-[#080616]/20 via-[#080616]/35 to-[#080616]/90" />
+        <div className="absolute inset-0 bg-linear-to-b from-site-bg/20 via-site-bg/35 to-site-bg/90" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_46%,rgba(47,47,228,0.12),transparent_36%)]" />
       </div>
 
@@ -372,13 +372,13 @@ export function Hero() {
           className="grid w-full items-center gap-16 lg:grid-cols-[1fr_0.95fr]"
         >
           <div className="w-full">
-            <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+            <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
               Systems · Automation · Growth
             </p>
 
             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl xl:text-7xl">
               I build digital systems that help businesses{" "}
-              <span className="text-[#2F2FE4]">scale faster.</span>
+              <span className="text-brand-blue">scale faster.</span>
             </h1>
 
             <p className="mt-6 text-base leading-relaxed text-white/65 md:text-lg xl:text-xl">
@@ -411,9 +411,9 @@ export function Hero() {
               {outcomes.map((item) => (
                 <div
                   key={item.label}
-                  className="group flex min-h-[62px] items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2F2FE4]/25 hover:bg-white/[0.045] hover:shadow-[0_12px_28px_rgba(0,0,0,0.24)]"
+                  className="group flex min-h-[62px] items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/25 hover:bg-white/[0.045] hover:shadow-[0_12px_28px_rgba(0,0,0,0.24)]"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#2F2FE4] transition duration-300 group-hover:text-[#6D73FF]">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-brand-blue transition duration-300 group-hover:text-brand-blue-soft">
                     {item.icon}
                   </span>
 

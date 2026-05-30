@@ -1,14 +1,16 @@
 export const primaryCta = {
-  label: "Book a 20-min System Strategy Call",
+  label: "Book a Strategy Call",
   href: "/contact",
 };
 
 export const secondaryCtas = {
   caseStudies: { label: "View Case Studies", href: "/work" },
-  platform: { label: "Discuss a Business System", href: "/contact" },
-  rebuild: { label: "Plan a Platform Upgrade", href: "/contact" },
-  growth: { label: "Build a Growth Platform", href: "/contact" },
+  fullSystem: { label: "Build a Business System", href: "/contact" },
+  platform: { label: "Build an Internal Dashboard", href: "/contact" },
+  rebuild: { label: "Plan a Website Rebuild", href: "/contact" },
+  growth: { label: "Improve Lead Flow", href: "/contact" },
   automation: { label: "Automate a Workflow", href: "/contact" },
+  leadSystem: { label: "Fix a Lead System", href: "/contact" },
 };
 
 export type CaseStudyCategory =
@@ -972,84 +974,113 @@ export const insightPosts: InsightPost[] = [
 
 export const processSteps = [
   {
-    title: "Business & Workflow Discovery",
+    title: "Business & Operations Discovery",
     description:
-      "Understand how the business works, where the bottlenecks are, and what the system needs to improve.",
+      "Map the offer, customer journey, lead intake, tools, handoffs, and operational bottlenecks before deciding what should be built.",
   },
   {
-    title: "System Architecture",
+    title: "Digital Structure & Scope",
     description:
-      "Define the platform structure, user flows, workflows, integrations, automation logic, and technical direction.",
+      "Define the website structure, CRM pipeline, dashboard needs, integrations, data flow, and delivery priorities.",
   },
   {
     title: "Design, Build & Integration",
     description:
-      "Design the user experience, build the platform, connect the tools, and implement the workflows that move the business forward.",
+      "Create the customer-facing experience, connect the tools behind it, and implement the follow-up, booking, payment, or admin flow.",
   },
   {
     title: "Launch, Optimize & Scale",
     description:
-      "Launch cleanly, test the full system, improve based on real usage, and prepare the platform for future expansion.",
+      "Launch cleanly, test the full journey, improve from real usage, and leave a foundation that can support the next stage.",
   },
 ];
 
 export const packages = [
   {
-    name: "Business System Build",
+    name: "Custom Business Operating System",
     bestFor:
-      "For companies that need more than a website — a custom digital system to sell, operate, manage customers, and scale.",
+      "For companies that need the website, client flow, dashboard, payments, CRM, automation, and internal operations connected into one scalable digital setup.",
     includes: [
-      "Custom platform built around your business model",
       "Customer-facing website, portal, or digital product",
-      "Backend structure for operations, content, and management",
-      "Workflow automation, payments, notifications, and integrations",
-      "Scalable architecture prepared for long-term growth",
+      "Lead intake, booking flow, payment flow, and client communication",
+      "Internal dashboard for customers, orders, tasks, content, or operations",
+      "CRM pipeline, notifications, reminders, and handoff logic",
+      "Integrations and automation built around the way the company runs",
     ],
-    subtle: "and more — designed around how your business actually operates",
-    cta: secondaryCtas.platform,
+    subtle:
+      "and more, designed as the flagship build for companies that need the full digital operation connected",
+    cta: secondaryCtas.fullSystem,
   },
   {
-    name: "Growth Platform",
+    name: "Premium Website & Lead Platform",
     bestFor:
-      "For businesses that need a premium, conversion-focused digital presence that builds trust and turns visitors into qualified inquiries.",
+      "For service companies, founders, and small businesses that need a premium website designed to create trust and turn visitors into qualified inquiries.",
     includes: [
-      "High-converting landing page or business website",
+      "High-converting landing page or full business website",
       "Premium responsive design built around your offer",
-      "Clear service structure, messaging, and call-to-actions",
-      "Contact form, lead form, inquiry flow, or reservation request",
+      "Clear service structure, positioning, and call-to-actions",
+      "Lead intake, contact form, inquiry flow, or booking request",
       "Performance, SEO, analytics, and tracking-ready setup",
     ],
-    subtle: "and more — built to support visibility, trust, and lead generation",
+    subtle: "and more, built to support visibility, trust, and lead generation",
     cta: secondaryCtas.growth,
   },
   {
-    name: "Rebuild & Upgrade",
+    name: "Platform Rebuild",
     bestFor:
-      "For businesses with an outdated website or platform that is slow, unclear, hard to manage, or no longer strong enough for the next stage of growth.",
+      "For companies with an outdated website or app that is slow, unclear, hard to update, or no longer strong enough for the next stage.",
     includes: [
-      "Strategic rebuild of your existing website or platform",
+      "Strategic rebuild of your existing website, portal, or app",
       "Improved speed, structure, usability, and reliability",
-      "Cleaner user journey designed for stronger conversion",
+      "Cleaner customer journey designed for stronger conversion",
       "Technical cleanup, better integrations, and tracking setup",
-      "Foundation prepared for future features, automation, and expansion",
+      "Foundation prepared for future features, CRM, automation, and expansion",
     ],
-    subtle: "and more — based on what your current system is missing",
+    subtle: "and more, based on what your current setup is missing",
     cta: secondaryCtas.rebuild,
   },
   {
-    name: "Operations & Automation",
+    name: "Business Automation",
     bestFor:
-      "For businesses that want to reduce repetitive work, connect disconnected tools, and create smoother internal operations.",
+      "For teams losing time to repeated admin, slow follow-up, disconnected forms, email handoffs, CRM updates, or reporting tasks.",
     includes: [
-      "Workflow analysis and bottleneck identification",
-      "Automation of repetitive tasks and internal processes",
-      "Tool integrations between forms, CRM, email, dashboards, and internal systems",
-      "AI-supported workflows where they create real operational value",
+      "Process review and bottleneck identification",
+      "Automation for follow-up, reminders, notifications, and data entry",
+      "Tool integrations between forms, CRM, email, dashboards, and admin tools",
+      "AI-supported steps where they create real operational value",
       "Ongoing improvements to make operations faster, clearer, and more scalable",
     ],
     subtle:
-      "and more — depending on your processes, tools, and system complexity",
+      "and more, depending on your tools, process, and operational complexity",
     cta: secondaryCtas.automation,
+  },
+  {
+    name: "Internal Dashboard / Operations Tool",
+    bestFor:
+      "For companies that need one clear place to manage customers, bookings, payments, tasks, content, staff actions, or operational data.",
+    includes: [
+      "Custom dashboard or admin tool around your daily operations",
+      "Customer, booking, order, content, or task management views",
+      "Role-aware access, structured records, and cleaner internal control",
+      "Payments, notifications, email, forms, and API integrations where needed",
+      "A maintainable foundation prepared for future features",
+    ],
+    subtle: "and more, shaped around how your team actually works",
+    cta: secondaryCtas.platform,
+  },
+  {
+    name: "CRM & Lead Workflow System",
+    bestFor:
+      "For businesses that need leads captured, qualified, routed, followed up, and tracked without relying on scattered messages or spreadsheets.",
+    includes: [
+      "Lead intake forms, booking flow, and inquiry qualification",
+      "CRM pipeline structure and follow-up stages",
+      "Email notifications, reminders, and handoff logic",
+      "Dashboard view for lead status, source, owner, and next action",
+      "Tracking-ready setup for understanding what brings qualified inquiries",
+    ],
+    subtle: "and more, built around how your team sells and follows up",
+    cta: secondaryCtas.leadSystem,
   },
 ];
 
@@ -1057,27 +1088,27 @@ export const faqItems = [
   {
     question: "What kind of businesses are the best fit?",
     answer:
-      "The best fit is a business that needs more than a better-looking website. I work best with companies that want stronger systems, clearer workflows, less manual work, and a digital setup that supports long-term growth.",
+      "The best fit is a company that needs more than a better-looking website. I work best with teams that want clearer lead intake, smoother operations, better follow-up, and a digital setup that can support growth.",
   },
   {
     question: "Do you only build websites?",
     answer:
-      "No. Websites are only one part of what I build. I create custom platforms, automations, dashboards, backend workflows, integrations, and internal systems that help businesses operate more efficiently.",
+      "No. A website can be the starting point, but I also create dashboards, client portals, CRM pipelines, booking flows, payment flows, integrations, and automation around the way the company works.",
   },
   {
     question: "Can you improve what we already have?",
     answer:
-      "Yes. Not every project needs to start from zero. If the current website, platform, or workflow has a usable foundation, I can rebuild, optimize, and extend it into a stronger system.",
+      "Yes. Not every project needs to start from zero. If your current website, portal, CRM, or internal tool has a usable foundation, I can rebuild, optimize, and extend it.",
   },
   {
     question: "Can automation be done without a new website?",
     answer:
-      "Yes. If the main problem is manual work, disconnected tools, repeated follow-ups, or inefficient internal processes, automation can be built independently from a website project.",
+      "Yes. If the main problem is repeated admin, disconnected tools, slow follow-up, or inefficient handoffs, automation can be handled independently from a website project.",
   },
   {
     question: "How does a project usually start?",
     answer:
-      "It starts with a strategy call and a discovery phase. First I look at the business model, current workflows, bottlenecks, goals, and existing tools. Then I define the right structure, scope, and technical direction before anything is built.",
+      "It starts with a strategy call and discovery. First I look at the offer, customer journey, current tools, bottlenecks, and goals. Then I define the right scope and technical direction before anything is built.",
   },
   {
     question: "Do you offer support after launch?",
@@ -1087,6 +1118,6 @@ export const faqItems = [
   {
     question: "What makes your approach different?",
     answer:
-      "I do not treat the project as a one-time website task. I look at how the business operates, where time is lost, where systems are disconnected, and how the digital setup can become stronger, faster, and more scalable.",
+      "I do not treat the project as a one-time website task. I look at how the company sells, serves customers, follows up, manages information, and where the digital setup can remove friction.",
   },
 ];

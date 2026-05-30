@@ -1,0 +1,1219 @@
+warning: in the working copy of 'src/app/about/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/contact/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/services/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/FeaturedOutcomes.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/FinalCTA.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/Hero.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/PackagesSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/Problem.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/Process.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/SolutionPillars.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/sections/Testimonials.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/lib/siteContent.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/app/about/page.tsx b/src/app/about/page.tsx[m
+[1mindex 04ab3cf..79b20da 100644[m
+[1m--- a/src/app/about/page.tsx[m
+[1m+++ b/src/app/about/page.tsx[m
+[36m@@ -6,34 +6,35 @@[m [mimport { Container } from "@/components/ui/Container";[m
+ const businessPrinciples = [[m
+   {[m
+     title: "Every business is different",[m
+[31m-    text: "I do not force the same solution on every company. I first look at how the business works, where friction appears, and what actually needs to improve.",[m
+[32m+[m[32m    text: "I do not force the same solution on every company. I first look at the offer, customers, tools, handoffs, and where friction appears.",[m
+   },[m
+   {[m
+     title: "Business value before features",[m
+[31m-    text: "A feature only makes sense if it improves operations, saves time, supports growth, or makes the customer experience stronger.",[m
+[32m+[m[32m    text: "A feature only makes sense if it improves lead flow, saves time, supports delivery, or makes the customer experience stronger.",[m
+   },[m
+   {[m
+[31m-    title: "Long-term systems thinking",[m
+[31m-    text: "The goal is not a quick one-time delivery. The goal is a clean digital structure the business can keep using, improving, and scaling.",[m
+[32m+[m[32m    title: "Long-term structure",[m
+[32m+[m[32m    text: "The goal is not a quick one-time delivery. The goal is a clean digital foundation the team can keep using and improving.",[m
+   },[m
+ ];[m
+ [m
+ const capabilities = [[m
+[31m-  "High-converting websites",[m
+[31m-  "Full-stack business platforms",[m
+[32m+[m[32m  "Premium websites",[m
+   "Website and platform rebuilds",[m
+[31m-  "Automation workflows",[m
+[32m+[m[32m  "Lead intake flows",[m
+[32m+[m[32m  "CRM pipelines",[m
+   "Internal dashboards",[m
+[31m-  "CRM and lead systems",[m
+[32m+[m[32m  "Client portals",[m
+   "Booking and payment flows",[m
+[32m+[m[32m  "Business automation",[m
+   "API integrations",[m
+ ];[m
+ [m
+ const partnerValues = [[m
+[31m-  "I think about the business model before the interface",[m
+[32m+[m[32m  "I think about the offer and customer journey before the interface",[m
+   "I question what is really needed before building",[m
+   "I explain technical decisions in business language",[m
+[31m-  "I build with maintainability and future growth in mind",[m
+[32m+[m[32m  "I keep the build maintainable so it can improve after launch",[m
+ ];[m
+ [m
+ export default function AboutPage() {[m
+[36m@@ -55,15 +56,15 @@[m [mexport default function AboutPage() {[m
+             </p>[m
+ [m
+             <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">[m
+[31m-              Not just a developer. A business partner who understands your business and goals.[m
+[32m+[m[32m              Not just a developer. A technical partner for websites, operations, and growth.[m
+             </h1>[m
+ [m
+             <p className="mt-6 max-w-3xl text-base leading-8 text-white/62 md:text-lg">[m
+               I combine software development, automation, and entrepreneurial[m
+[31m-              thinking to help businesses make better digital decisions. My[m
+[31m-              focus is not only to deliver a finished project, but to create a[m
+[31m-              digital structure that supports how the business actually works[m
+[31m-              and grows.[m
+[32m+[m[32m              thinking to help companies make better digital decisions. The[m
+[32m+[m[32m              focus is not only to ship a finished project, but to improve how[m
+[32m+[m[32m              the website, lead flow, tools, and internal operations work[m
+[32m+[m[32m              together.[m
+             </p>[m
+ [m
+             <div className="mt-8 flex flex-col gap-3 sm:flex-row">[m
+[36m@@ -124,11 +125,10 @@[m [mexport default function AboutPage() {[m
+ [m
+           <div>[m
+             <p className="max-w-4xl text-lg leading-9 text-white/64 md:text-xl">[m
+[31m-              I treat every project as part of a business system. A website, a[m
+[31m-              platform, or an automation should never exist only because it[m
+[31m-              looks good or because it is technically possible. It should create[m
+[31m-              clarity, save time, improve customer flow, support the team, or[m
+[31m-              help the company scale with less friction.[m
+[32m+[m[32m              A website, dashboard, CRM flow, or automation should never exist[m
+[32m+[m[32m              only because it looks good or because it is technically possible.[m
+[32m+[m[32m              It should create clarity, save time, improve customer flow,[m
+[32m+[m[32m              support the team, or make growth easier to handle.[m
+             </p>[m
+           </div>[m
+         </section>[m
+[36m@@ -146,7 +146,8 @@[m [mexport default function AboutPage() {[m
+ [m
+             <p className="mt-4 text-sm leading-relaxed text-white/55 md:text-base">[m
+               The strongest results come from understanding the company first,[m
+[31m-              then building the right technical structure around it.[m
+[32m+[m[32m              then creating the right technical structure around how it sells,[m
+[32m+[m[32m              serves customers, and handles work.[m
+             </p>[m
+           </div>[m
+ [m
+[36m@@ -180,13 +181,13 @@[m [mexport default function AboutPage() {[m
+             </p>[m
+ [m
+             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">[m
+[31m-              Digital infrastructure for modern businesses.[m
+[32m+[m[32m              Practical digital infrastructure for modern companies.[m
+             </h2>[m
+ [m
+             <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/56 md:text-base">[m
+[31m-              The work can start with a website, but the real value comes when[m
+[31m-              the digital presence connects to workflows, data, automations, and[m
+[31m-              internal operations.[m
+[32m+[m[32m              The work can start with a website, but the real value appears[m
+[32m+[m[32m              when the public experience connects to lead intake, CRM follow-up,[m
+[32m+[m[32m              dashboards, payments, and internal admin tools.[m
+             </p>[m
+           </div>[m
+ [m
+[36m@@ -238,13 +239,13 @@[m [mexport default function AboutPage() {[m
+               </p>[m
+ [m
+               <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-white md:text-4xl">[m
+[31m-                Want to turn your digital setup into a stronger business[m
+[31m-                system?[m
+[32m+[m[32m                Want to make your website, leads, and operations work better[m
+[32m+[m[32m                together?[m
+               </h2>[m
+ [m
+               <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/55 md:text-base">[m
+                 Start with a strategy call. We will look at your current setup,[m
+[31m-                identify where the highest leverage is, and define the most[m
+[32m+[m[32m                identify the highest-leverage bottleneck, and define the most[m
+                 realistic next step.[m
+               </p>[m
+             </div>[m
+[36m@@ -261,4 +262,4 @@[m [mexport default function AboutPage() {[m
+       </Container>[m
+     </main>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/app/contact/page.tsx b/src/app/contact/page.tsx[m
+[1mindex c10becb..3d7c5a0 100644[m
+[1m--- a/src/app/contact/page.tsx[m
+[1m+++ b/src/app/contact/page.tsx[m
+[36m@@ -67,16 +67,16 @@[m [mconst fieldClassName =[m
+   "w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.018] px-4 py-3 text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-white/28 hover:border-white/[0.12] hover:bg-white/[0.026] focus:border-brand-blue/40 focus:bg-white/[0.028] focus:ring-2 focus:ring-brand-blue/10";[m
+ [m
+ const expectations = [[m
+[31m-  "Your current setup and business context",[m
+[31m-  "Where manual work or weak structure slows growth",[m
+[31m-  "Whether a website, rebuild, automation, or full system makes sense",[m
+[32m+[m[32m  "Your current website, tools, and lead handling process",[m
+[32m+[m[32m  "Where slow follow-up, scattered tools, or weak structure create friction",[m
+[32m+[m[32m  "Whether a rebuild, dashboard, CRM flow, or automation is the right next step",[m
+   "A realistic next step based on priority, timeline, and scope",[m
+ ];[m
+ [m
+ const callFit = [[m
+[31m-  "Businesses that need stronger digital infrastructure",[m
+[31m-  "Teams losing time through manual or disconnected workflows",[m
+[31m-  "Companies planning a serious website, platform, or automation build",[m
+[32m+[m[32m  "Companies that need a stronger website or lead path",[m
+[32m+[m[32m  "Teams losing time through repeated admin or disconnected tools",[m
+[32m+[m[32m  "Businesses planning a rebuild, dashboard, CRM flow, or automation project",[m
+ ];[m
+ [m
+ function SelectField({[m
+[36m@@ -325,7 +325,7 @@[m [mexport default function ContactPage() {[m
+     fullName: "",[m
+     companyName: "",[m
+     email: "",[m
+[31m-    bottleneck: "Automation or workflows",[m
+[32m+[m[32m    bottleneck: "Lead flow or CRM",[m
+     timeline: "As soon as possible",[m
+     currentSite: "",[m
+     projectGoal: "",[m
+[36m@@ -389,8 +389,9 @@[m [mexport default function ContactPage() {[m
+ [m
+             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">[m
+               A short call to understand your business, identify the main[m
+[31m-              bottleneck, and decide whether a website, rebuild, automation, or[m
+[31m-              full system is the right next step.[m
+[32m+[m[32m              bottleneck, and decide whether a website rebuild, lead flow,[m
+[32m+[m[32m              dashboard, CRM setup, or automation project is the right next[m
+[32m+[m[32m              step.[m
+             </p>[m
+           </div>[m
+         </header>[m
+[36m@@ -462,7 +463,7 @@[m [mexport default function ContactPage() {[m
+                   <TextareaField[m
+                     label="What do you want to improve?"[m
+                     name="projectGoal"[m
+[31m-                    placeholder="Briefly describe what you want to improve, build, rebuild, or automate."[m
+[32m+[m[32m                    placeholder="Briefly describe the website, lead flow, dashboard, CRM, or repeated task you want to improve."[m
+                     required[m
+                     value={form.projectGoal}[m
+                     onChange={set("projectGoal")}[m
+[36m@@ -473,8 +474,10 @@[m [mexport default function ContactPage() {[m
+                       label="Biggest bottleneck"[m
+                       name="bottleneck"[m
+                       options={[[m
+[31m-                        "Website or platform",[m
+[31m-                        "Automation or workflows",[m
+[32m+[m[32m                        "Website or landing page",[m
+[32m+[m[32m                        "Lead flow or CRM",[m
+[32m+[m[32m                        "Internal dashboard",[m
+[32m+[m[32m                        "Automation or repeated tasks",[m
+                         "Both",[m
+                       ]}[m
+                       value={form.bottleneck}[m
+[36m@@ -495,7 +498,7 @@[m [mexport default function ContactPage() {[m
+                   </div>[m
+ [m
+                   <Field[m
+[31m-                    label="Current website or tools"[m
+[32m+[m[32m                    label="Current website, CRM, or tools"[m
+                     name="currentSite"[m
+                     type="url"[m
+                     placeholder="https://..."[m
+[36m@@ -611,7 +614,8 @@[m [mexport default function ContactPage() {[m
+ [m
+               <p className="mt-4 text-sm leading-relaxed text-white/52">[m
+                 The call is used to understand where the highest-leverage[m
+[31m-                improvement is, not to push unnecessary features.[m
+[32m+[m[32m                improvement is, not to push unnecessary features or oversized[m
+[32m+[m[32m                scope.[m
+               </p>[m
+ [m
+               <div className="mt-7 space-y-4">[m
+[36m@@ -650,7 +654,7 @@[m [mexport default function ContactPage() {[m
+ [m
+               <p className="mt-6 text-sm leading-relaxed text-white/38">[m
+                 Clear direction, honest feedback, and a realistic next step for[m
+[31m-                your website, workflow, or internal system.[m
+[32m+[m[32m                your website, lead flow, dashboard, CRM, or internal operation.[m
+               </p>[m
+             </div>[m
+           </aside>[m
+[36m@@ -658,4 +662,4 @@[m [mexport default function ContactPage() {[m
+       </Container>[m
+     </main>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/app/services/page.tsx b/src/app/services/page.tsx[m
+[1mindex a14bd5f..3611fb4 100644[m
+[1m--- a/src/app/services/page.tsx[m
+[1m+++ b/src/app/services/page.tsx[m
+[36m@@ -4,9 +4,11 @@[m [mimport { packages, primaryCta } from "@/lib/siteContent";[m
+ import Link from "next/link";[m
+ [m
+ const pillars = [[m
+[31m-  "Web Platforms",[m
+[31m-  "Automation Systems",[m
+[31m-  "Rebuilds & Upgrades",[m
+[32m+[m[32m  "Premium Website & Lead Platform",[m
+[32m+[m[32m  "Platform Rebuild",[m
+[32m+[m[32m  "Business Automation",[m
+[32m+[m[32m  "Internal Dashboard / Operations Tool",[m
+[32m+[m[32m  "CRM & Lead Workflow System",[m
+ ];[m
+ [m
+ export default function ServicesPage() {[m
+[36m@@ -15,8 +17,8 @@[m [mexport default function ServicesPage() {[m
+       <Container>[m
+         <SectionTitle[m
+           eyebrow="Services"[m
+[31m-          title="Web platforms, rebuilds, and automation systems"[m
+[31m-          desc="Clear scope, measurable outcomes, and maintainable delivery."[m
+[32m+[m[32m          title="Websites, automation, dashboards, and CRM flows for companies that need cleaner operations."[m
+[32m+[m[32m          desc="Clear services for improving how customers find you, contact you, get followed up with, and move through the process after they become a lead."[m
+         />[m
+ [m
+         <div className="mt-10 grid gap-4 md:grid-cols-3">[m
+[36m@@ -47,7 +49,7 @@[m [mexport default function ServicesPage() {[m
+ [m
+         <div className="mt-10 rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">[m
+           <h3 className="text-xl font-semibold text-white">Primary engagement path</h3>[m
+[31m-          <p className="mt-3 text-sm text-white/65">Most projects start with a short strategy call to identify the business bottleneck, define scope, and decide whether the right next step is a rebuild, platform build, or automation project.</p>[m
+[32m+[m[32m          <p className="mt-3 text-sm text-white/65">Most projects start with a short strategy call to identify the main bottleneck, define scope, and decide whether the right next step is a website rebuild, lead flow, dashboard, CRM setup, or automation project.</p>[m
+           <Link href={primaryCta.href} className="mt-5 inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90">[m
+             {primaryCta.label}[m
+           </Link>[m
+[1mdiff --git a/src/components/sections/FeaturedOutcomes.tsx b/src/components/sections/FeaturedOutcomes.tsx[m
+[1mindex f3f3a99..57e609a 100644[m
+[1m--- a/src/components/sections/FeaturedOutcomes.tsx[m
+[1m+++ b/src/components/sections/FeaturedOutcomes.tsx[m
+[36m@@ -18,16 +18,16 @@[m [mfunction getCategoryLabel([m
+ ) {[m
+   switch (category) {[m
+     case "system_build":[m
+[31m-      return "Business System Build";[m
+[32m+[m[32m      return "Operations Tool";[m
+ [m
+     case "automation":[m
+[31m-      return "Operations Optimization";[m
+[32m+[m[32m      return "Business Automation";[m
+ [m
+     case "rebuilds":[m
+       return "Platform Rebuild";[m
+ [m
+     case "websites":[m
+[31m-      return "Growth Platform";[m
+[32m+[m[32m      return "Website & Lead Platform";[m
+ [m
+     default:[m
+       return "Project";[m
+[36m@@ -135,22 +135,21 @@[m [mexport function FeaturedOutcomes() {[m
+               </p>[m
+ [m
+               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">[m
+[31m-                Systems built to create business outcomes, not just screens.[m
+[32m+[m[32m                Case studies focused on operational results, not just screens.[m
+               </h2>[m
+             </div>[m
+ [m
+             <div className="max-w-xl lg:justify-self-end">[m
+               <p className="text-base leading-relaxed text-white/60 md:text-lg">[m
+[31m-                A focused look at platforms, automation systems, rebuilds, and[m
+[31m-                digital infrastructure designed to reduce manual work and make[m
+[31m-                companies operate faster.[m
+[32m+[m[32m                A focused look at websites, dashboards, lead flows, rebuilds,[m
+[32m+[m[32m                and automation work designed to make daily operations clearer.[m
+               </p>[m
+ [m
+               <Link[m
+                 href="/work"[m
+                 className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.035] px-5 py-3 text-sm font-medium text-white/75 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-white"[m
+               >[m
+[31m-                View all work[m
+[32m+[m[32m                View Case Studies[m
+                 <ArrowUpRight size={15} />[m
+               </Link>[m
+             </div>[m
+[36m@@ -214,7 +213,7 @@[m [mexport function FeaturedOutcomes() {[m
+                     </h3>[m
+ [m
+                     <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/55">[m
+[31m-                      {featuredStudy.summary}[m
+[32m+[m[32m                      {featuredStudy.intro}[m
+                     </p>[m
+ [m
+                     <div className="mt-6 flex flex-wrap gap-2">[m
+[36m@@ -285,7 +284,7 @@[m [mexport function FeaturedOutcomes() {[m
+ [m
+                         <div className="mt-auto flex items-center justify-between gap-4 pt-5">[m
+                           <p className="text-sm font-medium text-white/70 transition duration-300 group-hover:text-white">[m
+[31m-                            View case study[m
+[32m+[m[32m                            View details[m
+                           </p>[m
+ [m
+                           <p className="line-clamp-1 text-right font-mono text-[10px] uppercase tracking-[0.12em] text-white/30">[m
+[36m@@ -303,4 +302,4 @@[m [mexport function FeaturedOutcomes() {[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/FinalCTA.tsx b/src/components/sections/FinalCTA.tsx[m
+[1mindex 11060c9..0e87ed9 100644[m
+[1m--- a/src/components/sections/FinalCTA.tsx[m
+[1m+++ b/src/components/sections/FinalCTA.tsx[m
+[36m@@ -7,9 +7,9 @@[m [mimport { Button } from "@/components/ui/Button";[m
+ import { useReveal } from "@/components/animations/useReveal";[m
+ [m
+ const callPoints = [[m
+[31m-  "Where your current system slows the business down",[m
+[32m+[m[32m  "Where your website, lead flow, or internal tools slow the team down",[m
+   "What should be improved first for the highest leverage",[m
+[31m-  "Whether a website, rebuild, automation, or full system makes sense",[m
+[32m+[m[32m  "Whether the next step is a rebuild, dashboard, CRM flow, or automation",[m
+ ];[m
+ [m
+ export function FinalCTA() {[m
+[36m@@ -39,13 +39,13 @@[m [mexport function FinalCTA() {[m
+               </p>[m
+ [m
+               <h2 className="mt-5 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">[m
+[31m-                Need a better system behind your business?[m
+[32m+[m[32m                Need a clearer digital setup behind your company?[m
+               </h2>[m
+ [m
+               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/62 md:text-base">[m
+[31m-                Book a short strategy call and I’ll help you identify the[m
+[31m-                highest-leverage improvements across your website, workflows,[m
+[31m-                and internal operations.[m
+[32m+[m[32m                Book a short strategy call and identify the highest-leverage[m
+[32m+[m[32m                improvements across your website, lead intake, CRM pipeline,[m
+[32m+[m[32m                dashboard needs, or repeated admin work.[m
+               </p>[m
+ [m
+               <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">[m
+[36m@@ -81,8 +81,8 @@[m [mexport function FinalCTA() {[m
+ [m
+               <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/42">[m
+                 No bloated feature list. No unclear scope. Just a practical[m
+[31m-                starting point for building a cleaner, faster, more scalable[m
+[31m-                digital system.[m
+[32m+[m[32m                starting point for improving the part of your digital setup[m
+[32m+[m[32m                that creates the most friction.[m
+               </p>[m
+             </div>[m
+           </div>[m
+[36m@@ -90,4 +90,4 @@[m [mexport function FinalCTA() {[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/Hero.tsx b/src/components/sections/Hero.tsx[m
+[1mindex c5078c4..246afea 100644[m
+[1m--- a/src/components/sections/Hero.tsx[m
+[1m+++ b/src/components/sections/Hero.tsx[m
+[36m@@ -7,7 +7,7 @@[m [mimport { CableFlow } from "@/components/visuals/CableFlow";[m
+ [m
+ const outcomes = [[m
+   {[m
+[31m-    label: "Systems tailored to your business",[m
+[32m+[m[32m    label: "Built around your operations",[m
+     icon: ([m
+       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">[m
+         <circle[m
+[36m@@ -41,7 +41,7 @@[m [mconst outcomes = [[m
+     ),[m
+   },[m
+   {[m
+[31m-    label: "Reliable, secure & scalable",[m
+[32m+[m[32m    label: "Reliable, secure, and maintainable",[m
+     icon: ([m
+       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">[m
+         <path[m
+[36m@@ -61,7 +61,7 @@[m [mconst outcomes = [[m
+     ),[m
+   },[m
+   {[m
+[31m-    label: "Built for performance & growth",[m
+[32m+[m[32m    label: "Designed for leads and growth",[m
+     icon: ([m
+       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">[m
+         <path[m
+[36m@@ -85,19 +85,19 @@[m [mconst outcomes = [[m
+ [m
+ const impactCards = [[m
+   {[m
+[31m-    label: "Time saved",[m
+[32m+[m[32m    label: "Admin time",[m
+     value: 120,[m
+     suffix: "h",[m
+     decimals: 0,[m
+[31m-    detail: "monthly automation potential",[m
+[32m+[m[32m    detail: "potential monthly reduction",[m
+   },[m
+   {[m
+[31m-    label: "Cost saved",[m
+[32m+[m[32m    label: "Cost control",[m
+     value: 3.6,[m
+     prefix: "€",[m
+     suffix: "k",[m
+     decimals: 1,[m
+[31m-    detail: "based on €30/h manual work",[m
+[32m+[m[32m    detail: "based on €30/h admin time",[m
+   },[m
+   {[m
+     label: "Response speed",[m
+[36m@@ -110,11 +110,11 @@[m [mconst impactCards = [[m
+ ];[m
+ [m
+ const systemItems = [[m
+[31m-  "Web platforms",[m
+[31m-  "Lead automation",[m
+[32m+[m[32m  "Lead intake",[m
+   "CRM workflows",[m
+[31m-  "Booking systems",[m
+[31m-  "Internal dashboards",[m
+[32m+[m[32m  "Booking flows",[m
+[32m+[m[32m  "Client portals",[m
+[32m+[m[32m  "Dashboards",[m
+ ];[m
+ [m
+ type CountUpProps = {[m
+[36m@@ -228,7 +228,7 @@[m [mfunction HeroDashboard() {[m
+                 Impact model[m
+               </p>[m
+               <h3 className="mt-2 text-lg font-medium text-white">[m
+[31m-                Automation value[m
+[32m+[m[32m                Operations value[m
+               </h3>[m
+             </div>[m
+ [m
+[36m@@ -293,7 +293,7 @@[m [mfunction HeroDashboard() {[m
+ [m
+         <div className="relative z-10">[m
+           <p className="text-xs uppercase tracking-[0.22em] text-white/35">[m
+[31m-            Systems I build[m
+[32m+[m[32m            What can be improved[m
+           </p>[m
+ [m
+           <div className="mt-4 space-y-2">[m
+[36m@@ -338,10 +338,10 @@[m [mfunction HeroDashboard() {[m
+ [m
+           <div>[m
+             <p className="text-sm font-medium text-white">[m
+[31m-              Built for scalable operations[m
+[32m+[m[32m              Built for cleaner operations[m
+             </p>[m
+             <p className="mt-2 text-sm leading-relaxed text-white/45">[m
+[31m-              Less manual work, cleaner processes, faster response times.[m
+[32m+[m[32m              Faster follow-up, clearer handoffs, fewer repeated tasks.[m
+             </p>[m
+           </div>[m
+         </div>[m
+[36m@@ -373,18 +373,18 @@[m [mexport function Hero() {[m
+         >[m
+           <div className="w-full">[m
+             <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">[m
+[31m-              Systems · Automation · Growth[m
+[32m+[m[32m              Websites · Automation · Internal Tools[m
+             </p>[m
+ [m
+             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl xl:text-7xl">[m
+[31m-              I build digital systems that help businesses{" "}[m
+[31m-              <span className="text-brand-blue">scale faster.</span>[m
+[32m+[m[32m              Websites, automation, and internal tools for{" "}[m
+[32m+[m[32m              <span className="text-brand-blue">cleaner operations.</span>[m
+             </h1>[m
+ [m
+             <p className="mt-6 text-base leading-relaxed text-white/65 md:text-lg xl:text-xl">[m
+[31m-              From high-performing websites to automated internal workflows, I[m
+[31m-              create systems that replace repetitive tasks, improve efficiency,[m
+[31m-              and give companies more room to grow.[m
+[32m+[m[32m              I help companies replace disconnected websites, slow follow-up,[m
+[32m+[m[32m              and scattered tools with fast digital infrastructure built around[m
+[32m+[m[32m              how the company actually works.[m
+             </p>[m
+ [m
+             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">[m
+[36m@@ -430,4 +430,4 @@[m [mexport function Hero() {[m
+       </div>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/PackagesSection.tsx b/src/components/sections/PackagesSection.tsx[m
+[1mindex c346caf..9a52364 100644[m
+[1m--- a/src/components/sections/PackagesSection.tsx[m
+[1m+++ b/src/components/sections/PackagesSection.tsx[m
+[36m@@ -35,8 +35,8 @@[m [mexport function PackagesSection() {[m
+         <div className="mx-auto max-w-[1800px]">[m
+           <SectionTitle[m
+             eyebrow="Services"[m
+[31m-            title="Offers built around the systems your business needs."[m
+[31m-            desc="Clear offers for businesses that need stronger websites, better operations, and systems built to support growth."[m
+[32m+[m[32m            title="Clear services for websites, lead flow, automation, and internal tools."[m
+[32m+[m[32m            desc="Choose the starting point that matches the bottleneck: a stronger website, a cleaner CRM pipeline, a dashboard, a rebuild, or automation around repeated work."[m
+           />[m
+ [m
+           <div className="mt-14 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">[m
+[36m@@ -69,7 +69,7 @@[m [mexport function PackagesSection() {[m
+ [m
+                       {mainPackage ? ([m
+                         <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">[m
+[31m-                          Core offer[m
+[32m+[m[32m                          Common start[m
+                         </span>[m
+                       ) : null}[m
+                     </div>[m
+[36m@@ -132,13 +132,14 @@[m [mexport function PackagesSection() {[m
+ [m
+           <div className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.018] p-5 backdrop-blur-xl md:p-6">[m
+             <p className="max-w-5xl text-sm leading-relaxed text-white/52 md:text-base">[m
+[31m-              Every offer can be adapted to the current state of your business.[m
+[31m-              The focus is not to sell unnecessary features, but to build the[m
+[31m-              right system for visibility, operations, and long-term scale.[m
+[32m+[m[32m              Every engagement starts with the current bottleneck. The goal is[m
+[32m+[m[32m              not to add features for their own sake, but to improve how people[m
+[32m+[m[32m              find you, contact you, get followed up with, and move through the[m
+[32m+[m[32m              process after they become a customer.[m
+             </p>[m
+           </div>[m
+         </div>[m
+       </div>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/Problem.tsx b/src/components/sections/Problem.tsx[m
+[1mindex c1d766a..6885d64 100644[m
+[1m--- a/src/components/sections/Problem.tsx[m
+[1m+++ b/src/components/sections/Problem.tsx[m
+[36m@@ -7,32 +7,32 @@[m [mimport { useReveal } from "@/components/animations/useReveal";[m
+ [m
+ const problems = [[m
+   {[m
+[31m-    label: "Manual admin work eating hours every week",[m
+[31m-    desc: "Repetitive tasks keep the business dependent on people doing work that systems should handle.",[m
+[32m+[m[32m    label: "Admin tasks eating hours every week",[m
+[32m+[m[32m    desc: "Follow-ups, updates, reminders, and data entry keep pulling the team away from higher-value work.",[m
+     icon: "/icons/problems/repetitive-tasks.png",[m
+   },[m
+   {[m
+[31m-    label: "Disconnected tools and processes slowing down business",[m
+[31m-    desc: "Forms, emails, payments, CRMs, and internal tools do not work together as one connected flow.",[m
+[32m+[m[32m    label: "Forms, email, CRM, and payments do not connect",[m
+[32m+[m[32m    desc: "Lead intake, booking, payment, and customer handoffs happen across too many disconnected places.",[m
+     icon: "/icons/problems/disconnected.png",[m
+   },[m
+   {[m
+[31m-    label: "Websites that look acceptable but do not support growth",[m
+[31m-    desc: "The website exists, but it does not generate leads, automate actions, or support operations properly.",[m
+[32m+[m[32m    label: "Websites that look fine but do not create enough trust",[m
+[32m+[m[32m    desc: "The site exists, but the offer is unclear, the lead path is weak, and follow-up starts too late.",[m
+     icon: "/icons/problems/stagnant-website.png",[m
+   },[m
+   {[m
+[31m-    label: "No clear tracking, workflow logic, or scalable backend",[m
+[31m-    desc: "Without structure, every new client, lead, task, or process adds more friction instead of more leverage.",[m
+[32m+[m[32m    label: "No clear view of leads, tasks, or next actions",[m
+[32m+[m[32m    desc: "Without a dashboard or structured reporting flow, every new customer adds more coordination overhead.",[m
+     icon: "/icons/problems/no-tracking.png",[m
+   },[m
+ ];[m
+ [m
+ const signals = [[m
+[31m-  "Manual work",[m
+[31m-  "Disconnected tools",[m
+[32m+[m[32m  "Admin overload",[m
+[32m+[m[32m  "Scattered tools",[m
+   "Slow follow-up",[m
+[31m-  "No system logic",[m
+[32m+[m[32m  "No clear owner",[m
+ ];[m
+ [m
+ export function Problem() {[m
+[36m@@ -64,14 +64,14 @@[m [mexport function Problem() {[m
+               </p>[m
+ [m
+               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">[m
+[31m-                Most businesses do not need more effort. They need better[m
+[31m-                systems.[m
+[32m+[m[32m                Growth gets harder when the website, leads, and operations do[m
+[32m+[m[32m                not work together.[m
+               </h2>[m
+ [m
+               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">[m
+[31m-                When work is handled manually, tools do not connect, and the[m
+[31m-                website is not built to support operations, growth starts[m
+[31m-                depending on extra effort instead of better infrastructure.[m
+[32m+[m[32m                When inquiries sit in email, CRM updates depend on memory, and[m
+[32m+[m[32m                internal work is tracked across scattered tools, the team loses[m
+[32m+[m[32m                speed before the customer even feels the value.[m
+               </p>[m
+             </div>[m
+ [m
+[36m@@ -87,7 +87,7 @@[m [mexport function Problem() {[m
+                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">[m
+                     <div>[m
+                       <p className="text-xs uppercase tracking-[0.24em] text-white/35">[m
+[31m-                        System diagnosis[m
+[32m+[m[32m                        Operations diagnosis[m
+                       </p>[m
+                       <p className="mt-2 text-sm font-medium text-white/80">[m
+                         Common growth blockers[m
+[36m@@ -95,7 +95,7 @@[m [mexport function Problem() {[m
+                     </div>[m
+ [m
+                     <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">[m
+[31m-                      Before build[m
+[32m+[m[32m                      Before strategy[m
+                     </span>[m
+                   </div>[m
+ [m
+[36m@@ -180,8 +180,8 @@[m [mexport function Problem() {[m
+                 <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">[m
+                   You do not need more manual effort.[m
+                   <span className="ml-2 font-semibold text-white">[m
+[31m-                    You need infrastructure that removes friction, connects[m
+[31m-                    workflows, and supports growth.[m
+[32m+[m[32m                    You need a cleaner setup for leads, follow-up, reporting,[m
+[32m+[m[32m                    and daily operations.[m
+                   </span>[m
+                 </p>[m
+ [m
+[36m@@ -206,7 +206,7 @@[m [mexport function Problem() {[m
+                   </span>[m
+ [m
+                   <span className="text-sm font-medium text-white/75">[m
+[31m-                    Better systems create leverage[m
+[32m+[m[32m                    Better operations create leverage[m
+                   </span>[m
+                 </div>[m
+               </div>[m
+[36m@@ -216,4 +216,4 @@[m [mexport function Problem() {[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/Process.tsx b/src/components/sections/Process.tsx[m
+[1mindex 4144b6c..7c5a2ae 100644[m
+[1m--- a/src/components/sections/Process.tsx[m
+[1m+++ b/src/components/sections/Process.tsx[m
+[36m@@ -10,34 +10,27 @@[m [mimport { processSteps } from "@/lib/siteContent";[m
+ const phaseOutputs = [[m
+   {[m
+     label: "Strategy output",[m
+[31m-    items: ["Business goal clarity", "System requirements", "Priority map"],[m
+[32m+[m[32m    items: ["Business goal clarity", "Lead and operations map", "Priority list"],[m
+   },[m
+   {[m
+[31m-    label: "Architecture output",[m
+[31m-    items: ["Technical structure", "Workflow logic", "Implementation plan"],[m
+[32m+[m[32m    label: "Scope output",[m
+[32m+[m[32m    items: ["Page and feature structure", "Integration plan", "Implementation path"],[m
+   },[m
+   {[m
+     label: "Build output",[m
+[31m-    items: ["Working system", "Connected tools", "Tested workflows"],[m
+[32m+[m[32m    items: ["Working product", "Connected tools", "Tested user journeys"],[m
+   },[m
+   {[m
+     label: "Launch output",[m
+[31m-    items: ["Live deployment", "Performance checks", "Improvement roadmap"],[m
+[32m+[m[32m    items: ["Live deployment", "Performance checks", "Next-step roadmap"],[m
+   },[m
+ ];[m
+ [m
+ const phaseTransitions = [[m
+[31m-  "Scope becomes structure",[m
+[31m-  "Structure becomes execution",[m
+[31m-  "Execution becomes launch",[m
+[31m-  "Launch becomes optimization",[m
+[31m-];[m
+[31m-[m
+[31m-const processOverview = [[m
+[31m-  "Clear scope",[m
+[31m-  "System architecture",[m
+[31m-  "Execution",[m
+[31m-  "Launch & optimize",[m
+[32m+[m[32m  "Bottlenecks become priorities",[m
+[32m+[m[32m  "Priorities become build scope",[m
+[32m+[m[32m  "Build scope becomes launch",[m
+[32m+[m[32m  "Launch becomes improvement",[m
+ ];[m
+ [m
+ export function Process() {[m
+[36m@@ -72,14 +65,14 @@[m [mexport function Process() {[m
+               </p>[m
+ [m
+               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">[m
+[31m-                A controlled build process from strategy to scalable system.[m
+[32m+[m[32m                A controlled process from business clarity to shipped work.[m
+               </h2>[m
+             </div>[m
+ [m
+             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">[m
+[31m-              Every project follows a clear execution path: understand the[m
+[31m-              business, design the system, build the infrastructure, then launch[m
+[31m-              with a structure that can keep improving.[m
+[32m+[m[32m              Every project starts by understanding the offer, customer journey,[m
+[32m+[m[32m              tools, and operational bottlenecks. Then the right website,[m
+[32m+[m[32m              dashboard, CRM flow, or automation is scoped and delivered.[m
+             </p>[m
+           </div>[m
+ [m
+[36m@@ -201,8 +194,8 @@[m [mexport function Process() {[m
+ [m
+                           <p className="mt-3 text-sm leading-relaxed text-white/45">[m
+                             This step creates a clear decision point before the[m
+[31m-                            project moves forward. Nothing is built randomly;[m
+[31m-                            every phase has a reason and a defined output.[m
+[32m+[m[32m                            project moves forward, so scope stays focused and[m
+[32m+[m[32m                            every deliverable has a defined role.[m
+                           </p>[m
+                         </div>[m
+                       </div>[m
+[36m@@ -253,13 +246,14 @@[m [mexport function Process() {[m
+                 <p className="mt-3 max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">[m
+                   The launch is not the finish line.[m
+                   <span className="ml-2 font-semibold text-white">[m
+[31m-                    It is where the system starts creating leverage.[m
+[32m+[m[32m                    It is where the website, tools, and follow-up process start[m
+[32m+[m[32m                    proving what should improve next.[m
+                   </span>[m
+                 </p>[m
+               </div>[m
+ [m
+               <Button href="/contact" variant="primary">[m
+[31m-                Start with a strategy call[m
+[32m+[m[32m                Book a Strategy Call[m
+               </Button>[m
+             </div>[m
+           </div>[m
+[36m@@ -267,4 +261,4 @@[m [mexport function Process() {[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/SolutionPillars.tsx b/src/components/sections/SolutionPillars.tsx[m
+[1mindex 82b73d0..86b6f82 100644[m
+[1m--- a/src/components/sections/SolutionPillars.tsx[m
+[1m+++ b/src/components/sections/SolutionPillars.tsx[m
+[36m@@ -14,11 +14,11 @@[m [mimport { Button } from "@/components/ui/Button";[m
+ const pillars = [[m
+   {[m
+     number: "01",[m
+[31m-    title: "Web Platforms",[m
+[31m-    layer: "Client-facing layer",[m
+[32m+[m[32m    title: "Premium Website & Lead Platform",[m
+[32m+[m[32m    layer: "Trust and lead layer",[m
+     description:[m
+[31m-      "Websites, portals, and digital platforms designed to build trust, improve conversion, and support business growth.",[m
+[31m-    points: ["Premium UI/UX", "Conversion structure", "Scalable frontend"],[m
+[32m+[m[32m      "A clear website or landing page that explains the offer, builds trust, captures qualified inquiries, and gives visitors a reason to act.",[m
+[32m+[m[32m    points: ["Premium UI/UX", "Lead intake", "Conversion structure"],[m
+     icon: ([m
+       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">[m
+         <rect[m
+[36m@@ -48,11 +48,11 @@[m [mconst pillars = [[m
+   },[m
+   {[m
+     number: "02",[m
+[31m-    title: "Operational Automation",[m
+[31m-    layer: "Workflow layer",[m
+[32m+[m[32m    title: "CRM & Follow-Up Flow",[m
+[32m+[m[32m    layer: "Lead handling layer",[m
+     description:[m
+[31m-      "Connected workflows and systems that reduce manual work, increase speed, and make daily operations more reliable.",[m
+[31m-    points: ["CRM flows", "Lead automation", "Internal processes"],[m
+[32m+[m[32m      "Forms, CRM stages, email notifications, reminders, and handoffs connected so new opportunities do not disappear in scattered messages.",[m
+[32m+[m[32m    points: ["CRM pipeline", "Lead routing", "Follow-up process"],[m
+     icon: ([m
+       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">[m
+         <circle[m
+[36m@@ -87,11 +87,11 @@[m [mconst pillars = [[m
+   },[m
+   {[m
+     number: "03",[m
+[31m-    title: "Rebuilds & Optimization",[m
+[31m-    layer: "Scale layer",[m
+[32m+[m[32m    title: "Dashboards & Internal Tools",[m
+[32m+[m[32m    layer: "Operations layer",[m
+     description:[m
+[31m-      "For businesses with an existing website or platform that needs better structure, stronger performance, and more useful underlying systems.",[m
+[31m-    points: ["Performance", "Better structure", "Future-proof setup"],[m
+[32m+[m[32m      "Custom admin views, client portals, booking flows, payment flows, and reporting dashboards that make daily work easier to manage.",[m
+[32m+[m[32m    points: ["Dashboard", "Client portal", "Admin tool"],[m
+     icon: ([m
+       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">[m
+         <path[m
+[36m@@ -121,10 +121,10 @@[m [mconst pillars = [[m
+ [m
+ const systemFlow = [[m
+   "Client trust",[m
+[31m-  "Lead capture",[m
+[31m-  "Automation",[m
+[31m-  "Operations",[m
+[31m-  "Growth",[m
+[32m+[m[32m  "Lead intake",[m
+[32m+[m[32m  "CRM pipeline",[m
+[32m+[m[32m  "Dashboard",[m
+[32m+[m[32m  "Follow-up",[m
+ ];[m
+ [m
+ type SpotlightPanelProps = {[m
+[36m@@ -218,15 +218,15 @@[m [mexport function SolutionPillars() {[m
+               </p>[m
+ [m
+               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">[m
+[31m-                I build the platform your clients see and the system your[m
+[31m-                business runs on.[m
+[32m+[m[32m                The public website and the internal operation should support[m
+[32m+[m[32m                each other.[m
+               </h2>[m
+             </div>[m
+ [m
+             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">[m
+[31m-              The goal is not just a better-looking website. It is a stronger[m
+[31m-              digital operating system that improves trust, connects workflows,[m
+[31m-              and makes the business easier to scale.[m
+[32m+[m[32m              The right setup connects the first impression, lead intake, CRM[m
+[32m+[m[32m              pipeline, follow-up process, dashboards, and internal tools into[m
+[32m+[m[32m              a cleaner way to operate.[m
+             </p>[m
+           </div>[m
+ [m
+[36m@@ -237,10 +237,10 @@[m [mexport function SolutionPillars() {[m
+                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">[m
+                   <div>[m
+                     <p className="text-xs uppercase tracking-[0.24em] text-white/35">[m
+[31m-                      System architecture[m
+[32m+[m[32m                      Digital structure[m
+                     </p>[m
+                     <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">[m
+[31m-                      From visibility to operation[m
+[32m+[m[32m                      From visitor to next action[m
+                     </h3>[m
+                   </div>[m
+ [m
+[36m@@ -270,7 +270,8 @@[m [mexport function SolutionPillars() {[m
+                 <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">[m
+                   <p className="text-sm leading-relaxed text-white/55">[m
+                     Each layer strengthens the next one: better presentation,[m
+[31m-                    better workflows, cleaner operations, and more room to grow.[m
+[32m+[m[32m                    cleaner lead handling, clearer operations, and more room to[m
+[32m+[m[32m                    grow.[m
+                   </p>[m
+                 </div>[m
+               </div>[m
+[36m@@ -336,12 +337,12 @@[m [mexport function SolutionPillars() {[m
+ [m
+           <div className="mt-10 flex flex-col items-start gap-5 rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-xl md:mt-12 md:flex-row md:items-center md:justify-between md:p-7">[m
+             <p className="max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">[m
+[31m-              Each pillar is designed to strengthen both the customer-facing[m
+[31m-              experience and the internal infrastructure behind it.[m
+[32m+[m[32m              Each layer is designed to improve both what customers see and how[m
+[32m+[m[32m              the team handles the work behind it.[m
+             </p>[m
+ [m
+             <Button href="/work" variant="primary">[m
+[31m-              <span>See how this looks in real projects</span>[m
+[32m+[m[32m              <span>View Case Studies</span>[m
+               <ArrowUpRight size={15} />[m
+             </Button>[m
+           </div>[m
+[36m@@ -349,4 +350,4 @@[m [mexport function SolutionPillars() {[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/components/sections/Testimonials.tsx b/src/components/sections/Testimonials.tsx[m
+[1mindex a460f93..8c0ea49 100644[m
+[1m--- a/src/components/sections/Testimonials.tsx[m
+[1m+++ b/src/components/sections/Testimonials.tsx[m
+[36m@@ -9,22 +9,22 @@[m [mconst principles = [[m
+   {[m
+     number: "01",[m
+     title: "Clear communication",[m
+[31m-    text: "You know what is being built, why it matters, and what happens next.",[m
+[32m+[m[32m    text: "You know what is being built, why it matters, what tradeoffs exist, and what happens next.",[m
+   },[m
+   {[m
+     number: "02",[m
+[31m-    title: "Full ownership",[m
+[31m-    text: "The project is handled with responsibility for the structure, logic, and outcome.",[m
+[32m+[m[32m    title: "Business context first",[m
+[32m+[m[32m    text: "The offer, lead path, operations, and team handoffs are understood before technical decisions are made.",[m
+   },[m
+   {[m
+     number: "03",[m
+[31m-    title: "Systems thinking",[m
+[31m-    text: "The work is built around how the business operates, not only how the interface looks.",[m
+[32m+[m[32m    title: "Useful delivery",[m
+[32m+[m[32m    text: "The output is designed to support real work: lead handling, booking, reporting, admin control, and customer experience.",[m
+   },[m
+   {[m
+     number: "04",[m
+     title: "Long-term structure",[m
+[31m-    text: "The system is designed to stay maintainable, scalable, and useful after launch.",[m
+[32m+[m[32m    text: "The code, content, and operational logic are kept maintainable so the setup can improve after launch.",[m
+   },[m
+ ];[m
+ [m
+[36m@@ -44,9 +44,9 @@[m [mexport function Testimonials() {[m
+       <Container>[m
+         <div ref={ref} className="relative z-10">[m
+           <SectionTitle[m
+[31m-            eyebrow="How the work is delivered"[m
+[31m-            title="Clear delivery. Strong ownership. Systems built for real use."[m
+[31m-            desc="A simple working standard: structured communication, clean execution, and technical decisions that support the business long-term."[m
+[32m+[m[32m            eyebrow="Delivery Standards"[m
+[32m+[m[32m            title="What clients can expect when the work starts."[m
+[32m+[m[32m            desc="Structured communication, clean execution, and technical decisions tied to business value instead of unnecessary complexity."[m
+           />[m
+ [m
+           <div className="mt-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.018] backdrop-blur-xl">[m
+[36m@@ -80,12 +80,12 @@[m [mexport function Testimonials() {[m
+           </div>[m
+ [m
+           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-white/45">[m
+[31m-            This section is intentionally simple: it supports trust without[m
+[31m-            distracting from the stronger case studies, process, and service[m
+[31m-            sections.[m
+[32m+[m[32m            No fake testimonials, vague promises, or inflated claims. The work[m
+[32m+[m[32m            is judged by whether it makes the website, lead flow, or internal[m
+[32m+[m[32m            operation easier to use and improve.[m
+           </p>[m
+         </div>[m
+       </Container>[m
+     </section>[m
+   );[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/lib/siteContent.ts b/src/lib/siteContent.ts[m
+[1mindex 165b69e..01ed5bc 100644[m
+[1m--- a/src/lib/siteContent.ts[m
+[1m+++ b/src/lib/siteContent.ts[m
+[36m@@ -1,14 +1,15 @@[m
+ export const primaryCta = {[m
+[31m-  label: "Book a 20-min System Strategy Call",[m
+[32m+[m[32m  label: "Book a Strategy Call",[m
+   href: "/contact",[m
+ };[m
+ [m
+ export const secondaryCtas = {[m
+   caseStudies: { label: "View Case Studies", href: "/work" },[m
+[31m-  platform: { label: "Discuss a Business System", href: "/contact" },[m
+[31m-  rebuild: { label: "Plan a Platform Upgrade", href: "/contact" },[m
+[31m-  growth: { label: "Build a Growth Platform", href: "/contact" },[m
+[32m+[m[32m  platform: { label: "Build an Internal Dashboard", href: "/contact" },[m
+[32m+[m[32m  rebuild: { label: "Plan a Website Rebuild", href: "/contact" },[m
+[32m+[m[32m  growth: { label: "Improve Lead Flow", href: "/contact" },[m
+   automation: { label: "Automate a Workflow", href: "/contact" },[m
+[32m+[m[32m  leadSystem: { label: "Fix a Lead System", href: "/contact" },[m
+ };[m
+ [m
+ export type CaseStudyCategory =[m
+[36m@@ -972,112 +973,126 @@[m [mexport const insightPosts: InsightPost[] = [[m
+ [m
+ export const processSteps = [[m
+   {[m
+[31m-    title: "Business & Workflow Discovery",[m
+[32m+[m[32m    title: "Business & Operations Discovery",[m
+     description:[m
+[31m-      "Understand how the business works, where the bottlenecks are, and what the system needs to improve.",[m
+[32m+[m[32m      "Map the offer, customer journey, lead intake, tools, handoffs, and operational bottlenecks before deciding what should be built.",[m
+   },[m
+   {[m
+[31m-    title: "System Architecture",[m
+[32m+[m[32m    title: "Digital Structure & Scope",[m
+     description:[m
+[31m-      "Define the platform structure, user flows, workflows, integrations, automation logic, and technical direction.",[m
+[32m+[m[32m      "Define the website structure, CRM pipeline, dashboard needs, integrations, data flow, and delivery priorities.",[m
+   },[m
+   {[m
+     title: "Design, Build & Integration",[m
+     description:[m
+[31m-      "Design the user experience, build the platform, connect the tools, and implement the workflows that move the business forward.",[m
+[32m+[m[32m      "Create the customer-facing experience, connect the tools behind it, and implement the follow-up, booking, payment, or admin flow.",[m
+   },[m
+   {[m
+     title: "Launch, Optimize & Scale",[m
+     description:[m
+[31m-      "Launch cleanly, test the full system, improve based on real usage, and prepare the platform for future expansion.",[m
+[32m+[m[32m      "Launch cleanly, test the full journey, improve from real usage, and leave a foundation that can support the next stage.",[m
+   },[m
+ ];[m
+ [m
+ export const packages = [[m
+   {[m
+[31m-    name: "Business System Build",[m
+[32m+[m[32m    name: "Premium Website & Lead Platform",[m
+     bestFor:[m
+[31m-      "For companies that need more than a website — a custom digital system to sell, operate, manage customers, and scale.",[m
+[32m+[m[32m      "For service companies, founders, and small businesses that need a premium website designed to create trust and turn visitors into qualified inquiries.",[m
+     includes: [[m
+[31m-      "Custom platform built around your business model",[m
+[31m-      "Customer-facing website, portal, or digital product",[m
+[31m-      "Backend structure for operations, content, and management",[m
+[31m-      "Workflow automation, payments, notifications, and integrations",[m
+[31m-      "Scalable architecture prepared for long-term growth",[m
+[31m-    ],[m
+[31m-    subtle: "and more — designed around how your business actually operates",[m
+[31m-    cta: secondaryCtas.platform,[m
+[31m-  },[m
+[31m-  {[m
+[31m-    name: "Growth Platform",[m
+[31m-    bestFor:[m
+[31m-      "For businesses that need a premium, conversion-focused digital presence that builds trust and turns visitors into qualified inquiries.",[m
+[31m-    includes: [[m
+[31m-      "High-converting landing page or business website",[m
+[32m+[m[32m      "High-converting landing page or full business website",[m
+       "Premium responsive design built around your offer",[m
+[31m-      "Clear service structure, messaging, and call-to-actions",[m
+[31m-      "Contact form, lead form, inquiry flow, or reservation request",[m
+[32m+[m[32m      "Clear service structure, positioning, and call-to-actions",[m
+[32m+[m[32m      "Lead intake, contact form, inquiry flow, or booking request",[m
+       "Performance, SEO, analytics, and tracking-ready setup",[m
+     ],[m
+[31m-    subtle: "and more — built to support visibility, trust, and lead generation",[m
+[32m+[m[32m    subtle: "and more, built to support visibility, trust, and lead generation",[m
+     cta: secondaryCtas.growth,[m
+   },[m
+   {[m
+[31m-    name: "Rebuild & Upgrade",[m
+[32m+[m[32m    name: "Platform Rebuild",[m
+     bestFor:[m
+[31m-      "For businesses with an outdated website or platform that is slow, unclear, hard to manage, or no longer strong enough for the next stage of growth.",[m
+[32m+[m[32m      "For companies with an outdated website or app that is slow, unclear, hard to update, or no longer strong enough for the next stage.",[m
+     includes: [[m
+[31m-      "Strategic rebuild of your existing website or platform",[m
+[32m+[m[32m      "Strategic rebuild of your existing website, portal, or app",[m
+       "Improved speed, structure, usability, and reliability",[m
+[31m-      "Cleaner user journey designed for stronger conversion",[m
+[32m+[m[32m      "Cleaner customer journey designed for stronger conversion",[m
+       "Technical cleanup, better integrations, and tracking setup",[m
+[31m-      "Foundation prepared for future features, automation, and expansion",[m
+[32m+[m[32m      "Foundation prepared for future features, CRM, automation, and expansion",[m
+     ],[m
+[31m-    subtle: "and more — based on what your current system is missing",[m
+[32m+[m[32m    subtle: "and more, based on what your current setup is missing",[m
+     cta: secondaryCtas.rebuild,[m
+   },[m
+   {[m
+[31m-    name: "Operations & Automation",[m
+[32m+[m[32m    name: "Business Automation",[m
+     bestFor:[m
+[31m-      "For businesses that want to reduce repetitive work, connect disconnected tools, and create smoother internal operations.",[m
+[32m+[m[32m      "For teams losing time to repeated admin, slow follow-up, disconnected forms, email handoffs, CRM updates, or reporting tasks.",[m
+     includes: [[m
+[31m-      "Workflow analysis and bottleneck identification",[m
+[31m-      "Automation of repetitive tasks and internal processes",[m
+[31m-      "Tool integrations between forms, CRM, email, dashboards, and internal systems",[m
+[31m-      "AI-supported workflows where they create real operational value",[m
+[32m+[m[32m      "Process review and bottleneck identification",[m
+[32m+[m[32m      "Automation for follow-up, reminders, notifications, and data entry",[m
+[32m+[m[32m      "Tool integrations between forms, CRM, email, dashboards, and admin tools",[m
+[32m+[m[32m      "AI-supported steps where they create real operational value",[m
+       "Ongoing improvements to make operations faster, clearer, and more scalable",[m
+     ],[m
+     subtle:[m
+[31m-      "and more — depending on your processes, tools, and system complexity",[m
+[32m+[m[32m      "and more, depending on your tools, process, and operational complexity",[m
+     cta: secondaryCtas.automation,[m
+   },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    name: "Internal Dashboard / Operations Tool",[m
+[32m+[m[32m    bestFor:[m
+[32m+[m[32m      "For companies that need one clear place to manage customers, bookings, payments, tasks, content, staff actions, or operational data.",[m
+[32m+[m[32m    includes: [[m
+[32m+[m[32m      "Custom dashboard or admin tool around your daily operations",[m
+[32m+[m[32m      "Customer, booking, order, content, or task management views",[m
+[32m+[m[32m      "Role-aware access, structured records, and cleaner internal control",[m
+[32m+[m[32m      "Payments, notifications, email, forms, and API integrations where needed",[m
+[32m+[m[32m      "A maintainable foundation prepared for future features",[m
+[32m+[m[32m    ],[m
+[32m+[m[32m    subtle: "and more, shaped around how your team actually works",[m
+[32m+[m[32m    cta: secondaryCtas.platform,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    name: "CRM & Lead Workflow System",[m
+[32m+[m[32m    bestFor:[m
+[32m+[m[32m      "For businesses that need leads captured, qualified, routed, followed up, and tracked without relying on scattered messages or spreadsheets.",[m
+[32m+[m[32m    includes: [[m
+[32m+[m[32m      "Lead intake forms, booking flow, and inquiry qualification",[m
+[32m+[m[32m      "CRM pipeline structure and follow-up stages",[m
+[32m+[m[32m      "Email notifications, reminders, and handoff logic",[m
+[32m+[m[32m      "Dashboard view for lead status, source, owner, and next action",[m
+[32m+[m[32m      "Tracking-ready setup for understanding what brings qualified inquiries",[m
+[32m+[m[32m    ],[m
+[32m+[m[32m    subtle: "and more, built around how your team sells and follows up",[m
+[32m+[m[32m    cta: secondaryCtas.leadSystem,[m
+[32m+[m[32m  },[m
+ ];[m
+ [m
+ export const faqItems = [[m
+   {[m
+     question: "What kind of businesses are the best fit?",[m
+     answer:[m
+[31m-      "The best fit is a business that needs more than a better-looking website. I work best with companies that want stronger systems, clearer workflows, less manual work, and a digital setup that supports long-term growth.",[m
+[32m+[m[32m      "The best fit is a company that needs more than a better-looking website. I work best with teams that want clearer lead intake, smoother operations, better follow-up, and a digital setup that can support growth.",[m
+   },[m
+   {[m
+     question: "Do you only build websites?",[m
+     answer:[m
+[31m-      "No. Websites are only one part of what I build. I create custom platforms, automations, dashboards, backend workflows, integrations, and internal systems that help businesses operate more efficiently.",[m
+[32m+[m[32m      "No. A website can be the starting point, but I also create dashboards, client portals, CRM pipelines, booking flows, payment flows, integrations, and automation around the way the company works.",[m
+   },[m
+   {[m
+     question: "Can you improve what we already have?",[m
+     answer:[m
+[31m-      "Yes. Not every project needs to start from zero. If the current website, platform, or workflow has a usable foundation, I can rebuild, optimize, and extend it into a stronger system.",[m
+[32m+[m[32m      "Yes. Not every project needs to start from zero. If your current website, portal, CRM, or internal tool has a usable foundation, I can rebuild, optimize, and extend it.",[m
+   },[m
+   {[m
+     question: "Can automation be done without a new website?",[m
+     answer:[m
+[31m-      "Yes. If the main problem is manual work, disconnected tools, repeated follow-ups, or inefficient internal processes, automation can be built independently from a website project.",[m
+[32m+[m[32m      "Yes. If the main problem is repeated admin, disconnected tools, slow follow-up, or inefficient handoffs, automation can be handled independently from a website project.",[m
+   },[m
+   {[m
+     question: "How does a project usually start?",[m
+     answer:[m
+[31m-      "It starts with a strategy call and a discovery phase. First I look at the business model, current workflows, bottlenecks, goals, and existing tools. Then I define the right structure, scope, and technical direction before anything is built.",[m
+[32m+[m[32m      "It starts with a strategy call and discovery. First I look at the offer, customer journey, current tools, bottlenecks, and goals. Then I define the right scope and technical direction before anything is built.",[m
+   },[m
+   {[m
+     question: "Do you offer support after launch?",[m
+[36m@@ -1087,6 +1102,6 @@[m [mexport const faqItems = [[m
+   {[m
+     question: "What makes your approach different?",[m
+     answer:[m
+[31m-      "I do not treat the project as a one-time website task. I look at how the business operates, where time is lost, where systems are disconnected, and how the digital setup can become stronger, faster, and more scalable.",[m
+[32m+[m[32m      "I do not treat the project as a one-time website task. I look at how the company sells, serves customers, follows up, manages information, and where the digital setup can remove friction.",[m
+   },[m
+[31m-];[m
+\ No newline at end of file[m
+[32m+[m[32m];[m

@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { useReveal } from "@/components/animations/useReveal";
 
 const callPoints = [
-  "Where your current system slows the business down",
+  "Where your website, lead flow, or internal tools slow the team down",
   "What should be improved first for the highest leverage",
-  "Whether a website, rebuild, automation, or full system makes sense",
+  "Whether the next step is a rebuild, dashboard, CRM flow, or automation",
 ];
 
 export function FinalCTA() {
@@ -39,13 +39,13 @@ export function FinalCTA() {
               </p>
 
               <h2 className="mt-5 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                Need a better system behind your business?
+                Need a clearer digital setup behind your company?
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/62 md:text-base">
-                Book a short strategy call and I’ll help you identify the
-                highest-leverage improvements across your website, workflows,
-                and internal operations.
+                Book a short strategy call and identify the highest-leverage
+                improvements across your website, lead intake, CRM pipeline,
+                dashboard needs, or repeated admin work.
               </p>
 
               <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -81,8 +81,8 @@ export function FinalCTA() {
 
               <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/42">
                 No bloated feature list. No unclear scope. Just a practical
-                starting point for building a cleaner, faster, more scalable
-                digital system.
+                starting point for improving the part of your digital setup
+                that creates the most friction.
               </p>
             </div>
           </div>

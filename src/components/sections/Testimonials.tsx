@@ -9,22 +9,22 @@ const principles = [
   {
     number: "01",
     title: "Clear communication",
-    text: "You know what is being built, why it matters, and what happens next.",
+    text: "You know what is being built, why it matters, what tradeoffs exist, and what happens next.",
   },
   {
     number: "02",
-    title: "Full ownership",
-    text: "The project is handled with responsibility for the structure, logic, and outcome.",
+    title: "Business context first",
+    text: "The offer, lead path, operations, and team handoffs are understood before technical decisions are made.",
   },
   {
     number: "03",
-    title: "Systems thinking",
-    text: "The work is built around how the business operates, not only how the interface looks.",
+    title: "Useful delivery",
+    text: "The output is designed to support real work: lead handling, booking, reporting, admin control, and customer experience.",
   },
   {
     number: "04",
     title: "Long-term structure",
-    text: "The system is designed to stay maintainable, scalable, and useful after launch.",
+    text: "The code, content, and operational logic are kept maintainable so the setup can improve after launch.",
   },
 ];
 
@@ -44,9 +44,9 @@ export function Testimonials() {
       <Container>
         <div ref={ref} className="relative z-10">
           <SectionTitle
-            eyebrow="How the work is delivered"
-            title="Clear delivery. Strong ownership. Systems built for real use."
-            desc="A simple working standard: structured communication, clean execution, and technical decisions that support the business long-term."
+            eyebrow="Delivery Standards"
+            title="What clients can expect when the work starts."
+            desc="Structured communication, clean execution, and technical decisions tied to business value instead of unnecessary complexity."
           />
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.018] backdrop-blur-xl">
@@ -80,9 +80,9 @@ export function Testimonials() {
           </div>
 
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-white/45">
-            This section is intentionally simple: it supports trust without
-            distracting from the stronger case studies, process, and service
-            sections.
+            No fake testimonials, vague promises, or inflated claims. The work
+            is judged by whether it makes the website, lead flow, or internal
+            operation easier to use and improve.
           </p>
         </div>
       </Container>

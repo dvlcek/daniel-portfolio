@@ -35,8 +35,8 @@ export function PackagesSection() {
         <div className="mx-auto max-w-[1800px]">
           <SectionTitle
             eyebrow="Services"
-            title="Offers built around the systems your business needs."
-            desc="Clear offers for businesses that need stronger websites, better operations, and systems built to support growth."
+            title="From focused improvements to a complete business operating system."
+            desc="Choose the starting point that matches the bottleneck: a stronger website, a cleaner CRM pipeline, a dashboard, a rebuild, automation around repeated work, or a full connected digital setup."
           />
 
           <div className="mt-14 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
@@ -69,7 +69,7 @@ export function PackagesSection() {
 
                       {mainPackage ? (
                         <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
-                          Core offer
+                          Flagship offer
                         </span>
                       ) : null}
                     </div>
@@ -132,9 +132,10 @@ export function PackagesSection() {
 
           <div className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.018] p-5 backdrop-blur-xl md:p-6">
             <p className="max-w-5xl text-sm leading-relaxed text-white/52 md:text-base">
-              Every offer can be adapted to the current state of your business.
-              The focus is not to sell unnecessary features, but to build the
-              right system for visibility, operations, and long-term scale.
+              Every engagement starts with the current bottleneck. The goal is
+              not to add features for their own sake, but to improve how people
+              find you, contact you, get followed up with, and move through the
+              process after they become a customer.
             </p>
           </div>
         </div>

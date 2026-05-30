@@ -10,34 +10,27 @@ import { processSteps } from "@/lib/siteContent";
 const phaseOutputs = [
   {
     label: "Strategy output",
-    items: ["Business goal clarity", "System requirements", "Priority map"],
+    items: ["Business goal clarity", "Lead and operations map", "Priority list"],
   },
   {
-    label: "Architecture output",
-    items: ["Technical structure", "Workflow logic", "Implementation plan"],
+    label: "Scope output",
+    items: ["Page and feature structure", "Integration plan", "Implementation path"],
   },
   {
     label: "Build output",
-    items: ["Working system", "Connected tools", "Tested workflows"],
+    items: ["Working product", "Connected tools", "Tested user journeys"],
   },
   {
     label: "Launch output",
-    items: ["Live deployment", "Performance checks", "Improvement roadmap"],
+    items: ["Live deployment", "Performance checks", "Next-step roadmap"],
   },
 ];
 
 const phaseTransitions = [
-  "Scope becomes structure",
-  "Structure becomes execution",
-  "Execution becomes launch",
-  "Launch becomes optimization",
-];
-
-const processOverview = [
-  "Clear scope",
-  "System architecture",
-  "Execution",
-  "Launch & optimize",
+  "Bottlenecks become priorities",
+  "Priorities become build scope",
+  "Build scope becomes launch",
+  "Launch becomes improvement",
 ];
 
 export function Process() {
@@ -72,14 +65,14 @@ export function Process() {
               </p>
 
               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                A controlled build process from strategy to scalable system.
+                A controlled process from business clarity to shipped work.
               </h2>
             </div>
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
-              Every project follows a clear execution path: understand the
-              business, design the system, build the infrastructure, then launch
-              with a structure that can keep improving.
+              Every project starts by understanding the offer, customer journey,
+              tools, and operational bottlenecks. Then the right website,
+              dashboard, CRM flow, or automation is scoped and delivered.
             </p>
           </div>
 
@@ -201,8 +194,8 @@ export function Process() {
 
                           <p className="mt-3 text-sm leading-relaxed text-white/45">
                             This step creates a clear decision point before the
-                            project moves forward. Nothing is built randomly;
-                            every phase has a reason and a defined output.
+                            project moves forward, so scope stays focused and
+                            every deliverable has a defined role.
                           </p>
                         </div>
                       </div>
@@ -253,13 +246,14 @@ export function Process() {
                 <p className="mt-3 max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
                   The launch is not the finish line.
                   <span className="ml-2 font-semibold text-white">
-                    It is where the system starts creating leverage.
+                    It is where the website, tools, and follow-up process start
+                    proving what should improve next.
                   </span>
                 </p>
               </div>
 
               <Button href="/contact" variant="primary">
-                Start with a strategy call
+                Book a Strategy Call
               </Button>
             </div>
           </div>

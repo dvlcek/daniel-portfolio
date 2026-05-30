@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+
+export const metadata: Metadata = {
+  title: "CV",
+  description:
+    "CV for Daniel Vlcek, Software Developer focused on automation systems and modern web engineering.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function CVPage() {
   return (

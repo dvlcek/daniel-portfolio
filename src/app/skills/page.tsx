@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+
+export const metadata: Metadata = {
+  title: "Skills",
+  description:
+    "Technical skills and capabilities for Daniel Vlcek, Software Developer and Automation Architect.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 const groups = [
   {

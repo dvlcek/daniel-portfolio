@@ -14,11 +14,11 @@ import { Button } from "@/components/ui/Button";
 const pillars = [
   {
     number: "01",
-    title: "Web Platforms",
-    layer: "Client-facing layer",
+    title: "Premium Website & Lead Platform",
+    layer: "Trust and lead layer",
     description:
-      "Websites, portals, and digital platforms designed to build trust, improve conversion, and support business growth.",
-    points: ["Premium UI/UX", "Conversion structure", "Scalable frontend"],
+      "A clear website or landing page that explains the offer, builds trust, captures qualified inquiries, and gives visitors a reason to act.",
+    points: ["Premium UI/UX", "Lead intake", "Conversion structure"],
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <rect
@@ -48,11 +48,11 @@ const pillars = [
   },
   {
     number: "02",
-    title: "Operational Automation",
-    layer: "Workflow layer",
+    title: "CRM & Follow-Up Flow",
+    layer: "Lead handling layer",
     description:
-      "Connected workflows and systems that reduce manual work, increase speed, and make daily operations more reliable.",
-    points: ["CRM flows", "Lead automation", "Internal processes"],
+      "Forms, CRM stages, email notifications, reminders, and handoffs connected so new opportunities do not disappear in scattered messages.",
+    points: ["CRM pipeline", "Lead routing", "Follow-up process"],
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <circle
@@ -87,11 +87,11 @@ const pillars = [
   },
   {
     number: "03",
-    title: "Rebuilds & Optimization",
-    layer: "Scale layer",
+    title: "Dashboards & Internal Tools",
+    layer: "Operations layer",
     description:
-      "For businesses with an existing website or platform that needs better structure, stronger performance, and more useful underlying systems.",
-    points: ["Performance", "Better structure", "Future-proof setup"],
+      "Custom admin views, client portals, booking flows, payment flows, and reporting dashboards that make daily work easier to manage.",
+    points: ["Dashboard", "Client portal", "Admin tool"],
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path
@@ -121,10 +121,10 @@ const pillars = [
 
 const systemFlow = [
   "Client trust",
-  "Lead capture",
-  "Automation",
-  "Operations",
-  "Growth",
+  "Lead intake",
+  "CRM pipeline",
+  "Dashboard",
+  "Follow-up",
 ];
 
 type SpotlightPanelProps = {
@@ -218,15 +218,15 @@ export function SolutionPillars() {
               </p>
 
               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                I build the platform your clients see and the system your
-                business runs on.
+                The public website and the internal operation should support
+                each other.
               </h2>
             </div>
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
-              The goal is not just a better-looking website. It is a stronger
-              digital operating system that improves trust, connects workflows,
-              and makes the business easier to scale.
+              The right setup connects the first impression, lead intake, CRM
+              pipeline, follow-up process, dashboards, and internal tools into
+              a cleaner way to operate.
             </p>
           </div>
 
@@ -237,10 +237,10 @@ export function SolutionPillars() {
                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">
                   <div>
                     <p className="text-xs uppercase tracking-[0.24em] text-white/35">
-                      System architecture
+                      Digital structure
                     </p>
                     <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">
-                      From visibility to operation
+                      From visitor to next action
                     </h3>
                   </div>
 
@@ -270,7 +270,8 @@ export function SolutionPillars() {
                 <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">
                   <p className="text-sm leading-relaxed text-white/55">
                     Each layer strengthens the next one: better presentation,
-                    better workflows, cleaner operations, and more room to grow.
+                    cleaner lead handling, clearer operations, and more room to
+                    grow.
                   </p>
                 </div>
               </div>
@@ -336,12 +337,12 @@ export function SolutionPillars() {
 
           <div className="mt-10 flex flex-col items-start gap-5 rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-xl md:mt-12 md:flex-row md:items-center md:justify-between md:p-7">
             <p className="max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">
-              Each pillar is designed to strengthen both the customer-facing
-              experience and the internal infrastructure behind it.
+              Each layer is designed to improve both what customers see and how
+              the team handles the work behind it.
             </p>
 
             <Button href="/work" variant="primary">
-              <span>See how this looks in real projects</span>
+              <span>View Case Studies</span>
               <ArrowUpRight size={15} />
             </Button>
           </div>

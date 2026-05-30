@@ -7,7 +7,7 @@ import { CableFlow } from "@/components/visuals/CableFlow";
 
 const outcomes = [
   {
-    label: "Systems tailored to your business",
+    label: "Built around your operations",
     icon: (
       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
         <circle
@@ -41,7 +41,7 @@ const outcomes = [
     ),
   },
   {
-    label: "Reliable, secure & scalable",
+    label: "Reliable, secure, and maintainable",
     icon: (
       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
         <path
@@ -61,7 +61,7 @@ const outcomes = [
     ),
   },
   {
-    label: "Built for performance & growth",
+    label: "Designed for leads and growth",
     icon: (
       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
         <path
@@ -85,19 +85,19 @@ const outcomes = [
 
 const impactCards = [
   {
-    label: "Time saved",
+    label: "Admin time",
     value: 120,
     suffix: "h",
     decimals: 0,
-    detail: "monthly automation potential",
+    detail: "potential monthly reduction",
   },
   {
-    label: "Cost saved",
+    label: "Cost control",
     value: 3.6,
     prefix: "€",
     suffix: "k",
     decimals: 1,
-    detail: "based on €30/h manual work",
+    detail: "based on €30/h admin time",
   },
   {
     label: "Response speed",
@@ -110,11 +110,11 @@ const impactCards = [
 ];
 
 const systemItems = [
-  "Web platforms",
-  "Lead automation",
+  "Lead intake",
   "CRM workflows",
-  "Booking systems",
-  "Internal dashboards",
+  "Booking flows",
+  "Client portals",
+  "Dashboards",
 ];
 
 type CountUpProps = {
@@ -228,7 +228,7 @@ function HeroDashboard() {
                 Impact model
               </p>
               <h3 className="mt-2 text-lg font-medium text-white">
-                Automation value
+                Operations value
               </h3>
             </div>
 
@@ -293,7 +293,7 @@ function HeroDashboard() {
 
         <div className="relative z-10">
           <p className="text-xs uppercase tracking-[0.22em] text-white/35">
-            Systems I build
+            What can be improved
           </p>
 
           <div className="mt-4 space-y-2">
@@ -338,10 +338,10 @@ function HeroDashboard() {
 
           <div>
             <p className="text-sm font-medium text-white">
-              Built for scalable operations
+              Built for cleaner operations
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
-              Less manual work, cleaner processes, faster response times.
+              Faster follow-up, clearer handoffs, fewer repeated tasks.
             </p>
           </div>
         </div>
@@ -373,18 +373,18 @@ export function Hero() {
         >
           <div className="w-full">
             <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
-              Systems · Automation · Growth
+              Websites · Automation · Internal Tools
             </p>
 
             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl xl:text-7xl">
-              I build digital systems that help businesses{" "}
-              <span className="text-brand-blue">scale faster.</span>
+              Websites, automation, and internal tools for{" "}
+              <span className="text-brand-blue">cleaner operations.</span>
             </h1>
 
             <p className="mt-6 text-base leading-relaxed text-white/65 md:text-lg xl:text-xl">
-              From high-performing websites to automated internal workflows, I
-              create systems that replace repetitive tasks, improve efficiency,
-              and give companies more room to grow.
+              I help companies replace disconnected websites, slow follow-up,
+              and scattered tools with fast digital infrastructure built around
+              how the company actually works.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">

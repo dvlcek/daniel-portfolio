@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { insightPosts } from "@/lib/siteContent";
@@ -8,6 +9,37 @@ type Props = {
 
 export function generateStaticParams() {
   return insightPosts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const post = insightPosts.find((entry) => entry.slug === slug);
+
+  if (!post) {
+    return {
+      title: "Insight Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const canonical = `/insights/${post.slug}`;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: `${post.title} | Daniel Vlcek`,
+      description: post.excerpt,
+      url: canonical,
+      type: "article",
+    },
+  } satisfies Metadata;
 }
 
 export default async function InsightPostPage({ params }: Props) {

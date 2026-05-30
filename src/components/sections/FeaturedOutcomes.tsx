@@ -18,16 +18,16 @@ function getCategoryLabel(
 ) {
   switch (category) {
     case "system_build":
-      return "Business System Build";
+      return "Business Operating System";
 
     case "automation":
-      return "Operations Optimization";
+      return "Business Automation";
 
     case "rebuilds":
       return "Platform Rebuild";
 
     case "websites":
-      return "Growth Platform";
+      return "Website & Lead Platform";
 
     default:
       return "Project";
@@ -135,22 +135,21 @@ export function FeaturedOutcomes() {
               </p>
 
               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                Systems built to create business outcomes, not just screens.
+                Case studies focused on operational results, not just screens.
               </h2>
             </div>
 
             <div className="max-w-xl lg:justify-self-end">
               <p className="text-base leading-relaxed text-white/60 md:text-lg">
-                A focused look at platforms, automation systems, rebuilds, and
-                digital infrastructure designed to reduce manual work and make
-                companies operate faster.
+                A focused look at websites, dashboards, lead flows, rebuilds,
+                and automation work designed to make daily operations clearer.
               </p>
 
               <Link
                 href="/work"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.035] px-5 py-3 text-sm font-medium text-white/75 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-white"
               >
-                View all work
+                View Case Studies
                 <ArrowUpRight size={15} />
               </Link>
             </div>
@@ -214,7 +213,7 @@ export function FeaturedOutcomes() {
                     </h3>
 
                     <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/55">
-                      {featuredStudy.summary}
+                      {featuredStudy.intro}
                     </p>
 
                     <div className="mt-6 flex flex-wrap gap-2">
@@ -285,7 +284,7 @@ export function FeaturedOutcomes() {
 
                         <div className="mt-auto flex items-center justify-between gap-4 pt-5">
                           <p className="text-sm font-medium text-white/70 transition duration-300 group-hover:text-white">
-                            View case study
+                            View details
                           </p>
 
                           <p className="line-clamp-1 text-right font-mono text-[10px] uppercase tracking-[0.12em] text-white/30">

@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+
+export const metadata: Metadata = {
+  title: "Platform & Automation Audit",
+  description:
+    "A focused platform and automation audit for identifying website, workflow, and operational improvements.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function AuditPage() {
   return (

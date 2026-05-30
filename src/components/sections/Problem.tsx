@@ -7,32 +7,32 @@ import { useReveal } from "@/components/animations/useReveal";
 
 const problems = [
   {
-    label: "Manual admin work eating hours every week",
-    desc: "Repetitive tasks keep the business dependent on people doing work that systems should handle.",
+    label: "Admin tasks eating hours every week",
+    desc: "Follow-ups, updates, reminders, and data entry keep pulling the team away from higher-value work.",
     icon: "/icons/problems/repetitive-tasks.png",
   },
   {
-    label: "Disconnected tools and processes slowing down business",
-    desc: "Forms, emails, payments, CRMs, and internal tools do not work together as one connected flow.",
+    label: "Forms, email, CRM, and payments do not connect",
+    desc: "Lead intake, booking, payment, and customer handoffs happen across too many disconnected places.",
     icon: "/icons/problems/disconnected.png",
   },
   {
-    label: "Websites that look acceptable but do not support growth",
-    desc: "The website exists, but it does not generate leads, automate actions, or support operations properly.",
+    label: "Websites that look fine but do not create enough trust",
+    desc: "The site exists, but the offer is unclear, the lead path is weak, and follow-up starts too late.",
     icon: "/icons/problems/stagnant-website.png",
   },
   {
-    label: "No clear tracking, workflow logic, or scalable backend",
-    desc: "Without structure, every new client, lead, task, or process adds more friction instead of more leverage.",
+    label: "No clear view of leads, tasks, or next actions",
+    desc: "Without a dashboard or structured reporting flow, every new customer adds more coordination overhead.",
     icon: "/icons/problems/no-tracking.png",
   },
 ];
 
 const signals = [
-  "Manual work",
-  "Disconnected tools",
+  "Admin overload",
+  "Scattered tools",
   "Slow follow-up",
-  "No system logic",
+  "No clear owner",
 ];
 
 export function Problem() {
@@ -64,14 +64,14 @@ export function Problem() {
               </p>
 
               <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                Most businesses do not need more effort. They need better
-                systems.
+                Growth gets harder when the website, leads, and operations do
+                not work together.
               </h2>
 
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
-                When work is handled manually, tools do not connect, and the
-                website is not built to support operations, growth starts
-                depending on extra effort instead of better infrastructure.
+                When inquiries sit in email, CRM updates depend on memory, and
+                internal work is tracked across scattered tools, the team loses
+                speed before the customer even feels the value.
               </p>
             </div>
 
@@ -87,7 +87,7 @@ export function Problem() {
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.24em] text-white/35">
-                        System diagnosis
+                        Operations diagnosis
                       </p>
                       <p className="mt-2 text-sm font-medium text-white/80">
                         Common growth blockers
@@ -95,7 +95,7 @@ export function Problem() {
                     </div>
 
                     <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
-                      Before build
+                      Before strategy
                     </span>
                   </div>
 
@@ -180,8 +180,8 @@ export function Problem() {
                 <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
                   You do not need more manual effort.
                   <span className="ml-2 font-semibold text-white">
-                    You need infrastructure that removes friction, connects
-                    workflows, and supports growth.
+                    You need a cleaner setup for leads, follow-up, reporting,
+                    and daily operations.
                   </span>
                 </p>
 
@@ -206,7 +206,7 @@ export function Problem() {
                   </span>
 
                   <span className="text-sm font-medium text-white/75">
-                    Better systems create leverage
+                    Better operations create leverage
                   </span>
                 </div>
               </div>

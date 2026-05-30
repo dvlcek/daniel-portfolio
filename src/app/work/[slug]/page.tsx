@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -24,12 +25,67 @@ export async function generateMetadata({ params }: PageProps) {
   if (!study) {
     return {
       title: "Case Study Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const description = study.result || study.intro || study.summary;
+  const canonical = `/work/${study.slug}`;
+
   return {
-    title: `${study.company} | Case Study`,
-    description: study.summary,
+    title: `${study.title} Case Study`,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: `${study.title} | Daniel Vlcek Case Study`,
+      description,
+      url: canonical,
+      type: "article",
+      images: [
+        {
+          url: study.image,
+          alt: `${study.company} case study preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.title} | Daniel Vlcek`,
+      description,
+      images: [study.image],
+    },
+  } satisfies Metadata;
+}
+
+function createBreadcrumbJsonLd(study: (typeof caseStudies)[number]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://danielvlcek.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Case Studies",
+        item: "https://danielvlcek.com/work",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: study.title,
+        item: `https://danielvlcek.com/work/${study.slug}`,
+      },
+    ],
   };
 }
 
@@ -44,9 +100,15 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
   const liveUrl = study.liveUrl ?? "";
   const hasLiveUrl = Boolean(liveUrl);
   const stackPreview = study.stack.slice(0, 8);
+  const breadcrumbJsonLd = createBreadcrumbJsonLd(study);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-site-bg py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
         <div className="absolute -left-40 top-24 h-96 w-96 rounded-full bg-brand-blue/7 blur-3xl" />

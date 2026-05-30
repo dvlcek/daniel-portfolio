@@ -1,7 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { insightPosts } from "@/lib/siteContent";
+
+export const metadata: Metadata = {
+  title: "Insights | Automation, Platforms & Operations",
+  description:
+    "Practical insights on business automation, website rebuilds, operational systems, CRM workflows, and platform decisions for growing companies.",
+  alternates: {
+    canonical: "/insights",
+  },
+  openGraph: {
+    title: "Insights | Daniel Vlcek",
+    description:
+      "Practical notes on automation, platform rebuilds, business operations, and digital infrastructure.",
+    url: "/insights",
+    type: "website",
+  },
+};
 
 export default function InsightsPage() {
   return (

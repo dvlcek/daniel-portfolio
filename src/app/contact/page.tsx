@@ -67,16 +67,16 @@ const fieldClassName =
   "w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.018] px-4 py-3 text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-white/28 hover:border-white/[0.12] hover:bg-white/[0.026] focus:border-brand-blue/40 focus:bg-white/[0.028] focus:ring-2 focus:ring-brand-blue/10";
 
 const expectations = [
-  "Your current setup and business context",
-  "Where manual work or weak structure slows growth",
-  "Whether a website, rebuild, automation, or full system makes sense",
+  "Your current website, tools, and lead handling process",
+  "Where slow follow-up, scattered tools, or weak structure create friction",
+  "Whether a rebuild, dashboard, CRM flow, or automation is the right next step",
   "A realistic next step based on priority, timeline, and scope",
 ];
 
 const callFit = [
-  "Businesses that need stronger digital infrastructure",
-  "Teams losing time through manual or disconnected workflows",
-  "Companies planning a serious website, platform, or automation build",
+  "Companies that need a stronger website or lead path",
+  "Teams losing time through repeated admin or disconnected tools",
+  "Businesses planning a rebuild, dashboard, CRM flow, or automation project",
 ];
 
 function SelectField({
@@ -325,7 +325,7 @@ export default function ContactPage() {
     fullName: "",
     companyName: "",
     email: "",
-    bottleneck: "Automation or workflows",
+    bottleneck: "Lead flow or CRM",
     timeline: "As soon as possible",
     currentSite: "",
     projectGoal: "",
@@ -389,8 +389,9 @@ export default function ContactPage() {
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
               A short call to understand your business, identify the main
-              bottleneck, and decide whether a website, rebuild, automation, or
-              full system is the right next step.
+              bottleneck, and decide whether a website rebuild, lead flow,
+              dashboard, CRM setup, or automation project is the right next
+              step.
             </p>
           </div>
         </header>
@@ -462,7 +463,7 @@ export default function ContactPage() {
                   <TextareaField
                     label="What do you want to improve?"
                     name="projectGoal"
-                    placeholder="Briefly describe what you want to improve, build, rebuild, or automate."
+                    placeholder="Briefly describe the website, lead flow, dashboard, CRM, or repeated task you want to improve."
                     required
                     value={form.projectGoal}
                     onChange={set("projectGoal")}
@@ -473,9 +474,11 @@ export default function ContactPage() {
                       label="Biggest bottleneck"
                       name="bottleneck"
                       options={[
-                        "Website or platform",
-                        "Automation or workflows",
-                        "Both",
+                        "Website or landing page",
+                        "Lead flow or CRM",
+                        "Internal dashboard",
+                        "Automation or repeated tasks",
+                        "Multiple areas / not sure yet",
                       ]}
                       value={form.bottleneck}
                       onChange={set("bottleneck")}
@@ -495,7 +498,7 @@ export default function ContactPage() {
                   </div>
 
                   <Field
-                    label="Current website or tools"
+                    label="Current website, CRM, or tools"
                     name="currentSite"
                     type="url"
                     placeholder="https://..."
@@ -611,7 +614,8 @@ export default function ContactPage() {
 
               <p className="mt-4 text-sm leading-relaxed text-white/52">
                 The call is used to understand where the highest-leverage
-                improvement is, not to push unnecessary features.
+                improvement is, not to push unnecessary features or oversized
+                scope.
               </p>
 
               <div className="mt-7 space-y-4">
@@ -650,7 +654,7 @@ export default function ContactPage() {
 
               <p className="mt-6 text-sm leading-relaxed text-white/38">
                 Clear direction, honest feedback, and a realistic next step for
-                your website, workflow, or internal system.
+                your website, lead flow, dashboard, CRM, or internal operation.
               </p>
             </div>
           </aside>

@@ -16,17 +16,17 @@ type CategoryFilter =
 
 const filters: { label: string; value: CategoryFilter }[] = [
   { label: "All Projects", value: "all" },
-  { label: "System Builds", value: "system_build" },
-  { label: "Growth Platforms", value: "websites" },
-  { label: "Operations Optimization", value: "automation" },
+  { label: "Business Operating Systems", value: "system_build" },
+  { label: "Websites & Lead Platforms", value: "websites" },
+  { label: "Business Automation", value: "automation" },
   { label: "Platform Rebuilds", value: "rebuilds" },
 ];
 
 const pageSignals = [
-  "Web platforms",
-  "Business systems",
-  "Automation workflows",
-  "Platform rebuilds",
+  "Premium websites",
+  "Custom business systems",
+  "CRM automation",
+  "Internal dashboards",
 ];
 
 export default function WorkPage() {
@@ -60,9 +60,9 @@ export default function WorkPage() {
             </div>
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
-              A portfolio of premium websites, custom platforms, business
-              systems, and automation workflows designed to improve trust,
-              reduce manual work, and create scalable digital infrastructure.
+              A portfolio of premium websites, custom business systems,
+              internal dashboards, CRM automation, and platform rebuilds
+              designed to improve trust and create cleaner operations.
             </p>
           </div>
 

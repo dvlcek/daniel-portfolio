@@ -1,8 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import {
+  type CSSProperties,
+  type MouseEvent,
+  type ReactNode,
+  useRef,
+} from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useStagger } from "@/components/animations/useStagger";
 import { Button } from "@/components/ui/Button";
 
@@ -10,97 +15,334 @@ const pillars = [
   {
     number: "01",
     title: "Web Platforms",
+    layer: "Client-facing layer",
     description:
       "Websites, portals, and digital platforms designed to build trust, improve conversion, and support business growth.",
-    // button: {
-    //   label: "See examples of this",
-    //   href: "/work#web-platforms",
-    // },
+    points: ["Premium UI/UX", "Conversion structure", "Scalable frontend"],
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <rect
+          x="3"
+          y="4"
+          width="18"
+          height="13"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <path
+          d="M8 20H16M12 17V20"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M7 10.5L10 13.5L17 8"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   },
   {
     number: "02",
     title: "Operational Automation",
+    layer: "Workflow layer",
     description:
       "Connected workflows and systems that reduce manual work, increase speed, and make daily operations more reliable.",
-    // button: {
-    //   label: "See examples of this",
-    //   href: "/work#automation",
-    // },
+    points: ["CRM flows", "Lead automation", "Internal processes"],
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <circle
+          cx="6"
+          cy="7"
+          r="3"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="18"
+          cy="7"
+          r="3"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="12"
+          cy="17"
+          r="3"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <path
+          d="M8.5 8.7L10.7 14.2M15.5 8.7L13.3 14.2M9 17H6.5C5.1 17 4 15.9 4 14.5V13"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
   },
   {
     number: "03",
     title: "Rebuilds & Optimization",
+    layer: "Scale layer",
     description:
       "For businesses with an existing website or platform that needs better structure, stronger performance, and more useful underlying systems.",
+    points: ["Performance", "Better structure", "Future-proof setup"],
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 16.5L8.8 11.7L12.3 15.2L20 7.5"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15 7.5H20V12.5"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M4 20H20"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
   },
 ];
 
+const systemFlow = [
+  "Client trust",
+  "Lead capture",
+  "Automation",
+  "Operations",
+  "Growth",
+];
+
+type SpotlightPanelProps = {
+  children: ReactNode;
+  className?: string;
+  innerClassName?: string;
+};
+
+function updateSpotlight(event: MouseEvent<HTMLDivElement>) {
+  const rect = event.currentTarget.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  event.currentTarget.style.setProperty("--spotlight-x", `${x}px`);
+  event.currentTarget.style.setProperty("--spotlight-y", `${y}px`);
+}
+
+function SpotlightPanel({
+  children,
+  className = "",
+  innerClassName = "",
+}: SpotlightPanelProps) {
+  const spotlightStyle = {
+    "--spotlight-x": "50%",
+    "--spotlight-y": "50%",
+  } as CSSProperties;
+
+  return (
+    <div
+      onMouseMove={updateSpotlight}
+      style={spotlightStyle}
+      className={`group relative overflow-hidden rounded-3xl bg-white/[0.07] p-px transition duration-300 ${className}`}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(420px circle at var(--spotlight-x) var(--spotlight-y), rgba(47,47,228,0.68), rgba(255,255,255,0.14) 32%, transparent 68%)",
+        }}
+      />
+
+      <div
+        className={`relative h-full overflow-hidden rounded-[23px] bg-[#080616]/88 backdrop-blur-xl ${innerClassName}`}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(520px circle at var(--spotlight-x) var(--spotlight-y), rgba(47,47,228,0.09), transparent 58%)",
+          }}
+        />
+
+        <div
+          className="pointer-events-none absolute inset-x-8 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(260px circle at var(--spotlight-x) 0px, rgba(167,174,255,0.85), transparent 72%)",
+          }}
+        />
+
+        <div className="relative z-10 h-full">{children}</div>
+      </div>
+    </div>
+  );
+}
+
 export function SolutionPillars() {
   const ref = useRef<HTMLDivElement>(null);
+
   useStagger(ref, ".pillar-card", { y: 18, stagger: 0.08 });
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden bg-[#080616] py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-0 top-1/4 h-[320px] w-[320px] rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute right-0 top-0 h-[360px] w-[360px] rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(47,47,228,0.07),transparent_30%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_84%_48%,rgba(22,46,147,0.09),transparent_34%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
+
+        <div className="absolute left-0 top-0 h-full w-1/2 opacity-[0.026]">
+          <div className="h-full w-full bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:88px_88px]" />
+        </div>
       </div>
 
       <Container>
         <div ref={ref} className="relative z-10">
-          <SectionTitle
-            eyebrow="How I solve it"
-            title="I build the platform your clients see and the system your business runs on."
-            desc="The goal is not just a better-looking website. It is a stronger system that helps the business operate faster, win more trust, and scale with less friction."
-          />
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_0.7fr] lg:items-end">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.32em] text-[#2F2FE4] md:text-sm">
+                How I solve it
+              </p>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {pillars.map((pillar) => (
-              <article
-                key={pillar.title}
-                className="pillar-card group relative overflow-hidden rounded-3xl border border-white/5 bg-white/2 p-7 backdrop-blur-l transition duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-white/5 md:p-8"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-80" />
+              <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
+                I build the platform your clients see and the system your
+                business runs on.
+              </h2>
+            </div>
 
-                <div className="relative z-10 flex h-full flex-col">
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
-                      {pillar.number}
-                    </span>
-                    <div className="h-px w-14 bg-white/10 transition-[width,background-color] duration-300 group-hover:w-52 group-hover:bg-white/20" />
-                  </div>
-
-                  <h3 className="text-xl font-semibold tracking-tight text-white">
-                    {pillar.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-[15px]">
-                    {pillar.description}
-                  </p>
-
-                  {/* <div className="mt-8 pt-6">
-                    {pillar.button && (
-                      <Button
-                        href={pillar.button.href}
-                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60"
-                      >
-                        {pillar.button.label}
-                      </Button>
-                    )}
-                  </div> */}
-                </div>
-              </article>
-            ))}
+            <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
+              The goal is not just a better-looking website. It is a stronger
+              digital operating system that improves trust, connects workflows,
+              and makes the business easier to scale.
+            </p>
           </div>
 
-          <div className="mt-10 flex flex-col items-start gap-4 md:mt-12 md:flex-row md:items-center md:justify-between">
+          <div className="mt-14 grid gap-5 lg:grid-cols-[0.72fr_1fr]">
+            {/* Architecture overview */}
+            <SpotlightPanel innerClassName="p-6 md:p-7">
+              <div className="flex h-full min-h-[520px] flex-col">
+                <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+                      System architecture
+                    </p>
+                    <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">
+                      From visibility to operation
+                    </h3>
+                  </div>
+
+                  <span className="rounded-full border border-[#2F2FE4]/30 bg-[#2F2FE4]/10 px-3 py-1 text-xs text-[#A7AEFF]">
+                    Connected
+                  </span>
+                </div>
+
+                <div className="relative mt-8 flex flex-1 flex-col justify-between gap-4">
+                  <div className="absolute bottom-10 left-[19px] top-10 w-px bg-linear-to-b from-[#2F2FE4]/0 via-[#2F2FE4]/35 to-[#2F2FE4]/0" />
+
+                  {systemFlow.map((item, index) => (
+                    <div key={item} className="relative flex items-center gap-4">
+                      <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 font-mono text-[11px] text-[#A7AEFF] shadow-[0_0_24px_rgba(47,47,228,0.12)]">
+                        0{index + 1}
+                      </span>
+
+                      <div className="flex-1 rounded-2xl border border-white/[0.07] bg-[#080616]/45 px-4 py-3">
+                        <p className="text-sm font-medium text-white/75">
+                          {item}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">
+                  <p className="text-sm leading-relaxed text-white/55">
+                    Each layer strengthens the next one: better presentation,
+                    better workflows, cleaner operations, and more room to grow.
+                  </p>
+                </div>
+              </div>
+            </SpotlightPanel>
+
+            {/* Pillars */}
+            <div className="grid gap-5">
+              {pillars.map((pillar) => (
+                <article key={pillar.title} className="pillar-card">
+                  <SpotlightPanel innerClassName="p-6 md:p-7">
+                    <div className="grid gap-6 md:grid-cols-[auto_1fr]">
+                      <div className="flex md:flex-col md:items-center">
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#2F2FE4]/25 bg-[#2F2FE4]/10 text-[#A7AEFF] transition duration-300 group-hover:border-[#2F2FE4]/40 group-hover:bg-[#2F2FE4]/15">
+                          {pillar.icon}
+                        </div>
+
+                        <div className="ml-4 flex items-center gap-3 md:ml-0 md:mt-5 md:flex-col">
+                          <span className="font-mono text-xs text-[#2F2FE4] transition duration-300 group-hover:text-[#A7AEFF]">
+                            {pillar.number}
+                          </span>
+                          <span className="hidden h-12 w-px bg-[#2F2FE4]/25 transition duration-300 group-hover:bg-[#A7AEFF]/55 md:block" />
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <p className="text-xs uppercase tracking-[0.22em] text-white/35">
+                              {pillar.layer}
+                            </p>
+
+                            <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+                              {pillar.title}
+                            </h3>
+                          </div>
+
+                          <span className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.025] text-white/45 transition duration-300 group-hover:border-[#2F2FE4]/30 group-hover:bg-[#2F2FE4]/10 group-hover:text-white sm:flex">
+                            <ArrowUpRight size={16} />
+                          </span>
+                        </div>
+
+                        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/55 md:text-[15px]">
+                          {pillar.description}
+                        </p>
+
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {pillar.points.map((point) => (
+                            <span
+                              key={point}
+                              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-xs text-white/55 transition duration-300 group-hover:border-[#2F2FE4]/20 group-hover:text-white/70"
+                            >
+                              {point}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </SpotlightPanel>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col items-start gap-5 rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-xl md:mt-12 md:flex-row md:items-center md:justify-between md:p-7">
             <p className="max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">
-              Each pillar is designed to strengthen both the customer-facing experience and the internal infrastructure behind it.
+              Each pillar is designed to strengthen both the customer-facing
+              experience and the internal infrastructure behind it.
             </p>
 
             <Button href="/work" variant="primary">
-              See how this looks in real projects
+              <span>See how this looks in real projects</span>
+              <ArrowUpRight size={15} />
             </Button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useStagger } from "@/components/animations/useStagger";
@@ -13,49 +13,89 @@ export function FAQ() {
   useStagger(ref, ".faq-item", { y: 14, stagger: 0.06 });
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="relative overflow-hidden bg-[#080616] py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(47,47,228,0.03),transparent_30%)]" />
+      </div>
+
       <Container>
-        <div ref={ref}>
+        <div ref={ref} className="relative z-10">
           <SectionTitle
             eyebrow="FAQ"
             title="Questions before we work together"
+            desc="Simple answers about scope, process, launch, and what working together usually looks like."
           />
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-12 border-t border-white/[0.08]">
             {faqItems.map((item, index) => {
               const isOpen = openIndex === index;
+              const answerId = `faq-answer-${index}`;
 
               return (
                 <div
                   key={item.question}
-                  className="faq-item group rounded-2xl border border-white/6 bg-white/[0.03] ring-1 ring-white/8 backdrop-blur-sm transition duration-300 hover:border-white/10"
+                  className="faq-item border-b border-white/[0.08]"
                 >
                   <button
-                    onClick={() =>
-                      setOpenIndex(isOpen ? null : index)
-                    }
-                    className="flex w-full items-center justify-between p-5 text-left md:p-6"
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="group flex min-h-[76px] w-full items-center justify-between gap-6 py-5 text-left md:min-h-[84px] md:py-6"
                   >
-                    <span className="text-sm font-semibold text-white md:text-[15px]">
-                      {item.question}
-                    </span>
+                    <div className="flex min-w-0 items-center gap-5">
+                      <span
+                        className={[
+                          "w-6 shrink-0 font-mono text-xs transition-colors duration-300",
+                          isOpen
+                            ? "text-[#A7AEFF]"
+                            : "text-white/28 group-hover:text-[#2F2FE4]",
+                        ].join(" ")}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <span
+                        className={[
+                          "text-base font-medium leading-snug transition-colors duration-300 md:text-lg",
+                          isOpen
+                            ? "text-white"
+                            : "text-white/76 group-hover:text-white",
+                        ].join(" ")}
+                      >
+                        {item.question}
+                      </span>
+                    </div>
 
                     <span
-                      className={`text-white/50 transition-transform ${
-                        isOpen ? "rotate-45" : ""
-                      }`}
+                      className={[
+                        "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
+                        isOpen
+                          ? "text-[#A7AEFF]"
+                          : "text-white/36 group-hover:text-[#A7AEFF]",
+                      ].join(" ")}
                     >
-                      +
+                      <span className="absolute h-px w-3.5 bg-current" />
+                      <span
+                        className={[
+                          "absolute h-3.5 w-px bg-current transition-transform duration-300",
+                          isOpen ? "scale-y-0" : "scale-y-100",
+                        ].join(" ")}
+                      />
                     </span>
                   </button>
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    id={answerId}
+                    className={[
+                      "overflow-hidden transition-[max-height,opacity] duration-300 ease-out",
+                      isOpen ? "max-h-56 opacity-100" : "max-h-0 opacity-0",
+                    ].join(" ")}
                   >
-                    <div className="px-5 pb-5 md:px-6 md:pb-6">
-                      <p className="text-sm leading-relaxed text-white/68 md:text-[15px]">
+                    <div className="pb-6 pl-11 pr-10 md:pb-7 md:pl-11">
+                      <p className="max-w-3xl text-sm leading-relaxed text-white/55 md:text-[15px]">
                         {item.answer}
                       </p>
                     </div>

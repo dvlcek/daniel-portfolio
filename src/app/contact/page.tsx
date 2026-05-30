@@ -132,8 +132,13 @@ function SelectField({
           aria-haspopup="listbox"
           aria-controls={listboxId}
           onClick={() => setOpen((current) => !current)}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              setOpen(false);
+            }
+          }}
           className={[
-            "group flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300",
+            "group flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
             open
               ? "border-brand-blue/35 bg-brand-blue/[0.055] ring-2 ring-brand-blue/10"
               : "border-white/[0.08] bg-white/[0.018] hover:border-white/[0.12] hover:bg-white/[0.026]",
@@ -167,6 +172,7 @@ function SelectField({
         <div
           id={listboxId}
           role="listbox"
+          aria-label={label}
           className={[
             "absolute left-0 right-0 top-[calc(100%+8px)] z-50 origin-top overflow-hidden rounded-2xl border border-white/[0.10] bg-site-bg-deep/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200",
             open
@@ -183,12 +189,18 @@ function SelectField({
                 type="button"
                 role="option"
                 aria-selected={selected}
+                tabIndex={open ? 0 : -1}
                 onClick={() => {
                   onChange(option);
                   setOpen(false);
                 }}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") {
+                    setOpen(false);
+                  }
+                }}
                 className={[
-                  "flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors duration-200",
+                  "flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30",
                   selected
                     ? "bg-brand-blue/10 text-brand-blue-light"
                     : "text-white/68 hover:bg-white/[0.045] hover:text-white",
@@ -553,7 +565,7 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="inline-flex items-center gap-2 text-sm text-white/42 transition-colors duration-300 hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-lg text-sm text-white/42 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
                     >
                       <ArrowLeft size={14} />
                       Edit details
@@ -569,8 +581,8 @@ export default function ContactPage() {
                       <a
                         href={CAL_OPEN_URL}
                         target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-white/42 transition-colors duration-300 hover:text-white"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg text-xs text-white/42 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
                       >
                         Open in new tab
                         <ExternalLink size={12} />

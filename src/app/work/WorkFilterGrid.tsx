@@ -44,9 +44,10 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
               <button
                 key={filter.value}
                 type="button"
+                aria-pressed={isActive}
                 onClick={() => setActiveFilter(filter.value)}
                 className={[
-                  "rounded-full border px-4 py-2 text-sm font-medium transition-[background-color,border-color,color] duration-300",
+                  "rounded-full border px-4 py-2 text-sm font-medium transition-[background-color,border-color,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
                   isActive
                     ? "border-brand-blue/35 bg-brand-blue/10 text-brand-blue-light"
                     : "border-white/[0.08] bg-white/[0.018] text-white/52 hover:border-brand-blue/25 hover:text-white",
@@ -58,7 +59,7 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
           })}
         </div>
 
-        <p className="text-sm text-white/38">
+        <p className="text-sm text-white/38" aria-live="polite">
           {filteredStudies.length} selected{" "}
           {filteredStudies.length === 1 ? "project" : "projects"}
         </p>
@@ -94,7 +95,7 @@ function CaseStudyCard({
   return (
     <Link
       href={`/work/${study.slug}`}
-      className="group relative flex min-h-[560px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.022] transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_24px_80px_rgba(0,0,0,0.22)]"
+      className="group relative flex min-h-[560px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.022] transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_24px_80px_rgba(0,0,0,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
     >
       <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/55" />
 

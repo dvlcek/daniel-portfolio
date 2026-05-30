@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 interface ProjectStat {
@@ -141,6 +142,9 @@ function DetailModal({
   return (
     <div
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="portfolio-modal-title"
       className="fixed inset-0 z-50 flex items-start justify-center"
       style={{
         background: "rgba(0,0,0,0.92)",
@@ -171,9 +175,11 @@ function DetailModal({
       >
         {/* ── Hero ── */}
         <div className="relative overflow-hidden" style={{ height: "220px" }}>
-          <img
+          <Image
             src={project.image}
             alt={project.name}
+            fill
+            sizes="860px"
             className="absolute inset-0 h-full w-full object-cover"
             style={{ opacity: 0.4, filter: "saturate(0.6)" }}
           />
@@ -186,6 +192,7 @@ function DetailModal({
           {/* Top-right close */}
           <button
             onClick={onClose}
+            aria-label="Close project details"
             className="absolute right-4 top-4 rounded-lg transition-colors hover:bg-white/10"
             style={{
               background: "rgba(0,0,0,0.4)",
@@ -241,6 +248,7 @@ function DetailModal({
               </span>
             </div>
             <h2
+              id="portfolio-modal-title"
               className="text-white"
               style={{
                 fontFamily: "'Syne', sans-serif",
@@ -335,16 +343,18 @@ function DetailModal({
               {project.gallery.map((src, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 overflow-hidden rounded-xl"
+                  className="relative flex-shrink-0 overflow-hidden rounded-xl"
                   style={{
                     width: "260px",
                     height: "160px",
                     border: "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
-                  <img
+                  <Image
                     src={src}
                     alt={`${project.name} screenshot ${i + 1}`}
+                    fill
+                    sizes="260px"
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                     style={{ filter: "saturate(0.85)" }}
                     draggable={false}
@@ -598,9 +608,18 @@ function ProjectCard({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label={`Open details for ${project.name}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick();
+        }
+      }}
       className="relative flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl"
       style={{
         width: "170px",
@@ -618,9 +637,11 @@ function ProjectCard({
         zIndex: h ? 20 : 1,
       }}
     >
-      <img
+      <Image
         src={project.image}
         alt={project.name}
+        fill
+        sizes="170px"
         className="absolute inset-0 h-full w-full object-cover"
         style={{
           opacity: h ? 0.5 : 0.1,

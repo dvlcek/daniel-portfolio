@@ -45,7 +45,7 @@ export default function CVPage() {
                 className="inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90"
                 href="/Resume%20Daniel%20Vlcek.pdf"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 Download PDF
               </a>

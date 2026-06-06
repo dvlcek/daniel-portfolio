@@ -177,9 +177,9 @@ export function BusinessOperatingSystem() {
       className="relative mx-auto mt-5 w-full max-w-6xl lg:mt-6"
       aria-label="Connected business operating system visual"
     >
-      <div className="glass-panel relative min-h-[34rem] overflow-hidden rounded-[30px] p-4 sm:p-5 lg:min-h-[23rem] lg:p-5 xl:min-h-[25rem]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(193,106,58,0.14),transparent_27%),radial-gradient(circle_at_50%_62%,rgba(201,166,107,0.08),transparent_31%),linear-gradient(180deg,rgba(242,239,230,0.04),rgba(5,5,5,0.18))]" />
-        <div className="pointer-events-none absolute inset-5 rounded-[24px] border border-[rgba(242,239,230,0.055)]" />
+      <div className="relative min-h-[34rem] overflow-hidden rounded-[30px] border border-transparent p-4 sm:p-5 lg:min-h-[23rem] lg:p-5 xl:min-h-[25rem]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(193,106,58,0.12),transparent_25%),radial-gradient(circle_at_50%_62%,rgba(201,166,107,0.06),transparent_30%)]" />
+        <div className="pointer-events-none absolute inset-x-10 top-1/2 hidden h-px bg-gradient-to-r from-transparent via-[#C9A66B]/12 to-transparent lg:block" />
 
         <svg
           data-flow-lines="hero-clean-lines"
@@ -222,12 +222,10 @@ export function BusinessOperatingSystem() {
           <div className="absolute inset-10 animate-[systemScan_5s_ease-in-out_infinite] rounded-full border border-[#C16A3A]/16" />
           <div className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#C9A66B]/20 bg-[#050505]/38 shadow-[inset_0_0_28px_rgba(201,166,107,0.11)]" />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-7 text-center">
-            <p className="micro-label text-[#C9A66B]">Intelligent core</p>
-            <h2 className="mt-2 text-xl font-semibold tracking-[-0.05em] text-[#F2EFE6]">
-              One operating layer
-            </h2>
-            <p className="mt-2 max-w-[10rem] text-[0.68rem] leading-5 text-[#B8B1A4]">
-              Routes signals, decisions, ownership, and execution.
+            <Sparkles className="text-[#C9A66B]" size={30} />
+            <p className="micro-label mt-3 text-[#C9A66B]">Business core</p>
+            <p className="mt-2 max-w-[9rem] text-[0.68rem] leading-5 text-[#B8B1A4]">
+              Signals, decisions, ownership, execution.
             </p>
           </div>
         </div>
@@ -262,7 +260,7 @@ export function BusinessOperatingSystem() {
         <div className="absolute bottom-3 left-3 right-3 z-30 hidden lg:block">
           <div
             data-flow-output
-            className="mx-auto grid max-w-3xl gap-3 rounded-[22px] border border-[rgba(242,239,230,0.11)] bg-[rgba(8,8,7,0.70)] p-3 shadow-[0_16px_48px_rgba(0,0,0,0.26)] backdrop-blur-2xl lg:grid-cols-[1fr_auto] lg:items-center"
+            className="mx-auto grid max-w-3xl gap-3 rounded-[22px] border border-[rgba(242,239,230,0.11)] bg-[rgba(8,8,7,0.58)] p-3 shadow-[0_16px_48px_rgba(0,0,0,0.26)] backdrop-blur-2xl lg:grid-cols-[1fr_auto] lg:items-center"
           >
             <div>
               <p className="micro-label text-[#6F766E]">Active connection</p>
@@ -301,7 +299,7 @@ function SystemNodeButton({
         node.position,
         active
           ? "border-[#C9A66B]/40 bg-[#C16A3A]/13 shadow-[0_16px_44px_rgba(193,106,58,0.16)]"
-          : "border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.58)] hover:-translate-y-0.5 hover:border-[#C9A66B]/26 hover:bg-[rgba(242,239,230,0.06)]",
+          : "border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.46)] hover:-translate-y-0.5 hover:border-[#C9A66B]/26 hover:bg-[rgba(242,239,230,0.06)]",
       )}
       onMouseEnter={onSelect}
       onClick={onSelect}
@@ -339,7 +337,7 @@ function MobileCore({ activeNode }: { activeNode: SystemNode }) {
       </div>
       <p className="micro-label mt-5 text-[#C9A66B]">Intelligent core</p>
       <h2 className="mt-2 text-xl font-semibold tracking-[-0.045em] text-[#F2EFE6]">
-        One operating layer
+        Business core
       </h2>
       <div className="mx-auto mt-4 flex w-fit items-center gap-2 rounded-full border border-[#C16A3A]/24 bg-[#C16A3A]/10 px-3 py-2 text-sm text-[#E5E0D4]">
         <Icon size={15} />

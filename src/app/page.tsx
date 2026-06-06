@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
+import { SystemElementsSection } from "@/components/sections/SystemElementsSection";
 import { Problem } from "@/components/sections/Problem";
 import { SolutionPillars } from "@/components/sections/SolutionPillars";
 import { FeaturedOutcomes } from "@/components/sections/FeaturedOutcomes";
@@ -8,7 +9,6 @@ import { PackagesSection } from "@/components/sections/PackagesSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Mindset } from "@/components/sections/Mindset";
-import { HeroProblemBridge } from "@/components/animations/HeroProblemBridge";
 
 export const metadata: Metadata = {
   title: "Premium Digital Systems, Websites & Automation",
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main className="site-page">
       <Hero />
-      <HeroProblemBridge />
+      <SystemElementsSection />
       <Problem />
       <SolutionPillars />
       <PackagesSection />

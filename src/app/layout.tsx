@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
+import { GSAPProvider } from "@/components/animations/GSAPProvider";
 
 const headingFont = Geist({
   subsets: ["latin"],
@@ -149,17 +150,19 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <TransitionProvider>
-          <PageTransition />
+        <GSAPProvider>
+          <TransitionProvider>
+            <PageTransition />
 
-          <SiteHeader />
+            <SiteHeader />
 
-          <main id="main-content" tabIndex={-1}>
-            {children}
-          </main>
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
 
-          <SiteFooter />
-        </TransitionProvider>
+            <SiteFooter />
+          </TransitionProvider>
+        </GSAPProvider>
       </body>
     </html>
   );

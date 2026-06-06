@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { type CaseStudy } from "@/lib/siteContent";
+import { useStagger } from "@/components/animations/useStagger";
 
 type CategoryFilter =
   | "all"
@@ -27,11 +28,14 @@ const filters: { label: string; value: CategoryFilter }[] = [
 
 export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const filteredStudies = useMemo(() => {
     if (activeFilter === "all") return studies;
     return studies.filter((study) => study.category === activeFilter);
   }, [activeFilter, studies]);
+
+  useStagger(gridRef, ".work-card", { y: 20, stagger: 0.06 });
 
   return (
     <section className="mt-10">
@@ -66,7 +70,7 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
       </div>
 
       {filteredStudies.length > 0 ? (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div ref={gridRef} className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {filteredStudies.map((study, index) => (
             <CaseStudyCard key={study.slug} study={study} index={index} />
           ))}
@@ -94,7 +98,7 @@ function CaseStudyCard({
   return (
     <Link
       href={`/work/${study.slug}`}
-      className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[1.5rem] border border-black/[0.08] bg-white/58 transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/72 hover:shadow-[0_20px_60px_rgba(0,0,0,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
+      className="work-card group relative flex min-h-[520px] flex-col overflow-hidden rounded-[1.5rem] border border-black/[0.08] bg-white/58 transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/72 hover:shadow-[0_20px_60px_rgba(0,0,0,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
     >
       <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/55" />
 

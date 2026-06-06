@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 import {
   ArrowRight,
   CalendarCheck,
@@ -13,6 +16,8 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import { animationConfig, reducedMotionQuery } from "@/lib/animation";
+import { ensureGsap, gsap, useGSAP } from "@/components/animations/gsapClient";
 
 type InputTool = {
   id: string;
@@ -145,8 +150,9 @@ function CenterLogo() {
 
 function DesktopSystemMap() {
   return (
-    <div className="relative mx-auto hidden h-[360px] w-full max-w-[1180px] overflow-hidden rounded-[2.25rem] border border-black/[0.08] bg-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_28px_90px_rgba(21,21,18,0.08)] backdrop-blur-sm lg:block">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(184,100,63,0.08),transparent_36%),radial-gradient(circle_at_72%_22%,rgba(95,116,128,0.08),transparent_34%)]" />
+    <div className="relative mx-auto hidden h-[360px] w-full max-w-[1180px] overflow-visible lg:block">
+      <div className="pointer-events-none absolute inset-x-10 top-[46%] h-px bg-linear-to-r from-transparent via-clay/18 to-transparent" />
+      <div className="pointer-events-none absolute left-1/2 top-[44%] h-[20rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(184,100,63,0.10),rgba(95,116,128,0.06)_42%,transparent_70%)] blur-3xl" />
       <ConnectorLines />
       <CenterLogo />
 
@@ -211,8 +217,9 @@ function MobileSystemMap() {
           </div>
         ))}
       </div>
-      <div className="relative mt-5 overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/62 p-5 shadow-[0_18px_50px_rgba(21,21,18,0.07),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-2xl">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(184,100,63,0.08),transparent_45%)]" />
+      <div className="relative mt-5 overflow-visible p-2">
+        <div className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-linear-to-r from-transparent via-clay/18 to-transparent" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(184,100,63,0.10),rgba(95,116,128,0.06)_48%,transparent_72%)] blur-3xl" />
         <div className="relative mx-auto flex min-h-44 w-full max-w-[17rem] items-center justify-center overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white p-5 text-cream shadow-[0_24px_70px_rgba(21,21,18,0.10)]">
           <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.88),rgba(242,239,230,0.72)_56%,rgba(201,166,107,0.18))]" />
           <div className="relative z-10 flex flex-col items-center text-center">
@@ -257,8 +264,84 @@ function SystemMap() {
 }
 
 export function Hero() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    ensureGsap();
+
+    const mm = gsap.matchMedia(root);
+    const select = gsap.utils.selector(root);
+    const introItems = select<HTMLElement>("[data-hero-intro]");
+    const systemItems = select<HTMLElement>(
+      "[data-flow-source], [data-flow-output], [data-flow-core='business-os']",
+    );
+    const lines = select<SVGPathElement>("[data-flow-lines='hero-clean-lines'] path");
+
+    mm.add(reducedMotionQuery, () => {
+      gsap.set([...introItems, ...systemItems], {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        clearProps: "transform",
+      });
+      gsap.set(lines, { clearProps: "all" });
+    });
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      lines.forEach((line) => {
+        const length = line.getTotalLength();
+        gsap.set(line, {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+        });
+      });
+
+      const tl = gsap.timeline({ defaults: { ease: animationConfig.ease.default } });
+
+      tl.fromTo(
+        introItems,
+        { autoAlpha: 0, y: 18 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: animationConfig.duration.hero,
+          stagger: animationConfig.stagger.tight,
+        },
+      )
+        .to(
+          lines,
+          {
+            strokeDashoffset: 0,
+            duration: 1.1,
+            ease: animationConfig.ease.soft,
+            stagger: 0.025,
+          },
+          "-=0.35",
+        )
+        .fromTo(
+          systemItems,
+          { autoAlpha: 0, y: 14, scale: 0.985 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.75,
+            ease: animationConfig.ease.premium,
+            stagger: animationConfig.stagger.tight,
+          },
+          "-=0.9",
+        );
+    });
+
+    return () => mm.revert();
+  }, { scope: rootRef, dependencies: [], revertOnUpdate: true });
+
   return (
     <section
+      ref={rootRef}
       className="relative isolate overflow-hidden bg-site-bg pt-28 text-cream md:pt-32"
       data-section="hero"
     >
@@ -268,20 +351,20 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-[calc(100svh-6rem)] w-full max-w-[1500px] flex-col justify-center px-5 pb-16 sm:px-8 xl:px-12 2xl:px-16">
-        <div className="mx-auto max-w-[940px] text-center">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/68 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-cream shadow-[0_12px_32px_rgba(21,21,18,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-2xl">
+        <div className="mx-auto max-w-[900px] text-center">
+          <p data-hero-intro className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/68 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-cream shadow-[0_12px_32px_rgba(21,21,18,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-2xl">
             <span className="h-1.5 w-1.5 rounded-full bg-clay shadow-[0_0_24px_rgba(193,106,58,0.55)]" />
             Software Developer & Automation Architect
           </p>
-          <h1 className="mx-auto max-w-[980px] text-balance break-words text-[clamp(3.4rem,8vw,8.25rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-cream max-[480px]:max-w-[350px] max-[480px]:text-[2.85rem]">
+          <h1 data-hero-intro className="mx-auto max-w-[900px] text-balance break-words text-[clamp(2.85rem,6vw,6rem)] font-semibold leading-[1.01] tracking-[-0.055em] text-cream max-[480px]:max-w-[350px] max-[480px]:text-[2.45rem] max-[480px]:leading-[1.04]">
             Digital systems for companies that want to move faster.
           </h1>
-          <p className="mx-auto mt-6 max-w-[820px] text-base leading-8 text-stone max-[480px]:max-w-[350px] sm:text-xl sm:leading-9">
+          <p data-hero-intro className="mx-auto mt-6 max-w-[820px] text-base leading-8 text-stone max-[480px]:max-w-[350px] sm:text-xl sm:leading-9">
             I design and build high-performing websites, business platforms,
             and automation systems that connect your leads, workflows, data,
             and operations into one scalable digital foundation.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
+          <div data-hero-intro className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
             <Link
               href="/contact"
               className="group inline-flex h-12 w-full max-w-[350px] items-center justify-center gap-3 overflow-hidden rounded-full bg-cream px-6 text-sm font-semibold text-site-bg shadow-[0_18px_50px_rgba(21,21,18,0.14)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#0D0E0C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg sm:w-auto sm:min-w-[220px]"

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { insightPosts } from "@/lib/siteContent";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 
 export const metadata: Metadata = {
   title: "Insights | Websites, Automation & Business Systems",
@@ -31,9 +32,9 @@ export default function InsightsPage() {
           desc="Notes for businesses deciding what to improve, rebuild, connect, or automate next."
         />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <Stagger itemSelector=".insight-card" className="mt-10 grid gap-4 md:grid-cols-2">
           {insightPosts.map((post) => (
-            <article key={post.slug} className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+            <article key={post.slug} className="insight-card rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-ash">{post.readTime}</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-[-0.025em] text-cream">{post.title}</h2>
               <p className="mt-4 text-sm leading-7 text-stone">{post.excerpt}</p>
@@ -42,7 +43,7 @@ export default function InsightsPage() {
               </Link>
             </article>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </main>
   );

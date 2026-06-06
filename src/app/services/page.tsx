@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { packages, primaryCta } from "@/lib/siteContent";
 import Link from "next/link";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 
 export const metadata: Metadata = {
   title: "Services | Business Platforms, Websites & Automation",
@@ -55,12 +56,12 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <Stagger itemSelector=".service-card" className="mt-10 grid gap-4 md:grid-cols-2">
           {packages.map((pkg, index) => (
             <article
               key={pkg.name}
               className={[
-                "rounded-[2rem] border p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]",
+                "service-card rounded-[2rem] border p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]",
                 index === 0
                   ? "border-clay/30 bg-[linear-gradient(180deg,rgba(184,100,63,0.10),rgba(255,255,255,0.72)),rgba(255,255,255,0.70)] ring-1 ring-clay/10"
                   : "border-black/[0.10] bg-white/62",
@@ -96,7 +97,7 @@ export default function ServicesPage() {
               </Link>
             </article>
           ))}
-        </div>
+        </Stagger>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1fr]">
           <div>
@@ -108,16 +109,16 @@ export default function ServicesPage() {
             </h2>
           </div>
 
-          <div className="grid gap-3">
+          <Stagger itemSelector=".service-use-case" className="grid gap-3" stagger={0.05}>
             {useCases.map((item) => (
               <p
                 key={item}
-                className="rounded-2xl border border-black/[0.10] bg-white/62 p-4 text-sm leading-7 text-stone"
+                className="service-use-case rounded-2xl border border-black/[0.10] bg-white/62 p-4 text-sm leading-7 text-stone"
               >
                 {item}
               </p>
             ))}
-          </div>
+          </Stagger>
         </div>
 
         <div className="mt-10 rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">

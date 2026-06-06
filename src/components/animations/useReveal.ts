@@ -1,39 +1,51 @@
 "use client";
 
-import { useEffect } from "react";
-import { ensureGsap, gsap } from "./gsapClient";
+import { animationConfig } from "@/lib/animation";
+import { ensureGsap, gsap, useGSAP } from "./gsapClient";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 export function useReveal<T extends HTMLElement>(
   ref: React.RefObject<T | null>,
-  opts?: { delay?: number }
+  opts?: { delay?: number; y?: number; duration?: number; start?: string }
 ) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect(() => {
+  useGSAP(() => {
     const el = ref.current;
-    if (!el || prefersReducedMotion) return;
+    if (!el) return;
 
     ensureGsap();
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { autoAlpha: 0, y: 24 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: opts?.delay ?? 0,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-          },
-        }
-      );
-    }, el);
+    if (prefersReducedMotion) {
+      gsap.set(el, { autoAlpha: 1, y: 0, clearProps: "transform" });
+      return;
+    }
 
-    return () => ctx.revert();
-  }, [prefersReducedMotion, ref, opts?.delay]);
+    gsap.fromTo(
+      el,
+      { autoAlpha: 0, y: opts?.y ?? animationConfig.distance.revealY },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: opts?.duration ?? animationConfig.duration.reveal,
+        ease: animationConfig.ease.default,
+        delay: opts?.delay ?? 0,
+        scrollTrigger: {
+          trigger: el,
+          start: opts?.start ?? animationConfig.scroll.start,
+          once: true,
+        },
+      },
+    );
+  }, {
+    scope: ref,
+    dependencies: [
+      prefersReducedMotion,
+      opts?.delay,
+      opts?.duration,
+      opts?.start,
+      opts?.y,
+    ],
+    revertOnUpdate: true,
+  });
 }

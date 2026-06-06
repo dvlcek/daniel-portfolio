@@ -1,14 +1,9 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-let registered = false;
+import { registerGsap } from "@/lib/gsap";
 
 export function ensureGsap() {
-  if (registered) return;
-  gsap.registerPlugin(ScrollTrigger);
-  registered = true;
+  registerGsap();
 }
 
-export { gsap, ScrollTrigger };
+export { gsap, ScrollTrigger, useGSAP, registerGsap } from "@/lib/gsap";

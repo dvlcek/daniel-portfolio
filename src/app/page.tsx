@@ -7,7 +7,7 @@ import { Process } from "@/components/sections/Process";
 import { PackagesSection } from "@/components/sections/PackagesSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { HeroProblemBridge } from "@/components/animations/HeroProblemBridge";
+import { SystemScrollTransition } from "@/components/animations/SystemScrollTransition";
 import { BusinessPlatformSection } from "@/components/sections/BusinessPlatformSection";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function Home() {
     <main>
       <Hero />
       <Problem />
-      <HeroProblemBridge />
+      <SystemScrollTransition />
       <SolutionPillars />
       <PackagesSection />
       <BusinessPlatformSection />

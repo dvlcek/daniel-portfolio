@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { animationConfig, desktopMotionQuery } from "@/lib/animation";
 import {
   ensureGsap,
   gsap,
   ScrollTrigger,
+  useGSAP,
 } from "@/components/animations/gsapClient";
 
 type FlowClone = {
@@ -75,21 +76,14 @@ function setVisibility(elements: HTMLElement[], value: number) {
 }
 
 export function HeroProblemBridge() {
-  useEffect(() => {
+  useGSAP(() => {
     if (typeof window === "undefined") return;
-
-    const desktopQuery = window.matchMedia("(min-width: 1024px)");
-    const reducedMotionQuery = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
-
-    if (!desktopQuery.matches || reducedMotionQuery.matches) return;
 
     ensureGsap();
 
-    let cleanupBridge: (() => void) | undefined;
+    const mm = gsap.matchMedia();
 
-    const ctx = gsap.context(() => {
+    mm.add(desktopMotionQuery, () => {
       const hero = document.querySelector<HTMLElement>("[data-section='hero']");
       const problem = document.querySelector<HTMLElement>(
         "[data-section='problem']",
@@ -124,7 +118,6 @@ export function HeroProblemBridge() {
       );
 
       if (!sources.length || !targets.length) return;
-
       const flowClones: FlowClone[] = sources.flatMap((source) => {
         const id = source.dataset.flowSource;
         if (!id) return [];
@@ -244,7 +237,7 @@ export function HeroProblemBridge() {
         start: "bottom 92%",
         endTrigger: problem,
         end: "top 26%",
-        scrub: 0.35,
+        scrub: animationConfig.scroll.scrub,
         invalidateOnRefresh: true,
         onUpdate: (self) => render(self.progress),
         onRefreshInit: measure,
@@ -258,7 +251,7 @@ export function HeroProblemBridge() {
 
       window.addEventListener("resize", onResize);
 
-      cleanupBridge = () => {
+      const cleanupBridge = () => {
         window.removeEventListener("resize", onResize);
         trigger.kill();
         flowClones.forEach(({ clone }) => clone.remove());
@@ -267,15 +260,18 @@ export function HeroProblemBridge() {
         if (problemLines) gsap.set(problemLines, { clearProps: "all" });
         if (heroCore) gsap.set(heroCore, { clearProps: "all" });
       };
+
+      ScrollTrigger.refresh();
+
+      return () => {
+        cleanupBridge?.();
+      };
     });
 
-    ScrollTrigger.refresh();
-
     return () => {
-      cleanupBridge?.();
-      ctx.revert();
+      mm.revert();
     };
-  }, []);
+  }, { dependencies: [], revertOnUpdate: true });
 
   return null;
 }

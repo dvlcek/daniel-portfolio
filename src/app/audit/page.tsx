@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 
 export const metadata: Metadata = {
   title: "Website & Systems Audit",
@@ -24,8 +25,8 @@ export default function AuditPage() {
           desc="A focused review of your website, workflows, tools, and repeated manual work before a rebuild, automation, or platform project."
         />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          <article className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+        <Stagger itemSelector=".audit-card" className="mt-10 grid gap-4 md:grid-cols-2">
+          <article className="audit-card rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
             <h2 className="text-lg font-semibold text-cream">You get</h2>
             <ul className="mt-4 space-y-2 text-sm text-stone">
               <li>- Bottleneck map across website and operations</li>
@@ -35,7 +36,7 @@ export default function AuditPage() {
             </ul>
           </article>
 
-          <article className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+          <article className="audit-card rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
             <h2 className="text-lg font-semibold text-cream">Best for</h2>
             <p className="mt-4 text-sm leading-7 text-stone">
               Teams that know the current setup is messy but are not sure
@@ -46,7 +47,7 @@ export default function AuditPage() {
               Start with an audit
             </Link>
           </article>
-        </div>
+        </Stagger>
       </Container>
     </main>
   );

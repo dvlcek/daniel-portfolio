@@ -1,43 +1,57 @@
 "use client";
 
-import { useEffect } from "react";
-import { ensureGsap, gsap } from "./gsapClient";
+import { animationConfig } from "@/lib/animation";
+import { ensureGsap, gsap, useGSAP } from "./gsapClient";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 export function useStagger<T extends HTMLElement>(
   containerRef: React.RefObject<T | null>,
   itemSelector: string,
-  opts?: { y?: number; stagger?: number }
+  opts?: { y?: number; stagger?: number; duration?: number; start?: string }
 ) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect(() => {
+  useGSAP(() => {
     const el = containerRef.current;
-    if (!el || prefersReducedMotion) return;
+    if (!el) return;
 
     ensureGsap();
 
-    const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray<HTMLElement>(itemSelector);
-      if (!items.length) return;
+    const select = gsap.utils.selector(el);
+    const items = select<HTMLElement>(itemSelector);
+    if (!items.length) return;
 
-      gsap.fromTo(
-        items,
-        { autoAlpha: 0, y: opts?.y ?? 20 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: opts?.stagger ?? 0.08,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-          },
-        }
-      );
-    }, el);
+    if (prefersReducedMotion) {
+      gsap.set(items, { autoAlpha: 1, y: 0, clearProps: "transform" });
+      return;
+    }
 
-    return () => ctx.revert();
-  }, [containerRef, itemSelector, opts?.stagger, opts?.y, prefersReducedMotion]);
+    gsap.fromTo(
+      items,
+      { autoAlpha: 0, y: opts?.y ?? animationConfig.distance.cardY },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: opts?.duration ?? animationConfig.duration.card,
+        ease: animationConfig.ease.default,
+        stagger: opts?.stagger ?? animationConfig.stagger.default,
+        scrollTrigger: {
+          trigger: el,
+          start: opts?.start ?? animationConfig.scroll.start,
+          once: true,
+        },
+      },
+    );
+  }, {
+    scope: containerRef,
+    dependencies: [
+      itemSelector,
+      opts?.duration,
+      opts?.stagger,
+      opts?.start,
+      opts?.y,
+      prefersReducedMotion,
+    ],
+    revertOnUpdate: true,
+  });
 }

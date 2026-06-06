@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Stagger } from "@/components/animations/ScrollAnimation";
 
 export const metadata: Metadata = {
   title: "Skills",
@@ -46,11 +47,11 @@ export default function SkillsPage() {
           desc="Focused on building practical websites, platforms, automations, and internal tools."
         />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <Stagger itemSelector=".skill-card" className="mt-10 grid gap-4 md:grid-cols-2">
           {groups.map((g) => (
             <section
               key={g.title}
-              className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
+              className="skill-card rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
             >
               <h2 className="text-lg font-semibold text-cream">{g.title}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -65,7 +66,7 @@ export default function SkillsPage() {
               </div>
             </section>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </main>
   );

@@ -8,6 +8,9 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  duration?: number;
+  y?: number;
+  start?: string;
 };
 
 type StaggerProps = {
@@ -16,12 +19,21 @@ type StaggerProps = {
   itemSelector: string;
   y?: number;
   stagger?: number;
+  duration?: number;
+  start?: string;
 };
 
-export function Reveal({ children, className, delay }: RevealProps) {
+export function Reveal({
+  children,
+  className,
+  delay,
+  duration,
+  y,
+  start,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useReveal(ref, { delay });
+  useReveal(ref, { delay, duration, y, start });
 
   return (
     <div ref={ref} className={className}>
@@ -36,10 +48,12 @@ export function Stagger({
   itemSelector,
   y,
   stagger,
+  duration,
+  start,
 }: StaggerProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useStagger(ref, itemSelector, { y, stagger });
+  useStagger(ref, itemSelector, { y, stagger, duration, start });
 
   return (
     <div ref={ref} className={className}>

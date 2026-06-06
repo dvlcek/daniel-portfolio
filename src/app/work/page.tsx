@@ -3,10 +3,10 @@ import { caseStudies } from "@/lib/siteContent";
 import { WorkFilterGrid } from "./WorkFilterGrid";
 
 const pageSignals = [
-  "Premium websites",
-  "Custom business systems",
-  "CRM automation",
-  "Internal dashboards",
+  "Full platforms",
+  "Business automation",
+  "Websites",
+  "Platform remakes",
 ];
 
 export default function WorkPage() {
@@ -28,14 +28,14 @@ export default function WorkPage() {
               </p>
 
               <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
-                Case studies built around business outcomes.
+                Projects built around business problems, not just screens.
               </h1>
             </div>
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
-              A portfolio of premium websites, custom business systems,
-              internal dashboards, CRM automation, and platform rebuilds
-              designed to improve trust and create cleaner operations.
+              A focused look at websites, platforms, dashboards, automations,
+              and remakes built to make daily business workflows easier to
+              manage.
             </p>
           </div>
 
@@ -55,9 +55,8 @@ export default function WorkPage() {
 
         <footer className="mt-12 border-t border-white/[0.08] pt-6">
           <p className="max-w-3xl text-sm leading-relaxed text-white/42">
-            Each project is presented as a business system, not just a visual
-            build. The focus is always on structure, operational value, and what
-            the solution makes easier for the company.
+            Each project is presented through the problem, the system built,
+            and what became easier for the company.
           </p>
         </footer>
       </Container>

@@ -5,7 +5,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { insightPosts } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
-  title: "Insights | Automation, Platforms & Operations",
+  title: "Insights | Websites, Automation & Business Systems",
   description:
     "Practical insights on business automation, website rebuilds, operational systems, CRM workflows, and platform decisions for growing companies.",
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Insights | Daniel Vlcek",
     description:
-      "Practical notes on automation, platform rebuilds, business operations, and digital infrastructure.",
+      "Practical notes on automation, platform rebuilds, business operations, and systems that make companies easier to run.",
     url: "/insights",
     type: "website",
   },
@@ -26,7 +26,7 @@ export default function InsightsPage() {
       <Container>
         <SectionTitle
           eyebrow="Insights"
-          title="Insights on automation, platforms, and operational systems"
+          title="Practical notes on websites, automation, and business systems"
           desc="Practical notes for businesses deciding what to improve, rebuild, or automate next."
         />
 

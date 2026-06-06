@@ -5,7 +5,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 export const metadata: Metadata = {
   title: "CV",
   description:
-    "CV for Daniel Vlcek, Software Developer focused on automation systems and modern web engineering.",
+    "CV for Daniel Vlcek, focused on websites, automation systems, internal tools, and modern web engineering.",
   robots: {
     index: false,
     follow: true,
@@ -19,7 +19,7 @@ export default function CVPage() {
         <SectionTitle
           eyebrow="CV"
           title="Daniel Vlcek"
-          desc="Software Developer focused on automation systems and modern web engineering."
+          desc="Developer focused on websites, automation systems, internal tools, and modern web engineering."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -60,10 +60,10 @@ export default function CVPage() {
               <div className="mt-4 space-y-6 text-sm text-white/70">
                 <div>
                   <p className="text-white font-semibold">
-                    Self-Employed — Full-Stack Development
+                    Self-Employed - Full-Stack Development
                   </p>
                   <p className="text-white/55">
-                    Aug 2023 – Present • Remote
+                    Aug 2023 - Present - Remote
                   </p>
 
                   <ul className="mt-3 list-disc pl-5 space-y-2">

@@ -1,211 +1,222 @@
-import Image from "next/image";
+"use client";
+
+import {
+  AlertCircle,
+  CalendarCheck,
+  ClipboardList,
+  CreditCard,
+  Globe2,
+  HelpCircle,
+  Mail,
+  MousePointerClick,
+  PlugZap,
+  Table2,
+  Users,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/animations/ScrollAnimation";
 
-const problems = [
+type ProblemTool = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  x: number;
+  y: number;
+  rotate: number;
+  color: string;
+};
+
+type ProblemPoint = {
+  label: string;
+  desc: string;
+  icon: LucideIcon;
+};
+
+const problemTools: ProblemTool[] = [
+  { id: "website", label: "Website", icon: Globe2, x: 12, y: 18, rotate: -5, color: "text-[#2563EB]" },
+  { id: "crm", label: "CRM", icon: Users, x: 57, y: 12, rotate: 4, color: "text-[#4F46E5]" },
+  { id: "emails", label: "Emails", icon: Mail, x: 34, y: 34, rotate: -2, color: "text-[#2563EB]" },
+  { id: "bookings", label: "Bookings", icon: CalendarCheck, x: 72, y: 38, rotate: 6, color: "text-[#2563EB]" },
+  { id: "payments", label: "Payments", icon: CreditCard, x: 17, y: 61, rotate: 3, color: "text-[#2563EB]" },
+  { id: "spreadsheet", label: "Spreadsheet", icon: Table2, x: 48, y: 70, rotate: -4, color: "text-[#16A34A]" },
+  { id: "manual-tasks", label: "Manual Tasks", icon: ClipboardList, x: 76, y: 71, rotate: 3, color: "text-[#1D2740]" },
+];
+
+const problemPoints: ProblemPoint[] = [
   {
-    label: "Admin tasks eating hours every week",
-    desc: "Follow-ups, updates, reminders, and data entry keep pulling the team away from higher-value work.",
-    icon: "/icons/problems/repetitive-tasks.png",
+    label: "Too much work still happens manually",
+    desc: "Follow-ups, reminders, client details, and admin tasks depend on people remembering what to do next.",
+    icon: MousePointerClick,
   },
   {
-    label: "Forms, email, CRM, and payments do not connect",
-    desc: "Lead intake, booking, payment, and customer handoffs happen across too many disconnected places.",
-    icon: "/icons/problems/disconnected.png",
+    label: "Tools do not talk to each other",
+    desc: "Forms, email, CRM, payments, booking, and client communication live in separate places.",
+    icon: PlugZap,
   },
   {
-    label: "Websites that look fine but do not create enough trust",
-    desc: "The site exists, but the offer is unclear, the lead path is weak, and follow-up starts too late.",
-    icon: "/icons/problems/stagnant-website.png",
+    label: "The website does not support the process",
+    desc: "The site may look acceptable, but the lead path is weak and the work after contact is still unclear.",
+    icon: Globe2,
   },
   {
-    label: "No clear view of leads, tasks, or next actions",
-    desc: "Without a dashboard or structured reporting flow, every new customer adds more coordination overhead.",
-    icon: "/icons/problems/no-tracking.png",
+    label: "No clear view of next actions",
+    desc: "Without a simple system or dashboard, every new inquiry creates more checking and coordination.",
+    icon: Workflow,
   },
 ];
 
-const signals = [
-  "Admin overload",
-  "Scattered tools",
-  "Slow follow-up",
-  "No clear owner",
-];
+function ProblemScribbleLines() {
+  return (
+    <svg
+      className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block"
+      viewBox="0 0 720 430"
+      fill="none"
+      aria-hidden="true"
+      data-flow-lines="problem-scribble-lines"
+    >
+      <defs>
+        <filter id="problemLineGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <path d="M74 92 C150 28 214 132 282 78 C352 22 420 92 492 58 C556 28 602 68 664 44" stroke="#A8B5DE" strokeDasharray="5 8" strokeLinecap="round" strokeWidth="1.4" filter="url(#problemLineGlow)" />
+      <path d="M108 250 C182 172 252 300 334 214 C418 126 496 254 598 174" stroke="#90A8EA" strokeDasharray="4 8" strokeLinecap="round" strokeWidth="1.35" />
+      <path d="M128 320 C218 356 292 260 372 310 C452 360 548 284 642 322" stroke="#B6C5F2" strokeDasharray="3 8" strokeLinecap="round" strokeWidth="1.25" />
+      <path d="M270 120 C304 148 266 196 228 176 C186 154 220 94 270 120 C322 146 306 218 250 224" stroke="#B0BFF2" strokeDasharray="4 8" strokeLinecap="round" strokeWidth="1.2" />
+      <path d="M450 98 C508 64 584 102 558 154 C532 206 446 178 470 124 C492 74 574 118 628 96" stroke="#B0BFF2" strokeDasharray="4 8" strokeLinecap="round" strokeWidth="1.2" />
+      <path d="M470 270 C526 226 612 236 604 292 C596 344 504 332 512 282 C522 226 610 270 668 244" stroke="#B0BFF2" strokeDasharray="4 8" strokeLinecap="round" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+function ProblemToolCard({ tool }: { tool: ProblemTool }) {
+  const Icon = tool.icon;
+
+  return (
+    <div
+      data-flow-target={tool.id}
+      data-flow-rotate={tool.rotate}
+      style={{
+        left: `${tool.x}%`,
+        top: `${tool.y}%`,
+        transform: `translate(-50%, -50%) rotate(${tool.rotate}deg)`,
+      }}
+      className="absolute z-20 hidden h-12 w-[168px] items-center gap-3 overflow-hidden rounded-2xl bg-white/45 px-3.5 shadow-[0_16px_42px_rgba(16,35,95,0.08),inset_0_1px_0_rgba(255,255,255,0.78)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:bg-white/62 md:flex"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.62),rgba(255,255,255,0.16)_55%,rgba(94,134,255,0.08))]" />
+      <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-xl">
+        <Icon className={tool.color} size={15} strokeWidth={2} />
+      </span>
+      <span className="relative truncate text-xs font-semibold text-[#1D2740]">
+        {tool.label}
+      </span>
+    </div>
+  );
+}
+
+function WarningBubble({ id, icon: Icon, className }: { id: string; icon: LucideIcon; className: string }) {
+  return (
+    <span
+      data-flow-problem-node={id}
+      className={[
+        "absolute z-30 hidden h-11 w-11 items-center justify-center rounded-full bg-white/58 text-[#1238F2] shadow-[0_14px_32px_rgba(16,35,95,0.09),inset_0_1px_0_rgba(255,255,255,0.82)] backdrop-blur-2xl md:flex",
+        className,
+      ].join(" ")}
+    >
+      <Icon size={18} strokeWidth={2} />
+    </span>
+  );
+}
+
+function ProblemVisual() {
+  return (
+    <div className="relative overflow-visible md:min-h-[420px]">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1238F2]/[0.09] blur-3xl" />
+      <div className="pointer-events-none absolute left-[52%] top-[48%] h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6F98FF]/[0.10] blur-2xl" />
+      <ProblemScribbleLines />
+
+      <div className="relative z-10 grid gap-3 md:hidden">
+        {problemTools.map((tool) => {
+          const Icon = tool.icon;
+          return (
+            <div key={tool.id} className="flex min-h-14 items-center gap-3 overflow-hidden rounded-2xl bg-white/50 px-4 py-3 shadow-[0_14px_34px_rgba(16,35,95,0.08),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-2xl">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-xl">
+                <Icon className={tool.color} size={16} strokeWidth={2} />
+              </span>
+              <span className="text-sm font-semibold text-[#1D2740]">{tool.label}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="relative z-10 mx-auto hidden h-[420px] max-w-[720px] md:block">
+        {problemTools.map((tool) => (
+          <ProblemToolCard key={tool.id} tool={tool} />
+        ))}
+        <WarningBubble id="alert-1" icon={AlertCircle} className="left-[28%] top-[46%]" />
+        <WarningBubble id="alert-2" icon={AlertCircle} className="right-[10%] top-[18%]" />
+        <WarningBubble id="question-1" icon={HelpCircle} className="right-[12%] bottom-[32%]" />
+        <div className="absolute left-[49%] top-[47%] z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1238F2]/[0.11] blur-2xl" />
+      </div>
+    </div>
+  );
+}
 
 export function Problem() {
   return (
-    <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
-      {/* Background atmosphere */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(47,47,228,0.08),transparent_30%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_55%,rgba(22,46,147,0.10),transparent_34%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
-
-        <div className="absolute right-0 top-0 h-full w-1/2 opacity-[0.035]">
-          <div className="h-full w-full bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
-        </div>
-      </div>
-
+    <section
+      className="relative overflow-hidden bg-white py-20 md:py-28"
+      data-section="problem"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_15%,rgba(18,56,242,0.055),transparent_32%),radial-gradient(circle_at_82%_20%,rgba(18,56,242,0.04),transparent_30%)]" />
       <Container>
-        <Reveal className="relative z-10">
-          {/* Header */}
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_0.75fr] lg:items-end">
+        <div className="relative z-10">
+          <div className="grid gap-12 lg:grid-cols-[0.78fr_1fr] lg:items-center">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
-                The Problem
+              <p className="text-[10px] font-bold uppercase tracking-[0.26em] text-[#1238F2]">
+                The problem
               </p>
-
-              <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-                Growth gets harder when the website, leads, and operations do
-                not work together.
+              <h2 className="mt-4 max-w-xl text-balance text-[2.75rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#10131A] md:text-[4rem]">
+                Too many tools.
+                <span className="block font-serif italic font-normal text-[#1238F2]">
+                  Zero connection.
+                </span>
               </h2>
-
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
-                When inquiries sit in email, CRM updates depend on memory, and
-                internal work is tracked across scattered tools, the team loses
-                speed before the customer even feels the value.
+              <p className="mt-5 max-w-lg text-base leading-8 text-[#566176]">
+                Disconnected tools, manual workarounds, and outdated websites
+                slow you down, create mistakes, and make growth harder than it
+                needs to be.
               </p>
             </div>
-
-            {/* Diagnosis card */}
-            <div className="group relative overflow-hidden rounded-3xl p-px transition duration-500 hover:shadow-[0_24px_80px_rgba(47,47,228,0.12)]">
-              <div className="absolute inset-0 rounded-3xl bg-white/[0.08] transition duration-500 group-hover:bg-[linear-gradient(135deg,rgba(47,47,228,0.65),rgba(255,255,255,0.12),rgba(22,46,147,0.20))]" />
-
-              <div className="relative rounded-[23px] bg-site-bg/80 p-5 backdrop-blur-xl">
-                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-brand-blue-soft/80" />
-                <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/14" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.24em] text-white/35">
-                        Operations diagnosis
-                      </p>
-                      <p className="mt-2 text-sm font-medium text-white/80">
-                        Common growth blockers
-                      </p>
-                    </div>
-
-                    <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
-                      Before strategy
-                    </span>
-                  </div>
-
-                  <div className="mt-4 grid gap-2">
-                    {signals.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-site-bg/45 px-4 py-3 transition duration-300 hover:border-brand-blue/25 hover:bg-brand-blue/10"
-                      >
-                        <span className="text-sm text-white/60">{item}</span>
-                        <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shadow-[0_0_16px_rgba(47,47,228,0.75)]" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProblemVisual />
           </div>
 
-          {/* Problem cards */}
           <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {problems.map((item, index) => (
-              <div
-                key={item.label}
-                className="group relative overflow-hidden rounded-3xl p-px transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(0,0,0,0.34)]"
-              >
-                {/* Premium edge highlight */}
-                <div className="absolute inset-0 rounded-3xl bg-white/[0.08] transition duration-500 group-hover:bg-[linear-gradient(135deg,rgba(47,47,228,0.70),rgba(255,255,255,0.14),rgba(22,46,147,0.18))]" />
-
-                <div className="relative h-full overflow-hidden rounded-[23px] bg-site-bg/78 p-6 backdrop-blur-xl md:p-7">
-                  {/* Top light edge */}
-                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-500 group-hover:via-brand-blue-soft/90" />
-
-                  {/* Soft hover glow */}
-                  <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/12" />
-
-                  {/* Subtle inner shine */}
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/[0.04] via-transparent to-transparent opacity-60 transition duration-500 group-hover:opacity-100" />
-
-                  <div className="relative z-10 flex gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-site-bg/60 text-brand-blue transition duration-300 group-hover:border-brand-blue/35 group-hover:bg-brand-blue/12 group-hover:shadow-[0_0_28px_rgba(47,47,228,0.18)]">
-                      <Image
-                        src={item.icon}
-                        alt=""
-                        width={28}
-                        height={28}
-                        className="brightness-0 invert opacity-70 transition duration-300 group-hover:opacity-100"
-                      />
+            {problemPoints.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <article key={item.label} className="group relative overflow-hidden rounded-[1.75rem] bg-[#FAFAF8]/82 p-6 shadow-[0_16px_44px_rgba(16,19,26,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_22px_60px_rgba(16,19,26,0.09),inset_0_1px_0_rgba(255,255,255,0.9)]">
+                  <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.64),rgba(255,255,255,0.14)_58%,rgba(94,134,255,0.06))]" />
+                  <div className="relative flex gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-[#1238F2] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_24px_rgba(18,56,242,0.08)] backdrop-blur-xl">
+                      <Icon size={22} strokeWidth={1.8} />
                     </div>
-
                     <div>
-                      <div className="mb-3 flex items-center gap-3">
-                        <span className="text-xs font-medium text-brand-blue transition duration-300 group-hover:text-brand-blue-light">
-                          0{index + 1}
-                        </span>
-                        <span className="h-px w-8 bg-brand-blue/35 transition duration-300 group-hover:w-12 group-hover:bg-brand-blue-light/70" />
-                      </div>
-
-                      <h3 className="text-lg font-semibold leading-snug text-white">
-                        {item.label}
-                      </h3>
-
-                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/50 transition duration-300 group-hover:text-white/62">
-                        {item.desc}
-                      </p>
+                      <p className="text-xs font-semibold text-[#1238F2]">0{index + 1}</p>
+                      <h3 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-[#10131A]">{item.label}</h3>
+                      <p className="mt-3 text-sm leading-7 text-[#647086]">{item.desc}</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                </article>
+              );
+            })}
           </div>
-
-          {/* Bottom statement */}
-          <div className="group mt-10 overflow-hidden rounded-3xl p-px transition duration-500 hover:shadow-[0_24px_90px_rgba(47,47,228,0.10)]">
-            <div className="absolute rounded-3xl bg-white/[0.08]" />
-
-            <div className="relative overflow-hidden rounded-[23px] border border-brand-blue/20 bg-white/[0.035] p-6 shadow-2xl shadow-black/25 backdrop-blur-xl md:p-8">
-              <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/0 to-transparent transition duration-500 group-hover:via-brand-blue-soft/80" />
-              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-brand-blue/0 blur-3xl transition duration-500 group-hover:bg-brand-blue/12" />
-
-              <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                <p className="max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
-                  You do not need more manual effort.
-                  <span className="ml-2 font-semibold text-white">
-                    You need a cleaner setup for leads, follow-up, reporting,
-                    and daily operations.
-                  </span>
-                </p>
-
-                <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-white/[0.08] bg-site-bg/55 px-4 py-3 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue-light ring-1 ring-brand-blue/25">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path
-                        d="M2.5 11.5L6 8L8.5 10.5L13.5 4.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M10 4.5H13.5V8"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-
-                  <span className="text-sm font-medium text-white/75">
-                    Better operations create leverage
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

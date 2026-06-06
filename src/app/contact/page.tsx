@@ -77,15 +77,15 @@ const fieldClassName =
 
 const expectations = [
   "Your current website, tools, and lead handling process",
-  "Where slow follow-up, scattered tools, or weak structure create friction",
-  "Whether a rebuild, dashboard, CRM flow, or automation is the right next step",
+  "Where manual work, scattered tools, or weak structure create friction",
+  "Whether a website, platform, automation, or remake is the right next step",
   "A realistic next step based on priority, timeline, and scope",
 ];
 
 const callFit = [
-  "Companies that need a stronger website or lead path",
-  "Teams losing time through repeated admin or disconnected tools",
-  "Businesses planning a rebuild, dashboard, CRM flow, or automation project",
+  "Companies that need a clearer website or lead path",
+  "Businesses losing time through repeated admin or disconnected tools",
+  "Owners planning a platform, workflow, automation, or website remake",
 ];
 
 function SelectField({
@@ -360,7 +360,6 @@ export default function ContactPage() {
     setSubmitting(true);
 
     try {
-      console.log("New lead:", form);
       await new Promise((resolve) => setTimeout(resolve, 400));
       setStep(2);
     } catch (error) {
@@ -405,15 +404,14 @@ export default function ContactPage() {
               </p>
 
               <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
-                Start with a strategy call.
+                Tell me what you want to improve.
               </h1>
             </div>
 
             <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
-              A short call to understand your business, identify the main
-              bottleneck, and decide whether a website rebuild, lead flow,
-              dashboard, CRM setup, or automation project is the right next
-              step.
+              Share a little context about your website, workflow, tools, or
+              repeated manual work. Then choose a time to discuss the most
+              realistic next step.
             </p>
           </div>
         </header>
@@ -425,12 +423,13 @@ export default function ContactPage() {
             <div className="relative z-10">
               <div className="flex flex-col gap-5 border-b border-white/[0.08] pb-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-white">
-                    Strategy call intake
+                    <p className="text-sm font-semibold text-white">
+                    Project call intake
                   </p>
 
                   <p className="mt-1 text-sm text-white/42">
-                    Add the context first, then pick a time.
+                    This prepares the booking context. It is not a separate
+                    saved form submission.
                   </p>
                 </div>
 
@@ -483,9 +482,9 @@ export default function ContactPage() {
                   </div>
 
                   <TextareaField
-                    label="What do you want to improve?"
+                      label="What do you want to improve?"
                     name="projectGoal"
-                    placeholder="Briefly describe the website, lead flow, dashboard, CRM, or repeated task you want to improve."
+                    placeholder="Briefly describe the website, workflow, dashboard, CRM, platform, or repeated task you want to improve."
                     required
                     value={form.projectGoal}
                     onChange={set("projectGoal")}
@@ -498,7 +497,7 @@ export default function ContactPage() {
                       options={[
                         "Website or landing page",
                         "Lead flow or CRM",
-                        "Internal dashboard",
+                        "Platform or internal dashboard",
                         "Automation or repeated tasks",
                         "Multiple areas / not sure yet",
                       ]}
@@ -536,7 +535,7 @@ export default function ContactPage() {
                     disabled={submitting}
                     className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <span>{submitting ? "Saving..." : "Continue to booking"}</span>
+                    <span>{submitting ? "Preparing booking..." : "Continue to booking"}</span>
                     {!submitting ? (
                       <ArrowRight
                         size={15}
@@ -546,7 +545,8 @@ export default function ContactPage() {
                   </button>
 
                   <p className="text-center text-xs leading-relaxed text-white/34">
-                    This helps make the call focused instead of generic.
+                    Your details are attached to the calendar booking in the
+                    next step.
                   </p>
                 </form>
               ) : (
@@ -635,9 +635,8 @@ export default function ContactPage() {
               </h2>
 
               <p className="mt-4 text-sm leading-relaxed text-white/52">
-                The call is used to understand where the highest-leverage
-                improvement is, not to push unnecessary features or oversized
-                scope.
+                The call is used to understand what is messy, manual, or
+                unclear, not to push unnecessary features or oversized scope.
               </p>
 
               <div className="mt-7 space-y-4">
@@ -676,7 +675,8 @@ export default function ContactPage() {
 
               <p className="mt-6 text-sm leading-relaxed text-white/38">
                 Clear direction, honest feedback, and a realistic next step for
-                your website, lead flow, dashboard, CRM, or internal operation.
+                your website, platform, workflow, automation, or internal
+                operation.
               </p>
             </div>
           </aside>

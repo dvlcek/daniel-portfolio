@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Websites, Automation & Business Systems",
+  title: "Work | Business Systems, Websites & Automation",
   description:
-    "Case studies of premium websites, business operating systems, automation workflows, internal dashboards, CRM flows, and platform rebuilds built by Daniel Vlcek.",
+    "Case studies of websites, business platforms, automation systems, internal dashboards, CRM workflows, and platform remakes built by Daniel Vlcek.",
   alternates: {
     canonical: "/work",
   },
   openGraph: {
-    title: "Case Studies | Daniel Vlcek",
+    title: "Work | Daniel Vlcek",
     description:
-      "Explore websites, platform rebuilds, automation systems, dashboards, and CRM workflows built around business outcomes.",
+      "Explore websites, platform builds, automation systems, dashboards, and CRM workflows built around real business problems.",
     url: "/work",
     type: "website",
   },

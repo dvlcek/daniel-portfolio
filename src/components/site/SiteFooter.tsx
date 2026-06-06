@@ -4,22 +4,21 @@ import { primaryCta } from "@/lib/siteContent";
 
 const footerLinks = [
   { label: "Work", href: "/work" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Process", href: "/#process" },
   { label: "Insights", href: "/insights" },
 ];
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-brand-blue/20 bg-site-bg-deep">
+    <footer className="relative overflow-hidden border-t border-[#DDE2EE] bg-[#10131A]">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/55 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.08),transparent_34%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#C9D4FF]/60 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(18,56,242,0.18),transparent_34%)]" />
       </div>
 
       <Container>
         <div className="relative z-10 py-10 md:py-12">
-          {/* Background brand mark */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <p className="select-none whitespace-nowrap text-[clamp(3.5rem,9vw,8rem)] font-semibold uppercase leading-none tracking-[-0.08em] text-white/[0.028]">
               Daniel Vlcek
@@ -30,15 +29,14 @@ export function SiteFooter() {
             <div>
               <Link
                 href="/"
-                className="inline-flex text-sm font-semibold tracking-tight text-white transition-colors duration-300 hover:text-brand-blue-light"
+                className="inline-flex text-sm font-semibold tracking-tight text-white transition-colors duration-300 hover:text-[#C9D4FF]"
               >
                 Daniel Vlcek
               </Link>
 
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/48">
-                Software Developer & Automation Architect building scalable
-                websites, automation systems, and digital infrastructure for
-                cleaner business operations.
+                Websites, systems, and automations that help your business run
+                clearer and grow smarter.
               </p>
             </div>
 
@@ -57,7 +55,7 @@ export function SiteFooter() {
 
               <Link
                 href={primaryCta.href}
-                className="text-sm font-medium text-brand-blue-light transition-colors duration-300 hover:text-white"
+                className="text-sm font-medium text-[#C9D4FF] transition-colors duration-300 hover:text-white"
               >
                 {primaryCta.label}
               </Link>
@@ -70,7 +68,7 @@ export function SiteFooter() {
                 © {new Date().getFullYear()} Daniel Vlcek. All rights reserved.
               </p>
 
-              <p>Digital systems for faster, cleaner business operations.</p>
+              <p>Business systems for clearer daily work.</p>
             </div>
           </div>
         </div>

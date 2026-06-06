@@ -14,15 +14,15 @@ export function SectionTitle({
   return (
     <div className={cn("mb-10", className)}>
       {eyebrow ? (
-        <p className="text-xs uppercase tracking-[0.2em] text-white/50">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#1238F2]">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
+      <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#10131A] md:text-5xl md:leading-[1.05]">
         {title}
       </h2>
       {desc ? (
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/65">
+        <p className="mt-5 max-w-2xl text-base leading-8 text-[#566176]">
           {desc}
         </p>
       ) : null}

@@ -2,85 +2,62 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Stagger } from "@/components/animations/ScrollAnimation";
 
-const principles = [
+const outcomes = [
   {
     number: "01",
-    title: "Clear communication",
-    text: "You know what is being built, why it matters, what tradeoffs exist, and what happens next.",
+    title: "Less manual work",
+    text: "Repeated admin, follow-up, updates, and handoffs can move into clearer workflows instead of depending on memory.",
   },
   {
     number: "02",
-    title: "Business context first",
-    text: "The offer, lead path, operations, and team handoffs are understood before technical decisions are made.",
+    title: "Clearer lead handling",
+    text: "Inquiries can be captured, qualified, routed, and followed up with in a more structured way.",
   },
   {
     number: "03",
-    title: "Useful delivery",
-    text: "The output is designed to support real work: lead handling, booking, reporting, admin control, and customer experience.",
+    title: "Easier client management",
+    text: "Dashboards, portals, booking flows, payment flows, and admin views can give the business one cleaner place to manage work.",
   },
   {
     number: "04",
-    title: "Long-term structure",
-    text: "The code, content, and operational logic are kept maintainable so the setup can improve after launch.",
+    title: "Stronger online presence",
+    text: "The website can explain the offer clearly while supporting the process that happens after a visitor becomes a lead.",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden bg-site-bg py-16 md:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(47,47,228,0.045),transparent_28%)]" />
-      </div>
-
+    <section className="relative overflow-hidden bg-[#F8F8F5] py-20 md:py-24">
       <Container>
-        <Stagger
-          itemSelector=".delivery-item"
-          y={14}
-          stagger={0.06}
-          className="relative z-10"
-        >
+        <Stagger itemSelector=".outcome-item" y={14} stagger={0.06}>
           <SectionTitle
-            eyebrow="Delivery Standards"
-            title="What clients can expect when the work starts."
-            desc="Structured communication, clean execution, and technical decisions tied to business value instead of unnecessary complexity."
+            eyebrow="Business outcomes"
+            title="The practical value is in the daily work."
+            desc="A good website or platform should not only look better. It should make leads, clients, admin, and follow-up easier to handle."
           />
 
-          <div className="mt-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.018] backdrop-blur-xl">
-            <div className="grid md:grid-cols-2">
-              {principles.map((item) => (
-                <div
-                  key={item.title}
-                  className="delivery-item group relative border-b border-white/[0.07] p-6 transition-[background-color] duration-300 last:border-b-0 hover:bg-white/[0.025] md:border-r md:last:border-b md:[&:nth-child(even)]:border-r-0 md:[&:nth-last-child(-n+2)]:border-b-0"
-                >
-                  <div className="absolute left-0 top-0 h-full w-px bg-brand-blue/0 transition duration-300 group-hover:bg-brand-blue/70" />
-                  <div className="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/45" />
-
-                  <div className="flex gap-5">
-                    <span className="font-mono text-xs text-brand-blue transition duration-300 group-hover:text-brand-blue-light">
-                      {item.number}
-                    </span>
-
-                    <div>
-                      <h3 className="text-base font-semibold tracking-tight text-white">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55">
-                        {item.text}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {outcomes.map((item) => (
+              <article
+                key={item.title}
+                className="outcome-item rounded-[2rem] border border-[#E3E7F0] bg-white p-6 shadow-[0_16px_48px_rgba(16,19,26,0.06)]"
+              >
+                <p className="font-mono text-xs font-semibold text-[#1238F2]">
+                  {item.number}
+                </p>
+                <h3 className="mt-4 text-xl font-semibold tracking-tight text-[#10131A]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[#566176]">
+                  {item.text}
+                </p>
+              </article>
+            ))}
           </div>
 
-          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-white/45">
-            No fake testimonials, vague promises, or inflated claims. The work
-            is judged by whether it makes the website, lead flow, or internal
-            operation easier to use and improve.
+          <p className="mt-6 max-w-3xl text-sm leading-7 text-[#7A8497]">
+            No fake numbers or inflated promises. The work is judged by whether
+            the business becomes easier to understand, operate, and improve.
           </p>
         </Stagger>
       </Container>

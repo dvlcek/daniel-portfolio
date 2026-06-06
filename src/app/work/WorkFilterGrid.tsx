@@ -19,10 +19,10 @@ type WorkFilterGridProps = {
 
 const filters: { label: string; value: CategoryFilter }[] = [
   { label: "All Projects", value: "all" },
-  { label: "Business Operating Systems", value: "system_build" },
-  { label: "Websites & Lead Platforms", value: "websites" },
-  { label: "Business Automation", value: "automation" },
-  { label: "Platform Rebuilds", value: "rebuilds" },
+  { label: "Full Platforms", value: "system_build" },
+  { label: "Websites", value: "websites" },
+  { label: "Automation", value: "automation" },
+  { label: "Remakes", value: "rebuilds" },
 ];
 
 export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
@@ -89,13 +89,12 @@ function CaseStudyCard({
   study: CaseStudy;
   index: number;
 }) {
-  const summary = study.subtitle || study.summary;
   const tags = study.whatIDid?.slice(0, 3) ?? [];
 
   return (
     <Link
       href={`/work/${study.slug}`}
-      className="group relative flex min-h-[560px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.022] transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_24px_80px_rgba(0,0,0,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
+      className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-white/[0.022] transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_20px_60px_rgba(0,0,0,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
     >
       <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/55" />
 
@@ -141,8 +140,8 @@ function CaseStudyCard({
             {study.title}
           </h2>
 
-          <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/56">
-            {summary}
+          <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/58">
+            {study.result}
           </p>
         </div>
 
@@ -150,11 +149,11 @@ function CaseStudyCard({
           {study.result ? (
             <div className="rounded-2xl border border-white/[0.08] bg-site-bg/45 p-4">
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/30">
-                Result
+                Proof angle
               </p>
 
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/62">
-                {study.result}
+                Problem mapped, system built, workflow made easier.
               </p>
             </div>
           ) : null}
@@ -175,7 +174,7 @@ function CaseStudyCard({
 
         <div className="mt-6 flex items-center justify-between border-t border-white/[0.08] pt-5">
           <span className="text-sm font-medium text-white/58 transition duration-300 group-hover:text-brand-blue-light">
-            View case study
+            View project
           </span>
 
           <span className="text-white/32 transition duration-300 group-hover:text-brand-blue-light">

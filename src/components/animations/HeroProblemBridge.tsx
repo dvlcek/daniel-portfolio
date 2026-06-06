@@ -1,0 +1,280 @@
+"use client";
+
+import { useEffect } from "react";
+import {
+  ensureGsap,
+  gsap,
+  ScrollTrigger,
+} from "@/components/animations/gsapClient";
+
+type FlowClone = {
+  id: string;
+  source: HTMLElement;
+  target: HTMLElement;
+  clone: HTMLElement;
+  finalRotate: number;
+};
+
+type ElementBox = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
+
+function clamp(value: number, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function lerp(start: number, end: number, progress: number) {
+  return start + (end - start) * progress;
+}
+
+function smoothstep(value: number) {
+  const t = clamp(value);
+  return t * t * (3 - 2 * t);
+}
+
+function getAbsoluteBox(element: HTMLElement): ElementBox {
+  const rect = element.getBoundingClientRect();
+
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY,
+    width: rect.width,
+    height: rect.height,
+  };
+}
+
+function makeClone(element: HTMLElement) {
+  const clone = element.cloneNode(true) as HTMLElement;
+
+  clone.removeAttribute("data-flow-source");
+  clone.setAttribute("aria-hidden", "true");
+  clone.style.position = "fixed";
+  clone.style.left = "0px";
+  clone.style.top = "0px";
+  clone.style.margin = "0";
+  clone.style.pointerEvents = "none";
+  clone.style.zIndex = "80";
+  clone.style.boxSizing = "border-box";
+  clone.style.transformOrigin = "center center";
+  clone.style.willChange = "transform, opacity, width, height";
+  clone.style.transition = "none";
+
+  document.body.appendChild(clone);
+
+  return clone;
+}
+
+function setVisibility(elements: HTMLElement[], value: number) {
+  gsap.set(elements, {
+    autoAlpha: value,
+    overwrite: true,
+  });
+}
+
+export function HeroProblemBridge() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    if (!desktopQuery.matches || reducedMotionQuery.matches) return;
+
+    ensureGsap();
+
+    let cleanupBridge: (() => void) | undefined;
+
+    const ctx = gsap.context(() => {
+      const hero = document.querySelector<HTMLElement>("[data-section='hero']");
+      const problem = document.querySelector<HTMLElement>(
+        "[data-section='problem']",
+      );
+
+      if (!hero || !problem) return;
+
+      const sources = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-flow-source]"),
+      );
+      const targets = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-flow-target]"),
+      );
+      const targetMap = new Map(
+        targets.map((target) => [target.dataset.flowTarget, target]),
+      );
+
+      const outputNodes = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-flow-output]"),
+      );
+      const problemNodes = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-flow-problem-node]"),
+      );
+      const heroCore = document.querySelector<HTMLElement>(
+        "[data-flow-core='business-os']",
+      );
+      const heroLines = document.querySelector<HTMLElement>(
+        "[data-flow-lines='hero-clean-lines']",
+      );
+      const problemLines = document.querySelector<HTMLElement>(
+        "[data-flow-lines='problem-scribble-lines']",
+      );
+
+      if (!sources.length || !targets.length) return;
+
+      const flowClones: FlowClone[] = sources.flatMap((source) => {
+        const id = source.dataset.flowSource;
+        if (!id) return [];
+
+        const target = targetMap.get(id);
+        if (!target) return [];
+
+        return [
+          {
+            id,
+            source,
+            target,
+            clone: makeClone(source),
+            finalRotate: Number(target.dataset.flowRotate ?? 0),
+          },
+        ];
+      });
+
+      const sourceBoxes = new Map<string, ElementBox>();
+      const targetBoxes = new Map<string, ElementBox>();
+
+      const measure = () => {
+        flowClones.forEach(({ id, source, target }) => {
+          sourceBoxes.set(id, getAbsoluteBox(source));
+          targetBoxes.set(id, getAbsoluteBox(target));
+        });
+      };
+
+      const drawProblemLines = (progress: number) => {
+        if (!problemLines) return;
+
+        const lines = Array.from(problemLines.querySelectorAll<SVGPathElement>("path"));
+        lines.forEach((line) => {
+          const length = line.getTotalLength();
+          line.style.strokeDasharray = `${length}`;
+          line.style.strokeDashoffset = `${length * (1 - progress)}`;
+        });
+      };
+
+      setVisibility([...targets, ...problemNodes], 0);
+      flowClones.forEach(({ clone }) => {
+        clone.style.opacity = "0";
+      });
+
+      const render = (rawProgress: number) => {
+        const progress = clamp(rawProgress);
+        const activeProgress = smoothstep(progress / 0.82);
+        const cloneOpacity =
+          clamp(progress / 0.08) * (1 - clamp((progress - 0.84) / 0.12));
+        const targetOpacity = clamp((progress - 0.82) / 0.16);
+        const sourceOpacity = 1 - clamp(progress / 0.08);
+        const heroLineOpacity = 1 - clamp(progress / 0.24);
+        const problemLineProgress = clamp((progress - 0.34) / 0.5);
+        const problemNodeOpacity = clamp((progress - 0.7) / 0.24);
+
+        flowClones.forEach(({ id, clone, finalRotate }) => {
+          const sourceBox = sourceBoxes.get(id);
+          const targetBox = targetBoxes.get(id);
+          if (!sourceBox || !targetBox) return;
+
+          const left = lerp(sourceBox.left, targetBox.left, activeProgress);
+          const top = lerp(sourceBox.top, targetBox.top, activeProgress);
+          const width = lerp(sourceBox.width, targetBox.width, activeProgress);
+          const height = lerp(sourceBox.height, targetBox.height, activeProgress);
+          const rotate = lerp(0, finalRotate, activeProgress);
+          const scale = lerp(1, 0.99, activeProgress);
+
+          clone.style.left = `${left - window.scrollX}px`;
+          clone.style.top = `${top - window.scrollY}px`;
+          clone.style.width = `${width}px`;
+          clone.style.height = `${height}px`;
+          clone.style.opacity = `${cloneOpacity}`;
+          clone.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+        });
+
+        setVisibility(sources, sourceOpacity);
+        setVisibility(targets, targetOpacity);
+        setVisibility(problemNodes, problemNodeOpacity);
+
+        if (heroLines) {
+          gsap.set(heroLines, {
+            autoAlpha: heroLineOpacity,
+            overwrite: true,
+          });
+        }
+
+        if (problemLines) {
+          gsap.set(problemLines, {
+            autoAlpha: problemLineProgress,
+            overwrite: true,
+          });
+          drawProblemLines(problemLineProgress);
+        }
+
+        if (heroCore) {
+          gsap.set(heroCore, {
+            autoAlpha: 1 - clamp((progress - 0.1) / 0.45),
+            filter: `blur(${lerp(0, 10, clamp((progress - 0.1) / 0.55))}px)`,
+            scale: lerp(1, 0.86, clamp((progress - 0.1) / 0.55)),
+            overwrite: true,
+          });
+        }
+
+        gsap.set(outputNodes, {
+          autoAlpha: 1 - clamp(progress / 0.14),
+          y: lerp(0, -10, clamp(progress / 0.18)),
+          overwrite: true,
+        });
+      };
+
+      measure();
+      render(0);
+
+      const trigger = ScrollTrigger.create({
+        trigger: hero,
+        start: "bottom bottom",
+        endTrigger: problem,
+        end: "top 38%",
+        scrub: true,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => render(self.progress),
+        onRefreshInit: measure,
+        onRefresh: (self) => render(self.progress),
+      });
+
+      const onResize = () => {
+        measure();
+        render(trigger.progress);
+      };
+
+      window.addEventListener("resize", onResize);
+
+      cleanupBridge = () => {
+        window.removeEventListener("resize", onResize);
+        trigger.kill();
+        flowClones.forEach(({ clone }) => clone.remove());
+        setVisibility([...sources, ...targets, ...problemNodes, ...outputNodes], 1);
+        if (heroLines) gsap.set(heroLines, { clearProps: "all" });
+        if (problemLines) gsap.set(problemLines, { clearProps: "all" });
+        if (heroCore) gsap.set(heroCore, { clearProps: "all" });
+      };
+    });
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      cleanupBridge?.();
+      ctx.revert();
+    };
+  }, []);
+
+  return null;
+}

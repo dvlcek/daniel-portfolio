@@ -4,9 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
 export const metadata: Metadata = {
-  title: "Platform & Automation Audit",
+  title: "Website & Systems Audit",
   description:
-    "A focused platform and automation audit for identifying website, workflow, and operational improvements.",
+    "A focused audit for identifying website, workflow, tool, and automation improvements before a rebuild or systems project.",
   robots: {
     index: false,
     follow: true,
@@ -19,8 +19,8 @@ export default function AuditPage() {
       <Container className="max-w-4xl">
         <SectionTitle
           eyebrow="Audit"
-          title="Platform & Automation Audit"
-          desc="A focused review of your website, workflows, and systems to identify the highest-leverage improvements before a rebuild or automation project."
+          title="Website & Systems Audit"
+          desc="A focused review of your website, workflows, tools, and repeated manual work before a rebuild, automation, or platform project."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -28,7 +28,7 @@ export default function AuditPage() {
             <h2 className="text-lg font-semibold text-white">You get</h2>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li>- Bottleneck map across website and operations</li>
-              <li>- Top automation opportunities by impact</li>
+              <li>- Top automation opportunities by practical value</li>
               <li>- Conversion friction analysis</li>
               <li>- Prioritized implementation roadmap</li>
             </ul>
@@ -37,10 +37,12 @@ export default function AuditPage() {
           <article className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
             <h2 className="text-lg font-semibold text-white">Best for</h2>
             <p className="mt-4 text-sm text-white/70">
-              Teams with clear growth goals but unclear technical priorities. The audit creates decision clarity before a sprint or rebuild.
+              Teams that know the current setup is messy but are not sure
+              whether they need a website, automation, dashboard, or platform
+              remake.
             </p>
             <Link href="/contact" className="mt-6 inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90">
-              Request Audit
+              Start with an audit
             </Link>
           </article>
         </div>

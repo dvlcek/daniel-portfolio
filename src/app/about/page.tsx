@@ -5,16 +5,16 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
-  title: "About Daniel Vlcek | Software Developer Vienna",
+  title: "About Daniel Vlcek | Business Systems Developer Vienna",
   description:
-    "Learn how Daniel Vlcek combines software development, automation, and business thinking to build websites, dashboards, CRM workflows, and custom business systems.",
+    "Learn how Daniel Vlcek works directly with business owners to build websites, platforms, automations, dashboards, and practical business systems.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Daniel Vlcek | Software Developer & Automation Architect",
+    title: "About Daniel Vlcek | Business Systems Developer",
     description:
-      "A technical business partner for companies that need better websites, lead flow, internal tools, and automation.",
+      "A direct technical partner for companies that need clearer websites, workflows, internal tools, and automation.",
     url: "/about",
     type: "website",
   },
@@ -22,21 +22,21 @@ export const metadata: Metadata = {
 
 const businessPrinciples = [
   {
-    title: "Every business is different",
-    text: "I do not force the same solution on every company. I first look at the offer, customers, tools, handoffs, and where friction appears.",
+    title: "Workflow before features",
+    text: "I do not start with a random feature list. I first look at how leads, clients, tools, and admin work move through the business.",
   },
   {
-    title: "Business value before features",
-    text: "A feature only makes sense if it improves lead flow, saves time, supports delivery, or makes the customer experience stronger.",
+    title: "Useful before impressive",
+    text: "A system should make daily work easier, reduce manual steps, improve follow-up, or help the business manage information more clearly.",
   },
   {
-    title: "Long-term structure",
-    text: "The goal is not a quick one-time delivery. The goal is a clean digital foundation the team can keep using and improving.",
+    title: "Direct communication",
+    text: "You work directly with me, not through account managers. That keeps decisions close to the real business problem.",
   },
 ];
 
 const capabilities = [
-  "Premium websites",
+  "Websites and landing pages",
   "Website and platform rebuilds",
   "Lead intake flows",
   "CRM pipelines",
@@ -48,10 +48,10 @@ const capabilities = [
 ];
 
 const partnerValues = [
-  "I think about the offer and customer journey before the interface",
-  "I question what is really needed before building",
-  "I explain technical decisions in business language",
-  "I keep the build maintainable so it can improve after launch",
+  "I ask business questions before writing code",
+  "I question what is actually needed before building",
+  "I explain technical decisions in practical language",
+  "I keep the build maintainable so it can improve later",
 ];
 
 export default function AboutPage() {
@@ -73,15 +73,14 @@ export default function AboutPage() {
             </p>
 
             <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
-              Not just a developer. A technical partner for websites, operations, and growth.
+              I build practical business systems, not just pages.
             </h1>
 
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/62 md:text-lg">
-              I combine software development, automation, and entrepreneurial
-              thinking to help companies make better digital decisions. The
-              focus is not only to ship a finished project, but to improve how
-              the website, lead flow, tools, and internal operations work
-              together.
+              I work directly with business owners to understand how the
+              company actually works, where time is wasted, where leads get
+              lost, and what kind of website, platform, dashboard, or
+              automation would make daily work easier.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -89,7 +88,7 @@ export default function AboutPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
               >
-                Book a Strategy Call
+                Let&apos;s look at your current setup
                 <ArrowUpRight size={15} />
               </Link>
 
@@ -97,7 +96,7 @@ export default function AboutPage() {
                 href="/work"
                 className="inline-flex items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.018] px-5 py-3 text-sm font-medium text-white/72 transition duration-300 hover:border-brand-blue/25 hover:text-white"
               >
-                View selected work
+                View real projects
               </Link>
             </div>
           </div>
@@ -122,7 +121,7 @@ export default function AboutPage() {
               <p className="text-sm font-semibold text-white">Daniel Vlcek</p>
 
               <p className="mt-1 text-sm text-white/48">
-                Software Developer & Automation Architect
+                Business systems developer
               </p>
             </div>
           </div>
@@ -135,8 +134,8 @@ export default function AboutPage() {
               Positioning
             </p>
 
-            <h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              Technical execution with a business owner&apos;s mindset.
+              <h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Technical execution with a practical business mindset.
             </h2>
           </div>
 
@@ -144,8 +143,8 @@ export default function AboutPage() {
             <p className="max-w-4xl text-lg leading-9 text-white/64 md:text-xl">
               A website, dashboard, CRM flow, or automation should never exist
               only because it looks good or because it is technically possible.
-              It should create clarity, save time, improve customer flow,
-              support the team, or make growth easier to handle.
+              It should create clarity, reduce manual work, improve follow-up,
+              or make the business easier to manage.
             </p>
           </div>
         </section>
@@ -158,13 +157,13 @@ export default function AboutPage() {
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              I value the business behind the build.
+              I care about the business behind the build.
             </h2>
 
             <p className="mt-4 text-sm leading-relaxed text-white/55 md:text-base">
-              The strongest results come from understanding the company first,
+              The strongest work comes from understanding the company first,
               then creating the right technical structure around how it sells,
-              serves customers, and handles work.
+              serves clients, and handles daily work.
             </p>
           </div>
 
@@ -198,13 +197,13 @@ export default function AboutPage() {
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              Practical digital infrastructure for modern companies.
+              Practical systems for websites, workflows, and operations.
             </h2>
 
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/56 md:text-base">
               The work can start with a website, but the real value appears
-              when the public experience connects to lead intake, CRM follow-up,
-              dashboards, payments, and internal admin tools.
+              when the public experience supports lead intake, follow-up,
+              dashboards, payments, and internal admin work.
             </p>
           </div>
 
@@ -232,7 +231,7 @@ export default function AboutPage() {
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              A partner mindset, not a done-and-gone delivery.
+              A direct partner, not a done-and-gone vendor.
             </h2>
           </div>
 
@@ -256,14 +255,13 @@ export default function AboutPage() {
               </p>
 
               <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                Want to make your website, leads, and operations work better
-                together?
+                Want to make your website, tools, or workflows easier to run?
               </h2>
 
               <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/55 md:text-base">
-                Start with a strategy call. We will look at your current setup,
-                identify the highest-leverage bottleneck, and define the most
-                realistic next step.
+                Start by showing me your current setup. We will look at what is
+                messy, manual, or unclear, then define the most realistic next
+                step.
               </p>
             </div>
 
@@ -271,7 +269,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
             >
-              Book a Strategy Call
+              Tell me what you want to improve
               <ArrowUpRight size={15} />
             </Link>
           </div>

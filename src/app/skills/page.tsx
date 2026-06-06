@@ -5,7 +5,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 export const metadata: Metadata = {
   title: "Skills",
   description:
-    "Technical skills and capabilities for Daniel Vlcek, Software Developer and Automation Architect.",
+    "Technical skills and capabilities for Daniel Vlcek, focused on websites, platforms, automations, and business systems.",
   robots: {
     index: false,
     follow: true,
@@ -42,7 +42,7 @@ export default function SkillsPage() {
         <SectionTitle
           eyebrow="Skills"
           title="Stack & Capabilities"
-          desc="Focused on building scalable digital systems."
+          desc="Focused on building practical websites, platforms, automations, and internal tools."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">

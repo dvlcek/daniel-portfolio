@@ -6,20 +6,20 @@ import { FeaturedOutcomes } from "@/components/sections/FeaturedOutcomes";
 import { Process } from "@/components/sections/Process";
 import { PackagesSection } from "@/components/sections/PackagesSection";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { HeroProblemBridge } from "@/components/animations/HeroProblemBridge";
 
 export const metadata: Metadata = {
-  title: "Software Developer & Automation Architect",
+  title: "Websites, Platforms & Business Automation",
   description:
-    "Daniel Vlcek builds premium websites, business automation, internal dashboards, CRM workflows, and custom business operating systems for companies in Austria and Europe.",
+    "Daniel Vlcek builds websites, platforms, automations, dashboards, and business systems that help companies run clearer and grow smarter.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Daniel Vlcek | Software Developer & Automation Architect",
+    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
     description:
-      "Premium websites, platform rebuilds, business automation, dashboards, CRM workflows, and custom business systems for companies that need cleaner operations.",
+      "Websites, platforms, dashboards, CRM workflows, and automations for businesses that want clearer daily operations.",
     url: "/",
     type: "website",
   },
@@ -30,12 +30,12 @@ export default function Home() {
     <main>
       <Hero />
       <Problem />
-      <FeaturedOutcomes />
+      <HeroProblemBridge />
       <SolutionPillars />
-      <Process />
-      <Testimonials />
       <PackagesSection />
-      <FAQ />
+      <Testimonials />
+      <FeaturedOutcomes />
+      <Process />
       <FinalCTA />
     </main>
   );

@@ -56,7 +56,7 @@ export function PageTransition() {
             }}
           />
 
-          {/* Part 1 — slides in from bottom */}
+          {/* Part 1 slides in from bottom */}
           <div
             className="absolute inset-0"
             style={{
@@ -77,7 +77,7 @@ export function PageTransition() {
             />
           </div>
 
-          {/* Part 2 — slides in from top */}
+          {/* Part 2 slides in from top */}
           <div
             className="absolute inset-0"
             style={{
@@ -98,7 +98,7 @@ export function PageTransition() {
             />
           </div>
 
-          {/* Part 3 — slides in from left */}
+          {/* Part 3 slides in from left */}
           <div
             className="absolute inset-0"
             style={{
@@ -119,7 +119,7 @@ export function PageTransition() {
             />
           </div>
 
-          {/* Part 4 — slides in from left, slight delay */}
+          {/* Part 4 slides in from left, slight delay */}
           <div
             className="absolute inset-0"
             style={{

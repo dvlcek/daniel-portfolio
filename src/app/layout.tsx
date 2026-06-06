@@ -21,15 +21,15 @@ const bodyFont = Instrument_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://danielvlcek.com"),
   title: {
-    default: "Daniel Vlcek | Software Developer & Automation Architect",
+    default: "Daniel Vlcek | Websites, Platforms & Business Automation",
     template: "%s | Daniel Vlcek",
   },
   description:
-    "Premium websites, automation systems, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+    "Websites, platforms, automations, dashboards, and business systems that make companies easier to run.",
   keywords: [
     "Daniel Vlcek",
     "Software Developer Vienna",
-    "Automation Architect",
+    "Business Systems Developer",
     "Next.js Developer Vienna",
     "Automation Developer Austria",
     "Business Automation Austria",
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
     "Internal Dashboard Developer",
     "CRM Automation Developer",
     "Custom Business Systems",
-    "Premium Website Developer Austria",
+    "Website Developer Vienna",
+    "Business Platform Developer Vienna",
   ],
   authors: [{ name: "Daniel Vlcek" }],
   creator: "Daniel Vlcek",
@@ -46,9 +47,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Daniel Vlcek | Software Developer & Automation Architect",
+    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
     description:
-      "Premium websites, platform rebuilds, automation systems, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+      "Websites, platforms, automation systems, dashboards, CRM workflows, and practical business systems for companies in Austria and Europe.",
     url: "https://danielvlcek.com",
     siteName: "Daniel Vlcek",
     type: "website",
@@ -58,15 +59,15 @@ export const metadata: Metadata = {
         url: "/images/daniel-vlcek.jpg",
         width: 1200,
         height: 1600,
-        alt: "Daniel Vlcek - Software Developer and Automation Architect",
+        alt: "Daniel Vlcek - business systems developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Vlcek | Software Developer & Automation Architect",
+    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
     description:
-      "Premium websites, business automation, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+      "Websites, business automation, internal dashboards, CRM workflows, and practical business systems for companies in Austria and Europe.",
     images: ["/images/daniel-vlcek.jpg"],
   },
   robots: {
@@ -80,7 +81,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "Daniel Vlcek",
   url: "https://danielvlcek.com",
-  jobTitle: "Software Developer & Automation Architect",
+  jobTitle: "Business Systems Developer",
   image: "https://danielvlcek.com/images/daniel-vlcek.jpg",
   address: {
     "@type": "PostalAddress",
@@ -100,7 +101,7 @@ const personJsonLd = {
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Daniel Vlcek - Software Developer & Automation Architect",
+  name: "Daniel Vlcek - Websites, Platforms & Business Automation",
   url: "https://danielvlcek.com",
   areaServed: ["Austria", "Europe"],
   address: {
@@ -109,12 +110,12 @@ const serviceJsonLd = {
     addressCountry: "AT",
   },
   serviceType: [
-    "Premium website development",
-    "Platform rebuilds",
-    "Business automation",
+    "Website development",
+    "Business platform development",
+    "Business automation systems",
     "Internal dashboard development",
     "CRM automation",
-    "Custom business systems",
+    "Website redesign",
   ],
 };
 
@@ -124,7 +125,7 @@ const websiteJsonLd = {
   name: "Daniel Vlcek",
   url: "https://danielvlcek.com",
   description:
-    "Software Developer & Automation Architect building premium websites, automation systems, internal dashboards, CRM workflows, and custom business systems.",
+    "Websites, platforms, automation systems, internal dashboards, CRM workflows, and business systems that make companies easier to run.",
 };
 
 export default function RootLayout({
@@ -135,7 +136,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headingFont.variable} ${bodyFont.variable} tech-bg min-h-screen overflow-x-hidden bg-site-bg text-white antialiased`}
+        className={`${headingFont.variable} ${bodyFont.variable} min-h-screen overflow-x-hidden bg-[#FAFAF8] text-[#10131A] antialiased`}
       >
         <script
           type="application/ld+json"

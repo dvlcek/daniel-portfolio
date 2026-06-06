@@ -1,347 +1,196 @@
-"use client";
+import Link from "next/link";
+import {
+  ArrowRight,
+  CalendarCheck,
+  ClipboardList,
+  CreditCard,
+  FileText,
+  Globe2,
+  Mail,
+  MessageSquare,
+  SquareCheckBig,
+  Table2,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 
-import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/Button";
-import { useReveal } from "@/components/animations/useReveal";
-import { CableFlow } from "@/components/visuals/CableFlow";
-
-const outcomes = [
-  {
-    label: "Built around your operations",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
-        <circle
-          cx="8"
-          cy="3"
-          r="2"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="4"
-          cy="12"
-          r="2"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="12"
-          cy="12"
-          r="2"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M7.2 4.8L4.8 10.1M8.8 4.8L11.2 10.1M6 12H10"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Reliable, secure, and maintainable",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
-        <path
-          d="M8 1.5L13.2 3.7V7.4C13.2 10.7 11.1 13.6 8 14.5C4.9 13.6 2.8 10.7 2.8 7.4V3.7L8 1.5Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M5.7 8L7.2 9.5L10.5 6.2"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Designed for leads and growth",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
-        <path
-          d="M2.5 12.5L6.2 8.8L8.8 11.4L13.5 5.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M10 5.5H13.5V9"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-];
-
-const impactCards = [
-  {
-    label: "Admin time",
-    value: 120,
-    suffix: "h",
-    decimals: 0,
-    detail: "potential monthly reduction",
-  },
-  {
-    label: "Cost control",
-    value: 3.6,
-    prefix: "€",
-    suffix: "k",
-    decimals: 1,
-    detail: "based on €30/h admin time",
-  },
-  {
-    label: "Response speed",
-    value: 1,
-    prefix: "<",
-    suffix: "min",
-    decimals: 0,
-    detail: "instant lead follow-up",
-  },
-];
-
-const systemItems = [
-  "Lead intake",
-  "CRM workflows",
-  "Booking flows",
-  "Client portals",
-  "Dashboards",
-];
-
-type CountUpProps = {
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-  duration?: number;
-  className?: string;
+type InputTool = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  x: number;
+  y: number;
+  targetY: number;
 };
 
-function CountUp({
-  value,
-  prefix = "",
-  suffix = "",
-  decimals = 0,
-  duration = 500,
-  className = "",
-}: CountUpProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [displayValue, setDisplayValue] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+type RightToolNode = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  x: number;
+  y: number;
+  lineY: number;
+  color: string;
+};
 
-  useEffect(() => {
-    const element = ref.current;
+const coreTitle = "DV";
+const coreEyebrow = "Your";
+const coreSubtitle = "Business System";
 
-    if (!element || hasAnimated) return;
+const inputTools: InputTool[] = [
+  { id: "website", label: "Website", icon: Globe2, x: 1.5, y: 8, targetY: 36 },
+  { id: "crm", label: "CRM", icon: Users, x: 5.8, y: 21, targetY: 39.5 },
+  { id: "emails", label: "Emails", icon: Mail, x: 0.8, y: 34, targetY: 43 },
+  { id: "bookings", label: "Bookings", icon: CalendarCheck, x: 4.2, y: 47, targetY: 46.5 },
+  { id: "payments", label: "Payments", icon: CreditCard, x: 0, y: 60, targetY: 50 },
+  { id: "spreadsheet", label: "Spreadsheet", icon: Table2, x: 5.1, y: 73, targetY: 53.5 },
+  { id: "manual-tasks", label: "Manual Tasks", icon: ClipboardList, x: 1.2, y: 86, targetY: 57 },
+];
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
+const rightToolNodes: RightToolNode[] = [
+  { id: "messages", label: "Messages", icon: MessageSquare, x: 78, y: 17, lineY: 37.2, color: "text-[#FF3E6C]" },
+  { id: "documents", label: "Documents", icon: FileText, x: 91, y: 27, lineY: 40.6, color: "text-[#1D2740]" },
+  { id: "sheets", label: "Sheets", icon: Table2, x: 86, y: 45, lineY: 44, color: "text-[#2CB968]" },
+  { id: "tasks", label: "Tasks", icon: SquareCheckBig, x: 93, y: 61, lineY: 47.4, color: "text-[#8A4DFF]" },
+  { id: "calendar", label: "Calendar", icon: CalendarCheck, x: 82, y: 78, lineY: 50.8, color: "text-[#2A7BFF]" },
+  { id: "team", label: "Team", icon: Users, x: 72, y: 80, lineY: 54.2, color: "text-[#2A7BFF]" },
+];
 
-        setHasAnimated(true);
-
-        let startTime: number | null = null;
-
-        const animate = (currentTime: number) => {
-          if (!startTime) startTime = currentTime;
-
-          const progress = Math.min((currentTime - startTime) / duration, 1);
-          const easedProgress = 1 - Math.pow(1 - progress, 3);
-          const currentValue = value * easedProgress;
-
-          setDisplayValue(currentValue);
-
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            setDisplayValue(value);
-          }
-        };
-
-        requestAnimationFrame(animate);
-        observer.disconnect();
-      },
-      {
-        threshold: 0.35,
-      },
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [duration, hasAnimated, value]);
-
-  return (
-    <span ref={ref} className={className}>
-      {prefix}
-      {displayValue.toFixed(decimals)}
-      {suffix}
-    </span>
-  );
-}
-
-function ArrowIcon() {
+function ConnectorLines() {
   return (
     <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
+      className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full lg:block"
+      viewBox="0 0 100 100"
       fill="none"
+      preserveAspectRatio="none"
       aria-hidden="true"
-      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      data-flow-lines="hero-clean-lines"
     >
+      <defs>
+        <linearGradient id="heroStream" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#DCE7FF" stopOpacity="0.05" />
+          <stop offset="38%" stopColor="#8FACFF" stopOpacity="0.78" />
+          <stop offset="50%" stopColor="#1238F2" stopOpacity="1" />
+          <stop offset="62%" stopColor="#8FACFF" stopOpacity="0.78" />
+          <stop offset="100%" stopColor="#DCE7FF" stopOpacity="0.05" />
+        </linearGradient>
+        <filter id="heroLineGlow" x="-20%" y="-25%" width="140%" height="150%">
+          <feGaussianBlur stdDeviation="1.1" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
       <path
-        d="M4 10L10 4M10 4H5M10 4V9"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M28 46.5 C36 46.5 42 46.5 47.2 46.5"
+        stroke="url(#heroStream)"
+        strokeWidth="1.05"
+        filter="url(#heroLineGlow)"
+        vectorEffect="non-scaling-stroke"
       />
+      <path
+        d="M52.8 46.5 C58 46.5 64 46.5 72 46.5"
+        stroke="url(#heroStream)"
+        strokeWidth="1.05"
+        filter="url(#heroLineGlow)"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path
+        d="M50 56.5 C50 65 50 72.5 50 80.5"
+        stroke="#7EA0FF"
+        strokeDasharray="2 3"
+        strokeOpacity="0.55"
+        strokeWidth="0.7"
+        filter="url(#heroLineGlow)"
+        vectorEffect="non-scaling-stroke"
+      />
+
+      {inputTools.map((item, index) => {
+        const startX = item.x + 20.5;
+        const startY = item.y;
+        return (
+          <g key={`input-line-${item.id}`}>
+            <path
+              d={`M${startX} ${startY} C30 ${startY} 34 ${item.targetY} 46.8 ${item.targetY}`}
+              stroke="#DCE7FF"
+              strokeOpacity="0.8"
+              strokeWidth="1.25"
+              vectorEffect="non-scaling-stroke"
+            />
+            <path
+              d={`M${startX} ${startY} C30 ${startY} 34 ${item.targetY} 46.8 ${item.targetY}`}
+              stroke={index % 2 === 0 ? "#7EA0FF" : "#5E86FF"}
+              strokeDasharray="1.4 2.4"
+              strokeOpacity="0.78"
+              strokeWidth="0.45"
+              vectorEffect="non-scaling-stroke"
+            />
+            <circle cx="46.8" cy={item.targetY} r="0.38" fill="#1238F2" />
+          </g>
+        );
+      })}
+
+      {rightToolNodes.map((node) => {
+        const endX = node.x - 4.6;
+        return (
+          <g key={`output-line-${node.id}`}>
+            <path
+              d={`M53.2 ${node.lineY} C61 ${node.lineY} 65 ${node.y} ${endX} ${node.y}`}
+              stroke="#DCE7FF"
+              strokeOpacity="0.78"
+              strokeWidth="1.2"
+              vectorEffect="non-scaling-stroke"
+            />
+            <path
+              d={`M53.2 ${node.lineY} C61 ${node.lineY} 65 ${node.y} ${endX} ${node.y}`}
+              stroke="#5E86FF"
+              strokeDasharray="1.4 2.4"
+              strokeOpacity="0.72"
+              strokeWidth="0.45"
+              vectorEffect="non-scaling-stroke"
+            />
+            <circle cx="53.2" cy={node.lineY} r="0.38" fill="#1238F2" />
+            <circle cx={endX} cy={node.y} r="0.42" fill="#FFFFFF" stroke="#BFD0FF" strokeWidth="0.18" />
+          </g>
+        );
+      })}
+
+      <circle cx="50" cy="80.5" r="0.48" fill="#1238F2" />
     </svg>
   );
 }
 
-function HeroDashboard() {
+function CenterLogo() {
   return (
-    <div className="relative mx-auto hidden h-[620px] w-full max-w-[680px] [perspective:1400px] lg:block">
-      <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-blue/10 blur-3xl" />
+    <div
+      className="absolute left-1/2 top-[46.5%] z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+      data-flow-core="business-os"
+    >
+      <div className="absolute h-[15.5rem] w-[15.5rem] rounded-full border border-[#DCE7FF]/70" />
+      <div className="absolute h-[12.2rem] w-[12.2rem] rounded-full border border-[#DCE7FF]/60" />
+      <div className="absolute h-[10rem] w-[10rem] rounded-full bg-[#1238F2]/[0.12] blur-3xl" />
+      <div className="absolute h-[7.5rem] w-[7.5rem] rounded-full bg-[#6F98FF]/[0.16] blur-2xl" />
+      <div className="absolute h-[6.25rem] w-[6.25rem] rounded-full bg-white/38 blur-xl" />
 
-      <div
-        className="group absolute right-0 top-8 w-[390px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-8deg)_translateZ(0)] hover:border-brand-blue/35 hover:bg-white/[0.065] hover:shadow-brand-blue/20 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(-13deg)_translateY(-14px)_translateZ(24px)]"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.16),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="relative flex h-[8rem] w-[8rem] items-center justify-center overflow-hidden rounded-full bg-white/18 shadow-[0_0_58px_rgba(91,124,255,0.34),0_28px_78px_rgba(18,56,242,0.21)] backdrop-blur-2xl">
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_20%,rgba(255,255,255,0.72)_0%,rgba(255,255,255,0.24)_20%,rgba(91,124,255,0.34)_42%,rgba(18,56,242,0.34)_68%,rgba(9,20,82,0.42)_100%)]" />
+        <div className="absolute left-[8%] top-[7%] h-[34%] w-[48%] rounded-full bg-white/42 blur-xl" />
+        <div className="absolute right-[8%] top-[18%] h-[30%] w-[20%] rounded-full bg-white/20 blur-lg" />
+        <div className="absolute bottom-0 h-1/2 w-full rounded-b-full bg-[radial-gradient(circle_at_50%_100%,rgba(62,119,255,0.48),transparent_60%)]" />
+        <div className="absolute inset-0 rounded-full bg-[linear-gradient(145deg,rgba(255,255,255,0.44),rgba(255,255,255,0.06)_38%,rgba(18,56,242,0.24)_100%)]" />
 
-        <div className="relative z-10">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
-                Impact model
-              </p>
-              <h3 className="mt-2 text-lg font-medium text-white">
-                Operations value
-              </h3>
-            </div>
-
-            <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-3 py-1 text-xs text-brand-blue-light">
-              Estimated
-            </span>
-          </div>
-
-          <div className="mt-5 grid grid-cols-3 gap-3">
-            {impactCards.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-white/[0.08] bg-site-bg/50 p-3 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-site-bg/65"
-              >
-                <p className="text-[11px] text-white/40">{item.label}</p>
-
-                <p className="mt-2 text-2xl font-semibold tracking-tight text-white">
-                  <CountUp
-                    value={item.value}
-                    prefix={item.prefix}
-                    suffix={item.suffix}
-                    decimals={item.decimals}
-                    duration={500}
-                  />
-                </p>
-
-                <p className="mt-2 text-[11px] leading-snug text-white/35">
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-site-bg/50 p-4 transition duration-300 group-hover:border-white/[0.14] group-hover:bg-site-bg/65">
-            <div className="mb-4 flex items-center justify-between">
-              <p className="text-sm text-white/70">Efficiency gain</p>
-
-              <p className="text-xs text-brand-blue-light">
-                +
-                <CountUp value={42} suffix="%" duration={550} />
-              </p>
-            </div>
-
-            <div className="flex h-20 items-end gap-2">
-              {[28, 42, 36, 58, 52, 76, 68, 92].map((height, index) => (
-                <div
-                  key={index}
-                  className="flex-1 rounded-t-md bg-linear-to-t from-brand-blue-deep/40 to-brand-blue/90 transition-all duration-500 group-hover:to-brand-blue-soft"
-                  style={{ height: `${height}%` }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="group absolute left-0 top-52 w-[270px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/35 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(10deg)_translateZ(0)] hover:border-brand-blue/30 hover:bg-white/[0.055] hover:shadow-brand-blue/15 hover:[transform:perspective(1000px)_rotateX(4deg)_rotateY(15deg)_translateY(-12px)_translateZ(24px)]"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.13),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-        <div className="relative z-10">
-          <p className="text-xs uppercase tracking-[0.22em] text-white/35">
-            What can be improved
+        <div className="relative z-10 flex flex-col items-center justify-center text-center">
+          <p className="text-[0.52rem] font-bold uppercase tracking-[0.28em] text-white/90 drop-shadow-[0_2px_10px_rgba(18,56,242,0.35)]">
+            {coreEyebrow}
           </p>
-
-          <div className="mt-4 space-y-2">
-            {systemItems.map((item) => (
-              <div
-                key={item}
-                className="flex items-center justify-between rounded-xl border border-white/[0.08] bg-site-bg/50 px-3 py-2 transition duration-300 hover:border-brand-blue/30 hover:bg-brand-blue/10"
-              >
-                <span className="text-sm text-white/65">{item}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shadow-[0_0_14px_rgba(47,47,228,0.9)]" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="group absolute bottom-10 right-24 w-[310px] overflow-hidden rounded-3xl border border-brand-blue/20 bg-white/[0.04] p-5 shadow-2xl shadow-brand-blue/10 backdrop-blur-2xl transition-all duration-500 ease-out will-change-transform [transform:perspective(1000px)_rotateX(0deg)_rotateY(-6deg)_translateZ(0)] hover:border-brand-blue/45 hover:bg-white/[0.06] hover:shadow-brand-blue/25 hover:[transform:perspective(1000px)_rotateX(-4deg)_rotateY(-12deg)_translateY(-12px)_translateZ(24px)]"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.14),transparent_34%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-        <div className="relative z-10 flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light transition duration-300 group-hover:scale-110 group-hover:border-brand-blue/50 group-hover:bg-brand-blue/20">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M4 16.5L9 11.5L13 15.5L20 7.5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M15 7.5H20V12.5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-
-          <div>
-            <p className="text-sm font-medium text-white">
-              Built for cleaner operations
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-white/45">
-              Faster follow-up, clearer handoffs, fewer repeated tasks.
+          <p className="mt-1.5 font-serif text-[2.45rem] leading-none tracking-[-0.07em] text-white drop-shadow-[0_4px_18px_rgba(18,56,242,0.4)]">
+            {coreTitle}
+          </p>
+          <div className="mt-3 rounded-full bg-white/16 px-3.5 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.32)] backdrop-blur-xl">
+            <p className="text-[0.43rem] font-bold uppercase tracking-[0.2em] text-white/90">
+              {coreSubtitle}
             </p>
           </div>
         </div>
@@ -350,83 +199,174 @@ function HeroDashboard() {
   );
 }
 
-export function Hero() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-
-  useReveal(wrapRef);
-
+function DesktopSystemMap() {
   return (
-    <section className="relative w-full overflow-hidden bg-site-bg">
-      <div className="pointer-events-none absolute inset-0 z-0 bg-black">
-        <div className="absolute inset-0 bg-site-bg" />
+    <div className="relative mx-auto hidden h-[318px] w-full max-w-[1120px] lg:block">
+      <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-[#AFC4FF]/70 to-transparent" />
+      <ConnectorLines />
+      <CenterLogo />
 
-        <CableFlow className="absolute inset-y-0 right-[-8%] w-[130%] opacity-100" />
-
-        <div className="absolute inset-0 bg-linear-to-b from-site-bg/20 via-site-bg/35 to-site-bg/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_46%,rgba(47,47,228,0.12),transparent_36%)]" />
-      </div>
-
-      <div className="relative z-10 flex min-h-[calc(100vh-65px)] w-full items-center px-5 py-16 sm:px-8 md:py-24 lg:px-12 xl:px-16 2xl:px-20">
+      {inputTools.map(({ id, label, icon: Icon, x, y }) => (
         <div
-          ref={wrapRef}
-          className="grid w-full items-center gap-16 lg:grid-cols-[1fr_0.95fr]"
+          key={id}
+          data-flow-source={id}
+          style={{ left: `${x}%`, top: `${y}%` }}
+          className="group absolute z-20 flex h-[40px] w-[220px] -translate-y-1/2 items-center gap-3 overflow-hidden rounded-[18px] bg-white/42 px-4 shadow-[0_18px_50px_rgba(16,35,95,0.09),inset_0_1px_0_rgba(255,255,255,0.68)] backdrop-blur-2xl transition duration-300 hover:scale-[1.01] hover:bg-white/58 hover:shadow-[0_22px_64px_rgba(18,56,242,0.13),inset_0_1px_0_rgba(255,255,255,0.76)]"
         >
-          <div className="w-full">
-            <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
-              Websites · Automation · Internal Tools
+          <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.6),rgba(255,255,255,0.14)_52%,rgba(94,134,255,0.09))]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-white/80" />
+          <div className="absolute -left-10 top-0 h-full w-20 rotate-12 bg-white/24 blur-2xl transition duration-300 group-hover:translate-x-32" />
+          <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/58 text-[#4B73FF] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_8px_22px_rgba(91,122,255,0.12)] backdrop-blur-xl">
+            <Icon size={15} strokeWidth={1.9} />
+          </span>
+          <span className="relative truncate text-sm font-semibold tracking-[-0.01em] text-[#1D2740]">
+            {label}
+          </span>
+        </div>
+      ))}
+
+      {rightToolNodes.map(({ id, label, icon: Icon, x, y, color }) => (
+        <div
+          key={id}
+          data-flow-output={id}
+          style={{ left: `${x}%`, top: `${y}%` }}
+          className="absolute z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-white/44 shadow-[0_18px_48px_rgba(16,35,95,0.09),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-2xl transition duration-300 hover:scale-105 hover:bg-white/62"
+          aria-label={label}
+          title={label}
+        >
+          <div className="absolute inset-0 rounded-full bg-[linear-gradient(145deg,rgba(255,255,255,0.68),rgba(255,255,255,0.12)_58%,rgba(94,134,255,0.10))]" />
+          <div className="absolute left-[18%] top-[12%] h-[28%] w-[44%] rounded-full bg-white/42 blur-md" />
+          <Icon className={`relative ${color}`} size={20} strokeWidth={2} />
+        </div>
+      ))}
+
+      <div
+        data-flow-output="clarity-pill"
+        className="absolute left-1/2 top-[88%] z-20 flex h-10 min-w-[250px] -translate-x-1/2 items-center justify-center overflow-hidden rounded-[18px] bg-white/44 px-5 text-center shadow-[0_18px_48px_rgba(16,35,95,0.09),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-2xl"
+      >
+        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.58),rgba(255,255,255,0.12)_55%,rgba(94,134,255,0.08))]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/80" />
+        <p className="relative text-sm font-bold text-[#1238F2]">
+          One System. Total Clarity.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function MobileSystemMap() {
+  return (
+    <div className="lg:hidden">
+      <div className="grid min-w-0 grid-cols-1 gap-3 min-[420px]:grid-cols-2">
+        {inputTools.map(({ id, label, icon: Icon }) => (
+          <div
+            key={id}
+            className="flex min-h-14 min-w-0 items-center gap-3 overflow-hidden rounded-2xl bg-white/42 px-3 py-3 shadow-[0_14px_34px_rgba(16,35,95,0.09),inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-2xl"
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/58 text-[#4B73FF] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_8px_20px_rgba(91,122,255,0.10)] backdrop-blur-xl">
+              <Icon size={16} strokeWidth={1.9} />
+            </span>
+            <span className="truncate text-xs font-semibold text-[#1D2740]">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="relative mt-5 overflow-hidden rounded-[2rem] bg-white/20 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-2xl">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(82,112,255,0.10),transparent_45%)]" />
+        <div className="relative mx-auto flex h-40 w-40 items-center justify-center overflow-hidden rounded-full bg-white/18 shadow-[0_0_44px_rgba(91,124,255,0.30),0_28px_80px_rgba(18,56,242,0.18)] backdrop-blur-2xl">
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_20%,rgba(255,255,255,0.70)_0%,rgba(255,255,255,0.24)_18%,rgba(91,124,255,0.28)_38%,rgba(18,56,242,0.30)_64%,rgba(9,20,82,0.38)_100%)]" />
+          <div className="absolute left-[8%] top-[7%] h-[34%] w-[48%] rounded-full bg-white/42 blur-xl" />
+          <div className="absolute bottom-0 h-1/2 w-full rounded-b-full bg-[radial-gradient(circle_at_50%_100%,rgba(62,119,255,0.45),transparent_60%)]" />
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <p className="text-[8px] font-bold uppercase tracking-[0.28em] text-white/90">
+              {coreEyebrow}
             </p>
-
-            <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl xl:text-7xl">
-              Websites, automation, and internal tools for{" "}
-              <span className="text-brand-blue">cleaner operations.</span>
-            </h1>
-
-            <p className="mt-6 text-base leading-relaxed text-white/65 md:text-lg xl:text-xl">
-              I help companies replace disconnected websites, slow follow-up,
-              and scattered tools with fast digital infrastructure built around
-              how the company actually works.
+            <p className="mt-2 font-serif text-[2.3rem] leading-none tracking-[-0.07em] text-white">
+              {coreTitle}
             </p>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                href="/contact"
-                variant="primary"
-                className="group w-full sm:w-auto"
-              >
-                <span>Book a Strategy Call</span>
-                <ArrowIcon />
-              </Button>
-
-              <Button
-                href="/work"
-                variant="secondary"
-                className="group w-full sm:w-auto"
-              >
-                <span>View Case Studies</span>
-                <ArrowIcon />
-              </Button>
-            </div>
-
-            <div className="mt-8 grid w-full gap-3 sm:grid-cols-3">
-              {outcomes.map((item) => (
-                <div
-                  key={item.label}
-                  className="group flex min-h-[62px] items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/25 hover:bg-white/[0.045] hover:shadow-[0_12px_28px_rgba(0,0,0,0.24)]"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-brand-blue transition duration-300 group-hover:text-brand-blue-soft">
-                    {item.icon}
-                  </span>
-
-                  <p className="max-w-[13rem] text-sm leading-snug text-white/70 transition duration-300 group-hover:text-white/82">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-3 rounded-full bg-white/16 px-3 py-1 backdrop-blur-xl">
+              <p className="text-[6px] font-bold uppercase tracking-[0.2em] text-white/90">
+                {coreSubtitle}
+              </p>
             </div>
           </div>
-
-          <HeroDashboard />
         </div>
+        <div className="mt-5 flex justify-center gap-3">
+          {rightToolNodes.slice(0, 5).map(({ id, label, icon: Icon, color }) => (
+            <span
+              key={id}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]"
+              aria-label={label}
+              title={label}
+            >
+              <Icon className={color} size={16} strokeWidth={2} />
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SystemMap() {
+  return (
+    <div className="relative mt-6 w-full min-w-0 md:mt-7">
+      <DesktopSystemMap />
+      <MobileSystemMap />
+    </div>
+  );
+}
+
+export function Hero() {
+  return (
+    <section
+      className="relative overflow-hidden bg-[#FAFAF8] text-[#0B1220]"
+      data-section="hero"
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-[-16rem] h-[44rem] w-[56rem] -translate-x-1/2 rounded-full bg-[#1238F2]/[0.06] blur-3xl" />
+        <div className="absolute left-[-10rem] top-[18%] h-[26rem] w-[26rem] rounded-full bg-white/80 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D8DCE8] to-transparent" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-[calc(100svh-72px)] w-full max-w-[1500px] flex-col justify-center px-5 py-10 sm:px-8 md:py-12 xl:px-12 2xl:px-16">
+        <div className="mx-auto max-w-[860px] text-center">
+          <p className="mb-4 inline-flex rounded-full bg-white/56 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#1238F2] shadow-[0_8px_24px_rgba(18,56,242,0.08),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-2xl">
+            Websites • Systems • Automations
+          </p>
+          <h1 className="mx-auto max-w-[820px] text-balance break-words text-[clamp(2.05rem,8.8vw,4.35rem)] font-semibold leading-[0.97] tracking-[-0.055em] text-[#0B1220] max-[480px]:max-w-[350px] max-[480px]:text-[2.08rem]">
+            Websites, systems &amp; automations that help your business{" "}
+            <span className="font-serif italic font-normal text-[#1238F2]">
+              run clearer.
+            </span>
+          </h1>
+          <p className="mx-auto mt-4 max-w-[680px] text-[15px] leading-7 text-[#566176] max-[480px]:max-w-[350px] sm:text-base sm:leading-8">
+            I help businesses turn disconnected tools, manual workflows, and
+            outdated websites into one clear system that saves time, looks
+            professional, and supports real growth.
+          </p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
+            <Link
+              href="/contact"
+              className="group inline-flex h-12 w-full max-w-[350px] items-center justify-center gap-3 overflow-hidden rounded-md bg-[#020817]/95 px-6 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(2,8,23,0.18),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:bg-[#061126]/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1238F2]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF8] sm:w-auto sm:min-w-[220px]"
+            >
+              Let&apos;s look at your setup
+              <ArrowRight
+                size={14}
+                className="transition duration-300 group-hover:translate-x-0.5"
+              />
+            </Link>
+            <Link
+              href="/work"
+              className="inline-flex h-12 w-full max-w-[350px] items-center justify-center rounded-md bg-white/56 px-6 text-sm font-semibold text-[#0B1220] shadow-[0_12px_28px_rgba(16,19,26,0.06),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-2xl transition duration-300 hover:-translate-y-0.5 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1238F2]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF8] sm:w-auto sm:min-w-[210px]"
+            >
+              View projects
+            </Link>
+          </div>
+        </div>
+
+        <SystemMap />
       </div>
     </section>
   );

@@ -1,16 +1,14 @@
 export const primaryCta = {
-  label: "Book a Strategy Call",
+  label: "Let's look at your current setup",
   href: "/contact",
 };
 
 export const secondaryCtas = {
-  caseStudies: { label: "View Case Studies", href: "/work" },
-  fullSystem: { label: "Build a Business System", href: "/contact" },
-  platform: { label: "Build an Internal Dashboard", href: "/contact" },
-  rebuild: { label: "Plan a Website Rebuild", href: "/contact" },
-  growth: { label: "Improve Lead Flow", href: "/contact" },
-  automation: { label: "Automate a Workflow", href: "/contact" },
-  leadSystem: { label: "Fix a Lead System", href: "/contact" },
+  caseStudies: { label: "View real projects", href: "/work" },
+  fullSystem: { label: "Discuss a full platform", href: "/contact" },
+  website: { label: "Plan a website", href: "/contact" },
+  rebuild: { label: "Review my current setup", href: "/contact" },
+  automation: { label: "Automate a workflow", href: "/contact" },
 };
 
 export type CaseStudyCategory =
@@ -111,7 +109,7 @@ export const caseStudies: CaseStudy[] = [
     company: "Mini sklady self storage s.r.o.",
     industry: "Storage Rental",
     category: "system_build",
-    categoryLabel: "Business Operating System",
+    categoryLabel: "Full Business Platform",
     liveUrl: "https://miniskladyslovensko.sk",
 
     projectAccess: {
@@ -142,7 +140,7 @@ export const caseStudies: CaseStudy[] = [
     stack: ["Node.js", "PHP", "Stripe API", "Resend", "Google APIs"],
 
     summary:
-      "I built a custom rental operations platform that gives the business one structured system for managing customers, payments, invoices, contracts, storage units, rental dates, cancellations, and internal operations. Instead of relying on manual reservations, manual invoice creation, payment checks, and repeated customer communication, the platform connects the full rental process into a scalable workflow.",
+      "I built a custom rental operations platform that gives the business one structured system for managing customers, payments, invoices, contracts, storage units, rental dates, cancellations, and internal operations. Instead of relying on manual reservations, manual invoice creation, payment checks, and repeated customer communication, the platform connects the full rental process into one clearer workflow.",
 
     challenge:
       "Without a connected system, the rental process would have depended heavily on manual administration. Customers would reserve storage by email or in person, the team would need to create invoices manually, check payments, update rental records, send access information, manage contracts, track cancellations, and monitor storage availability by hand. As the business grew, this would create slower service, more operational friction, and a higher risk of mistakes.",
@@ -254,7 +252,7 @@ export const caseStudies: CaseStudy[] = [
     cta: {
       label: "Next Step",
       title:
-        "Need a business platform that turns manual operations into a scalable system?",
+        "Need a business platform that turns manual operations into a clearer system?",
       description:
         "I design and build custom platforms, automation workflows, and internal systems that improve customer experience, reduce administrative overhead, and give businesses stronger operational control.",
       primaryText: "Build a system like this",
@@ -267,7 +265,7 @@ export const caseStudies: CaseStudy[] = [
     company: "Vlka ART",
     industry: "Creative / Art",
     category: "websites",
-    categoryLabel: "Growth Platform",
+    categoryLabel: "Website / Platform",
     liveUrl: "https://vlkaart.sk",
 
     projectAccess: {
@@ -278,13 +276,13 @@ export const caseStudies: CaseStudy[] = [
     title: "Artist Portfolio, Inquiry & Content Management Platform",
 
     subtitle:
-      "A premium artist platform for presenting around 80 artworks, managing availability, displaying exhibitions, collecting reservation inquiries, and updating content independently.",
+      "An artist platform for presenting around 80 artworks, managing availability, displaying exhibitions, collecting reservation inquiries, and updating content independently.",
 
     result:
-      "Built a structured artist growth platform that centralizes artwork presentation, availability management, exhibition content, reservation inquiries, analytics, and admin control.",
+      "Built a structured artist platform that centralizes artwork presentation, availability management, exhibition content, reservation inquiries, analytics, and admin control.",
 
     intro:
-      "Vlka ART had social media profiles, but no dedicated digital platform for presenting artwork in a professional and structured way. I built a premium artist platform that gives the brand a central online presence, organizes the artwork library, supports reservation inquiries, displays exhibitions, tracks visitor activity, and allows the artist to manage content independently.",
+      "Vlka ART had social media profiles, but no dedicated website for presenting artwork in a professional and structured way. I built an artist platform that gives the brand a central online presence, organizes the artwork library, supports reservation inquiries, displays exhibitions, tracks visitor activity, and allows the artist to manage content independently.",
 
     whatIDid: [
       "Artist portfolio platform",
@@ -316,7 +314,7 @@ export const caseStudies: CaseStudy[] = [
       "Built a full admin panel for managing artworks, availability, content, and exhibitions",
       "Added exhibition listings to support the artist’s professional presentation",
       "Set up Google Analytics to track website activity and understand visitor behavior",
-      "Created a scalable foundation for future artwork promotion, reservations, and sales growth",
+      "Created a clearer foundation for future artwork promotion, reservations, and sales",
     ],
 
     image: "/images/case-studies/artist-platform.png",
@@ -412,8 +410,8 @@ export const caseStudies: CaseStudy[] = [
       title:
         "Need a platform that makes your work easier to present, manage, and grow?",
       description:
-        "I design and build premium digital platforms that improve trust, create clearer customer journeys, and give businesses better control over their content, inquiries, and growth systems.",
-      primaryText: "Build your growth platform",
+        "I design and build practical websites and platforms that improve trust, create clearer customer journeys, and give businesses better control over content, inquiries, and daily work.",
+      primaryText: "Build a platform like this",
       secondaryText: "View more case studies",
     },
   },
@@ -423,7 +421,7 @@ export const caseStudies: CaseStudy[] = [
     company: "CarScout",
     industry: "Car Sales / Car Rental",
     category: "automation",
-    categoryLabel: "Operations Automation",
+    categoryLabel: "Business Automation",
     liveUrl: "",
 
     projectAccess: {
@@ -457,7 +455,7 @@ export const caseStudies: CaseStudy[] = [
     stack: ["Python", "n8n", "APIs", "Web Scraping", "Automation Workflows"],
 
     summary:
-      "CarScout turns repetitive vehicle research into a structured automation workflow. Instead of staff repeatedly checking car selling platforms manually, the system monitors listings, applies custom filters, imports matching vehicles, and notifies the team when a relevant opportunity appears. This gives the business faster access to potential deals, improves consistency, and creates a scalable process for vehicle acquisition.",
+      "CarScout turns repetitive vehicle research into a structured automation workflow. Instead of staff repeatedly checking car selling platforms manually, the system monitors listings, applies custom filters, imports matching vehicles, and notifies the team when a relevant opportunity appears. This gives the business faster access to potential deals, improves consistency, and creates a clearer process for vehicle acquisition.",
 
     challenge:
       "The business was already operating, but vehicle scouting still depended on repeated manual checks. Staff had to search listing platforms, compare vehicles against internal buying or rental criteria, and react quickly when new cars appeared. This created avoidable administrative overhead, slower reaction times, and a higher chance of missing relevant opportunities.",
@@ -474,7 +472,7 @@ export const caseStudies: CaseStudy[] = [
       "Improved speed and consistency in identifying matching vehicles",
       "Reduced the risk of missed listings and manual research mistakes",
       "Gave the owner better visibility through tracking and analytics",
-      "Created a scalable alternative to adding more repetitive manual scouting work",
+      "Created a structured alternative to adding more repetitive manual scouting work",
     ],
 
     image: "/images/case-studies/carscout-agent.png",
@@ -568,7 +566,7 @@ export const caseStudies: CaseStudy[] = [
       title:
         "Need to turn repetitive research into an automated business workflow?",
       description:
-        "I build custom automation systems that help businesses reduce repetitive work, improve response speed, lower operational friction, and create scalable workflows around real business processes.",
+        "I build custom automation systems that help businesses reduce repetitive work, improve response speed, lower operational friction, and create clearer workflows around real business processes.",
       primaryText: "Automate a workflow like this",
       secondaryText: "View more case studies",
     },
@@ -577,9 +575,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "silver-oakstones-member-club-platform",
     company: "Silver Oakstones Member Club Platform",
-    industry: "Private Club / Membership Organization / Premium Lifestyle Club",
+    industry: "Private Club / Membership Organization",
     category: "system_build",
-    categoryLabel: "Application Workflow System",
+    categoryLabel: "Workflow Platform",
     liveUrl: "",
 
     projectAccess: {
@@ -592,16 +590,16 @@ export const caseStudies: CaseStudy[] = [
     title: "Private Club Application & Candidate Review Platform",
 
     subtitle:
-      "A structured application platform for membership-based organizations, combining a premium landing page, guided form flow, candidate grouping, admin review, and email follow-up support.",
+      "A structured application platform for membership-based organizations, combining a landing page, guided form flow, candidate grouping, admin review, and email follow-up support.",
 
     result:
       "Built a private member club application concept that turns unstructured inquiries into a guided workflow for collecting applicant information, grouping candidates, and supporting internal review.",
 
     intro:
-      "Silver Oakstones was built as a private platform concept for clubs, communities, and premium service businesses that need to review applicants before accepting them. Instead of relying on a basic contact form or scattered email communication, the system guides applicants through structured questions and gives staff a clearer way to review, group, and follow up with candidates.",
+      "Silver Oakstones was built as a private platform concept for clubs, communities, and service businesses that need to review applicants before accepting them. Instead of relying on a basic contact form or scattered email communication, the system guides applicants through structured questions and gives staff a clearer way to review, group, and follow up with candidates.",
 
     whatIDid: [
-      "Premium landing page",
+      "Landing page",
       "Step-by-step application form",
       "Structured applicant questions",
       "Candidate grouping logic",
@@ -632,18 +630,18 @@ export const caseStudies: CaseStudy[] = [
       "A basic contact form or email-based application process often creates unstructured information. Applicants may skip important details, write inconsistent answers, or require manual back-and-forth before staff can understand who they are and how they should be reviewed. For a private club or membership organization, this makes candidate review slower, less consistent, and harder to manage.",
 
     solution:
-      "I built a private member club application platform with a premium landing page, a guided step-by-step form, candidate grouping logic, and an admin review panel. Applicants move through structured questions one step at a time, giving the organization more consistent and useful information. After submission, the system processes the answers, assigns the applicant into a candidate group, creates a new candidate entry, and supports the staff review and email follow-up workflow.",
+      "I built a private member club application platform with a landing page, a guided step-by-step form, candidate grouping logic, and an admin review panel. Applicants move through structured questions one step at a time, giving the organization more consistent and useful information. After submission, the system processes the answers, assigns the applicant into a candidate group, creates a new candidate entry, and supports the staff review and email follow-up workflow.",
 
     outcome: [
       "Turned a basic contact/application idea into a structured candidate workflow",
-      "Created a more professional first impression through a premium landing page",
+      "Created a more professional first impression through a clear landing page",
       "Guided applicants through step-by-step questions instead of one generic form",
       "Collected cleaner and more consistent applicant information",
       "Added candidate grouping logic based on submitted answers",
       "Created new candidate entries for staff review after form submission",
       "Built an admin panel for reviewing applicants, groups, and contact details",
       "Supported follow-up through email and contact workflow handling",
-      "Created a reusable application workflow concept for clubs, communities, and premium service businesses",
+      "Created a reusable application workflow concept for clubs, communities, and service businesses",
       "Strengthened the system foundation beyond a static website by combining UI, form logic, backend handling, and admin review",
     ],
 
@@ -672,7 +670,7 @@ export const caseStudies: CaseStudy[] = [
     preview: {
       label: "Platform Preview",
       title:
-        "A private club application workflow showing a premium landing page, guided applicant form, candidate grouping logic, admin review, and email follow-up support.",
+        "A private club application workflow showing a landing page, guided applicant form, candidate grouping logic, admin review, and email follow-up support.",
     },
 
     summarySection: {
@@ -715,7 +713,7 @@ export const caseStudies: CaseStudy[] = [
       description:
         "The platform replaces unstructured application messages with a guided workflow that collects better applicant information, groups candidates automatically, and gives staff a clearer review process before follow-up.",
       items: [
-        "Premium landing page",
+        "Landing page",
         "Guided application form",
         "Structured applicant questions",
         "Candidate qualification flow",
@@ -751,7 +749,7 @@ export const caseStudies: CaseStudy[] = [
     company: "Client Communication Automation Portal",
     industry: "Private Agency Operations / Client Communication",
     category: "automation",
-    categoryLabel: "AI Operations Portal",
+    categoryLabel: "Automation Portal",
     liveUrl: "",
 
     projectAccess: {
@@ -770,7 +768,7 @@ export const caseStudies: CaseStudy[] = [
       "Built a private AI-assisted operations portal that centralizes profile management, supports context-aware draft generation, and connects internal settings to a VM-based automation layer.",
 
     intro:
-      "This project was built for a private agency that needed a more scalable way to manage multiple client profiles and communication workflows. Instead of relying on scattered context, manual switching, and repeated communication tasks, the portal brings profile information, tone settings, communication rules, AI-assisted drafts, and workflow automation into one internal system.",
+      "This project was built for a private agency that needed a clearer way to manage multiple client profiles and communication workflows. Instead of relying on scattered context, manual switching, and repeated communication tasks, the portal brings profile information, tone settings, communication rules, AI-assisted drafts, and workflow automation into one internal system.",
 
     whatIDid: [
       "Secure internal agency login",
@@ -807,7 +805,7 @@ export const caseStudies: CaseStudy[] = [
     ],
 
     summary:
-      "The Client Communication Automation Portal turns a scattered agency workflow into a centralized internal system. Staff can log in, create and manage client profiles, define communication style, store context rules, and generate profile-aware response drafts. The system separates profile data, database logic, AI-assisted draft generation, and VM-based workflow support into one scalable structure, helping the agency manage multiple profiles more consistently while reducing repetitive manual work.",
+      "The Client Communication Automation Portal turns a scattered agency workflow into a centralized internal system. Staff can log in, create and manage client profiles, define communication style, store context rules, and generate profile-aware response drafts. The system separates profile data, database logic, AI-assisted draft generation, and VM-based workflow support into one clearer structure, helping the agency manage multiple profiles more consistently while reducing repetitive manual work.",
 
     challenge:
       "Before the portal, the agency had to manage multiple client profiles across separate tools, manual notes, and disconnected workflows. Staff needed to remember profile context, communication preferences, tone, and operational settings while switching between tools and remote environments. This created repetitive work, inconsistent response style, slower profile setup, scattered information, and a workflow that became harder to scale as more profiles were added.",
@@ -819,7 +817,7 @@ export const caseStudies: CaseStudy[] = [
       "Centralized profile information, communication context, and operational settings in one internal portal",
       "Reduced repetitive manual communication work by supporting profile-aware draft generation",
       "Improved consistency across managed profiles with structured personality and tone settings",
-      "Created a scalable multi-profile system for agency operations",
+      "Created a structured multi-profile system for agency operations",
       "Separated portal logic, database storage, AI-assisted workflows, and VM automation into a clearer architecture",
       "Added secure login and internal access control for staff usage",
       "Built a backend structure for storing and managing profile-specific settings",
@@ -895,7 +893,7 @@ export const caseStudies: CaseStudy[] = [
 
     impact: {
       label: "Automation Impact",
-      title: "How the portal supports scalable agency operations.",
+      title: "How the portal supports clearer agency operations.",
       description:
         "The system connects profile management, communication context, AI-assisted draft generation, backend data storage, and VM-based workflow support into one structured internal operations portal.",
       items: [
@@ -930,7 +928,7 @@ export const caseStudies: CaseStudy[] = [
       title:
         "Need to centralize repetitive client communication workflows?",
       description:
-        "I build private internal systems and automation portals that help agencies centralize profile data, reduce repetitive tasks, support staff with AI-assisted workflows, and create scalable operational infrastructure.",
+        "I build private internal systems and automation portals that help agencies centralize profile data, reduce repetitive tasks, support staff with AI-assisted workflows, and create clearer operational systems.",
       primaryText: "Build an automation portal",
       secondaryText: "View more case studies",
     },
@@ -948,176 +946,155 @@ export type InsightPost = {
 export const insightPosts: InsightPost[] = [
   {
     slug: "automation-before-ai",
-    title: "Why workflow architecture should come before AI",
+    title: "Why the workflow should be clear before adding AI",
     excerpt:
-      "AI only creates leverage when the process underneath it is clear, structured, and ready to scale.",
+      "AI helps only when the process underneath it is already understood and structured.",
     readTime: "4 min read",
     body: [
-      "Many teams try to add AI before fixing the workflow behind it. That usually creates faster chaos, not better operations.",
-      "The better approach is to map the process first: inputs, decisions, responsibilities, bottlenecks, handovers, and expected outcomes.",
-      "Once the workflow is clear, AI can be added where it creates measurable value — for example in classification, drafting, summarization, routing, or decision support.",
+      "Many businesses want to add AI before they have a clear process. That usually makes a messy workflow faster, not better.",
+      "The better starting point is simple: map what comes in, who handles it, where decisions happen, where work gets stuck, and what should happen next.",
+      "Once the process is clear, AI can support specific steps such as drafting, summarizing, classifying, routing, or checking information before a person reviews it.",
     ],
   },
   {
     slug: "when-to-rebuild-nextjs",
-    title: "When a website needs a full platform rebuild",
+    title: "When a website needs more than a redesign",
     excerpt:
-      "A redesign improves appearance. A rebuild improves speed, structure, maintainability, and conversion infrastructure.",
+      "A visual redesign is not enough when the website no longer supports how the business works.",
     readTime: "5 min read",
     body: [
-      "A rebuild makes sense when the current system is slow, hard to update, difficult to scale, or blocking growth experiments.",
-      "Modern architecture can improve performance, content structure, tracking, maintainability, and the speed of future improvements.",
-      "The best rebuilds are not only visual. They combine information architecture, user journey, analytics, technical cleanup, and a stronger foundation for future features.",
+      "A rebuild makes sense when the current website is slow, hard to update, unclear for customers, or disconnected from lead handling and internal work.",
+      "A better website should explain the offer, capture useful information, support follow-up, and give the business a cleaner foundation for future tools.",
+      "The best rebuilds are practical. They improve content structure, customer flow, analytics, maintainability, and the way the business handles inquiries after they arrive.",
     ],
   },
 ];
 
 export const processSteps = [
   {
-    title: "Business & Operations Discovery",
+    title: "Understand the business",
     description:
-      "Map the offer, customer journey, lead intake, tools, handoffs, and operational bottlenecks before deciding what should be built.",
+      "First I look at the offer, customers, tools, lead flow, admin work, and where the business loses time or clarity.",
   },
   {
-    title: "Digital Structure & Scope",
+    title: "Map the problem",
     description:
-      "Define the website structure, CRM pipeline, dashboard needs, integrations, data flow, and delivery priorities.",
+      "We separate symptoms from the real bottleneck, then decide what needs to be fixed first.",
   },
   {
-    title: "Design, Build & Integration",
+    title: "Plan the system",
     description:
-      "Create the customer-facing experience, connect the tools behind it, and implement the follow-up, booking, payment, or admin flow.",
+      "I define the pages, workflows, dashboard views, automations, integrations, and data flow before building.",
   },
   {
-    title: "Launch, Optimize & Scale",
+    title: "Build the solution",
     description:
-      "Launch cleanly, test the full journey, improve from real usage, and leave a foundation that can support the next stage.",
+      "I build the website, platform, automation, or internal tool and test the important customer and admin flows.",
+  },
+  {
+    title: "Refine and improve",
+    description:
+      "After launch, we improve the system from real usage instead of guessing what the business needs next.",
   },
 ];
 
 export const packages = [
   {
-    name: "Custom Business Operating System",
+    name: "Full Business Platform Build",
     bestFor:
-      "For companies that need the website, client flow, dashboard, payments, CRM, automation, and internal operations connected into one scalable digital setup.",
+      "For businesses that need more than a website: a connected platform around customers, payments, bookings, dashboards, admin work, and daily operations.",
     includes: [
-      "Customer-facing website, portal, or digital product",
-      "Lead intake, booking flow, payment flow, and client communication",
-      "Internal dashboard for customers, orders, tasks, content, or operations",
-      "CRM pipeline, notifications, reminders, and handoff logic",
-      "Integrations and automation built around the way the company runs",
+      "Website, platform, portal, or customer-facing product",
+      "Backend logic for bookings, payments, clients, content, or operations",
+      "Admin dashboards for managing the business behind the website",
+      "Email workflows, notifications, reminders, and handoff logic",
+      "Integrations and automations built around how the business works",
     ],
     subtle:
-      "and more, designed as the flagship build for companies that need the full digital operation connected",
+      "Flagship offer for companies that need the public website and internal operation to work together.",
     cta: secondaryCtas.fullSystem,
   },
   {
-    name: "Premium Website & Lead Platform",
+    name: "Business Automation Systems",
     bestFor:
-      "For service companies, founders, and small businesses that need a premium website designed to create trust and turn visitors into qualified inquiries.",
+      "For businesses losing time to repeated admin, slow follow-up, scattered tools, manual CRM updates, reporting, or client communication.",
     includes: [
-      "High-converting landing page or full business website",
-      "Premium responsive design built around your offer",
-      "Clear service structure, positioning, and call-to-actions",
-      "Lead intake, contact form, inquiry flow, or booking request",
-      "Performance, SEO, analytics, and tracking-ready setup",
-    ],
-    subtle: "and more, built to support visibility, trust, and lead generation",
-    cta: secondaryCtas.growth,
-  },
-  {
-    name: "Platform Rebuild",
-    bestFor:
-      "For companies with an outdated website or app that is slow, unclear, hard to update, or no longer strong enough for the next stage.",
-    includes: [
-      "Strategic rebuild of your existing website, portal, or app",
-      "Improved speed, structure, usability, and reliability",
-      "Cleaner customer journey designed for stronger conversion",
-      "Technical cleanup, better integrations, and tracking setup",
-      "Foundation prepared for future features, CRM, automation, and expansion",
-    ],
-    subtle: "and more, based on what your current setup is missing",
-    cta: secondaryCtas.rebuild,
-  },
-  {
-    name: "Business Automation",
-    bestFor:
-      "For teams losing time to repeated admin, slow follow-up, disconnected forms, email handoffs, CRM updates, or reporting tasks.",
-    includes: [
-      "Process review and bottleneck identification",
-      "Automation for follow-up, reminders, notifications, and data entry",
-      "Tool integrations between forms, CRM, email, dashboards, and admin tools",
-      "AI-supported steps where they create real operational value",
-      "Ongoing improvements to make operations faster, clearer, and more scalable",
+      "Workflow review and bottleneck mapping",
+      "CRM, email, form, dashboard, and notification automations",
+      "Internal tools for admin, owners, teams, or client management",
+      "Lead and client workflows that reduce repeated manual work",
+      "AI-supported steps only where they make the process more useful",
     ],
     subtle:
-      "and more, depending on your tools, process, and operational complexity",
+      "Built to reduce repeated work and make daily operations clearer.",
     cta: secondaryCtas.automation,
   },
   {
-    name: "Internal Dashboard / Operations Tool",
+    name: "Website / Landing Page",
     bestFor:
-      "For companies that need one clear place to manage customers, bookings, payments, tasks, content, staff actions, or operational data.",
+      "For businesses that need a clean website or landing page for trust, promotion, lead generation, campaigns, portfolio presentation, or a stronger online presence.",
     includes: [
-      "Custom dashboard or admin tool around your daily operations",
-      "Customer, booking, order, content, or task management views",
-      "Role-aware access, structured records, and cleaner internal control",
-      "Payments, notifications, email, forms, and API integrations where needed",
-      "A maintainable foundation prepared for future features",
+      "Clear website or landing page structure around your offer",
+      "Responsive design focused on trust and easy contact",
+      "Copy, sections, and calls-to-action that business owners understand",
+      "Inquiry form, booking request, or simple lead intake flow",
+      "Performance, SEO basics, analytics, and maintainable setup",
     ],
-    subtle: "and more, shaped around how your team actually works",
-    cta: secondaryCtas.platform,
+    subtle:
+      "Best when the main need is a stronger public presence, not a full internal system.",
+    cta: secondaryCtas.website,
   },
   {
-    name: "CRM & Lead Workflow System",
+    name: "Redesign / Platform Remake",
     bestFor:
-      "For businesses that need leads captured, qualified, routed, followed up, and tracked without relying on scattered messages or spreadsheets.",
+      "For businesses with an outdated website or existing platform that looks weak, is hard to manage, or no longer supports how the company works.",
     includes: [
-      "Lead intake forms, booking flow, and inquiry qualification",
-      "CRM pipeline structure and follow-up stages",
-      "Email notifications, reminders, and handoff logic",
-      "Dashboard view for lead status, source, owner, and next action",
-      "Tracking-ready setup for understanding what brings qualified inquiries",
+      "Review of the current website, platform, content, and workflow",
+      "Cleaner structure, stronger messaging, and easier user journeys",
+      "Rebuild or remake of outdated frontend and backend pieces",
+      "Improved lead intake, admin flow, integrations, or tracking where needed",
+      "A practical foundation that can grow into automation or a platform",
     ],
-    subtle: "and more, built around how your team sells and follows up",
-    cta: secondaryCtas.leadSystem,
+    subtle:
+      "Not just a visual redesign: the goal is to make the old setup more useful for the business.",
+    cta: secondaryCtas.rebuild,
   },
 ];
 
 export const faqItems = [
   {
-    question: "What kind of businesses are the best fit?",
+    question: "Do I need a full platform or just a website?",
     answer:
-      "The best fit is a company that needs more than a better-looking website. I work best with teams that want clearer lead intake, smoother operations, better follow-up, and a digital setup that can support growth.",
+      "Not always. If the main problem is trust, presentation, or lead generation, a website or landing page may be enough. If the problem continues after the inquiry arrives, a platform or automation system may be the better fit.",
   },
   {
-    question: "Do you only build websites?",
+    question: "Can you improve an existing website or platform?",
     answer:
-      "No. A website can be the starting point, but I also create dashboards, client portals, CRM pipelines, booking flows, payment flows, integrations, and automation around the way the company works.",
+      "Yes. If the current setup has useful parts, I can redesign, rebuild, simplify, or extend it instead of starting from zero.",
   },
   {
-    question: "Can you improve what we already have?",
+    question: "Can you automate my current workflow?",
     answer:
-      "Yes. Not every project needs to start from zero. If your current website, portal, CRM, or internal tool has a usable foundation, I can rebuild, optimize, and extend it.",
+      "Usually, yes. The first step is to understand what is repeated manually, which tools are involved, what information moves between them, and where mistakes or delays happen.",
   },
   {
-    question: "Can automation be done without a new website?",
+    question: "Do I need to know exactly what I need before contacting you?",
     answer:
-      "Yes. If the main problem is repeated admin, disconnected tools, slow follow-up, or inefficient handoffs, automation can be handled independently from a website project.",
+      "No. Many clients only know that the current process is messy or too manual. I help map the problem first, then define the right website, platform, automation, or smaller first step.",
   },
   {
-    question: "How does a project usually start?",
+    question: "Do you work directly with business owners?",
     answer:
-      "It starts with a strategy call and discovery. First I look at the offer, customer journey, current tools, bottlenecks, and goals. Then I define the right scope and technical direction before anything is built.",
+      "Yes. You work directly with me. There are no account managers or agency layers between the business problem and the person building the system.",
   },
   {
-    question: "Do you offer support after launch?",
+    question: "Can this start small and grow later?",
     answer:
-      "Yes. Depending on the project, I can continue with optimization, automation expansion, technical improvements, and support after launch so the system keeps evolving with the business.",
+      "Yes. A project can start with a website, an audit, one workflow automation, or one dashboard. The important part is building the first step in a way that does not block future improvements.",
   },
   {
     question: "What makes your approach different?",
     answer:
-      "I do not treat the project as a one-time website task. I look at how the company sells, serves customers, follows up, manages information, and where the digital setup can remove friction.",
+      "I do not only ask what pages you want. I look at how the business works, where time is wasted, where leads get lost, and what system would make daily work easier.",
   },
 ];

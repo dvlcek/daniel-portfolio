@@ -76,7 +76,7 @@ function createBreadcrumbJsonLd(study: (typeof caseStudies)[number]) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Case Studies",
+        name: "Work",
         item: "https://danielvlcek.com/work",
       },
       {
@@ -122,7 +122,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
           className="inline-flex items-center gap-2 text-sm text-white/48 transition-colors duration-300 hover:text-white"
         >
           <ArrowLeft size={15} />
-          Back to case studies
+          Back to work
         </Link>
 
         {/* Hero */}
@@ -207,7 +207,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
             <div className="mt-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/32">
-                Stack
+                Tech used
               </p>
 
               <div className="mt-3 flex flex-wrap gap-2">
@@ -316,19 +316,19 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
         {/* Challenge / Solution / Components */}
         <section className="mt-16 grid gap-5 lg:grid-cols-3">
-          <TextCard
-            label={study.detailSections.challengeLabel}
+            <TextCard
+            label="Business problem"
             text={study.challenge}
           />
 
           <TextCard
-            label={study.detailSections.solutionLabel}
+            label="System built"
             text={study.solution}
           />
 
           <article className="rounded-3xl border border-white/[0.08] bg-white/[0.022] p-6 md:p-7">
             <p className="text-xs uppercase tracking-[0.2em] text-white/32">
-              {study.detailSections.componentsLabel}
+              What was included
             </p>
 
             <ul className="mt-5 space-y-3">

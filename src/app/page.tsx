@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <main className="site-page">
       <Hero />
-      <SystemElementsSection />
       <Problem />
+      <SystemElementsSection />
       <SolutionPillars />
       <PackagesSection />
       <Mindset />

@@ -8,6 +8,7 @@ import { PackagesSection } from "@/components/sections/PackagesSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Mindset } from "@/components/sections/Mindset";
+import { HeroProblemBridge } from "@/components/animations/HeroProblemBridge";
 
 export const metadata: Metadata = {
   title: "Premium Digital Systems, Websites & Automation",
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <main className="site-page">
       <Hero />
+      <HeroProblemBridge />
       <Problem />
       <SolutionPillars />
       <PackagesSection />

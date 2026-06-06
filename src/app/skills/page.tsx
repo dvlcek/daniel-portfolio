@@ -37,7 +37,7 @@ const groups = [
 
 export default function SkillsPage() {
   return (
-    <main className="py-16 md:py-24">
+    <main className="site-page pt-36 pb-20 md:pt-44">
       <Container>
         <SectionTitle
           eyebrow="Skills"
@@ -49,14 +49,14 @@ export default function SkillsPage() {
           {groups.map((g) => (
             <section
               key={g.title}
-              className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
+              className="glass-panel rounded-[28px] p-6"
             >
-              <h2 className="text-lg font-semibold text-white">{g.title}</h2>
+              <h2 className="text-lg font-semibold text-[#F2EFE6]">{g.title}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {g.items.map((it) => (
                   <span
                     key={it}
-                    className="rounded-full bg-white/8 px-3 py-1 text-xs text-white/75 ring-1 ring-white/10"
+                    className="rounded-full bg-[rgba(242,239,230,0.06)] px-3 py-1 text-xs text-[#B8B1A4] ring-1 ring-[rgba(242,239,230,0.10)]"
                   >
                     {it}
                   </span>

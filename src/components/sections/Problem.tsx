@@ -72,7 +72,7 @@ export function Problem() {
 
       <Container className="relative z-10" size="wide">
         <div className="relative mx-auto max-w-7xl">
-          <div className="relative min-h-[28rem] overflow-hidden rounded-b-[34px] border-x border-b border-[rgba(242,239,230,0.09)] bg-[rgba(8,8,7,0.34)] px-5 pb-6 pt-0 shadow-[0_28px_100px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-7 lg:min-h-[31rem]">
+          <div className="relative min-h-[28rem] overflow-hidden rounded-b-[34px] border-x border-b border-[rgba(242,239,230,0.09)] bg-[rgba(8,8,7,0.34)] px-5 pb-6 pt-0 shadow-[0_24px_80px_rgba(0,0,0,0.24)] md:px-7 lg:min-h-[31rem]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(193,106,58,0.10),transparent_26%),radial-gradient(circle_at_28%_18%,rgba(242,239,230,0.035),transparent_20%),radial-gradient(circle_at_70%_74%,rgba(201,166,107,0.055),transparent_24%)]" />
             <div className="pointer-events-none absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(242,239,230,0.10)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
 
@@ -91,7 +91,24 @@ export function Problem() {
             </svg>
 
             <div className="pointer-events-none absolute left-1/2 top-[43%] hidden -translate-x-1/2 -translate-y-1/2 text-center lg:block">
-              <div className="rounded-full border border-[#C16A3A]/18 bg-[#050505]/42 px-5 py-3 text-sm font-semibold text-[#E5E0D4] backdrop-blur-xl">
+              <div className="rounded-full border border-[#C16A3A]/18 bg-[#050505]/42 px-5 py-3 text-sm font-semibold text-[#E5E0D4] backdrop-blur-md">
+                Too many tools. Zero connection.
+              </div>
+            </div>
+
+
+
+            <div className="relative z-20 grid gap-2 pt-10 sm:grid-cols-2 lg:hidden" aria-hidden="true">
+              {chaosNodes.slice(0, 8).map((node) => (
+                <div
+                  key={node.id}
+                  className="rounded-2xl border border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.58)] px-3 py-2 text-sm font-semibold text-[#E5E0D4]"
+                >
+                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#C16A3A]/80" />
+                  {node.label}
+                </div>
+              ))}
+              <div className="sm:col-span-2 rounded-2xl border border-[#C16A3A]/18 bg-[#C16A3A]/8 px-4 py-3 text-center text-sm font-semibold text-[#E5E0D4]">
                 Too many tools. Zero connection.
               </div>
             </div>
@@ -102,7 +119,7 @@ export function Problem() {
                   key={node.id}
                   data-flow-target={node.id}
                   data-flow-rotate={node.rotate}
-                  className={`${node.position} absolute z-20 rounded-2xl border border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.62)] px-3.5 py-2.5 text-sm font-semibold text-[#E5E0D4] shadow-[0_18px_52px_rgba(0,0,0,0.22)] backdrop-blur-xl`}
+                  className={`${node.position} absolute z-20 rounded-2xl border border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.62)] px-3.5 py-2.5 text-sm font-semibold text-[#E5E0D4] shadow-[0_14px_42px_rgba(0,0,0,0.20)] backdrop-blur-md`}
                   style={{ transform: `rotate(${node.rotate}deg)` }}
                 >
                   <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#C16A3A]/80" />
@@ -113,7 +130,7 @@ export function Problem() {
               {fragments.map((fragment, index) => (
                 <div
                   key={fragment}
-                  className="absolute z-10 rounded-full border border-[#C16A3A]/14 bg-[#C16A3A]/7 px-3 py-1.5 font-mono text-[0.64rem] uppercase tracking-[0.08em] text-[#8E9188] backdrop-blur-xl"
+                  className="absolute z-10 rounded-full border border-[#C16A3A]/14 bg-[#C16A3A]/7 px-3 py-1.5 font-mono text-[0.64rem] uppercase tracking-[0.08em] text-[#8E9188] backdrop-blur-md"
                   style={{
                     left: `${22 + ((index * 13) % 48)}%`,
                     top: `${18 + ((index * 17) % 52)}%`,
@@ -131,7 +148,7 @@ export function Problem() {
         </div>
 
         <div className="relative z-20 mx-auto mt-14 max-w-6xl md:mt-16">
-          <div className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-[#C16A3A]/20 bg-[#C16A3A]/9 px-4 py-2 text-xs text-[#B8B1A4] backdrop-blur-xl">
+          <div className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-[#C16A3A]/20 bg-[#C16A3A]/9 px-4 py-2 text-xs text-[#B8B1A4] backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-[#C16A3A] shadow-[0_0_18px_rgba(193,106,58,0.55)]" />
             Operational drag appears when work starts moving
           </div>
@@ -147,7 +164,7 @@ export function Problem() {
             {painPoints.map((item, index) => (
               <SystemCard
                 key={item.id}
-                className="min-h-full bg-[linear-gradient(180deg,rgba(242,239,230,0.055),rgba(242,239,230,0.022)),rgba(8,8,7,0.66)] lg:backdrop-blur-2xl"
+                className="min-h-full bg-[linear-gradient(180deg,rgba(242,239,230,0.055),rgba(242,239,230,0.022)),rgba(8,8,7,0.66)] lg:backdrop-blur-md"
               >
                 <div
                   data-flow-problem-node

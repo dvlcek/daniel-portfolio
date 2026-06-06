@@ -7,21 +7,6 @@ import {
   ScrollTrigger,
 } from "@/components/animations/gsapClient";
 
-type FlowClone = {
-  id: string;
-  source: HTMLElement;
-  target: HTMLElement;
-  clone: HTMLElement;
-  finalRotate: number;
-};
-
-type ElementBox = {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-};
-
 function clamp(value: number, min = 0, max = 1) {
   return Math.min(max, Math.max(min, value));
 }
@@ -35,44 +20,10 @@ function smoothstep(value: number) {
   return t * t * (3 - 2 * t);
 }
 
-function getAbsoluteBox(element: HTMLElement): ElementBox {
-  const rect = element.getBoundingClientRect();
-
-  return {
-    left: rect.left + window.scrollX,
-    top: rect.top + window.scrollY,
-    width: rect.width,
-    height: rect.height,
-  };
-}
-
-function makeClone(element: HTMLElement) {
-  const clone = element.cloneNode(true) as HTMLElement;
-
-  clone.removeAttribute("data-flow-source");
-  clone.setAttribute("aria-hidden", "true");
-  clone.style.position = "fixed";
-  clone.style.left = "0px";
-  clone.style.top = "0px";
-  clone.style.margin = "0";
-  clone.style.pointerEvents = "none";
-  clone.style.zIndex = "80";
-  clone.style.boxSizing = "border-box";
-  clone.style.transformOrigin = "center center";
-  clone.style.willChange = "transform, opacity, width, height";
-  clone.style.transition = "none";
-
-  document.body.appendChild(clone);
-
-  return clone;
-}
-
-function setVisibility(elements: HTMLElement[], value: number) {
-  gsap.set(elements, {
-    autoAlpha: value,
-    overwrite: true,
-  });
-}
+type DrawablePath = {
+  path: SVGPathElement;
+  length: number;
+};
 
 export function HeroProblemBridge() {
   useEffect(() => {
@@ -103,10 +54,6 @@ export function HeroProblemBridge() {
       const targets = Array.from(
         document.querySelectorAll<HTMLElement>("[data-flow-target]"),
       );
-      const targetMap = new Map(
-        targets.map((target) => [target.dataset.flowTarget, target]),
-      );
-
       const outputNodes = Array.from(
         document.querySelectorAll<HTMLElement>("[data-flow-output]"),
       );
@@ -119,94 +66,52 @@ export function HeroProblemBridge() {
       const heroLines = document.querySelector<HTMLElement>(
         "[data-flow-lines='hero-clean-lines']",
       );
-      const problemLines = document.querySelector<HTMLElement>(
+      const problemLines = document.querySelector<SVGElement>(
         "[data-flow-lines='problem-scribble-lines']",
       );
 
       if (!sources.length || !targets.length) return;
 
-      const flowClones: FlowClone[] = sources.flatMap((source) => {
-        const id = source.dataset.flowSource;
-        if (!id) return [];
+      const problemPaths: DrawablePath[] = problemLines
+        ? Array.from(problemLines.querySelectorAll<SVGPathElement>("path")).map(
+            (path) => {
+              const length = path.getTotalLength();
+              path.style.strokeDasharray = `${length}`;
+              path.style.strokeDashoffset = `${length}`;
+              return { path, length };
+            },
+          )
+        : [];
 
-        const target = targetMap.get(id);
-        if (!target) return [];
-
-        return [
-          {
-            id,
-            source,
-            target,
-            clone: makeClone(source),
-            finalRotate: Number(target.dataset.flowRotate ?? 0),
-          },
-        ];
-      });
-
-      const sourceBoxes = new Map<string, ElementBox>();
-      const targetBoxes = new Map<string, ElementBox>();
-
-      const measure = () => {
-        flowClones.forEach(({ id, source, target }) => {
-          sourceBoxes.set(id, getAbsoluteBox(source));
-          targetBoxes.set(id, getAbsoluteBox(target));
-        });
-      };
-
-      const drawProblemLines = (progress: number) => {
-        if (!problemLines) return;
-
-        const lines = Array.from(problemLines.querySelectorAll<SVGPathElement>("path"));
-        lines.forEach((line) => {
-          const length = line.getTotalLength();
-          line.style.strokeDasharray = `${length}`;
-          line.style.strokeDashoffset = `${length * (1 - progress)}`;
-        });
-      };
-
-      setVisibility([...targets, ...problemNodes], 0);
-      flowClones.forEach(({ clone }) => {
-        clone.style.opacity = "0";
-      });
+      gsap.set(targets, { autoAlpha: 0, y: 18, scale: 0.98 });
+      gsap.set(problemNodes, { autoAlpha: 0, y: 12 });
+      if (problemLines) gsap.set(problemLines, { autoAlpha: 0 });
 
       const render = (rawProgress: number) => {
         const progress = clamp(rawProgress);
-        const activeProgress = smoothstep(progress / 0.82);
-        const cloneOpacity =
-          clamp(progress / 0.08) * (1 - clamp((progress - 0.84) / 0.12));
-        const targetOpacity = clamp((progress - 0.82) / 0.16);
-        const sourceOpacity = 1 - clamp(progress / 0.08);
-        const heroLineOpacity = 1 - clamp(progress / 0.24);
-        const problemLineProgress = clamp((progress - 0.34) / 0.5);
-        const problemNodeOpacity = clamp((progress - 0.7) / 0.24);
+        const eased = smoothstep(progress);
+        const sourceOpacity = 1 - clamp(progress / 0.32);
+        const targetProgress = smoothstep((progress - 0.18) / 0.58);
+        const problemLineProgress = smoothstep((progress - 0.12) / 0.62);
+        const problemNodeProgress = smoothstep((progress - 0.58) / 0.34);
 
-        flowClones.forEach(({ id, clone, finalRotate }) => {
-          const sourceBox = sourceBoxes.get(id);
-          const targetBox = targetBoxes.get(id);
-          if (!sourceBox || !targetBox) return;
-
-          const left = lerp(sourceBox.left, targetBox.left, activeProgress);
-          const top = lerp(sourceBox.top, targetBox.top, activeProgress);
-          const width = lerp(sourceBox.width, targetBox.width, activeProgress);
-          const height = lerp(sourceBox.height, targetBox.height, activeProgress);
-          const rotate = lerp(0, finalRotate, activeProgress);
-          const scale = lerp(1, 0.99, activeProgress);
-
-          clone.style.left = `${left - window.scrollX}px`;
-          clone.style.top = `${top - window.scrollY}px`;
-          clone.style.width = `${width}px`;
-          clone.style.height = `${height}px`;
-          clone.style.opacity = `${cloneOpacity}`;
-          clone.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+        gsap.set(sources, {
+          autoAlpha: sourceOpacity,
+          y: lerp(0, -8, eased),
+          scale: lerp(1, 0.985, eased),
+          overwrite: true,
         });
 
-        setVisibility(sources, sourceOpacity);
-        setVisibility(targets, targetOpacity);
-        setVisibility(problemNodes, problemNodeOpacity);
+        gsap.set(targets, {
+          autoAlpha: targetProgress,
+          y: lerp(18, 0, targetProgress),
+          scale: lerp(0.98, 1, targetProgress),
+          overwrite: true,
+        });
 
         if (heroLines) {
           gsap.set(heroLines, {
-            autoAlpha: heroLineOpacity,
+            autoAlpha: 1 - clamp(progress / 0.42),
             overwrite: true,
           });
         }
@@ -216,55 +121,57 @@ export function HeroProblemBridge() {
             autoAlpha: problemLineProgress,
             overwrite: true,
           });
-          drawProblemLines(problemLineProgress);
+          problemPaths.forEach(({ path, length }) => {
+            path.style.strokeDashoffset = `${length * (1 - problemLineProgress)}`;
+          });
         }
 
         if (heroCore) {
           gsap.set(heroCore, {
-            autoAlpha: 1 - clamp((progress - 0.1) / 0.45),
-            filter: `blur(${lerp(0, 10, clamp((progress - 0.1) / 0.55))}px)`,
-            scale: lerp(1, 0.86, clamp((progress - 0.1) / 0.55)),
+            autoAlpha: 1 - clamp((progress - 0.26) / 0.5),
+            scale: lerp(1, 0.96, clamp((progress - 0.14) / 0.52)),
             overwrite: true,
           });
         }
 
         gsap.set(outputNodes, {
-          autoAlpha: 1 - clamp(progress / 0.14),
-          y: lerp(0, -10, clamp(progress / 0.18)),
+          autoAlpha: 1 - clamp(progress / 0.24),
+          y: lerp(0, -8, clamp(progress / 0.24)),
+          overwrite: true,
+        });
+
+        gsap.set(problemNodes, {
+          autoAlpha: problemNodeProgress,
+          y: lerp(12, 0, problemNodeProgress),
           overwrite: true,
         });
       };
 
-      measure();
       render(0);
 
       const trigger = ScrollTrigger.create({
         trigger: hero,
         start: "bottom bottom",
         endTrigger: problem,
-        end: "top 38%",
-        scrub: true,
+        end: "top 18%",
+        scrub: 0.35,
         invalidateOnRefresh: true,
         onUpdate: (self) => render(self.progress),
-        onRefreshInit: measure,
         onRefresh: (self) => render(self.progress),
       });
 
-      const onResize = () => {
-        measure();
-        render(trigger.progress);
-      };
-
-      window.addEventListener("resize", onResize);
-
       cleanupBridge = () => {
-        window.removeEventListener("resize", onResize);
         trigger.kill();
-        flowClones.forEach(({ clone }) => clone.remove());
-        setVisibility([...sources, ...targets, ...problemNodes, ...outputNodes], 1);
+        gsap.set([...sources, ...targets, ...problemNodes, ...outputNodes], {
+          clearProps: "all",
+        });
         if (heroLines) gsap.set(heroLines, { clearProps: "all" });
         if (problemLines) gsap.set(problemLines, { clearProps: "all" });
         if (heroCore) gsap.set(heroCore, { clearProps: "all" });
+        problemPaths.forEach(({ path }) => {
+          path.style.strokeDasharray = "";
+          path.style.strokeDashoffset = "";
+        });
       };
     });
 

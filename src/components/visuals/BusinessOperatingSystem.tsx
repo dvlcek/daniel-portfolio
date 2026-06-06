@@ -214,7 +214,7 @@ export function BusinessOperatingSystem() {
           data-flow-core="business-os"
           className={cn(
             "absolute left-1/2 top-[44%] z-20 hidden h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full lg:block xl:h-52 xl:w-52",
-            "border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_35%_24%,rgba(242,239,230,0.38),transparent_11%),radial-gradient(circle_at_44%_38%,rgba(201,166,107,0.25),transparent_29%),radial-gradient(circle_at_62%_64%,rgba(193,106,58,0.18),transparent_36%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(18,19,16,0.64)_46%,rgba(5,5,5,0.84))] shadow-[0_0_68px_rgba(193,106,58,0.20),inset_0_0_54px_rgba(242,239,230,0.055)] backdrop-blur-2xl transition duration-500",
+            "border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_35%_24%,rgba(242,239,230,0.38),transparent_11%),radial-gradient(circle_at_44%_38%,rgba(201,166,107,0.25),transparent_29%),radial-gradient(circle_at_62%_64%,rgba(193,106,58,0.18),transparent_36%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(18,19,16,0.64)_46%,rgba(5,5,5,0.84))] shadow-[0_0_68px_rgba(193,106,58,0.20),inset_0_0_54px_rgba(242,239,230,0.055)] backdrop-blur-xl transition duration-500",
             activeNode.kind === "tool" ? "shadow-[0_0_70px_rgba(143,163,177,0.16),inset_0_0_54px_rgba(242,239,230,0.055)]" : "",
           )}
         >
@@ -260,7 +260,7 @@ export function BusinessOperatingSystem() {
         <div className="absolute bottom-3 left-3 right-3 z-30 hidden lg:block">
           <div
             data-flow-output
-            className="mx-auto grid max-w-3xl gap-3 rounded-[22px] border border-[rgba(242,239,230,0.11)] bg-[rgba(8,8,7,0.58)] p-3 shadow-[0_16px_48px_rgba(0,0,0,0.26)] backdrop-blur-2xl lg:grid-cols-[1fr_auto] lg:items-center"
+            className="mx-auto grid max-w-3xl gap-3 rounded-[22px] border border-[rgba(242,239,230,0.11)] bg-[rgba(8,8,7,0.58)] p-3 shadow-[0_16px_48px_rgba(0,0,0,0.26)] backdrop-blur-md lg:grid-cols-[1fr_auto] lg:items-center"
           >
             <div>
               <p className="micro-label text-[#6F766E]">Active connection</p>
@@ -295,7 +295,7 @@ function SystemNodeButton({
       type="button"
       data-flow-source={node.id}
       className={cn(
-        "group absolute z-20 flex min-w-32 max-w-40 items-center gap-2.5 rounded-2xl border px-3 py-2.5 text-left backdrop-blur-xl transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C16A3A]",
+        "group absolute z-20 flex min-w-32 max-w-40 items-center gap-2.5 rounded-2xl border px-3 py-2.5 text-left backdrop-blur-md transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C16A3A]",
         node.position,
         active
           ? "border-[#C9A66B]/40 bg-[#C16A3A]/13 shadow-[0_16px_44px_rgba(193,106,58,0.16)]"
@@ -331,7 +331,7 @@ function MobileCore({ activeNode }: { activeNode: SystemNode }) {
   const Icon = activeNode.icon;
 
   return (
-    <div className="rounded-[28px] border border-[#C9A66B]/20 bg-[rgba(8,8,7,0.68)] p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
+    <div className="rounded-[28px] border border-[#C9A66B]/20 bg-[rgba(8,8,7,0.68)] p-5 text-center shadow-[0_20px_64px_rgba(0,0,0,0.28)] backdrop-blur-md">
       <div className="mx-auto grid h-36 w-36 place-items-center rounded-full border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_36%_24%,rgba(242,239,230,0.34),transparent_13%),radial-gradient(circle_at_48%_44%,rgba(201,166,107,0.22),transparent_34%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(5,5,5,0.82))] shadow-[0_0_58px_rgba(193,106,58,0.18)]">
         <Sparkles className="text-[#C9A66B]" size={30} />
       </div>

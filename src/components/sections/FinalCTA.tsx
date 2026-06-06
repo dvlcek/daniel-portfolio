@@ -11,52 +11,47 @@ const callPoints = [
 
 export function FinalCTA() {
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden bg-white py-20 md:py-24"
-    >
+    <section id="contact" className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       <Container>
-        <Reveal className="overflow-hidden rounded-[2.5rem] border border-[#C9D4FF] bg-[#0E1B56] p-7 text-white shadow-[0_28px_90px_rgba(18,56,242,0.22)] md:p-10">
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
+        <Reveal className="relative overflow-hidden rounded-[2.5rem] border border-white/[0.10] bg-[radial-gradient(circle_at_25%_20%,rgba(193,106,58,0.14),transparent_34%),radial-gradient(circle_at_75%_30%,rgba(143,163,177,0.12),transparent_38%),linear-gradient(180deg,#11120F_0%,#050505_100%)] p-7 text-[#F7F4EC] shadow-[0_32px_100px_rgba(0,0,0,0.38)] md:p-10">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(242,239,230,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(242,239,230,0.08)_1px,transparent_1px)] [background-size:64px_64px]" />
+          <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#C9D4FF]">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.26em] text-clay">
                 Start with clarity
               </p>
-              <h2 className="mt-5 max-w-2xl text-balance text-4xl font-semibold tracking-tight md:text-5xl md:leading-[1.05]">
-                Tell me what part of your business you want to improve.
+              <h2 className="mt-5 max-w-3xl text-balance text-[clamp(2.5rem,5vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.045em] text-[#F7F4EC]">
+                Let&apos;s map the system your business actually needs.
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/72">
-                We can look at your current website, tools, lead flow, admin
-                work, or client process and decide what system would make the
-                next step easier.
+              <p className="mt-6 max-w-2xl text-base leading-8 text-[#D8D2C4]/72">
+                Tell me what you are building, what feels manual, and where
+                your current tools stop supporting growth. I will help identify
+                what kind of website, platform, or automation system makes
+                sense.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Button
-                  href="/contact"
-                  variant="primary"
-                  className="bg-white text-[#0E1B56] before:bg-[#C9D4FF] hover:text-[#0E1B56]"
-                >
-                  Let&apos;s look at your setup
+                <Button href="/contact" variant="primary" className="bg-site-bg text-cream before:hidden hover:bg-white">
+                  Book a Strategy Call
                   <ArrowUpRight size={15} />
                 </Button>
-                <p className="max-w-sm text-sm leading-7 text-white/58">
-                  Clear direction, honest feedback, and no oversized scope.
-                </p>
+                <Button href="/work" variant="secondary" className="border-white/[0.12] bg-white/[0.08] text-[#F7F4EC] ring-white/[0.12] hover:bg-white/[0.13]">
+                  View Work
+                </Button>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/12 bg-white/8 p-5 backdrop-blur-xl">
-              <p className="text-sm font-semibold text-white">
+            <div className="rounded-[2rem] border border-white/[0.10] bg-white/[0.055] p-5 backdrop-blur-xl">
+              <p className="text-sm font-semibold text-[#F7F4EC]">
                 What we&apos;ll clarify
               </p>
               <div className="mt-5 space-y-4">
                 {callPoints.map((item, index) => (
                   <div key={item} className="flex gap-4">
-                    <span className="w-6 shrink-0 font-mono text-xs text-[#C9D4FF]">
+                    <span className="w-6 shrink-0 font-mono text-xs text-clay">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="text-sm leading-7 text-white/68">{item}</p>
+                    <p className="text-sm leading-7 text-[#D8D2C4]/70">{item}</p>
                   </div>
                 ))}
               </div>

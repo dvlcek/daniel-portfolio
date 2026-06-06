@@ -8,6 +8,7 @@ import { PackagesSection } from "@/components/sections/PackagesSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { HeroProblemBridge } from "@/components/animations/HeroProblemBridge";
+import { BusinessPlatformSection } from "@/components/sections/BusinessPlatformSection";
 
 export const metadata: Metadata = {
   title: "Websites, Platforms & Business Automation",
@@ -33,9 +34,10 @@ export default function Home() {
       <HeroProblemBridge />
       <SolutionPillars />
       <PackagesSection />
-      <Testimonials />
+      <BusinessPlatformSection />
       <FeaturedOutcomes />
       <Process />
+      <Testimonials />
       <FinalCTA />
     </main>
   );

@@ -35,32 +35,29 @@ export function FeaturedOutcomes() {
   if (!featuredStudy) return null;
 
   return (
-    <section
-      id="work"
-      className="relative overflow-hidden bg-white py-20 md:py-28"
-    >
+    <section id="work" className="relative overflow-hidden bg-site-bg py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_12%,rgba(143,163,177,0.11),transparent_32%)]" />
       <Container>
-        <div ref={ref}>
+        <div ref={ref} className="relative z-10">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_0.65fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1238F2]">
-                Featured projects
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-clay">
+                Featured systems
               </p>
-              <h2 className="mt-5 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-[#10131A] md:text-5xl md:leading-[1.05]">
-                Real projects where the website became part of the business
-                system.
+              <h2 className="mt-5 max-w-4xl text-balance text-[clamp(2.5rem,5vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.045em] text-cream">
+                Systems built for clarity, conversion, and operational speed.
               </h2>
             </div>
 
             <div className="max-w-xl lg:justify-self-end">
-              <p className="text-lg leading-8 text-[#566176]">
+              <p className="text-lg leading-8 text-stone">
                 A focused look at websites, dashboards, lead flows, rebuilds,
                 and automation work designed to make daily operations clearer.
               </p>
 
               <Link
                 href="/work"
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#DDE2EE] bg-[#FAFAF8] px-5 py-3 text-sm font-semibold text-[#10131A] transition duration-300 hover:border-[#1238F2]/25 hover:text-[#1238F2]"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/70 px-5 py-3 text-sm font-semibold text-cream shadow-[0_14px_34px_rgba(21,21,18,0.05)] transition duration-300 hover:-translate-y-0.5 hover:bg-white"
               >
                 View case studies
                 <ArrowUpRight size={15} />
@@ -71,33 +68,34 @@ export function FeaturedOutcomes() {
           <div className="mt-14 grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
             <Link
               href={`/work/${featuredStudy.slug}`}
-              className="case-card group overflow-hidden rounded-[2rem] border border-[#DDE2EE] bg-[#FAFAF8] shadow-[0_16px_48px_rgba(16,19,26,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(16,19,26,0.10)]"
+              className="case-card group overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/68 shadow-[0_24px_70px_rgba(21,21,18,0.08)] transition duration-300 hover:-translate-y-1 hover:border-clay/20 hover:bg-white"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#EEF2FF]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-panel">
                 <Image
                   src={featuredStudy.image}
                   alt={`${featuredStudy.company} project preview`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 52vw"
-                  className="object-cover transition duration-700 group-hover:scale-[1.025]"
+                  className="object-cover opacity-[0.88] transition duration-700 group-hover:scale-[1.025]"
                   priority
                 />
-                <div className="absolute left-5 top-5 rounded-full bg-white/86 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1238F2] shadow-[0_10px_30px_rgba(16,19,26,0.08)] backdrop-blur-xl">
+                <div className="absolute inset-0 bg-linear-to-t from-site-bg/70 via-site-bg/8 to-transparent" />
+                <div className="absolute left-5 top-5 rounded-full border border-black/[0.08] bg-white/72 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-cream shadow-[0_12px_26px_rgba(21,21,18,0.06)] backdrop-blur-xl">
                   {getCategoryLabel(featuredStudy.category)}
                 </div>
               </div>
 
               <div className="p-6 md:p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7A8497]">
-                  {featuredStudy.company} · {featuredStudy.industry}
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-ash">
+                  {featuredStudy.company} / {featuredStudy.industry}
                 </p>
-                <h3 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-[#10131A]">
+                <h3 className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.035em] text-cream">
                   {featuredStudy.title}
                 </h3>
-                <p className="mt-4 text-base leading-8 text-[#566176]">
+                <p className="mt-4 text-base leading-8 text-stone">
                   {featuredStudy.result}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#1238F2]">
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-clay">
                   View project
                   <ArrowUpRight size={14} />
                 </span>
@@ -109,28 +107,29 @@ export function FeaturedOutcomes() {
                 <Link
                   key={study.slug}
                   href={`/work/${study.slug}`}
-                  className="case-card group grid overflow-hidden rounded-[2rem] border border-[#DDE2EE] bg-white shadow-[0_16px_48px_rgba(16,19,26,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(16,19,26,0.10)] sm:grid-cols-[180px_1fr]"
+                  className="case-card group grid overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/68 shadow-[0_18px_50px_rgba(21,21,18,0.06)] transition duration-300 hover:-translate-y-1 hover:border-clay/20 hover:bg-white sm:grid-cols-[180px_1fr]"
                 >
-                  <div className="relative min-h-[180px] overflow-hidden bg-[#EEF2FF]">
+                  <div className="relative min-h-[180px] overflow-hidden bg-panel">
                     <Image
                       src={study.image}
                       alt={`${study.company} project preview`}
                       fill
                       sizes="(max-width: 640px) 100vw, 180px"
-                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                      className="object-cover opacity-[0.88] transition duration-700 group-hover:scale-[1.04]"
                     />
+                    <div className="absolute inset-0 bg-linear-to-t from-site-bg/75 to-transparent" />
                   </div>
                   <div className="flex flex-col p-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7A8497]">
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ash">
                       {getCategoryLabel(study.category)}
                     </p>
-                    <h3 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-[#10131A]">
+                    <h3 className="mt-3 text-xl font-semibold leading-snug tracking-[-0.025em] text-cream">
                       {study.title}
                     </h3>
-                    <p className="mt-3 line-clamp-2 text-sm leading-7 text-[#566176]">
+                    <p className="mt-3 line-clamp-2 text-sm leading-7 text-stone">
                       {study.result}
                     </p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-[#1238F2]">
+                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-clay">
                       View project
                       <ArrowUpRight size={14} />
                     </span>

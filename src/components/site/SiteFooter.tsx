@@ -11,10 +11,10 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#DDE2EE] bg-[#10131A]">
+    <footer className="relative overflow-hidden border-t border-black/[0.08] bg-[#0D0E0C]">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#C9D4FF]/60 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(18,56,242,0.18),transparent_34%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#F7F4EC]/20 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_0%,rgba(184,100,63,0.14),transparent_32%),radial-gradient(circle_at_76%_18%,rgba(167,183,190,0.12),transparent_34%)]" />
       </div>
 
       <Container>
@@ -29,24 +29,25 @@ export function SiteFooter() {
             <div>
               <Link
                 href="/"
-                className="inline-flex text-sm font-semibold tracking-tight text-white transition-colors duration-300 hover:text-[#C9D4FF]"
+                className="inline-flex text-sm font-semibold tracking-tight text-[#F7F4EC] transition-colors duration-300 hover:text-white"
               >
                 Daniel Vlcek
               </Link>
 
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/48">
-                Websites, systems, and automations that help your business run
-                clearer and grow smarter.
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#F7F4EC]/58">
+                Premium websites, automation systems, CRM workflows, dashboards,
+                and scalable digital infrastructure for companies that want
+                clearer operations.
               </p>
             </div>
 
             <div className="flex flex-col gap-5 md:items-end">
-              <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-white/48 md:justify-end">
+              <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-[#F7F4EC]/58 md:justify-end">
                 {footerLinks.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="transition-colors duration-300 hover:text-white"
+                    className="transition-colors duration-300 hover:text-[#F7F4EC]"
                   >
                     {link.label}
                   </Link>
@@ -55,7 +56,7 @@ export function SiteFooter() {
 
               <Link
                 href={primaryCta.href}
-                className="text-sm font-medium text-[#C9D4FF] transition-colors duration-300 hover:text-white"
+                className="text-sm font-medium text-[#C9A66B] transition-colors duration-300 hover:text-[#F7F4EC]"
               >
                 {primaryCta.label}
               </Link>
@@ -68,7 +69,7 @@ export function SiteFooter() {
                 © {new Date().getFullYear()} Daniel Vlcek. All rights reserved.
               </p>
 
-              <p>Business systems for clearer daily work.</p>
+              <p>Digital systems for faster, cleaner operations.</p>
             </div>
           </div>
         </div>

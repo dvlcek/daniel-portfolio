@@ -37,8 +37,9 @@ const groups = [
 
 export default function SkillsPage() {
   return (
-    <main className="py-16 md:py-24">
-      <Container>
+    <main className="relative min-h-screen overflow-hidden bg-site-bg pt-28 pb-16 md:pt-32 md:pb-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(143,163,177,0.10),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(193,106,58,0.08),transparent_30%)]" />
+      <Container className="relative z-10">
         <SectionTitle
           eyebrow="Skills"
           title="Stack & Capabilities"
@@ -49,14 +50,14 @@ export default function SkillsPage() {
           {groups.map((g) => (
             <section
               key={g.title}
-              className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"
+              className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
             >
-              <h2 className="text-lg font-semibold text-white">{g.title}</h2>
+              <h2 className="text-lg font-semibold text-cream">{g.title}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {g.items.map((it) => (
                   <span
                     key={it}
-                    className="rounded-full bg-white/8 px-3 py-1 text-xs text-white/75 ring-1 ring-white/10"
+                    className="rounded-full bg-white/68 px-3 py-1 text-xs text-stone ring-1 ring-black/[0.10]"
                   >
                     {it}
                   </span>

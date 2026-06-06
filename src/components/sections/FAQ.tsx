@@ -15,8 +15,8 @@ export function FAQ() {
   return (
     <section className="relative overflow-hidden bg-site-bg py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-black/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-black/8 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(47,47,228,0.03),transparent_30%)]" />
       </div>
 
@@ -28,7 +28,7 @@ export function FAQ() {
             desc="Simple answers about scope, process, launch, and what working together usually looks like."
           />
 
-          <div className="mt-12 border-t border-white/[0.08]">
+          <div className="mt-12 border-t border-black/[0.08]">
             {faqItems.map((item, index) => {
               const isOpen = openIndex === index;
               const answerId = `faq-answer-${index}`;
@@ -36,7 +36,7 @@ export function FAQ() {
               return (
                 <div
                   key={item.question}
-                  className="faq-item border-b border-white/[0.08]"
+                  className="faq-item border-b border-black/[0.08]"
                 >
                   <button
                     type="button"
@@ -51,7 +51,7 @@ export function FAQ() {
                           "w-6 shrink-0 font-mono text-xs transition-colors duration-300",
                           isOpen
                             ? "text-brand-blue-light"
-                            : "text-white/28 group-hover:text-brand-blue",
+                            : "text-cream/28 group-hover:text-brand-blue",
                         ].join(" ")}
                       >
                         {String(index + 1).padStart(2, "0")}
@@ -61,8 +61,8 @@ export function FAQ() {
                         className={[
                           "text-base font-medium leading-snug transition-colors duration-300 md:text-lg",
                           isOpen
-                            ? "text-white"
-                            : "text-white/76 group-hover:text-white",
+                            ? "text-cream"
+                            : "text-cream/76 group-hover:text-cream",
                         ].join(" ")}
                       >
                         {item.question}
@@ -74,7 +74,7 @@ export function FAQ() {
                         "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
                         isOpen
                           ? "text-brand-blue-light"
-                          : "text-white/36 group-hover:text-brand-blue-light",
+                          : "text-cream/36 group-hover:text-brand-blue-light",
                       ].join(" ")}
                     >
                       <span className="absolute h-px w-3.5 bg-current" />
@@ -95,7 +95,7 @@ export function FAQ() {
                     ].join(" ")}
                   >
                     <div className="pb-6 pl-11 pr-10 md:pb-7 md:pl-11">
-                      <p className="max-w-3xl text-sm leading-relaxed text-white/55 md:text-[15px]">
+                      <p className="max-w-3xl text-sm leading-relaxed text-cream/55 md:text-[15px]">
                         {item.answer}
                       </p>
                     </div>

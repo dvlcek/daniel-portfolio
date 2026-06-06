@@ -30,23 +30,25 @@ const useCases = [
 
 export default function ServicesPage() {
   return (
-    <main className="bg-[#FAFAF8] py-16 md:py-24">
+    <main className="relative min-h-screen overflow-hidden bg-site-bg pt-28 pb-16 md:pt-32 md:pb-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(143,163,177,0.10),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(193,106,58,0.08),transparent_30%)]" />
       <Container>
-        <SectionTitle
-          eyebrow="Services"
-          title="The offer is simple: build the right system for the business problem."
-          desc="I help companies improve websites, platforms, automations, workflows, dashboards, internal tools, and business logic without turning the project into an overwhelming list of services."
-        />
+        <div className="relative z-10">
+          <SectionTitle
+            eyebrow="Services"
+            title="Websites, platforms, and automations designed as one business system."
+            desc="I help companies replace scattered tools and manual workflows with connected digital systems built for clarity, speed, and scalable growth."
+          />
 
-        <div className="mt-10 rounded-[2rem] border border-[#C9D4FF] bg-white p-6 shadow-[0_18px_54px_rgba(16,19,26,0.08)] ring-1 ring-[#1238F2]/10 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1238F2]">
+        <div className="mt-10 rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] ring-1 ring-clay/10 md:p-8">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-clay">
             Core positioning
           </p>
-          <h2 className="mt-4 max-w-4xl text-2xl font-semibold tracking-tight text-[#10131A] md:text-4xl">
+          <h2 className="mt-4 max-w-4xl text-3xl font-medium tracking-[-0.035em] text-cream md:text-5xl">
             I build websites, platforms, and automations that make businesses
             easier to run.
           </h2>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-[#566176] md:text-base">
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-stone md:text-base">
             I look at how the business works first: where leads come from, what
             gets repeated manually, where tools do not connect, and what would
             make daily work easier.
@@ -60,36 +62,36 @@ export default function ServicesPage() {
               className={[
                 "rounded-[2rem] border p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]",
                 index === 0
-                  ? "border-[#1238F2]/28 bg-[#F4F7FF] ring-1 ring-[#1238F2]/10"
-                  : "border-[#E3E7F0] bg-white",
+                  ? "border-clay/30 bg-[linear-gradient(180deg,rgba(184,100,63,0.10),rgba(255,255,255,0.72)),rgba(255,255,255,0.70)] ring-1 ring-clay/10"
+                  : "border-black/[0.10] bg-white/62",
               ].join(" ")}
             >
               <div className="flex items-start justify-between gap-4">
-                <p className="font-mono text-xs font-semibold text-[#1238F2]">
+                <p className="font-mono text-xs font-semibold text-clay">
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 {index === 0 ? (
-                  <span className="rounded-full border border-[#C9D4FF] bg-white px-3 py-1 text-xs font-semibold text-[#1238F2]">
+                  <span className="rounded-full border border-clay/25 bg-clay/10 px-3 py-1 text-xs font-semibold text-clay">
                     Flagship offer
                   </span>
                 ) : null}
               </div>
 
-              <h3 className="mt-5 text-xl font-semibold text-[#10131A]">
+              <h3 className="mt-5 text-xl font-semibold text-cream">
                 {pkg.name}
               </h3>
-              <p className="mt-3 text-sm leading-7 text-[#566176]">
-                <span className="font-semibold text-[#10131A]">Best for:</span> {pkg.bestFor}
+              <p className="mt-3 text-sm leading-7 text-stone">
+                <span className="font-semibold text-muted-cream">Best for:</span> {pkg.bestFor}
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-[#42506A]">
+              <ul className="mt-4 space-y-2 text-sm text-stone">
                 {pkg.includes.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1238F2]" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <Link href={pkg.cta.href} className="mt-6 inline-flex rounded-full bg-[#1238F2] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(18,56,242,0.18)] transition hover:-translate-y-0.5">
+              <Link href={pkg.cta.href} className="mt-6 inline-flex rounded-full bg-cream px-5 py-3 text-sm font-semibold text-site-bg shadow-[0_18px_48px_rgba(242,239,230,0.12)] transition hover:-translate-y-0.5 hover:bg-[#0D0E0C]">
                 {pkg.cta.label}
               </Link>
             </article>
@@ -98,10 +100,10 @@ export default function ServicesPage() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1fr]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1238F2]">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-clay">
               Common starting points
             </p>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#10131A] md:text-3xl">
+            <h2 className="mt-4 text-3xl font-medium tracking-[-0.035em] text-cream md:text-4xl">
               You do not need to know the exact solution before contacting me.
             </h2>
           </div>
@@ -110,7 +112,7 @@ export default function ServicesPage() {
             {useCases.map((item) => (
               <p
                 key={item}
-                className="rounded-2xl border border-[#E3E7F0] bg-white p-4 text-sm leading-7 text-[#566176]"
+                className="rounded-2xl border border-black/[0.10] bg-white/62 p-4 text-sm leading-7 text-stone"
               >
                 {item}
               </p>
@@ -118,24 +120,25 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <div className="mt-10 rounded-[2rem] border border-[#DDE2EE] bg-white p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]">
-          <h3 className="text-xl font-semibold text-[#10131A]">
+        <div className="mt-10 rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+          <h3 className="text-xl font-semibold text-cream">
             Primary engagement path
           </h3>
-          <p className="mt-3 max-w-4xl text-sm leading-7 text-[#566176]">
+          <p className="mt-3 max-w-4xl text-sm leading-7 text-stone">
             Most projects start by looking at the current setup: website,
             inquiry flow, tools, manual work, and the part of the business that
             creates the most friction. From there we decide whether the right
             next step is a website, automation, platform, or remake.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link href={primaryCta.href} className="inline-flex rounded-full bg-[#1238F2] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(18,56,242,0.18)] transition hover:-translate-y-0.5">
+            <Link href={primaryCta.href} className="inline-flex rounded-full bg-cream px-5 py-3 text-sm font-semibold text-site-bg shadow-[0_18px_48px_rgba(242,239,230,0.12)] transition hover:-translate-y-0.5 hover:bg-[#0D0E0C]">
               {primaryCta.label}
             </Link>
-            <Link href="/work" className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10131A] ring-1 ring-[#DDE2EE] transition hover:-translate-y-0.5">
+            <Link href="/work" className="inline-flex rounded-full bg-white/68 px-5 py-3 text-sm font-semibold text-cream ring-1 ring-black/[0.12] transition hover:-translate-y-0.5 hover:bg-white/80">
               View real projects
             </Link>
           </div>
+        </div>
         </div>
       </Container>
     </main>

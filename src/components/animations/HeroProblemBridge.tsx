@@ -30,9 +30,9 @@ function lerp(start: number, end: number, progress: number) {
   return start + (end - start) * progress;
 }
 
-function smoothstep(value: number) {
+function smootherstep(value: number) {
   const t = clamp(value);
-  return t * t * (3 - 2 * t);
+  return t * t * t * (t * (t * 6 - 15) + 10);
 }
 
 function getAbsoluteBox(element: HTMLElement): ElementBox {
@@ -171,14 +171,15 @@ export function HeroProblemBridge() {
 
       const render = (rawProgress: number) => {
         const progress = clamp(rawProgress);
-        const activeProgress = smoothstep(progress / 0.82);
+        const activeProgress = smootherstep((progress - 0.06) / 0.82);
         const cloneOpacity =
-          clamp(progress / 0.08) * (1 - clamp((progress - 0.84) / 0.12));
-        const targetOpacity = clamp((progress - 0.82) / 0.16);
-        const sourceOpacity = 1 - clamp(progress / 0.08);
-        const heroLineOpacity = 1 - clamp(progress / 0.24);
-        const problemLineProgress = clamp((progress - 0.34) / 0.5);
-        const problemNodeOpacity = clamp((progress - 0.7) / 0.24);
+          smootherstep(progress / 0.16) *
+          (1 - smootherstep((progress - 0.86) / 0.14));
+        const targetOpacity = smootherstep((progress - 0.72) / 0.22);
+        const sourceOpacity = 1 - smootherstep((progress - 0.1) / 0.24);
+        const heroLineOpacity = 1 - smootherstep((progress - 0.08) / 0.32);
+        const problemLineProgress = smootherstep((progress - 0.28) / 0.52);
+        const problemNodeOpacity = smootherstep((progress - 0.62) / 0.25);
 
         flowClones.forEach(({ id, clone, finalRotate }) => {
           const sourceBox = sourceBoxes.get(id);
@@ -190,7 +191,7 @@ export function HeroProblemBridge() {
           const width = lerp(sourceBox.width, targetBox.width, activeProgress);
           const height = lerp(sourceBox.height, targetBox.height, activeProgress);
           const rotate = lerp(0, finalRotate, activeProgress);
-          const scale = lerp(1, 0.99, activeProgress);
+          const scale = lerp(1, 0.985, activeProgress);
 
           clone.style.left = `${left - window.scrollX}px`;
           clone.style.top = `${top - window.scrollY}px`;
@@ -221,16 +222,16 @@ export function HeroProblemBridge() {
 
         if (heroCore) {
           gsap.set(heroCore, {
-            autoAlpha: 1 - clamp((progress - 0.1) / 0.45),
-            filter: `blur(${lerp(0, 10, clamp((progress - 0.1) / 0.55))}px)`,
-            scale: lerp(1, 0.86, clamp((progress - 0.1) / 0.55)),
+            autoAlpha: 1 - smootherstep((progress - 0.12) / 0.52),
+            filter: `blur(${lerp(0, 6, smootherstep((progress - 0.12) / 0.58))}px)`,
+            scale: lerp(1, 0.92, smootherstep((progress - 0.12) / 0.58)),
             overwrite: true,
           });
         }
 
         gsap.set(outputNodes, {
-          autoAlpha: 1 - clamp(progress / 0.14),
-          y: lerp(0, -10, clamp(progress / 0.18)),
+          autoAlpha: 1 - smootherstep((progress - 0.04) / 0.24),
+          y: lerp(0, -8, smootherstep((progress - 0.04) / 0.24)),
           overwrite: true,
         });
       };
@@ -240,10 +241,10 @@ export function HeroProblemBridge() {
 
       const trigger = ScrollTrigger.create({
         trigger: hero,
-        start: "bottom bottom",
+        start: "bottom 92%",
         endTrigger: problem,
-        end: "top 38%",
-        scrub: true,
+        end: "top 26%",
+        scrub: 0.35,
         invalidateOnRefresh: true,
         onUpdate: (self) => render(self.progress),
         onRefreshInit: measure,

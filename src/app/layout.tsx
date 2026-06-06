@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Sans } from "next/font/google";
+import { Geist, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
-const headingFont = Space_Grotesk({
+const headingFont = Geist({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
@@ -136,7 +136,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headingFont.variable} ${bodyFont.variable} min-h-screen overflow-x-hidden bg-[#FAFAF8] text-[#10131A] antialiased`}
+        className={`${headingFont.variable} ${bodyFont.variable} min-h-screen overflow-x-hidden bg-site-bg text-cream antialiased`}
       >
         <script
           type="application/ld+json"

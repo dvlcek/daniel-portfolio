@@ -66,14 +66,14 @@ const CAL_OPEN_URL = "https://cal.com/daniel-i0cc0w/30min";
 const CalEmbed = dynamic(() => import("@calcom/embed-react"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[540px] items-center justify-center text-sm text-white/42">
+    <div className="flex h-[540px] items-center justify-center text-sm text-cream/42">
       Loading calendar...
     </div>
   ),
 });
 
 const fieldClassName =
-  "w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.018] px-4 py-3 text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-white/28 hover:border-white/[0.12] hover:bg-white/[0.026] focus:border-brand-blue/40 focus:bg-white/[0.028] focus:ring-2 focus:ring-brand-blue/10";
+  "w-full appearance-none rounded-2xl border border-black/[0.08] bg-white/55 px-4 py-3 text-sm text-cream outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-cream/28 hover:border-black/[0.12] hover:bg-white/68 focus:border-brand-blue/40 focus:bg-white/68 focus:ring-2 focus:ring-brand-blue/10";
 
 const expectations = [
   "Your current website, tools, and lead handling process",
@@ -118,7 +118,7 @@ function SelectField({
 
   return (
     <div ref={wrapperRef} className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-medium text-white/68">
+      <label htmlFor={id} className="text-sm font-medium text-cream/68">
         {label}
       </label>
 
@@ -138,17 +138,17 @@ function SelectField({
             }
           }}
           className={[
-            "group flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left text-sm text-white outline-none transition-[background-color,border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
+            "group flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left text-sm text-cream outline-none transition-[background-color,border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
             open
               ? "border-brand-blue/35 bg-brand-blue/[0.055] ring-2 ring-brand-blue/10"
-              : "border-white/[0.08] bg-white/[0.018] hover:border-white/[0.12] hover:bg-white/[0.026]",
+              : "border-black/[0.08] bg-white/55 hover:border-black/[0.12] hover:bg-white/68",
           ].join(" ")}
         >
           <span className="truncate">{value}</span>
 
           <span
             className={[
-              "flex h-5 w-5 shrink-0 items-center justify-center text-white/38 transition-transform duration-300 group-hover:text-brand-blue-light",
+              "flex h-5 w-5 shrink-0 items-center justify-center text-cream/38 transition-transform duration-300 group-hover:text-brand-blue-light",
               open ? "rotate-180 text-brand-blue-light" : "",
             ].join(" ")}
           >
@@ -174,7 +174,7 @@ function SelectField({
           role="listbox"
           aria-label={label}
           className={[
-            "absolute left-0 right-0 top-[calc(100%+8px)] z-50 origin-top overflow-hidden rounded-2xl border border-white/[0.10] bg-site-bg-deep/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200",
+            "absolute left-0 right-0 top-[calc(100%+8px)] z-50 origin-top overflow-hidden rounded-2xl border border-black/[0.10] bg-site-bg-deep/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200",
             open
               ? "pointer-events-auto translate-y-0 opacity-100"
               : "pointer-events-none -translate-y-1 opacity-0",
@@ -203,7 +203,7 @@ function SelectField({
                   "flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30",
                   selected
                     ? "bg-brand-blue/10 text-brand-blue-light"
-                    : "text-white/68 hover:bg-white/[0.045] hover:text-white",
+                    : "text-cream/68 hover:bg-white/66 hover:text-cream",
                 ].join(" ")}
               >
                 <span className="truncate">{option}</span>
@@ -234,7 +234,7 @@ function Field({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-medium text-white/68">
+      <label htmlFor={id} className="text-sm font-medium text-cream/68">
         {label}
         {required ? <span className="ml-1 text-brand-blue-light">*</span> : null}
       </label>
@@ -268,7 +268,7 @@ function TextareaField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-medium text-white/68">
+      <label htmlFor={id} className="text-sm font-medium text-cream/68">
         {label}
         {required ? <span className="ml-1 text-brand-blue-light">*</span> : null}
       </label>
@@ -307,7 +307,7 @@ function StepIndicator({ step }: { step: 1 | 2 }) {
                   "flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition duration-300",
                   active
                     ? "border-brand-blue/35 bg-brand-blue/10 text-brand-blue-light"
-                    : "border-white/[0.08] bg-white/[0.018] text-white/32",
+                    : "border-black/[0.08] bg-white/55 text-cream/32",
                 ].join(" ")}
               >
                 {completed ? <Check size={14} /> : item.value}
@@ -316,7 +316,7 @@ function StepIndicator({ step }: { step: 1 | 2 }) {
               <span
                 className={[
                   "text-xs font-medium transition duration-300",
-                  active ? "text-white/78" : "text-white/32",
+                  active ? "text-cream/78" : "text-cream/32",
                 ].join(" ")}
               >
                 {item.label}
@@ -387,28 +387,28 @@ export default function ContactPage() {
   }, [step]);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-site-bg py-16 md:py-24">
+    <main className="relative min-h-screen overflow-hidden bg-site-bg pt-28 pb-16 md:pt-32 md:pb-24">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-black/10 to-transparent" />
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-blue/[0.07] blur-3xl" />
         <div className="absolute -right-44 top-[28rem] h-[34rem] w-[34rem] rounded-full bg-brand-blue-deep/20 blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-80 bg-linear-to-t from-site-bg-deep/70 to-transparent" />
       </div>
 
       <Container className="relative z-10 max-w-7xl">
-        <header className="border-b border-white/[0.08] pb-10 md:pb-12">
+        <header className="border-b border-black/[0.08] pb-10 md:pb-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
                 Contact
               </p>
 
-              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
+              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-cream md:text-6xl md:leading-[1.05]">
                 Tell me what you want to improve.
               </h1>
             </div>
 
-            <p className="max-w-xl text-base leading-relaxed text-white/60 md:text-lg lg:justify-self-end">
+            <p className="max-w-xl text-base leading-relaxed text-cream/60 md:text-lg lg:justify-self-end">
               Share a little context about your website, workflow, tools, or
               repeated manual work. Then choose a time to discuss the most
               realistic next step.
@@ -417,17 +417,17 @@ export default function ContactPage() {
         </header>
 
         <section className="mt-10 grid gap-6 lg:grid-cols-[1.08fr_0.72fr] lg:items-start">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022] p-5 backdrop-blur-xl md:p-7">
+          <div className="relative overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/58 p-5 backdrop-blur-xl md:p-7">
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/60 to-transparent" />
 
             <div className="relative z-10">
-              <div className="flex flex-col gap-5 border-b border-white/[0.08] pb-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-5 border-b border-black/[0.08] pb-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-cream">
                     Project call intake
                   </p>
 
-                  <p className="mt-1 text-sm text-white/42">
+                  <p className="mt-1 text-sm text-cream/42">
                     This prepares the booking context. It is not a separate
                     saved form submission.
                   </p>
@@ -475,7 +475,7 @@ export default function ContactPage() {
 
                   <div className="my-2 flex items-center gap-3">
                     <span className="h-px flex-1 bg-white/[0.08]" />
-                    <span className="text-xs uppercase tracking-[0.22em] text-white/30">
+                    <span className="text-xs uppercase tracking-[0.22em] text-cream/30">
                       Project context
                     </span>
                     <span className="h-px flex-1 bg-white/[0.08]" />
@@ -533,7 +533,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg disabled:cursor-not-allowed disabled:opacity-50"
+                    className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-cream px-5 py-3.5 text-sm font-semibold text-site-bg shadow-[0_18px_48px_rgba(242,239,230,0.12)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#0D0E0C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span>{submitting ? "Preparing booking..." : "Continue to booking"}</span>
                     {!submitting ? (
@@ -544,7 +544,7 @@ export default function ContactPage() {
                     ) : null}
                   </button>
 
-                  <p className="text-center text-xs leading-relaxed text-white/34">
+                  <p className="text-center text-xs leading-relaxed text-cream/34">
                     Your details are attached to the calendar booking in the
                     next step.
                   </p>
@@ -553,11 +553,11 @@ export default function ContactPage() {
                 <div className="mt-7 space-y-5">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-lg font-semibold text-white">
+                      <p className="text-lg font-semibold text-cream">
                         Pick a time that works
                       </p>
 
-                      <p className="mt-1 text-sm text-white/42">
+                      <p className="mt-1 text-sm text-cream/42">
                         Your details will be attached to the booking.
                       </p>
                     </div>
@@ -565,16 +565,16 @@ export default function ContactPage() {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="inline-flex items-center gap-2 rounded-lg text-sm text-white/42 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
+                      className="inline-flex items-center gap-2 rounded-lg text-sm text-cream/42 transition-colors duration-300 hover:text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
                     >
                       <ArrowLeft size={14} />
                       Edit details
                     </button>
                   </div>
 
-                  <div className="overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-site-bg-deep/55">
-                    <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
-                      <span className="text-xs uppercase tracking-[0.2em] text-white/35">
+                  <div className="overflow-hidden rounded-[1.5rem] border border-black/[0.08] bg-site-bg-deep/55">
+                    <div className="flex items-center justify-between border-b border-black/[0.08] px-4 py-3">
+                      <span className="text-xs uppercase tracking-[0.2em] text-cream/35">
                         Booking
                       </span>
 
@@ -582,7 +582,7 @@ export default function ContactPage() {
                         href={CAL_OPEN_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-lg text-xs text-white/42 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
+                        className="inline-flex items-center gap-1.5 rounded-lg text-xs text-cream/42 transition-colors duration-300 hover:text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
                       >
                         Open in new tab
                         <ExternalLink size={12} />
@@ -611,18 +611,18 @@ export default function ContactPage() {
                   </div>
 
                   <p
-                    className="text-center text-xs leading-relaxed text-white/34"
+                    className="text-center text-xs leading-relaxed text-cream/34"
                     aria-live="polite"
                   >
                     A confirmation will be sent to{" "}
-                    <span className="text-white/55">{form.email}</span>
+                    <span className="text-cream/55">{form.email}</span>
                   </p>
                 </div>
               )}
             </div>
           </div>
 
-          <aside className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.018] p-6 backdrop-blur-xl md:p-7 lg:sticky lg:top-28">
+          <aside className="relative overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/55 p-6 backdrop-blur-xl md:p-7 lg:sticky lg:top-28">
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/45 to-transparent" />
 
             <div className="relative z-10">
@@ -630,11 +630,11 @@ export default function ContactPage() {
                 What we clarify
               </p>
 
-              <h2 className="mt-4 max-w-md text-2xl font-semibold tracking-tight text-white">
+              <h2 className="mt-4 max-w-md text-2xl font-semibold tracking-tight text-cream">
                 The goal is clarity before building.
               </h2>
 
-              <p className="mt-4 text-sm leading-relaxed text-white/52">
+              <p className="mt-4 text-sm leading-relaxed text-cream/52">
                 The call is used to understand what is messy, manual, or
                 unclear, not to push unnecessary features or oversized scope.
               </p>
@@ -646,15 +646,15 @@ export default function ContactPage() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <p className="text-sm leading-relaxed text-white/60">
+                    <p className="text-sm leading-relaxed text-cream/60">
                       {item}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 rounded-3xl border border-white/[0.08] bg-site-bg/45 p-5">
-                <p className="text-xs uppercase tracking-[0.22em] text-white/30">
+              <div className="mt-8 rounded-3xl border border-black/[0.08] bg-site-bg/45 p-5">
+                <p className="text-xs uppercase tracking-[0.22em] text-cream/30">
                   Best fit
                 </p>
 
@@ -665,7 +665,7 @@ export default function ContactPage() {
                         <Check size={12} />
                       </span>
 
-                      <p className="text-sm leading-relaxed text-white/58">
+                      <p className="text-sm leading-relaxed text-cream/58">
                         {item}
                       </p>
                     </div>
@@ -673,7 +673,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <p className="mt-6 text-sm leading-relaxed text-white/38">
+              <p className="mt-6 text-sm leading-relaxed text-cream/38">
                 Clear direction, honest feedback, and a realistic next step for
                 your website, platform, workflow, automation, or internal
                 operation.

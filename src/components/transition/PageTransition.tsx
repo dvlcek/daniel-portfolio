@@ -39,7 +39,7 @@ export function PageTransition() {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-600px h-300px opacity-30"
           style={{
-            background: "radial-gradient(ellipse at center top, #1d4ed8 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center top, #c16a3a 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
@@ -47,7 +47,7 @@ export function PageTransition() {
         <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-400px h-200px opacity-20"
           style={{
-            background: "radial-gradient(ellipse at center bottom, #1e40af 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center bottom, #8fa3b1 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
@@ -86,7 +86,7 @@ export function PageTransition() {
             <div
               className="absolute inset-0 rounded-full opacity-60"
               style={{
-                background: "radial-gradient(circle, #1d4ed840 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(193,106,58,0.25) 0%, transparent 70%)",
                 filter: "blur(20px)",
                 transform: "scale(1.8)",
               }}
@@ -103,7 +103,7 @@ export function PageTransition() {
 
           <div className="w-24 h-px bg-white/10 overflow-hidden rounded-full">
             <div
-              className="h-full bg-linear-to-r from-blue-800 to-blue-600 rounded-full"
+              className="h-full bg-linear-to-r from-clay to-cream rounded-full"
               style={{
                 width: phase === "logo-in" ? "30%" : phase === "logo-hold" ? "100%" : "0%",
                 transition:

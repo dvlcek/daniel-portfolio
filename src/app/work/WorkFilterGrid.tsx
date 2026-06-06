@@ -50,7 +50,7 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
                   "rounded-full border px-4 py-2 text-sm font-medium transition-[background-color,border-color,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
                   isActive
                     ? "border-brand-blue/35 bg-brand-blue/10 text-brand-blue-light"
-                    : "border-white/[0.08] bg-white/[0.018] text-white/52 hover:border-brand-blue/25 hover:text-white",
+                    : "border-black/[0.08] bg-white/55 text-cream/52 hover:border-brand-blue/25 hover:text-cream",
                 ].join(" ")}
               >
                 {filter.label}
@@ -59,7 +59,7 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
           })}
         </div>
 
-        <p className="text-sm text-white/38" aria-live="polite">
+        <p className="text-sm text-cream/38" aria-live="polite">
           {filteredStudies.length} selected{" "}
           {filteredStudies.length === 1 ? "project" : "projects"}
         </p>
@@ -72,8 +72,8 @@ export function WorkFilterGrid({ studies }: WorkFilterGridProps) {
           ))}
         </div>
       ) : (
-        <div className="mt-10 rounded-3xl border border-white/[0.08] bg-white/[0.022] p-10 text-center">
-          <p className="text-white/60">
+        <div className="mt-10 rounded-3xl border border-black/[0.08] bg-white/58 p-10 text-center">
+          <p className="text-cream/60">
             No case studies found for this category yet.
           </p>
         </div>
@@ -94,11 +94,11 @@ function CaseStudyCard({
   return (
     <Link
       href={`/work/${study.slug}`}
-      className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-white/[0.022] transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_20px_60px_rgba(0,0,0,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
+      className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[1.5rem] border border-black/[0.08] bg-white/58 transition-[background-color,border-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/72 hover:shadow-[0_20px_60px_rgba(0,0,0,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
     >
       <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent transition duration-300 group-hover:via-brand-blue-soft/55" />
 
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.08]">
+      <div className="relative aspect-[16/10] overflow-hidden border-b border-black/[0.08]">
         <Image
           src={study.image}
           alt={`${study.company} case study preview`}
@@ -109,11 +109,11 @@ function CaseStudyCard({
 
         <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/18 to-transparent" />
 
-        <div className="absolute left-4 top-4 rounded-full border border-white/[0.12] bg-site-bg/50 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/70 backdrop-blur-xl">
+        <div className="absolute left-4 top-4 rounded-full border border-black/[0.12] bg-site-bg/50 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-cream/70 backdrop-blur-xl">
           {study.categoryLabel}
         </div>
 
-        <div className="absolute bottom-4 left-4 rounded-2xl border border-white/[0.12] bg-site-bg/55 px-3 py-2 backdrop-blur-xl">
+        <div className="absolute bottom-4 left-4 rounded-2xl border border-black/[0.12] bg-site-bg/55 px-3 py-2 backdrop-blur-xl">
           <p className="font-mono text-xs text-brand-blue-light">
             {String(index + 1).padStart(2, "0")}
           </p>
@@ -124,35 +124,35 @@ function CaseStudyCard({
         <div>
           <div className="flex items-start justify-between gap-5">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-white/35">
+              <p className="text-xs uppercase tracking-[0.18em] text-cream/35">
                 {study.company}
               </p>
 
-              <p className="mt-2 text-sm text-white/35">{study.industry}</p>
+              <p className="mt-2 text-sm text-cream/35">{study.industry}</p>
             </div>
 
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.025] text-white/35 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10 group-hover:text-brand-blue-light">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-black/[0.10] bg-white/58 text-cream/35 transition duration-300 group-hover:border-brand-blue/30 group-hover:bg-brand-blue/10 group-hover:text-brand-blue-light">
               <ArrowUpRight size={15} />
             </span>
           </div>
 
-          <h2 className="mt-6 text-2xl font-semibold leading-tight tracking-tight text-white">
+          <h2 className="mt-6 text-2xl font-semibold leading-tight tracking-tight text-cream">
             {study.title}
           </h2>
 
-          <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/58">
+          <p className="mt-4 line-clamp-3 text-sm leading-6 text-cream/58">
             {study.result}
           </p>
         </div>
 
         <div className="mt-6 flex-1">
           {study.result ? (
-            <div className="rounded-2xl border border-white/[0.08] bg-site-bg/45 p-4">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30">
+            <div className="rounded-2xl border border-black/[0.08] bg-site-bg/45 p-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-cream/30">
                 Proof angle
               </p>
 
-              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/62">
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-cream/62">
                 Problem mapped, system built, workflow made easier.
               </p>
             </div>
@@ -163,7 +163,7 @@ function CaseStudyCard({
               {tags.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/[0.08] bg-white/[0.018] px-3 py-1 text-xs text-white/48"
+                  className="rounded-full border border-black/[0.08] bg-white/55 px-3 py-1 text-xs text-cream/48"
                 >
                   {item}
                 </span>
@@ -172,12 +172,12 @@ function CaseStudyCard({
           ) : null}
         </div>
 
-        <div className="mt-6 flex items-center justify-between border-t border-white/[0.08] pt-5">
-          <span className="text-sm font-medium text-white/58 transition duration-300 group-hover:text-brand-blue-light">
+        <div className="mt-6 flex items-center justify-between border-t border-black/[0.08] pt-5">
+          <span className="text-sm font-medium text-cream/58 transition duration-300 group-hover:text-brand-blue-light">
             View project
           </span>
 
-          <span className="text-white/32 transition duration-300 group-hover:text-brand-blue-light">
+          <span className="text-cream/32 transition duration-300 group-hover:text-brand-blue-light">
             <ArrowUpRight size={15} />
           </span>
         </div>

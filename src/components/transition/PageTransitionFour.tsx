@@ -48,7 +48,7 @@ export function PageTransition() {
             className="absolute inset-0 rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(29,78,216,0.35) 0%, rgba(0,0,0,0) 70%)",
+                "radial-gradient(circle, rgba(193,106,58,0.28) 0%, rgba(0,0,0,0) 70%)",
               filter: "blur(32px)",
               transform: "scale(1.9)",
               opacity: logoVisible ? 0.9 : 0,

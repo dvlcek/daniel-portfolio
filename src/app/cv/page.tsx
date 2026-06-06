@@ -14,8 +14,9 @@ export const metadata: Metadata = {
 
 export default function CVPage() {
   return (
-    <main className="py-16 md:py-24">
-      <Container>
+    <main className="relative min-h-screen overflow-hidden bg-site-bg pt-28 pb-16 md:pt-32 md:pb-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(143,163,177,0.10),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(193,106,58,0.08),transparent_30%)]" />
+      <Container className="relative z-10">
         <SectionTitle
           eyebrow="CV"
           title="Daniel Vlcek"
@@ -23,18 +24,18 @@ export default function CVPage() {
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <div className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 md:col-span-1">
-            <p className="text-sm font-semibold text-white">Contact</p>
+          <div className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] md:col-span-1">
+            <p className="text-sm font-semibold text-cream">Contact</p>
 
-            <div className="mt-3 space-y-2 text-sm text-white/70">
+            <div className="mt-3 space-y-2 text-sm text-stone">
               <p>Vienna, Austria</p>
               <p>
-                <a className="hover:text-white" href="mailto:danielvlcekbusiness@gmail.com">
+                <a className="hover:text-cream" href="mailto:danielvlcekbusiness@gmail.com">
                   danielvlcekbusiness@gmail.com
                 </a>
               </p>
               <p>
-                <a className="hover:text-white" href="tel:+421915324822">
+                <a className="hover:text-cream" href="tel:+421915324822">
                   +421 915 324 822
                 </a>
               </p>
@@ -42,7 +43,7 @@ export default function CVPage() {
 
             <div className="mt-6">
               <a
-                className="inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90"
+                className="inline-flex rounded-full bg-cream px-5 py-3 text-sm font-semibold text-site-bg transition hover:bg-[#0D0E0C]"
                 href="/Resume%20Daniel%20Vlcek.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,15 +55,15 @@ export default function CVPage() {
 
           <div className="md:col-span-2 space-y-10">
 
-            <section className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-              <h2 className="text-lg font-semibold text-white">Work Experience</h2>
+            <section className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+              <h2 className="text-lg font-semibold text-cream">Work Experience</h2>
 
-              <div className="mt-4 space-y-6 text-sm text-white/70">
+              <div className="mt-4 space-y-6 text-sm text-stone">
                 <div>
-                  <p className="text-white font-semibold">
+                  <p className="text-cream font-semibold">
                     Self-Employed - Full-Stack Development
                   </p>
-                  <p className="text-white/55">
+                  <p className="text-ash">
                     Aug 2023 - Present - Remote
                   </p>
 
@@ -78,25 +79,25 @@ export default function CVPage() {
               </div>
             </section>
 
-            <section className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-              <h2 className="text-lg font-semibold text-white">Education</h2>
-              <div className="mt-4 space-y-4 text-sm text-white/70">
+            <section className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+              <h2 className="text-lg font-semibold text-cream">Education</h2>
+              <div className="mt-4 space-y-4 text-sm text-stone">
                 <div>
-                  <p className="font-semibold text-white">Brno University of Technology</p>
-                  <p className="text-white/55">Faculty of Information Technology</p>
+                  <p className="font-semibold text-cream">Brno University of Technology</p>
+                  <p className="text-ash">Faculty of Information Technology</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-white">
+                  <p className="font-semibold text-cream">
                     Secondary Vocational School of Information & Network Technologies
                   </p>
-                  <p className="text-white/55">High School Diploma</p>
+                  <p className="text-ash">High School Diploma</p>
                 </div>
               </div>
             </section>
 
-            <section className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-              <h2 className="text-lg font-semibold text-white">Certifications</h2>
-              <ul className="mt-4 list-disc pl-5 text-sm text-white/70 space-y-2">
+            <section className="rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+              <h2 className="text-lg font-semibold text-cream">Certifications</h2>
+              <ul className="mt-4 list-disc pl-5 text-sm text-stone space-y-2">
                 <li>Cisco Networking Academy IT Essentials</li>
                 <li>ESET Technical Certification (Basic & Advanced)</li>
               </ul>

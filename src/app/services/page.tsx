@@ -1,143 +1,90 @@
 import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { packages, primaryCta } from "@/lib/siteContent";
-import Link from "next/link";
+import { SystemCard } from "@/components/ui/SystemCard";
+import { CtaPanel } from "@/components/ui/CtaPanel";
+import { SystemFlow } from "@/components/visuals/SystemFlow";
+import { services } from "@/components/sections/PackagesSection";
 
 export const metadata: Metadata = {
-  title: "Services | Business Platforms, Websites & Automation",
+  title: "Services | Premium Websites, Platforms & Automation Systems",
   description:
-    "Websites, business platforms, automation systems, and redesigns for companies that want clearer workflows and easier daily operations.",
-  alternates: {
-    canonical: "/services",
-  },
+    "Premium websites, business platforms, automation systems, CRM and lead systems, and internal dashboards built as connected digital infrastructure.",
+  alternates: { canonical: "/services" },
   openGraph: {
     title: "Services | Daniel Vlcek",
     description:
-      "Business platform builds, automation systems, websites, landing pages, and platform remakes for companies that need clearer operations.",
+      "Websites, platforms, automations, CRM workflows, and dashboards designed as one business system.",
     url: "/services",
     type: "website",
   },
 };
 
-const useCases = [
-  "Outdated website that no longer explains the business clearly",
-  "Leads arriving through email, forms, calls, and messages with no clear follow-up",
-  "Repeated admin tasks that owners or staff handle manually every week",
-  "Bookings, payments, invoices, or client communication spread across too many tools",
-  "Existing platform or dashboard that became hard to use, update, or extend",
+const details = [
+  { label: "Premium websites", problem: "Your public site does not create enough trust, clarity, or qualified inquiry flow.", builds: "Positioning, page structure, responsive UI, performance, SEO foundations, analytics, and lead intake.", outcome: "A stronger first impression and a cleaner path from visitor interest to business conversation." },
+  { label: "Business platforms", problem: "Customers, operations, payments, bookings, or admin work depend on disconnected manual steps.", builds: "Custom frontend, backend logic, user flows, data models, portals, admin controls, and integrations.", outcome: "A scalable operating layer that gives the business more control and less operational chaos." },
+  { label: "Automation systems", problem: "Teams repeat tasks across email, spreadsheets, CRM, support, or administration.", builds: "Workflow mapping, routing logic, notifications, AI-assisted steps, system triggers, and review flows.", outcome: "Faster execution, fewer repeated tasks, and more consistent customer handling." },
+  { label: "CRM & lead systems", problem: "Leads arrive from multiple places and follow-up depends on memory or manual updates.", builds: "Lead capture, qualification, routing, pipeline logic, follow-up workflows, and reporting views.", outcome: "Less lost revenue, clearer pipeline visibility, and structured follow-up." },
+  { label: "Internal dashboards", problem: "Important data exists, but owners and teams cannot see it in one clean operational view.", builds: "Dashboards, internal tools, reporting layers, status views, and operational interfaces.", outcome: "Better visibility, faster decisions, and less internal confusion." },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="bg-[#FAFAF8] py-16 md:py-24">
-      <Container>
-        <SectionTitle
-          eyebrow="Services"
-          title="The offer is simple: build the right system for the business problem."
-          desc="I help companies improve websites, platforms, automations, workflows, dashboards, internal tools, and business logic without turning the project into an overwhelming list of services."
-        />
-
-        <div className="mt-10 rounded-[2rem] border border-[#C9D4FF] bg-white p-6 shadow-[0_18px_54px_rgba(16,19,26,0.08)] ring-1 ring-[#1238F2]/10 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1238F2]">
-            Core positioning
-          </p>
-          <h2 className="mt-4 max-w-4xl text-2xl font-semibold tracking-tight text-[#10131A] md:text-4xl">
-            I build websites, platforms, and automations that make businesses
-            easier to run.
-          </h2>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-[#566176] md:text-base">
-            I look at how the business works first: where leads come from, what
-            gets repeated manually, where tools do not connect, and what would
-            make daily work easier.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {packages.map((pkg, index) => (
-            <article
-              key={pkg.name}
-              className={[
-                "rounded-[2rem] border p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]",
-                index === 0
-                  ? "border-[#1238F2]/28 bg-[#F4F7FF] ring-1 ring-[#1238F2]/10"
-                  : "border-[#E3E7F0] bg-white",
-              ].join(" ")}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <p className="font-mono text-xs font-semibold text-[#1238F2]">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                {index === 0 ? (
-                  <span className="rounded-full border border-[#C9D4FF] bg-white px-3 py-1 text-xs font-semibold text-[#1238F2]">
-                    Flagship offer
-                  </span>
-                ) : null}
-              </div>
-
-              <h3 className="mt-5 text-xl font-semibold text-[#10131A]">
-                {pkg.name}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-[#566176]">
-                <span className="font-semibold text-[#10131A]">Best for:</span> {pkg.bestFor}
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-[#42506A]">
-                {pkg.includes.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1238F2]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href={pkg.cta.href} className="mt-6 inline-flex rounded-full bg-[#1238F2] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(18,56,242,0.18)] transition hover:-translate-y-0.5">
-                {pkg.cta.label}
-              </Link>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1238F2]">
-              Common starting points
-            </p>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#10131A] md:text-3xl">
-              You do not need to know the exact solution before contacting me.
-            </h2>
-          </div>
-
-          <div className="grid gap-3">
-            {useCases.map((item) => (
-              <p
-                key={item}
-                className="rounded-2xl border border-[#E3E7F0] bg-white p-4 text-sm leading-7 text-[#566176]"
-              >
-                {item}
-              </p>
+    <main className="site-page">
+      <PageHero
+        eyebrow="Services"
+        title="Websites, platforms, and automations designed as one business system."
+        description="I help companies replace scattered tools and manual workflows with connected digital systems built for clarity, speed, and scalable growth."
+      />
+      <section className="section-compact">
+        <Container>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {services.map((service, index) => (
+              <SystemCard key={service.title}>
+                <p className="micro-label text-[#C16A3A]">{String(index + 1).padStart(2, "0")}</p>
+                <h2 className="mt-5 text-xl font-semibold leading-tight text-[#F2EFE6]">{service.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-[#B8B1A4]">{service.text}</p>
+              </SystemCard>
             ))}
           </div>
-        </div>
-
-        <div className="mt-10 rounded-[2rem] border border-[#DDE2EE] bg-white p-7 shadow-[0_16px_48px_rgba(16,19,26,0.06)]">
-          <h3 className="text-xl font-semibold text-[#10131A]">
-            Primary engagement path
-          </h3>
-          <p className="mt-3 max-w-4xl text-sm leading-7 text-[#566176]">
-            Most projects start by looking at the current setup: website,
-            inquiry flow, tools, manual work, and the part of the business that
-            creates the most friction. From there we decide whether the right
-            next step is a website, automation, platform, or remake.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Link href={primaryCta.href} className="inline-flex rounded-full bg-[#1238F2] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(18,56,242,0.18)] transition hover:-translate-y-0.5">
-              {primaryCta.label}
-            </Link>
-            <Link href="/work" className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10131A] ring-1 ring-[#DDE2EE] transition hover:-translate-y-0.5">
-              View real projects
-            </Link>
+        </Container>
+      </section>
+      <section className="section">
+        <Container>
+          <SectionTitle eyebrow="Service architecture" title="Business value first. Technical execution second." desc="Every service detail starts from the operational problem. The technical layer exists to create clarity, speed, conversion, and reliable daily execution." />
+          <div className="grid gap-5">
+            {details.map((item, index) => (
+              <article key={item.label} className="glass-panel grid gap-6 rounded-[28px] p-6 md:p-8 lg:grid-cols-[0.7fr_1fr] lg:items-start">
+                <div>
+                  <p className="micro-label text-[#C16A3A]">{String(index + 1).padStart(2, "0")} / {item.label}</p>
+                  <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-[#F2EFE6]">{item.label}</h2>
+                  <Button href="/contact" variant="secondary" className="mt-6 w-fit">Discuss this system <ArrowUpRight size={15} /></Button>
+                </div>
+                <div className="grid gap-4 md:grid-cols-3">
+                  {[['Problem it solves', item.problem], ['What I build', item.builds], ['Business outcome', item.outcome]].map(([label, text]) => (
+                    <div key={label} className="rounded-2xl border border-[rgba(242,239,230,0.08)] bg-[#050505]/35 p-5">
+                      <p className="micro-label text-[#8E9188]">{label}</p>
+                      <p className="mt-3 text-sm leading-7 text-[#B8B1A4]">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
-        </div>
-      </Container>
+        </Container>
+      </section>
+      <section className="section-compact">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <SectionTitle eyebrow="How it connects" title="One system can start small and expand into the operating layer." desc="A website can become a lead system. A lead system can connect to CRM logic. CRM logic can trigger automations. Automations can feed dashboards and reporting." className="mb-0" />
+            <SystemFlow />
+          </div>
+        </Container>
+      </section>
+      <section className="section-compact"><Container><CtaPanel title="Ready to define the right system?" description="Share the current bottleneck and I will help identify whether the next step is a website, platform, automation workflow, CRM system, or dashboard." /></Container></section>
     </main>
   );
 }

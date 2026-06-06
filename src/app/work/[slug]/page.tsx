@@ -4,595 +4,122 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { Badge } from "@/components/ui/Badge";
+import { CtaPanel } from "@/components/ui/CtaPanel";
+import { SystemCard } from "@/components/ui/SystemCard";
+import { SystemFlow } from "@/components/visuals/SystemFlow";
 import { caseStudies } from "@/lib/siteContent";
 
-type PageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
+type PageProps = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return caseStudies.map((study) => ({
-    slug: study.slug,
-  }));
+export function generateStaticParams() {
+  return caseStudies.map((study) => ({ slug: study.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const study = caseStudies.find((item) => item.slug === slug);
-
-  if (!study) {
-    return {
-      title: "Case Study Not Found",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
-  }
-
-  const description = study.result || study.intro || study.summary;
-  const canonical = `/work/${study.slug}`;
-
+  const study = caseStudies.find((entry) => entry.slug === slug);
+  if (!study) return { title: "Case Study" };
   return {
-    title: `${study.title} Case Study`,
-    description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title: `${study.title} | Daniel Vlcek Case Study`,
-      description,
-      url: canonical,
-      type: "article",
-      images: [
-        {
-          url: study.image,
-          alt: `${study.company} case study preview`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${study.title} | Daniel Vlcek`,
-      description,
-      images: [study.image],
-    },
-  } satisfies Metadata;
-}
-
-function createBreadcrumbJsonLd(study: (typeof caseStudies)[number]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://danielvlcek.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Work",
-        item: "https://danielvlcek.com/work",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: study.title,
-        item: `https://danielvlcek.com/work/${study.slug}`,
-      },
-    ],
+    title: `${study.title} | Case Study`,
+    description: study.subtitle,
+    alternates: { canonical: `/work/${study.slug}` },
+    openGraph: { title: `${study.title} | Daniel Vlcek`, description: study.subtitle, url: `/work/${study.slug}`, type: "article", images: [{ url: study.image, alt: `${study.company} preview` }] },
   };
 }
 
 export default async function CaseStudyDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const study = caseStudies.find((item) => item.slug === slug);
-
-  if (!study) {
-    notFound();
-  }
-
-  const liveUrl = study.liveUrl ?? "";
-  const hasLiveUrl = Boolean(liveUrl);
-  const stackPreview = study.stack.slice(0, 8);
-  const breadcrumbJsonLd = createBreadcrumbJsonLd(study);
+  const study = caseStudies.find((entry) => entry.slug === slug);
+  if (!study) notFound();
+  const hasLiveUrl = Boolean(study.liveUrl);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-site-bg py-16 md:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute -left-40 top-24 h-96 w-96 rounded-full bg-brand-blue/7 blur-3xl" />
-        <div className="absolute -right-48 top-[32rem] h-[32rem] w-[32rem] rounded-full bg-brand-blue-deep/18 blur-3xl" />
-        <div className="absolute inset-x-0 bottom-0 h-96 bg-linear-to-t from-site-bg-deep/70 to-transparent" />
-      </div>
-
-      <Container className="relative z-10 max-w-7xl">
-        <Link
-          href="/work"
-          className="inline-flex items-center gap-2 text-sm text-white/48 transition-colors duration-300 hover:text-white"
-        >
-          <ArrowLeft size={15} />
-          Back to work
-        </Link>
-
-        {/* Hero */}
-        <section className="mt-10 grid gap-10 border-b border-white/[0.08] pb-12 lg:grid-cols-[1fr_0.42fr] lg:items-start md:pb-14">
-          <div>
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-brand-blue-light">
-                {study.categoryLabel}
-              </span>
-
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.018] px-4 py-2 text-xs uppercase tracking-[0.18em] text-white/52">
-                {study.industry}
-              </span>
-            </div>
-
-            <h1 className="mt-7 max-w-5xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.04]">
-              {study.title}
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/62 md:text-lg">
-              {study.subtitle}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {hasLiveUrl ? (
-                <Link
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
-                >
-                  {study.projectAccess.label}
-                  <ExternalLink size={14} />
-                </Link>
-              ) : (
-                <span className="inline-flex rounded-2xl border border-white/[0.08] bg-white/[0.025] px-5 py-3 text-sm font-medium text-white/65">
-                  {study.projectAccess.label}
-                </span>
-              )}
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.10] bg-white/[0.018] px-5 py-3 text-sm font-medium text-white/72 transition duration-300 hover:border-brand-blue/25 hover:text-white"
-              >
-                {study.cta.primaryText}
-                <ArrowUpRight size={14} />
-              </Link>
-            </div>
-
-            {!hasLiveUrl && study.projectAccess.description ? (
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/42">
-                {study.projectAccess.description}
-              </p>
-            ) : null}
-          </div>
-
-          <aside className="rounded-[1.75rem] border border-white/[0.08] bg-white/[0.022] p-6 backdrop-blur-xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-white/32">
-              Project snapshot
-            </p>
-
-            <div className="mt-6 space-y-5">
-              <MetaItem label="Client" value={study.company} />
-              <MetaItem label="Industry" value={study.industry} />
-              <MetaItem
-                label="Access"
-                value={hasLiveUrl ? "Public live project" : study.projectAccess.label}
-              />
-            </div>
-
-            {study.featuredMetric ? (
-              <div className="mt-6 rounded-2xl border border-brand-blue/20 bg-brand-blue/[0.055] p-5">
-                <p className="text-xs uppercase tracking-[0.18em] text-brand-blue-light/75">
-                  Main result
-                </p>
-
-                <p className="mt-3 text-xl font-semibold leading-snug text-white">
-                  {study.featuredMetric}
-                </p>
-              </div>
-            ) : null}
-
-            <div className="mt-6">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/32">
-                Tech used
-              </p>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                {stackPreview.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.018] px-3 py-1 text-xs text-white/52"
-                  >
-                    {item}
-                  </span>
-                ))}
+    <main className="site-page">
+      <section className="relative overflow-hidden pt-36 pb-14 md:pt-44 md:pb-20">
+        <Container>
+          <Link href="/work" className="inline-flex items-center gap-2 text-sm text-[#8E9188] transition hover:text-[#F2EFE6]"><ArrowLeft size={15} /> Back to work</Link>
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.44fr] lg:items-start">
+            <div>
+              <div className="flex flex-wrap gap-3"><Badge>{study.categoryLabel}</Badge><span className="rounded-full border border-[rgba(242,239,230,0.12)] bg-[rgba(242,239,230,0.04)] px-3.5 py-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-[#B8B1A4]">{study.industry}</span></div>
+              <h1 className="page-heading mt-7 max-w-6xl">{study.title}</h1>
+              <p className="body-large mt-6 max-w-3xl">{study.subtitle}</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                {hasLiveUrl ? <Link href={study.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#F2EFE6] px-6 py-3 text-sm font-semibold text-[#050505] transition hover:-translate-y-0.5">{study.projectAccess.label}<ExternalLink size={15} /></Link> : <span className="inline-flex min-h-12 items-center justify-center rounded-full border border-[rgba(242,239,230,0.14)] bg-[rgba(242,239,230,0.06)] px-6 py-3 text-sm font-semibold text-[#E5E0D4]">{study.projectAccess.label}</span>}
+                <Link href="/contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[rgba(242,239,230,0.14)] bg-[rgba(242,239,230,0.06)] px-6 py-3 text-sm font-semibold text-[#F2EFE6] transition hover:-translate-y-0.5">{study.cta.primaryText}<ArrowUpRight size={15} /></Link>
               </div>
             </div>
-          </aside>
-        </section>
-
-        {/* Preview */}
-        <section className="mt-12">
-          {hasLiveUrl ? (
-            <Link
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022] transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-blue/25 hover:bg-white/[0.032] hover:shadow-[0_24px_90px_rgba(0,0,0,0.28)]"
-            >
-              <ProjectPreviewImage
-                image={study.image}
-                alt={`${study.company} case study preview`}
-                label={study.preview.label}
-                title={study.preview.title}
-                action="Open live project"
-                clickable
-              />
-            </Link>
-          ) : (
-            <div className="overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022]">
-              <ProjectPreviewImage
-                image={study.image}
-                alt={`${study.company} case study preview`}
-                label={study.preview.label}
-                title={study.preview.title}
-                action="Internal project preview"
-              />
-            </div>
-          )}
-        </section>
-
-        {/* Proof */}
-        {study.proof.length > 0 ? (
-          <section className="mt-8 grid gap-4 md:grid-cols-3">
-            {study.proof.map((card) => (
-              <article
-                key={`${card.label}-${card.value}`}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-white/32">
-                  {card.label}
-                </p>
-
-                <p className="mt-3 text-2xl font-semibold tracking-tight text-white">
-                  {card.value}
-                </p>
-
-                <p className="mt-4 text-sm leading-7 text-white/55">
-                  {card.text}
-                </p>
-              </article>
-            ))}
-          </section>
-        ) : null}
-
-        {/* Summary */}
-        <section className="mt-16 grid gap-8 border-t border-white/[0.08] pt-12 lg:grid-cols-[0.35fr_1fr]">
-          <SectionLabel
-            eyebrow={study.summarySection.label}
-            title={study.summarySection.title}
-          />
-
-          <p className="max-w-4xl text-lg leading-9 text-white/66 md:text-xl">
-            {study.summary}
-          </p>
-        </section>
-
-        {/* Transformation */}
-        <section className="mt-16">
-          <SectionLabel
-            eyebrow={study.transformation.label}
-            title={study.transformation.title}
-          />
-
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <ComparisonCard
-              label="Before"
-              title={study.transformation.beforeTitle}
-              items={study.transformation.before}
-              muted
-            />
-
-            <ComparisonCard
-              label="After"
-              title={study.transformation.afterTitle}
-              items={study.transformation.after}
-            />
+            <aside className="glass-panel rounded-[28px] p-6">
+              <p className="micro-label">Project snapshot</p>
+              <div className="mt-6 space-y-5">
+                <Meta label="Client" value={study.company} />
+                <Meta label="Industry" value={study.industry} />
+                <Meta label="System Type" value={study.categoryLabel} />
+              </div>
+              <div className="mt-6 rounded-2xl border border-[#C16A3A]/20 bg-[#C16A3A]/10 p-5"><p className="micro-label text-[#E5E0D4]">Main result</p><p className="mt-3 text-xl font-semibold text-[#F2EFE6]">{study.featuredMetric}</p></div>
+            </aside>
           </div>
-        </section>
+        </Container>
+      </section>
 
-        {/* Challenge / Solution / Components */}
-        <section className="mt-16 grid gap-5 lg:grid-cols-3">
-            <TextCard
-            label="Business problem"
-            text={study.challenge}
-          />
-
-          <TextCard
-            label="System built"
-            text={study.solution}
-          />
-
-          <article className="rounded-3xl border border-white/[0.08] bg-white/[0.022] p-6 md:p-7">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/32">
-              What was included
-            </p>
-
-            <ul className="mt-5 space-y-3">
-              {study.whatIDid.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-sm leading-7 text-white/62"
-                >
-                  <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue-light" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </section>
-
-        {/* Impact */}
-        <section className="mt-16 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022] p-6 md:p-8 lg:p-10">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-brand-blue">
-                {study.impact.label}
-              </p>
-
-              <h2 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                {study.impact.title}
-              </h2>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/60">
-                {study.impact.description}
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {study.impact.items.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/[0.08] bg-site-bg/50 p-4"
-                >
-                  <div className="flex gap-3">
-                    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light">
-                      <Check size={12} />
-                    </span>
-
-                    <p className="text-sm leading-6 text-white/66">{item}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Outcomes */}
-        <section className="mt-16 grid gap-8 lg:grid-cols-[0.35fr_1fr]">
-          <SectionLabel
-            eyebrow={study.outcomesSection.label}
-            title={study.outcomesSection.title}
-          />
-
-          <div className="grid gap-3">
-            {study.outcome.map((item, index) => (
-              <article
-                key={item}
-                className="grid gap-4 border-t border-white/[0.08] py-5 md:grid-cols-[80px_1fr]"
-              >
-                <p className="font-mono text-xs text-brand-blue-light">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-
-                <p className="max-w-3xl text-sm leading-7 text-white/66 md:text-base">
-                  {item}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="mt-18 border-y border-white/[0.08] py-10 md:mt-20 md:py-12">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-brand-blue">
-                {study.cta.label}
-              </p>
-
-              <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                {study.cta.title}
-              </h2>
-
-              <p className="mt-5 max-w-3xl text-base leading-8 text-white/58">
-                {study.cta.description}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
-              >
-                {study.cta.primaryText}
-                <ArrowUpRight size={14} />
-              </Link>
-
-              <Link
-                href="/work"
-                className="inline-flex rounded-2xl border border-white/[0.10] bg-white/[0.018] px-5 py-3 text-sm font-medium text-white/70 transition duration-300 hover:border-brand-blue/25 hover:text-white"
-              >
-                {study.cta.secondaryText}
-              </Link>
-            </div>
-          </div>
-        </section>
+      <Container>
+        <div className="relative overflow-hidden rounded-[32px] border border-[rgba(242,239,230,0.10)] bg-[#0D0E0C]">
+          <div className="relative aspect-[16/8] min-h-[320px]"><Image src={study.image} alt={`${study.company} case study visual`} fill priority className="object-cover opacity-80" /><div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/20" /></div>
+        </div>
       </Container>
+
+      <section className="section">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-3">
+            {study.proof.map((item) => <SystemCard key={item.label}><p className="micro-label text-[#C16A3A]">{item.label}</p><h2 className="mt-4 text-3xl font-semibold text-[#F2EFE6]">{item.value}</h2><p className="mt-4 text-sm leading-7 text-[#B8B1A4]">{item.text}</p></SystemCard>)}
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-compact">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-3">
+            <TextBlock label="Context" title={study.summarySection.title} text={study.intro} />
+            <TextBlock label={study.detailSections.challengeLabel} title="Business challenge" text={study.challenge} />
+            <TextBlock label={study.detailSections.solutionLabel} title="System solution" text={study.solution} />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-compact">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+            <div><p className="micro-label text-[#C16A3A]">System architecture</p><h2 className="section-heading mt-4">Frontend, data, automation, workflow, and reporting layers connected.</h2><p className="body-large mt-6">The project is presented as a business system rather than a screen-only portfolio item.</p></div>
+            <SystemFlow />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-compact">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <Comparison title={study.transformation.beforeTitle} items={study.transformation.before} />
+            <Comparison title={study.transformation.afterTitle} items={study.transformation.after} active />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-compact">
+        <Container>
+          <div className="glass-panel rounded-[28px] p-6 md:p-10">
+            <p className="micro-label text-[#C16A3A]">{study.outcomesSection.label}</p>
+            <h2 className="section-heading mt-4">{study.outcomesSection.title}</h2>
+            <div className="mt-8 grid gap-3 md:grid-cols-2">
+              {study.outcome.map((item) => <p key={item} className="flex gap-3 rounded-2xl border border-[rgba(242,239,230,0.08)] bg-[#050505]/35 p-4 text-sm leading-7 text-[#B8B1A4]"><Check size={16} className="mt-1 shrink-0 text-[#C16A3A]" />{item}</p>)}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="section-compact"><Container><CtaPanel eyebrow={study.cta.label} title={study.cta.title} description={study.cta.description} primaryLabel={study.cta.primaryText} secondaryLabel={study.cta.secondaryText} /></Container></section>
     </main>
   );
 }
 
-function ProjectPreviewImage({
-  image,
-  alt,
-  label,
-  title,
-  action,
-  clickable = false,
-}: {
-  image: string;
-  alt: string;
-  label: string;
-  title: string;
-  action: string;
-  clickable?: boolean;
-}) {
-  return (
-    <div className="relative aspect-[16/9] overflow-hidden">
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        priority
-        className={[
-          "object-cover transition-transform duration-700 ease-out",
-          clickable ? "group-hover:scale-[1.035]" : "",
-        ].join(" ")}
-      />
-
-      <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/18 to-transparent" />
-
-      <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-4 md:bottom-6 md:left-6 md:right-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-white/45">
-            {label}
-          </p>
-
-          <p className="mt-2 max-w-2xl text-lg font-medium leading-snug text-white md:text-xl">
-            {title}
-          </p>
-        </div>
-
-        <span
-          className={[
-            "w-fit rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-xl",
-            clickable
-              ? "border-brand-blue/30 bg-brand-blue/10 text-brand-blue-light"
-              : "border-white/[0.12] bg-site-bg/55 text-white/58",
-          ].join(" ")}
-        >
-          {action}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function MetaItem({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="border-b border-white/[0.07] pb-5 last:border-b-0 last:pb-0">
-      <p className="text-xs uppercase tracking-[0.18em] text-white/30">
-        {label}
-      </p>
-
-      <p className="mt-2 text-sm font-medium text-white/72">{value}</p>
-    </div>
-  );
-}
-
-function SectionLabel({
-  eyebrow,
-  title,
-}: {
-  eyebrow: string;
-  title: string;
-}) {
-  return (
-    <div>
-      <p className="text-xs uppercase tracking-[0.22em] text-brand-blue">
-        {eyebrow}
-      </p>
-
-      <h2 className="mt-4 max-w-xl text-2xl font-semibold tracking-tight text-white md:text-3xl">
-        {title}
-      </h2>
-    </div>
-  );
-}
-
-function ComparisonCard({
-  label,
-  title,
-  items,
-  muted = false,
-}: {
-  label: string;
-  title: string;
-  items: string[];
-  muted?: boolean;
-}) {
-  return (
-    <article
-      className={[
-        "rounded-[1.75rem] border p-6 md:p-7",
-        muted
-          ? "border-white/[0.08] bg-white/[0.018]"
-          : "border-brand-blue/18 bg-brand-blue/[0.035]",
-      ].join(" ")}
-    >
-      <p
-        className={[
-          "text-xs uppercase tracking-[0.22em]",
-          muted ? "text-white/32" : "text-brand-blue-light",
-        ].join(" ")}
-      >
-        {label}
-      </p>
-
-      <h3 className="mt-4 text-xl font-semibold tracking-tight text-white">
-        {title}
-      </h3>
-
-      <ul className="mt-6 space-y-4">
-        {items.map((item) => (
-          <li key={item} className="flex gap-3 text-sm leading-7 text-white/62">
-            <span
-              className={[
-                "mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full",
-                muted ? "bg-white/35" : "bg-brand-blue-light",
-              ].join(" ")}
-            />
-
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-function TextCard({ label, text }: { label: string; text: string }) {
-  return (
-    <article className="rounded-3xl border border-white/[0.08] bg-white/[0.022] p-6 md:p-7">
-      <p className="text-xs uppercase tracking-[0.2em] text-white/32">
-        {label}
-      </p>
-
-      <p className="mt-5 text-sm leading-7 text-white/64">{text}</p>
-    </article>
-  );
-}
+function Meta({ label, value }: { label: string; value: string }) { return <div><p className="micro-label text-[#6F766E]">{label}</p><p className="mt-1 text-sm font-semibold text-[#F2EFE6]">{value}</p></div>; }
+function TextBlock({ label, title, text }: { label: string; title: string; text: string }) { return <SystemCard><p className="micro-label text-[#C16A3A]">{label}</p><h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-[#F2EFE6]">{title}</h2><p className="mt-5 text-sm leading-7 text-[#B8B1A4]">{text}</p></SystemCard>; }
+function Comparison({ title, items, active }: { title: string; items: string[]; active?: boolean }) { return <div className={`rounded-[28px] border p-6 md:p-8 ${active ? "border-[#C16A3A]/24 bg-[#C16A3A]/[0.045]" : "border-[rgba(242,239,230,0.10)] bg-[rgba(242,239,230,0.035)]"}`}><h3 className="text-2xl font-semibold text-[#F2EFE6]">{title}</h3><div className="mt-6 grid gap-3">{items.map((item) => <p key={item} className="flex gap-3 text-sm leading-7 text-[#B8B1A4]"><span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${active ? "bg-[#C16A3A]" : "bg-[#6F766E]"}`} />{item}</p>)}</div></div>; }

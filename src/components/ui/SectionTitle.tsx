@@ -5,24 +5,25 @@ export function SectionTitle({
   title,
   desc,
   className,
+  align = "left",
 }: {
   eyebrow?: string;
   title: string;
   desc?: string;
   className?: string;
+  align?: "left" | "center";
 }) {
   return (
-    <div className={cn("mb-10", className)}>
+    <div className={cn("mb-10", align === "center" && "mx-auto text-center", className)}>
       {eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#1238F2]">
+        <p className={cn("micro-label inline-flex items-center gap-2", align === "center" && "justify-center")}>
+          <span className="h-1.5 w-1.5 rounded-full bg-[#C16A3A] shadow-[0_0_24px_rgba(193,106,58,0.45)]" />
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-[#10131A] md:text-5xl md:leading-[1.05]">
-        {title}
-      </h2>
+      <h2 className="section-heading mt-4 max-w-5xl">{title}</h2>
       {desc ? (
-        <p className="mt-5 max-w-2xl text-base leading-8 text-[#566176]">
+        <p className={cn("body-large mt-6 max-w-3xl", align === "center" && "mx-auto")}>
           {desc}
         </p>
       ) : null}

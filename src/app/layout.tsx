@@ -1,31 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
-const headingFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const bodyFont = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://danielvlcek.com"),
   title: {
-    default: "Daniel Vlcek | Websites, Platforms & Business Automation",
+    default: "Daniel Vlcek | Software Developer & Automation Architect",
     template: "%s | Daniel Vlcek",
   },
   description:
-    "Websites, platforms, automations, dashboards, and business systems that make companies easier to run.",
+    "Premium websites, business platforms, automation systems, CRM workflows, dashboards, and scalable digital infrastructure for companies.",
   keywords: [
     "Daniel Vlcek",
     "Software Developer Vienna",
@@ -81,7 +68,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "Daniel Vlcek",
   url: "https://danielvlcek.com",
-  jobTitle: "Business Systems Developer",
+  jobTitle: "Software Developer & Automation Architect",
   image: "https://danielvlcek.com/images/daniel-vlcek.jpg",
   address: {
     "@type": "PostalAddress",
@@ -101,7 +88,7 @@ const personJsonLd = {
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Daniel Vlcek - Websites, Platforms & Business Automation",
+  name: "Daniel Vlcek - Premium Digital Systems",
   url: "https://danielvlcek.com",
   areaServed: ["Austria", "Europe"],
   address: {
@@ -136,7 +123,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headingFont.variable} ${bodyFont.variable} min-h-screen overflow-x-hidden bg-[#FAFAF8] text-[#10131A] antialiased`}
+        className="min-h-screen overflow-x-hidden bg-[#050505] text-[#B8B1A4] antialiased"
       >
         <script
           type="application/ld+json"

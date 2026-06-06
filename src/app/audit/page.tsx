@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AuditPage() {
   return (
-    <main className="py-16 md:py-24">
+    <main className="site-page pt-36 pb-20 md:pt-44">
       <Container className="max-w-4xl">
         <SectionTitle
           eyebrow="Audit"
@@ -24,9 +24,9 @@ export default function AuditPage() {
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
-          <article className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
-            <h2 className="text-lg font-semibold text-white">You get</h2>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
+          <article className="glass-panel rounded-[28px] p-7">
+            <h2 className="text-lg font-semibold text-[#F2EFE6]">You get</h2>
+            <ul className="mt-4 space-y-2 text-sm text-[#B8B1A4]">
               <li>- Bottleneck map across website and operations</li>
               <li>- Top automation opportunities by practical value</li>
               <li>- Conversion friction analysis</li>
@@ -34,14 +34,14 @@ export default function AuditPage() {
             </ul>
           </article>
 
-          <article className="rounded-2xl bg-white/5 p-7 ring-1 ring-white/10">
-            <h2 className="text-lg font-semibold text-white">Best for</h2>
-            <p className="mt-4 text-sm text-white/70">
+          <article className="glass-panel rounded-[28px] p-7">
+            <h2 className="text-lg font-semibold text-[#F2EFE6]">Best for</h2>
+            <p className="mt-4 text-sm text-[#B8B1A4]">
               Teams that know the current setup is messy but are not sure
               whether they need a website, automation, dashboard, or platform
               remake.
             </p>
-            <Link href="/contact" className="mt-6 inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90">
+            <Link href="/contact" className="mt-6 inline-flex rounded-2xl bg-[#F2EFE6] px-5 py-3 text-sm font-medium text-[#050505] transition hover:opacity-90">
               Start with an audit
             </Link>
           </article>

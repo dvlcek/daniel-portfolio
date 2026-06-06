@@ -5,17 +5,14 @@ import { useMemo, useState } from "react";
 import {
   CalendarDays,
   CreditCard,
-  FileText,
   Folders,
   Globe,
-  Inbox,
   Mail,
   MessageCircle,
   MousePointerClick,
   NotepadText,
   Send,
   Sparkles,
-  Table2,
   UsersRound,
   Workflow,
 } from "lucide-react";
@@ -38,42 +35,42 @@ const businessNodes: SystemNode[] = [
   {
     id: "website",
     label: "Website",
-    description: "Conversion paths, forms, lead capture, and customer-facing signals.",
+    description: "Lead capture, conversion paths, and customer-facing signals.",
     status: "Signal captured",
     kind: "business",
     icon: Globe,
-    position: "left-[4%] top-[9%]",
-    point: { x: 98, y: 76 },
+    position: "left-[5%] top-[13%]",
+    point: { x: 130, y: 105 },
   },
   {
     id: "crm",
     label: "CRM",
-    description: "Pipeline stages, lead ownership, notes, and sales next steps.",
+    description: "Pipeline stages, ownership, notes, and next steps.",
     status: "Pipeline synced",
     kind: "business",
     icon: UsersRound,
-    position: "left-[18%] top-[23%]",
-    point: { x: 226, y: 160 },
+    position: "left-[20%] top-[31%]",
+    point: { x: 260, y: 210 },
   },
   {
     id: "emails",
     label: "Emails",
-    description: "Inbound requests, follow-ups, reminders, and decision threads.",
+    description: "Requests, follow-ups, reminders, and decision threads.",
     status: "Context attached",
     kind: "business",
     icon: Mail,
-    position: "left-[5%] top-[39%]",
-    point: { x: 108, y: 260 },
+    position: "left-[7%] top-[51%]",
+    point: { x: 145, y: 330 },
   },
   {
     id: "booking",
     label: "Booking",
-    description: "Calls, consultations, calendars, and handoff moments.",
+    description: "Calls, calendars, deadlines, and handoff moments.",
     status: "Handoff routed",
     kind: "business",
     icon: CalendarDays,
-    position: "left-[21%] top-[53%]",
-    point: { x: 236, y: 354 },
+    position: "left-[23%] bottom-[12%]",
+    point: { x: 282, y: 455 },
   },
   {
     id: "payments",
@@ -82,38 +79,18 @@ const businessNodes: SystemNode[] = [
     status: "Revenue event logged",
     kind: "business",
     icon: CreditCard,
-    position: "left-[6%] bottom-[12%]",
-    point: { x: 116, y: 472 },
-  },
-  {
-    id: "spreadsheets",
-    label: "Spreadsheets",
-    description: "Operational data that needs structure before it becomes risk.",
-    status: "Data normalized",
-    kind: "business",
-    icon: Table2,
-    position: "left-[25%] bottom-[5%]",
-    point: { x: 286, y: 526 },
+    position: "left-[6%] bottom-[10%]",
+    point: { x: 138, y: 465 },
   },
   {
     id: "manual-tasks",
     label: "Manual Tasks",
-    description: "Repeatable admin, reminders, status changes, and copy-paste work.",
+    description: "Repeatable admin, updates, reminders, and copy-paste work.",
     status: "Automation candidate",
     kind: "business",
     icon: MousePointerClick,
-    position: "left-[30%] top-[8%]",
-    point: { x: 330, y: 86 },
-  },
-  {
-    id: "client-requests",
-    label: "Client Requests",
-    description: "Questions, approvals, files, and urgent changes from customers.",
-    status: "Request classified",
-    kind: "business",
-    icon: Inbox,
-    position: "left-[31%] bottom-[25%]",
-    point: { x: 338, y: 440 },
+    position: "left-[27%] top-[9%]",
+    point: { x: 330, y: 92 },
   },
 ];
 
@@ -125,38 +102,28 @@ const toolNodes: SystemNode[] = [
     status: "Docs linked",
     kind: "tool",
     icon: NotepadText,
-    position: "right-[29%] top-[8%]",
-    point: { x: 700, y: 82 },
+    position: "right-[27%] top-[9%]",
+    point: { x: 670, y: 92 },
   },
   {
     id: "telegram",
     label: "Telegram",
-    description: "Fast conversation streams that need durable follow-through.",
+    description: "Fast messages that need durable follow-through.",
     status: "Message routed",
     kind: "tool",
     icon: Send,
-    position: "right-[10%] top-[12%]",
-    point: { x: 850, y: 102 },
+    position: "right-[7%] top-[14%]",
+    point: { x: 858, y: 112 },
   },
   {
     id: "gmail",
     label: "Gmail",
-    description: "Email threads connected back to contacts, projects, and owners.",
+    description: "Email threads mapped back to projects and owners.",
     status: "Thread mapped",
     kind: "tool",
     icon: Mail,
-    position: "right-[21%] top-[29%]",
-    point: { x: 760, y: 205 },
-  },
-  {
-    id: "calendar",
-    label: "Calendar",
-    description: "Meetings, deadlines, follow-ups, and scheduling commitments.",
-    status: "Deadline visible",
-    kind: "tool",
-    icon: CalendarDays,
-    position: "right-[5%] top-[39%]",
-    point: { x: 895, y: 272 },
+    position: "right-[23%] top-[33%]",
+    point: { x: 728, y: 230 },
   },
   {
     id: "slack",
@@ -165,8 +132,8 @@ const toolNodes: SystemNode[] = [
     status: "Decision captured",
     kind: "tool",
     icon: MessageCircle,
-    position: "right-[27%] bottom-[31%]",
-    point: { x: 708, y: 386 },
+    position: "right-[8%] top-[52%]",
+    point: { x: 845, y: 345 },
   },
   {
     id: "drive",
@@ -175,37 +142,27 @@ const toolNodes: SystemNode[] = [
     status: "Assets indexed",
     kind: "tool",
     icon: Folders,
-    position: "right-[8%] bottom-[22%]",
-    point: { x: 868, y: 446 },
-  },
-  {
-    id: "figma",
-    label: "Figma",
-    description: "Design files, feedback, approvals, and implementation details.",
-    status: "Approval tracked",
-    kind: "tool",
-    icon: FileText,
-    position: "right-[30%] bottom-[7%]",
-    point: { x: 704, y: 524 },
+    position: "right-[26%] bottom-[12%]",
+    point: { x: 690, y: 455 },
   },
   {
     id: "automation",
     label: "Automation",
-    description: "Rules, triggers, and integrations that move repeatable work.",
+    description: "Rules, triggers, and integrations moving repeatable work.",
     status: "Rule armed",
     kind: "tool",
     icon: Workflow,
-    position: "right-[5%] bottom-[5%]",
-    point: { x: 900, y: 532 },
+    position: "right-[6%] bottom-[10%]",
+    point: { x: 865, y: 465 },
   },
 ];
 
 const allNodes = [...businessNodes, ...toolNodes];
 
 const connectorPath = (node: SystemNode) => {
-  const center = { x: 500, y: 302 };
-  const curve = node.kind === "business" ? -80 : 80;
-  return `M ${node.point.x} ${node.point.y} C ${node.point.x + curve} ${node.point.y + 20}, ${center.x - curve} ${center.y - 34}, ${center.x} ${center.y}`;
+  const center = { x: 500, y: 285 };
+  const curve = node.kind === "business" ? -60 : 60;
+  return `M ${node.point.x} ${node.point.y} C ${node.point.x + curve} ${node.point.y + 18}, ${center.x - curve} ${center.y - 26}, ${center.x} ${center.y}`;
 };
 
 export function BusinessOperatingSystem() {
@@ -217,26 +174,25 @@ export function BusinessOperatingSystem() {
 
   return (
     <div
-      className="relative mx-auto mt-9 w-full max-w-7xl lg:mt-10"
+      className="relative mx-auto mt-5 w-full max-w-6xl lg:mt-6"
       aria-label="Connected business operating system visual"
     >
-      <div className="glass-panel relative min-h-[40rem] overflow-hidden rounded-[36px] p-4 sm:p-6 lg:min-h-[34rem] lg:p-8 xl:min-h-[37rem]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_36%,rgba(193,106,58,0.16),transparent_30%),radial-gradient(circle_at_50%_60%,rgba(201,166,107,0.09),transparent_34%),radial-gradient(circle_at_15%_25%,rgba(124,132,100,0.11),transparent_32%),linear-gradient(180deg,rgba(242,239,230,0.045),rgba(5,5,5,0.20))]" />
-        <div className="pointer-events-none absolute inset-6 rounded-[28px] border border-[rgba(242,239,230,0.055)]" />
-        <div className="pointer-events-none absolute left-1/2 top-5 hidden h-[calc(100%-2.5rem)] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#C16A3A]/18 to-transparent lg:block" />
+      <div className="glass-panel relative min-h-[34rem] overflow-hidden rounded-[30px] p-4 sm:p-5 lg:min-h-[23rem] lg:p-5 xl:min-h-[25rem]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(193,106,58,0.14),transparent_27%),radial-gradient(circle_at_50%_62%,rgba(201,166,107,0.08),transparent_31%),linear-gradient(180deg,rgba(242,239,230,0.04),rgba(5,5,5,0.18))]" />
+        <div className="pointer-events-none absolute inset-5 rounded-[24px] border border-[rgba(242,239,230,0.055)]" />
 
         <svg
           data-flow-lines="hero-clean-lines"
           className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
-          viewBox="0 0 1000 600"
+          viewBox="0 0 1000 540"
           fill="none"
           aria-hidden="true"
         >
           <defs>
             <linearGradient id="earthConnector" x1="0" y1="0" x2="1" y2="0">
-              <stop stopColor="#C16A3A" stopOpacity="0.06" />
-              <stop offset="0.52" stopColor="#C9A66B" stopOpacity="0.56" />
-              <stop offset="1" stopColor="#8FA3B1" stopOpacity="0.06" />
+              <stop stopColor="#C16A3A" stopOpacity="0.05" />
+              <stop offset="0.5" stopColor="#C9A66B" stopOpacity="0.54" />
+              <stop offset="1" stopColor="#8FA3B1" stopOpacity="0.05" />
             </linearGradient>
           </defs>
           {allNodes.map((node) => (
@@ -244,35 +200,34 @@ export function BusinessOperatingSystem() {
               key={node.id}
               d={connectorPath(node)}
               stroke="url(#earthConnector)"
-              strokeWidth={activeId === node.id ? 1.9 : 1.05}
+              strokeWidth={activeId === node.id ? 1.8 : 1}
               strokeLinecap="round"
-              opacity={activeId === node.id ? 1 : 0.54}
+              opacity={activeId === node.id ? 1 : 0.42}
               className="transition-[opacity,stroke-width] duration-300"
             />
           ))}
-          <circle cx="500" cy="302" r="156" stroke="#C9A66B" strokeOpacity="0.11" />
-          <circle cx="500" cy="302" r="106" stroke="#C16A3A" strokeOpacity="0.17" strokeDasharray="8 12" />
+          <circle cx="500" cy="285" r="122" stroke="#C9A66B" strokeOpacity="0.10" />
+          <circle cx="500" cy="285" r="82" stroke="#C16A3A" strokeOpacity="0.16" strokeDasharray="7 12" />
         </svg>
 
         <div
           data-flow-core="business-os"
           className={cn(
-            "absolute left-1/2 top-[43%] z-20 hidden h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full lg:block xl:h-72 xl:w-72",
-            "border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_34%_25%,rgba(242,239,230,0.42),transparent_10%),radial-gradient(circle_at_42%_36%,rgba(201,166,107,0.28),transparent_28%),radial-gradient(circle_at_60%_62%,rgba(193,106,58,0.20),transparent_36%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(18,19,16,0.64)_46%,rgba(5,5,5,0.84))] shadow-[0_0_80px_rgba(193,106,58,0.22),inset_0_0_60px_rgba(242,239,230,0.06)] backdrop-blur-2xl transition duration-500",
-            activeNode.kind === "tool" ? "shadow-[0_0_88px_rgba(143,163,177,0.18),inset_0_0_60px_rgba(242,239,230,0.06)]" : "",
+            "absolute left-1/2 top-[44%] z-20 hidden h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full lg:block xl:h-52 xl:w-52",
+            "border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_35%_24%,rgba(242,239,230,0.38),transparent_11%),radial-gradient(circle_at_44%_38%,rgba(201,166,107,0.25),transparent_29%),radial-gradient(circle_at_62%_64%,rgba(193,106,58,0.18),transparent_36%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(18,19,16,0.64)_46%,rgba(5,5,5,0.84))] shadow-[0_0_68px_rgba(193,106,58,0.20),inset_0_0_54px_rgba(242,239,230,0.055)] backdrop-blur-2xl transition duration-500",
+            activeNode.kind === "tool" ? "shadow-[0_0_70px_rgba(143,163,177,0.16),inset_0_0_54px_rgba(242,239,230,0.055)]" : "",
           )}
         >
-          <div className="absolute inset-5 rounded-full border border-[rgba(242,239,230,0.12)]" />
-          <div className="absolute inset-11 animate-[systemScan_5s_ease-in-out_infinite] rounded-full border border-[#C16A3A]/18" />
-          <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#C9A66B]/22 bg-[#050505]/38 shadow-[inset_0_0_34px_rgba(201,166,107,0.12)]" />
-          <div className="absolute inset-x-8 top-[45%] h-px bg-gradient-to-r from-transparent via-[#F2EFE6]/24 to-transparent" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-9 text-center">
+          <div className="absolute inset-4 rounded-full border border-[rgba(242,239,230,0.12)]" />
+          <div className="absolute inset-10 animate-[systemScan_5s_ease-in-out_infinite] rounded-full border border-[#C16A3A]/16" />
+          <div className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#C9A66B]/20 bg-[#050505]/38 shadow-[inset_0_0_28px_rgba(201,166,107,0.11)]" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-7 text-center">
             <p className="micro-label text-[#C9A66B]">Intelligent core</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.055em] text-[#F2EFE6] xl:text-4xl">
+            <h2 className="mt-2 text-xl font-semibold tracking-[-0.05em] text-[#F2EFE6]">
               One operating layer
             </h2>
-            <p className="mt-3 max-w-[13rem] text-xs leading-5 text-[#B8B1A4]">
-              Routes signals, context, decisions, and execution into a durable business system.
+            <p className="mt-2 max-w-[10rem] text-[0.68rem] leading-5 text-[#B8B1A4]">
+              Routes signals, decisions, ownership, and execution.
             </p>
           </div>
         </div>
@@ -304,19 +259,19 @@ export function BusinessOperatingSystem() {
           ))}
         </div>
 
-        <div className="absolute bottom-5 left-5 right-5 z-30 hidden lg:block">
+        <div className="absolute bottom-3 left-3 right-3 z-30 hidden lg:block">
           <div
             data-flow-output
-            className="mx-auto flex max-w-3xl items-center justify-between gap-4 rounded-[24px] border border-[rgba(242,239,230,0.12)] bg-[rgba(8,8,7,0.68)] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-2xl"
+            className="mx-auto grid max-w-3xl gap-3 rounded-[22px] border border-[rgba(242,239,230,0.11)] bg-[rgba(8,8,7,0.70)] p-3 shadow-[0_16px_48px_rgba(0,0,0,0.26)] backdrop-blur-2xl lg:grid-cols-[1fr_auto] lg:items-center"
           >
             <div>
               <p className="micro-label text-[#6F766E]">Active connection</p>
-              <p className="mt-1 text-lg font-semibold tracking-[-0.035em] text-[#F2EFE6]">
+              <p className="mt-1 text-base font-semibold tracking-[-0.03em] text-[#F2EFE6]">
                 {activeNode.label} → Business core
               </p>
-              <p className="mt-1 text-sm text-[#B8B1A4]">{activeNode.description}</p>
+              <p className="mt-1 text-xs leading-5 text-[#B8B1A4]">{activeNode.description}</p>
             </div>
-            <div className="shrink-0 rounded-full border border-[#C16A3A]/24 bg-[#C16A3A]/10 px-4 py-2 text-sm font-medium text-[#E5E0D4]">
+            <div className="w-fit rounded-full border border-[#C16A3A]/24 bg-[#C16A3A]/10 px-3 py-1.5 text-xs font-medium text-[#E5E0D4]">
               {activeNode.status}
             </div>
           </div>
@@ -342,11 +297,11 @@ function SystemNodeButton({
       type="button"
       data-flow-source={node.id}
       className={cn(
-        "group absolute z-20 flex min-w-36 max-w-44 items-center gap-3 rounded-2xl border px-3.5 py-3 text-left backdrop-blur-xl transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C16A3A]",
+        "group absolute z-20 flex min-w-32 max-w-40 items-center gap-2.5 rounded-2xl border px-3 py-2.5 text-left backdrop-blur-xl transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C16A3A]",
         node.position,
         active
-          ? "border-[#C9A66B]/42 bg-[#C16A3A]/14 shadow-[0_18px_54px_rgba(193,106,58,0.18)]"
-          : "border-[rgba(242,239,230,0.105)] bg-[rgba(8,8,7,0.58)] hover:-translate-y-0.5 hover:border-[#C9A66B]/28 hover:bg-[rgba(242,239,230,0.065)]",
+          ? "border-[#C9A66B]/40 bg-[#C16A3A]/13 shadow-[0_16px_44px_rgba(193,106,58,0.16)]"
+          : "border-[rgba(242,239,230,0.10)] bg-[rgba(8,8,7,0.58)] hover:-translate-y-0.5 hover:border-[#C9A66B]/26 hover:bg-[rgba(242,239,230,0.06)]",
       )}
       onMouseEnter={onSelect}
       onClick={onSelect}
@@ -354,20 +309,20 @@ function SystemNodeButton({
     >
       <span
         className={cn(
-          "grid h-9 w-9 shrink-0 place-items-center rounded-xl border transition duration-300",
+          "grid h-8 w-8 shrink-0 place-items-center rounded-xl border transition duration-300",
           active
-            ? "border-[#C9A66B]/34 bg-[#C9A66B]/12 text-[#F2EFE6]"
+            ? "border-[#C9A66B]/32 bg-[#C9A66B]/12 text-[#F2EFE6]"
             : "border-[rgba(242,239,230,0.10)] bg-[rgba(242,239,230,0.04)] text-[#B8B1A4] group-hover:text-[#F2EFE6]",
         )}
       >
-        <Icon size={17} />
+        <Icon size={15} />
       </span>
       <span className="min-w-0">
-        <span className="block text-sm font-semibold tracking-[-0.02em] text-[#F2EFE6]">
+        <span className="block text-xs font-semibold tracking-[-0.01em] text-[#F2EFE6]">
           {node.label}
         </span>
-        <span className="mt-0.5 block truncate text-[0.68rem] uppercase tracking-[0.08em] text-[#6F766E]">
-          {node.kind === "business" ? "Business input" : "External app"}
+        <span className="mt-0.5 block truncate text-[0.62rem] uppercase tracking-[0.08em] text-[#6F766E]">
+          {node.kind === "business" ? "Business" : "Tool"}
         </span>
       </span>
     </button>
@@ -378,12 +333,12 @@ function MobileCore({ activeNode }: { activeNode: SystemNode }) {
   const Icon = activeNode.icon;
 
   return (
-    <div className="rounded-[30px] border border-[#C9A66B]/20 bg-[rgba(8,8,7,0.68)] p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
-      <div className="mx-auto grid h-40 w-40 place-items-center rounded-full border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_36%_24%,rgba(242,239,230,0.36),transparent_13%),radial-gradient(circle_at_48%_44%,rgba(201,166,107,0.24),transparent_34%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(5,5,5,0.82))] shadow-[0_0_64px_rgba(193,106,58,0.20)]">
-        <Sparkles className="text-[#C9A66B]" size={34} />
+    <div className="rounded-[28px] border border-[#C9A66B]/20 bg-[rgba(8,8,7,0.68)] p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
+      <div className="mx-auto grid h-36 w-36 place-items-center rounded-full border border-[#C9A66B]/24 bg-[radial-gradient(circle_at_36%_24%,rgba(242,239,230,0.34),transparent_13%),radial-gradient(circle_at_48%_44%,rgba(201,166,107,0.22),transparent_34%),linear-gradient(145deg,rgba(242,239,230,0.10),rgba(5,5,5,0.82))] shadow-[0_0_58px_rgba(193,106,58,0.18)]">
+        <Sparkles className="text-[#C9A66B]" size={30} />
       </div>
       <p className="micro-label mt-5 text-[#C9A66B]">Intelligent core</p>
-      <h2 className="mt-2 text-2xl font-semibold tracking-[-0.045em] text-[#F2EFE6]">
+      <h2 className="mt-2 text-xl font-semibold tracking-[-0.045em] text-[#F2EFE6]">
         One operating layer
       </h2>
       <div className="mx-auto mt-4 flex w-fit items-center gap-2 rounded-full border border-[#C16A3A]/24 bg-[#C16A3A]/10 px-3 py-2 text-sm text-[#E5E0D4]">
@@ -408,7 +363,7 @@ function NodeGroup({
   return (
     <div>
       <p className="micro-label mb-3 text-[#6F766E]">{title}</p>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         {nodes.map((node) => {
           const Icon = node.icon;
           const active = activeId === node.id;
@@ -435,5 +390,3 @@ function NodeGroup({
     </div>
   );
 }
-
-export const heroProblemNodeIds = allNodes.map((node) => node.id);

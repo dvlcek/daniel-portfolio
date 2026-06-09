@@ -36,6 +36,13 @@ const serviceGroups = [
   },
 ];
 
+const flagshipBenefits = [
+  "Premium website or landing system connected to the business process",
+  "Lead capture, qualification, CRM stages, and follow-up logic",
+  "Automation workflows for repeated admin, notifications, and handoffs",
+  "Internal dashboards, admin views, reporting, and operational visibility",
+];
+
 export function PackagesSection() {
   return (
     <section id="services" className="relative overflow-hidden bg-site-bg py-20 md:py-28">
@@ -47,10 +54,48 @@ export function PackagesSection() {
         className="relative z-10 mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10"
       >
         <SectionTitle
-          eyebrow="Services"
-          title="Connected systems for websites, workflows, and operations."
-          desc="The offer depends on the bottleneck: a full platform, automation around manual work, a clean website, or a remake of an outdated setup."
+          eyebrow="Flagship offer"
+          title="Business Operating System Build."
+          desc="A high-ticket company systems rebuild for businesses that need their website, leads, CRM, workflows, automations, dashboards, and internal tools to operate as one scale-ready system."
         />
+
+        <article className="pkg-card mt-12 overflow-hidden rounded-[2.25rem] border border-clay/25 bg-[radial-gradient(circle_at_18%_18%,rgba(184,100,63,0.12),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.82),rgba(247,244,236,0.62))] p-6 shadow-[0_28px_90px_rgba(21,21,18,0.08)] md:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[0.88fr_1fr] lg:items-end">
+            <div>
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-clay">
+                Main package
+              </p>
+              <h3 className="mt-4 max-w-3xl text-balance text-[clamp(2.25rem,4vw,4.4rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-cream">
+                Rebuild the company into a connected operating system.
+              </h3>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-stone">
+                For companies that already have customers, leads, tools, and
+                daily operations, but everything feels too manual, scattered,
+                slow, or hard to scale.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-black/[0.08] bg-white/72 p-5 shadow-[0_18px_50px_rgba(21,21,18,0.06)]">
+              <p className="text-sm font-semibold text-cream">
+                What gets rebuilt
+              </p>
+              <div className="mt-5 grid gap-3">
+                {flagshipBenefits.map((benefit) => (
+                  <div key={benefit} className="flex gap-3 text-sm leading-6 text-stone">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-clay/25 bg-clay/10 text-clay">
+                      <Check size={12} />
+                    </span>
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              <Button href="/contact" variant="primary" className="mt-6 w-full justify-center">
+                <span>Build My Business Operating System</span>
+                <ArrowUpRight size={15} />
+              </Button>
+            </div>
+          </div>
+        </article>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
           {serviceGroups.map((service, index) => {

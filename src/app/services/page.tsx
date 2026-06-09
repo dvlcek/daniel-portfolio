@@ -37,8 +37,8 @@ export default function ServicesPage() {
         <div className="relative z-10">
           <SectionTitle
             eyebrow="Services"
-            title="Websites, platforms, and automations designed as one business system."
-            desc="I help companies replace scattered tools and manual workflows with connected digital systems built for clarity, speed, and scalable growth."
+            title="Business operating systems, websites, platforms, and automations."
+            desc="The main offer is a full company systems rebuild: website, lead capture, CRM, workflows, dashboards, automations, and internal tools connected into one scalable operating system."
           />
 
         <div className="mt-10 rounded-[2rem] border border-black/[0.10] bg-white/62 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] ring-1 ring-clay/10 md:p-8">
@@ -46,13 +46,13 @@ export default function ServicesPage() {
             Core positioning
           </p>
           <h2 className="mt-4 max-w-4xl text-3xl font-medium tracking-[-0.035em] text-cream md:text-5xl">
-            I build websites, platforms, and automations that make businesses
-            easier to run.
+            I rebuild the digital foundation behind how your company sells,
+            operates, and scales.
           </h2>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-stone md:text-base">
-            I look at how the business works first: where leads come from, what
-            gets repeated manually, where tools do not connect, and what would
-            make daily work easier.
+            I look at how leads come in, how work moves through the company,
+            where tools do not connect, and which automations, dashboards, CRM
+            flows, and platforms would make the business more efficient.
           </p>
         </div>
 
@@ -123,13 +123,14 @@ export default function ServicesPage() {
 
         <div className="mt-10 rounded-[2rem] border border-black/[0.10] bg-white/62 p-7 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
           <h3 className="text-xl font-semibold text-cream">
-            Primary engagement path
+            Primary engagement path: Business Operating System Build
           </h3>
           <p className="mt-3 max-w-4xl text-sm leading-7 text-stone">
             Most projects start by looking at the current setup: website,
             inquiry flow, tools, manual work, and the part of the business that
-            creates the most friction. From there we decide whether the right
-            next step is a website, automation, platform, or remake.
+            creates the most friction. From there we map the company operating
+            system: what needs to be rebuilt, connected, automated, and made
+            visible.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href={primaryCta.href} className="inline-flex rounded-full bg-cream px-5 py-3 text-sm font-semibold text-site-bg shadow-[0_18px_48px_rgba(242,239,230,0.12)] transition hover:-translate-y-0.5 hover:bg-[#0D0E0C]">

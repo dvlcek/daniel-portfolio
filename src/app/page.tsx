@@ -11,16 +11,16 @@ import { SystemScrollTransition } from "@/components/animations/SystemScrollTran
 import { BusinessPlatformSection } from "@/components/sections/BusinessPlatformSection";
 
 export const metadata: Metadata = {
-  title: "Websites, Platforms & Business Automation",
+  title: "Business Operating System Build",
   description:
-    "Daniel Vlcek builds websites, platforms, automations, dashboards, and business systems that help companies run clearer and grow smarter.",
+    "Daniel Vlcek rebuilds websites, lead capture, CRM workflows, dashboards, automations, and internal tools into one scale-ready business operating system.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
+    title: "Daniel Vlcek | Business Operating System Build",
     description:
-      "Websites, platforms, dashboards, CRM workflows, and automations for businesses that want clearer daily operations.",
+      "From scattered tools to one scale-ready business system: websites, CRM workflows, automations, dashboards, and internal tools connected.",
     url: "/",
     type: "website",
   },

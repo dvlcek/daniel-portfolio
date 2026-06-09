@@ -50,7 +50,7 @@ export function SiteHeader() {
               Daniel Vlcek
             </p>
             <p className="text-xs text-stone transition duration-300 group-hover:text-muted-cream">
-              Automation Architect
+              Business Systems Architect
             </p>
           </div>
         </TransitionAnchor>
@@ -82,7 +82,7 @@ export function SiteHeader() {
 
         <div className="relative z-10 hidden items-center gap-3 md:flex">
           <Button href="/contact" variant="primary">
-            Book a Call
+            Build My OS
           </Button>
         </div>
 
@@ -138,7 +138,7 @@ export function SiteHeader() {
                 className="mt-3 w-full justify-center"
                 onClick={closeMenu}
               >
-                Book a Strategy Call
+                Build My Business OS
               </Button>
             </div>
           </nav>

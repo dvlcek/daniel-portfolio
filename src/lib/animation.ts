@@ -26,8 +26,10 @@ export const animationConfig = {
 } as const;
 
 export const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
-export const desktopMotionQuery = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
-export const mobileMotionQuery = "(max-width: 767px) and (prefers-reduced-motion: no-preference)";
+export const desktopMotionQuery =
+  "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
+export const mobileMotionQuery =
+  "(max-width: 767px) and (prefers-reduced-motion: no-preference)";
 
 export function prefersReducedMotion() {
   if (typeof window === "undefined") return false;

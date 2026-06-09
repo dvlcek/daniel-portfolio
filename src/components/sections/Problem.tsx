@@ -1,225 +1,566 @@
 "use client";
 
+import { useRef } from "react";
 import {
-  CalendarCheck,
-  ClipboardList,
-  CreditCard,
+  AlertTriangle,
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  Clock3,
+  DatabaseZap,
   Globe2,
   Mail,
   MousePointerClick,
   PlugZap,
-  Table2,
+  Repeat2,
+  TimerReset,
   Users,
   Workflow,
+  XCircle,
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { animationConfig, reducedMotionQuery } from "@/lib/animation";
+import { ensureGsap, gsap, useGSAP } from "@/components/animations/gsapClient";
 
-type ProblemTool = {
-  id: string;
-  label: string;
-  icon: LucideIcon;
-  x: number;
-  y: number;
-  rotate: number;
-  color: string;
-};
-
-type ProblemPoint = {
-  label: string;
+type DiagnosticCard = {
+  question: string;
   problem: string;
-  cost: string;
   fix: string;
   icon: LucideIcon;
 };
 
-const problemTools: ProblemTool[] = [
-  { id: "website", label: "Website", icon: Globe2, x: 19, y: 18, rotate: -2, color: "text-clay" },
-  { id: "crm", label: "CRM", icon: Users, x: 54, y: 19, rotate: 2, color: "text-mist-blue" },
-  { id: "emails", label: "Emails", icon: Mail, x: 35, y: 39, rotate: -1, color: "text-clay" },
-  { id: "bookings", label: "Bookings", icon: CalendarCheck, x: 78, y: 36, rotate: 2, color: "text-mist-blue" },
-  { id: "payments", label: "Payments", icon: CreditCard, x: 24, y: 68, rotate: 1, color: "text-sand" },
-  { id: "spreadsheet", label: "Spreadsheet", icon: Table2, x: 56, y: 69, rotate: -1, color: "text-muted-cream" },
-  { id: "manual-tasks", label: "Manual Tasks", icon: ClipboardList, x: 81, y: 68, rotate: 1, color: "text-ash" },
-];
+type MetricCard = {
+  label: string;
+  value: string;
+  note: string;
+  icon: LucideIcon;
+};
 
-const problemPoints: ProblemPoint[] = [
+type ToolNode = {
+  label: string;
+  status: string;
+  icon: LucideIcon;
+  position: string;
+  rotateClass: string;
+};
+
+const diagnosticCards: DiagnosticCard[] = [
   {
-    label: "Manual Work",
-    problem: "Lead follow-up, updates, reminders, reporting, and admin tasks depend on people remembering the next step.",
-    cost: "Time disappears into repeated checking, copying, and coordination.",
-    fix: "Automate the repeated steps and keep the workflow visible.",
+    question: "Do new leads instantly become clean CRM records?",
+    problem: "Or does someone still copy form details into another tool?",
+    fix: "Lead capture should create the next step automatically.",
     icon: MousePointerClick,
   },
   {
-    label: "Scattered Tools",
-    problem: "Website, forms, email, CRM, payments, bookings, and dashboards all hold separate pieces of the process.",
-    cost: "The team has to rebuild context manually across every tool.",
-    fix: "Connect the tools into one operating layer around the business flow.",
+    question: "Are follow-ups sent without someone remembering?",
+    problem: "Or do good inquiries wait because the team is busy?",
+    fix: "Follow-ups, reminders, and tasks should run in the background.",
+    icon: Repeat2,
+  },
+  {
+    question: "Can you see what is active, blocked, and next?",
+    problem: "Or is your pipeline spread across emails, chats, and memory?",
+    fix: "A dashboard should show the real state of the business.",
+    icon: BarChart3,
+  },
+  {
+    question: "Do your website, CRM, email, and workflows talk to each other?",
+    problem: "Or does every tool hold a different piece of the process?",
+    fix: "The system should connect the tools around your business flow.",
     icon: PlugZap,
-  },
-  {
-    label: "Lost Leads",
-    problem: "The website may look fine, but inquiries do not move into a reliable lead workflow.",
-    cost: "Good opportunities get delayed, forgotten, or followed up too late.",
-    fix: "Capture the right context and route every inquiry into a clear next step.",
-    icon: Globe2,
-  },
-  {
-    label: "No Operational Clarity",
-    problem: "Owners and teams cannot see what is active, blocked, paid, waiting, or next.",
-    cost: "Decisions are made from fragments instead of one clear view of operations.",
-    fix: "Build dashboards and internal views that show the state of the business.",
-    icon: Workflow,
   },
 ];
 
-function ProblemScribbleLines() {
+const metricCards: MetricCard[] = [
+  {
+    label: "Manual work",
+    value: "18h",
+    note: "monthly admin that can often be reduced",
+    icon: Clock3,
+  },
+  {
+    label: "Lead routing",
+    value: "2m",
+    note: "target response structure after inquiry",
+    icon: TimerReset,
+  },
+  {
+    label: "Follow-up coverage",
+    value: "94%",
+    note: "structured next steps instead of missed chances",
+    icon: CheckCircle2,
+  },
+];
+
+const toolNodes: ToolNode[] = [
+  {
+    label: "Website",
+    status: "lead arrives",
+    icon: Globe2,
+    position: "left-[5%] top-[14%]",
+    rotateClass: "-rotate-[2deg]",
+  },
+  {
+    label: "Form",
+    status: "context captured",
+    icon: MousePointerClick,
+    position: "left-[30%] top-[26%]",
+    rotateClass: "rotate-[1.5deg]",
+  },
+  {
+    label: "Email",
+    status: "follow-up needed",
+    icon: Mail,
+    position: "right-[8%] top-[18%]",
+    rotateClass: "rotate-[2deg]",
+  },
+  {
+    label: "CRM",
+    status: "record missing",
+    icon: Users,
+    position: "left-[8%] bottom-[20%]",
+    rotateClass: "rotate-[1deg]",
+  },
+  {
+    label: "Workflow",
+    status: "not triggered",
+    icon: Workflow,
+    position: "right-[28%] bottom-[18%]",
+    rotateClass: "-rotate-[1.5deg]",
+  },
+  {
+    label: "Dashboard",
+    status: "no clear view",
+    icon: DatabaseZap,
+    position: "right-[3%] bottom-[10%]",
+    rotateClass: "rotate-[1.5deg]",
+  },
+];
+
+function ProblemLines() {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block"
-      viewBox="0 0 720 430"
+      className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
+      viewBox="0 0 900 430"
       fill="none"
       aria-hidden="true"
-      data-flow-lines="problem-scribble-lines"
+      data-problem-lines
     >
-      <path d="M92 86 C166 52 232 108 316 82 C398 56 462 110 548 76 C604 54 640 68 674 56" stroke="#5F7480" strokeDasharray="7 10" strokeLinecap="round" strokeWidth="1" strokeOpacity="0.24" />
-      <path d="M116 210 C210 168 266 238 360 190 C448 146 522 214 628 164" stroke="#B8643F" strokeDasharray="7 11" strokeLinecap="round" strokeWidth="1" strokeOpacity="0.22" />
-      <path d="M132 306 C226 330 304 260 392 300 C486 342 568 288 642 316" stroke="#5F7480" strokeDasharray="7 11" strokeLinecap="round" strokeWidth="0.9" strokeOpacity="0.18" />
-      <path d="M238 58 C248 116 212 144 250 190 C292 242 258 292 302 354" stroke="#151512" strokeDasharray="5 13" strokeLinecap="round" strokeWidth="0.8" strokeOpacity="0.12" />
-      <path d="M484 52 C450 118 496 150 468 214 C442 274 500 310 476 366" stroke="#151512" strokeDasharray="5 13" strokeLinecap="round" strokeWidth="0.8" strokeOpacity="0.12" />
+      <path
+        d="M110 85 C185 50 245 106 315 82 C385 58 445 112 525 86 C620 54 695 90 790 58"
+        stroke="#b8643f"
+        strokeDasharray="8 12"
+        strokeLinecap="round"
+        strokeWidth="1.25"
+        strokeOpacity="0.38"
+      />
+      <path
+        d="M100 220 C185 178 260 248 350 204 C445 158 520 232 625 182 C710 142 770 170 830 146"
+        stroke="#8cab72"
+        strokeDasharray="8 12"
+        strokeLinecap="round"
+        strokeWidth="1.25"
+        strokeOpacity="0.36"
+      />
+      <path
+        d="M138 340 C228 366 306 288 404 328 C508 370 612 304 758 336"
+        stroke="#151512"
+        strokeDasharray="6 14"
+        strokeLinecap="round"
+        strokeWidth="1"
+        strokeOpacity="0.14"
+      />
     </svg>
   );
 }
 
-function ProblemToolCard({ tool }: { tool: ProblemTool }) {
-  const Icon = tool.icon;
+function ToolNodeCard({ node }: { node: ToolNode }) {
+  const Icon = node.icon;
 
   return (
-    <div
-      data-flow-target={tool.id}
-      data-flow-rotate={tool.rotate}
-      style={{
-        left: `${tool.x}%`,
-        top: `${tool.y}%`,
-        transform: `translate(-50%, -50%) rotate(${tool.rotate}deg)`,
-      }}
-      className="absolute z-20 hidden h-12 w-[168px] items-center gap-3 overflow-hidden rounded-2xl border border-black/[0.08] bg-white/78 px-3.5 shadow-[0_16px_42px_rgba(21,21,18,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-2xl transition duration-300 hover:scale-[1.015] hover:border-clay/20 hover:bg-white md:flex"
+    <article
+      data-problem-tool
+      className={`acrylic-surface absolute z-20 w-[178px] ${node.position} ${node.rotateClass} rounded-[1.35rem] border p-3 transition duration-300 hover:z-30 hover:-translate-y-1 hover:rotate-0 hover:border-[#b8643f]/28 hover:bg-white/62`}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.72),rgba(247,244,236,0.56)_55%,rgba(184,100,63,0.04))]" />
-      <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-black/[0.08] bg-site-bg shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl">
-        <Icon className={tool.color} size={15} strokeWidth={2} />
-      </span>
-      <span className="relative truncate text-xs font-semibold text-muted-cream">
-        {tool.label}
-      </span>
-    </div>
+      <div className="flex items-center gap-3">
+        <span className="acrylic-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border text-[#b8643f]">
+          <Icon size={17} strokeWidth={1.85} />
+        </span>
+
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold tracking-[-0.02em] text-[#171512]">
+            {node.label}
+          </p>
+          <p className="mt-0.5 truncate text-xs text-[#625c54]">
+            {node.status}
+          </p>
+        </div>
+      </div>
+    </article>
   );
 }
 
 function ProblemVisual() {
   return (
-    <div className="relative min-w-0 md:min-h-[420px]">
-      <div className="relative z-10 grid gap-3 md:hidden">
-        {problemTools.map((tool) => {
-          const Icon = tool.icon;
+    <div
+      data-problem-visual
+      className="acrylic-surface-strong relative overflow-hidden rounded-[2.35rem] border p-4 lg:min-h-[430px]"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.42),rgba(255,255,255,0.16)_58%,rgba(184,100,63,0.06))]" />
+      <div className="absolute -left-20 -top-20 h-52 w-52 rounded-full bg-[#b8643f]/12 blur-3xl" />
+      <div className="absolute -right-24 bottom-0 h-56 w-56 rounded-full bg-[#8cab72]/16 blur-3xl" />
+
+      <div className="relative z-10 grid gap-3 lg:hidden">
+        {toolNodes.map((node) => {
+          const Icon = node.icon;
 
           return (
             <div
-              key={tool.id}
-              className="flex min-h-14 items-center gap-3 overflow-hidden rounded-2xl border border-black/[0.08] bg-white/76 px-4 py-3 shadow-[0_14px_34px_rgba(21,21,18,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-2xl"
+              key={node.label}
+              className="acrylic-inset flex items-center gap-3 rounded-[1.25rem] border p-3"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-black/[0.08] bg-site-bg shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl">
-                <Icon className={tool.color} size={16} strokeWidth={2} />
+              <span className="acrylic-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border text-[#b8643f]">
+                <Icon size={17} strokeWidth={1.85} />
               </span>
-              <span className="text-sm font-semibold text-muted-cream">
-                {tool.label}
-              </span>
+              <div>
+                <p className="text-sm font-semibold text-[#171512]">
+                  {node.label}
+                </p>
+                <p className="text-xs text-[#625c54]">{node.status}</p>
+              </div>
             </div>
           );
         })}
       </div>
 
-      <div className="relative z-10 mx-auto hidden h-[360px] max-w-[860px] overflow-hidden rounded-[2rem] md:block">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(184,100,63,0.05),transparent_35%),radial-gradient(circle_at_70%_20%,rgba(95,116,128,0.06),transparent_34%)]" />
-        <ProblemScribbleLines />
-        {problemTools.map((tool) => (
-          <ProblemToolCard key={tool.id} tool={tool} />
+      <div className="relative z-10 hidden h-[390px] lg:block">
+        <ProblemLines />
+
+        {toolNodes.map((node) => (
+          <ToolNodeCard key={node.label} node={node} />
         ))}
+
+        <div
+          data-problem-center
+          className="acrylic-accent absolute left-1/2 top-1/2 z-30 w-[292px] -translate-x-1/2 -translate-y-1/2 rounded-[1.8rem] border p-5 text-center shadow-[0_24px_70px_rgba(22,20,17,0.14),inset_0_1px_0_rgba(255,255,255,0.78)]"
+        >
+          <div className="acrylic-icon mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border text-[#b8643f]">
+            <AlertTriangle size={22} strokeWidth={1.85} />
+          </div>
+
+          <p className="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[#9b6d4a]">
+            The missing layer
+          </p>
+
+          <h3 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.04em] text-[#171512]">
+            Your website may look good. But what happens after the lead?
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-[#5d574f]">
+            That is where most companies lose speed, clarity, and opportunities.
+          </p>
+        </div>
       </div>
     </div>
   );
 }
 
-export function Problem() {
+function MetricCard({ metric }: { metric: MetricCard }) {
+  const Icon = metric.icon;
+
   return (
-    <section
-      className="relative overflow-hidden bg-site-bg py-20 md:py-28"
-      data-section="problem"
+    <article
+      data-problem-metric
+      className="acrylic-surface rounded-[1.45rem] border p-4"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_15%,rgba(143,163,177,0.08),transparent_32%),radial-gradient(circle_at_82%_20%,rgba(193,106,58,0.08),transparent_30%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cream/12 to-transparent" />
+      <div className="flex items-start justify-between gap-4">
+        <span className="acrylic-icon flex h-10 w-10 items-center justify-center rounded-2xl border text-[#b8643f]">
+          <Icon size={17} strokeWidth={1.85} />
+        </span>
 
-      <Container>
-        <div className="relative z-10">
-          <div className="overflow-hidden rounded-[2rem] border border-black/[0.08] bg-white/54 p-6 shadow-[0_28px_90px_rgba(21,21,18,0.07),inset_0_1px_0_rgba(255,255,255,0.82)] backdrop-blur-sm md:p-8 lg:p-10">
-            <div className="grid gap-10 lg:grid-cols-[0.48fr_1fr] lg:items-center">
-              <div>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.26em] text-clay">
-                  The problem
-                </p>
-                <h2 className="mt-4 max-w-xl text-balance text-[clamp(2.45rem,4.8vw,4.8rem)] font-medium leading-[0.95] tracking-[-0.055em] text-cream">
-                  Most companies do not have a website problem.
-                  <span className="block italic text-clay">They have a system problem.</span>
-                </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-stone">
-                  When the website, CRM, forms, email, payments, dashboards, and
-                  internal work are disconnected, the business runs on manual
-                  checking instead of one scalable operating layer.
-                </p>
-              </div>
+        <span className="acrylic-pill-success rounded-full border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-[#4f7449]">
+          Target
+        </span>
+      </div>
 
-              <ProblemVisual />
+      <p className="mt-5 text-3xl font-semibold tracking-[-0.06em] text-[#171512]">
+        {metric.value}
+      </p>
+      <p className="mt-1 text-sm font-semibold text-[#29251f]">
+        {metric.label}
+      </p>
+      <p className="mt-2 text-xs leading-5 text-[#625c54]">{metric.note}</p>
+    </article>
+  );
+}
+
+function DiagnosticCard({ card }: { card: DiagnosticCard }) {
+  const Icon = card.icon;
+
+  return (
+    <article
+      data-problem-card
+      className="acrylic-surface group relative overflow-hidden rounded-[1.75rem] border p-5 transition duration-300 hover:-translate-y-1 hover:border-[#b8643f]/28 hover:bg-white/62 sm:p-6"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.36),rgba(255,255,255,0.16)_60%,rgba(184,100,63,0.04))]" />
+
+      <div className="relative">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <span className="acrylic-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border text-[#b8643f]">
+            <Icon size={21} strokeWidth={1.85} />
+          </span>
+
+          <ArrowRight
+            className="mt-2 hidden text-[#b8643f] opacity-0 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:block"
+            size={18}
+            strokeWidth={1.85}
+          />
+        </div>
+
+        <h3 className="text-xl font-semibold leading-tight tracking-[-0.04em] text-[#171512]">
+          {card.question}
+        </h3>
+
+        <div className="mt-5 grid gap-3">
+          <div className="acrylic-accent rounded-[1.15rem] border p-4">
+            <div className="flex items-start gap-3">
+              <XCircle
+                className="mt-0.5 shrink-0 text-[#b8643f]"
+                size={17}
+                strokeWidth={1.9}
+              />
+              <p className="text-sm leading-6 text-[#514b43]">
+                {card.problem}
+              </p>
             </div>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {problemPoints.map((item, index) => {
-              const Icon = item.icon;
+          <div className="acrylic-success rounded-[1.15rem] border p-4">
+            <div className="flex items-start gap-3">
+              <CheckCircle2
+                className="mt-0.5 shrink-0 text-[#6f965d]"
+                size={17}
+                strokeWidth={1.9}
+              />
+              <p className="text-sm leading-6 text-[#514b43]">{card.fix}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
-              return (
-                <article
-                  key={item.label}
-                  className="group relative overflow-hidden rounded-[1.75rem] border border-black/[0.08] bg-white/62 p-6 shadow-[0_18px_50px_rgba(21,21,18,0.06)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:border-clay/20 hover:bg-white"
-                >
-                  <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.70),rgba(247,244,236,0.42)_58%,rgba(184,100,63,0.045))]" />
-                  <div className="relative flex gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-black/[0.08] bg-site-bg text-clay shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl">
-                      <Icon size={22} strokeWidth={1.8} />
-                    </div>
-                    <div>
-                      <p className="font-mono text-xs font-semibold text-clay">
-                        0{index + 1}
-                      </p>
-                      <h3 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-cream">
-                        {item.label}
-                      </h3>
-                      <p className="mt-3 text-sm leading-7 text-stone">{item.problem}</p>
-                      <div className="mt-5 grid gap-3 text-sm leading-6">
-                        <p className="rounded-2xl border border-black/[0.06] bg-site-bg/60 p-3 text-stone">
-                          <span className="font-semibold text-muted-cream">Business cost:</span>{" "}
-                          {item.cost}
-                        </p>
-                        <p className="rounded-2xl border border-clay/15 bg-clay/[0.06] p-3 text-stone">
-                          <span className="font-semibold text-muted-cream">System fix:</span>{" "}
-                          {item.fix}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+export function Problem() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const root = rootRef.current;
+      if (!root) return;
+
+      ensureGsap();
+
+      const mm = gsap.matchMedia(root);
+      const select = gsap.utils.selector(root);
+
+      const intro = select<HTMLElement>("[data-problem-intro]");
+      const visual = select<HTMLElement>("[data-problem-visual]");
+      const tools = select<HTMLElement>("[data-problem-tool]");
+      const center = select<HTMLElement>("[data-problem-center]");
+      const metrics = select<HTMLElement>("[data-problem-metric]");
+      const cards = select<HTMLElement>("[data-problem-card]");
+      const lines = select<SVGPathElement>("[data-problem-lines] path");
+
+      mm.add(reducedMotionQuery, () => {
+        gsap.set(
+          [...intro, ...visual, ...tools, ...center, ...metrics, ...cards],
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            clearProps: "transform",
+          },
+        );
+
+        gsap.set(lines, { clearProps: "all" });
+      });
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        lines.forEach((line) => {
+          const length = line.getTotalLength();
+
+          gsap.set(line, {
+            strokeDasharray: length,
+            strokeDashoffset: length,
+          });
+        });
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: root,
+              start: animationConfig.scroll.sectionStart,
+              once: true,
+            },
+            defaults: { ease: animationConfig.ease.default },
+          })
+          .fromTo(
+            intro,
+            { autoAlpha: 0, y: 24 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: animationConfig.duration.reveal,
+              stagger: animationConfig.stagger.tight,
+            },
+          )
+          .fromTo(
+            visual,
+            { autoAlpha: 0, y: 24, scale: 0.985 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.85,
+              ease: animationConfig.ease.premium,
+            },
+            "-=0.45",
+          )
+          .fromTo(
+            center,
+            { autoAlpha: 0, y: 12, scale: 0.96 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.65,
+              ease: animationConfig.ease.premium,
+            },
+            "-=0.4",
+          )
+          .fromTo(
+            tools,
+            { autoAlpha: 0, y: 12, scale: 0.97 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              stagger: animationConfig.stagger.tight,
+            },
+            "-=0.45",
+          )
+          .to(
+            lines,
+            {
+              strokeDashoffset: 0,
+              duration: 1,
+              stagger: 0.035,
+              ease: animationConfig.ease.soft,
+            },
+            "-=0.45",
+          )
+          .fromTo(
+            metrics,
+            { autoAlpha: 0, y: 18 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: animationConfig.duration.card,
+              stagger: animationConfig.stagger.tight,
+            },
+            "-=0.25",
+          )
+          .fromTo(
+            cards,
+            { autoAlpha: 0, y: 22 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: animationConfig.duration.card,
+              stagger: animationConfig.stagger.default,
+            },
+            "-=0.2",
+          );
+      });
+
+      return () => mm.revert();
+    },
+    { scope: rootRef, dependencies: [], revertOnUpdate: true },
+  );
+
+  return (
+    <section
+      ref={rootRef}
+      id="problem"
+      className="relative overflow-hidden bg-[#f7f4ed] py-20 text-[#151512] md:py-28"
+      data-section="problem"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(232,136,52,0.10),transparent_30%),radial-gradient(circle_at_85%_14%,rgba(140,171,114,0.13),transparent_30%),linear-gradient(180deg,#f7f4ed_0%,#fbf8f2_48%,#f7f4ed_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(21,21,18,0.12),transparent)]" />
+
+      <Container>
+        <div className="relative z-10">
+          <div className="grid gap-10 lg:grid-cols-[0.45fr_1fr] lg:items-center">
+            <div>
+              <p
+                data-problem-intro
+                className="font-mono text-[10px] font-bold uppercase tracking-[0.26em] text-[#b8643f]"
+              >
+                Before another redesign
+              </p>
+
+              <h2
+                data-problem-intro
+                className="mt-4 max-w-xl text-balance text-[clamp(2.35rem,4.8vw,4.8rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-[#151512]"
+              >
+                Does your website actually run the business after the click?
+              </h2>
+
+              <p
+                data-problem-intro
+                className="mt-6 max-w-xl text-base leading-8 text-[#4f4a42]"
+              >
+                A modern website is not enough if every inquiry still creates
+                manual work, slow follow-up, and scattered information.
+              </p>
+
+              <div
+                data-problem-intro
+                className="acrylic-accent mt-7 rounded-[1.45rem] border p-4"
+              >
+                <p className="text-sm font-semibold leading-6 text-[#302a24]">
+                  The real question is simple: when a lead comes in, does your
+                  system know what should happen next?
+                </p>
+              </div>
+            </div>
+
+            <ProblemVisual />
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {metricCards.map((metric) => (
+              <MetricCard key={metric.label} metric={metric} />
+            ))}
+          </div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {diagnosticCards.map((card) => (
+              <DiagnosticCard key={card.question} card={card} />
+            ))}
+          </div>
+
+          <div
+            data-problem-intro
+            className="acrylic-surface mx-auto mt-12 max-w-4xl rounded-[1.8rem] border p-5 text-center sm:p-6"
+          >
+            <p className="text-lg font-semibold leading-8 tracking-[-0.03em] text-[#171512]">
+              If the answer is “not really”, you do not just need a nicer
+              website. You need a connected digital system behind it.
+            </p>
           </div>
         </div>
       </Container>

@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/animations/ScrollAnimation";
 
 const callPoints = [
-  "What currently feels messy, manual, or unclear",
-  "Which part of the workflow should be improved first",
-  "Whether the next step is a website, platform, automation, or remake",
+  "Where your current company system is scattered, manual, or unclear",
+  "Which workflows, tools, dashboards, and CRM steps should be rebuilt first",
+  "What your scale-ready Business Operating System should include",
 ];
 
 export function FinalCTA() {
@@ -18,32 +18,32 @@ export function FinalCTA() {
           <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
             <div>
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.26em] text-clay">
-                Start with clarity
+                Build the operating system
               </p>
               <h2 className="mt-5 max-w-3xl text-balance text-[clamp(2.5rem,5vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.045em] text-[#F7F4EC]">
-                Let&apos;s map the system your business actually needs.
+                Ready to rebuild your company into a system that can scale?
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-8 text-[#D8D2C4]/72">
-                Tell me what you are building, what feels manual, and where
-                your current tools stop supporting growth. I will help identify
-                what kind of website, platform, or automation system makes
-                sense.
+                Show me your current website, tools, lead flow, CRM, dashboards,
+                and manual work. I&apos;ll help map the operating system your
+                business needs to run clearer, faster, and with less repeated
+                admin.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Button href="/contact" variant="primary" className="bg-site-bg text-cream before:hidden hover:bg-white">
-                  Book a Strategy Call
+                  Build My Business Operating System
                   <ArrowUpRight size={15} />
                 </Button>
                 <Button href="/work" variant="secondary" className="border-white/[0.12] bg-white/[0.08] text-[#F7F4EC] ring-white/[0.12] hover:bg-white/[0.13]">
-                  View Work
+                  View Systems Built
                 </Button>
               </div>
             </div>
 
             <div className="rounded-[2rem] border border-white/[0.10] bg-white/[0.055] p-5 backdrop-blur-xl">
               <p className="text-sm font-semibold text-[#F7F4EC]">
-                What we&apos;ll clarify
+                What we&apos;ll map
               </p>
               <div className="mt-5 space-y-4">
                 {callPoints.map((item, index) => (

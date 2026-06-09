@@ -1,11 +1,11 @@
 export const primaryCta = {
-  label: "Let's look at your current setup",
+  label: "Build my Business Operating System",
   href: "/contact",
 };
 
 export const secondaryCtas = {
   caseStudies: { label: "View real projects", href: "/work" },
-  fullSystem: { label: "Discuss a full platform", href: "/contact" },
+  fullSystem: { label: "Build a Business Operating System", href: "/contact" },
   website: { label: "Plan a website", href: "/contact" },
   rebuild: { label: "Review my current setup", href: "/contact" },
   automation: { label: "Automate a workflow", href: "/contact" },
@@ -1000,18 +1000,18 @@ export const processSteps = [
 
 export const packages = [
   {
-    name: "Full Business Platform Build",
+    name: "Business Operating System Build",
     bestFor:
-      "For businesses that need more than a website: a connected platform around customers, payments, bookings, dashboards, admin work, and daily operations.",
+      "For companies that already have customers, leads, tools, and daily operations, but everything feels too manual, scattered, slow, or hard to scale.",
     includes: [
-      "Website, platform, portal, or customer-facing product",
-      "Backend logic for bookings, payments, clients, content, or operations",
-      "Admin dashboards for managing the business behind the website",
-      "Email workflows, notifications, reminders, and handoff logic",
-      "Integrations and automations built around how the business works",
+      "Premium website or landing system connected to the business process",
+      "Lead capture, qualification, CRM stages, and follow-up logic",
+      "Automation workflows for repeated admin, notifications, and handoffs",
+      "Internal dashboards, admin views, reporting, and operational visibility",
+      "Scalable backend foundation and integrations built around how the company works",
     ],
     subtle:
-      "Flagship offer for companies that need the public website and internal operation to work together.",
+      "Flagship offer for rebuilding the company's digital foundation into one connected, scale-ready operating system.",
     cta: secondaryCtas.fullSystem,
   },
   {

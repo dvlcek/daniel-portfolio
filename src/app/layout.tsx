@@ -22,11 +22,11 @@ const bodyFont = Instrument_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://danielvlcek.com"),
   title: {
-    default: "Daniel Vlcek | Websites, Platforms & Business Automation",
+    default: "Daniel Vlcek | Business Operating System Build",
     template: "%s | Daniel Vlcek",
   },
   description:
-    "Websites, platforms, automations, dashboards, and business systems that make companies easier to run.",
+    "Business operating systems, websites, CRM workflows, automations, dashboards, and internal tools that make companies easier to run and scale.",
   keywords: [
     "Daniel Vlcek",
     "Software Developer Vienna",
@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     "Next.js Developer Vienna",
     "Automation Developer Austria",
     "Business Automation Austria",
+    "Business Operating System Build",
     "Business Automation Systems",
     "Website Rebuild Austria",
     "Internal Dashboard Developer",
@@ -48,9 +49,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
+    title: "Daniel Vlcek | Business Operating System Build",
     description:
-      "Websites, platforms, automation systems, dashboards, CRM workflows, and practical business systems for companies in Austria and Europe.",
+      "Websites, lead capture, CRM workflows, automations, dashboards, and internal tools rebuilt into scale-ready business operating systems.",
     url: "https://danielvlcek.com",
     siteName: "Daniel Vlcek",
     type: "website",
@@ -66,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Vlcek | Websites, Platforms & Business Automation",
+    title: "Daniel Vlcek | Business Operating System Build",
     description:
-      "Websites, business automation, internal dashboards, CRM workflows, and practical business systems for companies in Austria and Europe.",
+      "Business operating systems, websites, CRM workflows, automations, dashboards, and internal tools for companies in Austria and Europe.",
     images: ["/images/daniel-vlcek.jpg"],
   },
   robots: {
@@ -92,6 +93,7 @@ const personJsonLd = {
   knowsAbout: [
     "Next.js development",
     "business automation",
+    "business operating systems",
     "CRM workflows",
     "internal dashboards",
     "website rebuilds",
@@ -102,7 +104,7 @@ const personJsonLd = {
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Daniel Vlcek - Websites, Platforms & Business Automation",
+  name: "Daniel Vlcek - Business Operating System Build",
   url: "https://danielvlcek.com",
   areaServed: ["Austria", "Europe"],
   address: {
@@ -111,6 +113,7 @@ const serviceJsonLd = {
     addressCountry: "AT",
   },
   serviceType: [
+    "Business operating system build",
     "Website development",
     "Business platform development",
     "Business automation systems",
@@ -126,7 +129,7 @@ const websiteJsonLd = {
   name: "Daniel Vlcek",
   url: "https://danielvlcek.com",
   description:
-    "Websites, platforms, automation systems, internal dashboards, CRM workflows, and business systems that make companies easier to run.",
+    "Business operating systems, websites, automation systems, internal dashboards, CRM workflows, and internal tools that make companies easier to run and scale.",
 };
 
 export default function RootLayout({

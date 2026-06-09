@@ -46,13 +46,13 @@ export function SolutionPillars() {
                 The solution
               </p>
               <h2 className="mt-5 max-w-4xl text-balance text-[clamp(2.5rem,5vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.045em] text-cream">
-                The website is only the visible layer. The real value is the system behind it.
+                The website is only the visible layer. The real value is the operating system behind it.
               </h2>
             </div>
             <p className="max-w-xl text-lg leading-8 text-stone lg:justify-self-end">
-              Sometimes that means a website. Sometimes it means a dashboard,
-              CRM flow, booking system, automation, or full platform. The tool
-              follows the business problem.
+              The build connects the public website, lead handling, CRM logic,
+              automations, dashboards, and internal tools so the company runs
+              from one clearer digital foundation.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export function SolutionPillars() {
                 Connected path
               </p>
               <h3 className="mt-3 text-3xl font-medium tracking-[-0.035em] text-cream">
-                From first contact to daily work
+                From first contact to operational clarity
               </h3>
 
               <div className="relative mt-8 space-y-4">
@@ -120,8 +120,9 @@ export function SolutionPillars() {
 
           <div className="mt-10 flex flex-col items-start gap-5 rounded-[2rem] border border-black/[0.08] bg-white/64 p-6 shadow-[0_18px_50px_rgba(21,21,18,0.06)] backdrop-blur-xl md:flex-row md:items-center md:justify-between">
             <p className="max-w-2xl text-sm leading-7 text-stone md:text-base">
-              The final shape depends on the bottleneck. The goal is always the
-              same: make the business easier to understand, manage, and improve.
+              The final shape depends on the bottleneck, but the goal is always
+              the same: rebuild the company into a system that is easier to
+              operate, automate, measure, and scale.
             </p>
             <Button href="/work" variant="primary">
               View real projects

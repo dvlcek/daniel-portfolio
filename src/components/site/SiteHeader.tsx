@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/Button";
 import { TransitionAnchor } from "@/components/transition/TransitionAnchor";
 
 const navItems = [
   { href: "/work", label: "Work" },
-  { href: "#services", label: "Services" },
+  { href: "/#services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#process", label: "Process" },
+  { href: "/insights", label: "Insights" },
 ] as const;
 
 export function SiteHeader() {
@@ -19,138 +18,91 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
-
-  const isActiveLink = (href: string) => {
-    if (href.startsWith("#")) return false;
-    return pathname === href;
-  };
+  const isActive = (href: string) => !href.includes("#") && pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-site-bg/82 backdrop-blur-2xl">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.14),transparent_38%)]" />
-
-      <div className="relative flex h-16 w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+    <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/[0.055] bg-[#06101b]/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-[#06101b]/70">
+      <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 md:h-[72px] md:px-10 lg:px-14 xl:px-20">
         <TransitionAnchor
           href="/"
-          className="group flex items-center gap-3"
           onClick={closeMenu}
+          className="group inline-flex items-center gap-3 text-white"
         >
-          <div className="relative h-9 w-9 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.04] shadow-lg shadow-black/30 ring-1 ring-white/[0.06] transition duration-300 group-hover:border-brand-blue/40 group-hover:bg-brand-blue/10 group-hover:shadow-brand-blue/10">
-            <Image
-              src="/logo.svg"
-              alt="Daniel Vlcek Logo"
-              fill
-              className="object-contain p-1.5"
-              priority
-            />
-          </div>
-
-          <div className="leading-tight">
-            <p className="text-sm font-semibold tracking-tight text-white transition duration-300 group-hover:text-brand-blue-pale">
-              Daniel Vlcek
-            </p>
-            <p className="text-xs text-white/45 transition duration-300 group-hover:text-white/60">
-              Systems & Automation
-            </p>
-          </div>
+          <span className="text-[14px] font-semibold uppercase tracking-[0.22em] text-white/92 transition-colors group-hover:text-white sm:text-[15px]">
+            Daniel Vlcek
+          </span>
         </TransitionAnchor>
 
-        <nav
-          className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-lg shadow-black/20 backdrop-blur-xl md:flex"
-          aria-label="Primary"
-        >
-          {navItems.map((item) => {
-            const active = isActiveLink(item.href);
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <TransitionAnchor
+              key={item.href}
+              href={item.href}
+              className={[
+                "relative py-2 text-[13px] font-medium transition-colors duration-200",
+                isActive(item.href) ? "text-white" : "text-white/68 hover:text-white",
+              ].join(" ")}
+            >
+              {item.label}
+              {isActive(item.href) ? (
+                <span className="absolute inset-x-0 -bottom-0.5 h-px bg-white/55" />
+              ) : null}
+            </TransitionAnchor>
+          ))}
+        </nav>
 
-            return (
+        <div className="hidden lg:block">
+          <TransitionAnchor
+            href="/contact"
+            className="group inline-flex h-10 items-center gap-2 rounded-full border border-white/18 bg-white/[0.025] px-5 text-[13px] font-medium text-white/88 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.065] hover:text-white"
+          >
+            Let&apos;s Talk
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          </TransitionAnchor>
+        </div>
+
+        <button
+          type="button"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMenuOpen((value) => !value)}
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/14 bg-white/[0.035] text-white transition hover:bg-white/[0.07] lg:hidden"
+        >
+          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      {isMenuOpen ? (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="absolute inset-x-4 top-[calc(100%+0.6rem)] overflow-hidden rounded-2xl border border-white/12 bg-[#08131f]/96 p-2 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-2xl sm:inset-x-8 lg:hidden"
+        >
+          <div className="space-y-1">
+            {navItems.map((item) => (
               <TransitionAnchor
                 key={item.href}
                 href={item.href}
-                className={[
-                  "rounded-full px-4 py-2 text-sm transition duration-300",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/70 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
-                  active
-                    ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
-                    : "text-white/58 hover:bg-white/[0.06] hover:text-white",
-                ].join(" ")}
+                onClick={closeMenu}
+                className="flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium text-white/72 transition hover:bg-white/[0.055] hover:text-white"
               >
                 {item.label}
+                <ArrowRight size={14} className="text-white/34" />
               </TransitionAnchor>
-            );
-          })}
+            ))}
+          </div>
+
+          <TransitionAnchor
+            href="/contact"
+            onClick={closeMenu}
+            className="mt-2 flex h-12 items-center justify-between rounded-xl bg-white px-4 text-sm font-semibold text-[#07111d]"
+          >
+            Let&apos;s Talk
+            <ArrowRight size={15} />
+          </TransitionAnchor>
         </nav>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <Button href="/contact" variant="primary">
-            Book a Call
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <Button href="/contact" variant="secondary" onClick={closeMenu}>
-            Book Call
-          </Button>
-
-          <button
-            type="button"
-            aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-controls="mobile-navigation"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.05] text-white shadow-lg shadow-black/25 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-brand-blue-pale focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/80 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
-          >
-            {isMenuOpen ? (
-              <X size={18} aria-hidden="true" />
-            ) : (
-              <Menu size={18} aria-hidden="true" />
-            )}
-          </button>
-        </div>
-
-        {isMenuOpen ? (
-          <nav
-            id="mobile-navigation"
-            aria-label="Mobile"
-            className="absolute inset-x-5 top-[calc(100%+0.75rem)] overflow-hidden rounded-3xl border border-white/[0.10] bg-site-bg/96 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:inset-x-8 md:hidden"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.16),transparent_42%)]" />
-
-            <div className="relative flex flex-col gap-1">
-              {navItems.map((item) => {
-                const active = isActiveLink(item.href);
-
-                return (
-                  <TransitionAnchor
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMenu}
-                    className={[
-                      "flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition duration-300",
-                      active
-                        ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
-                        : "text-white/65 hover:bg-white/[0.06] hover:text-white",
-                    ].join(" ")}
-                  >
-                    <span>{item.label}</span>
-                    <span className="text-white/25">↗</span>
-                  </TransitionAnchor>
-                );
-              })}
-
-              <Button
-                href="/contact"
-                variant="primary"
-                className="mt-3 w-full justify-center"
-                onClick={closeMenu}
-              >
-                Book a Call
-              </Button>
-            </div>
-          </nav>
-        ) : null}
-      </div>
+      ) : null}
     </header>
   );
 }

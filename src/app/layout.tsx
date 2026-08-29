@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
-const headingFont = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const bodyFont = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -25,20 +19,18 @@ export const metadata: Metadata = {
     template: "%s | Daniel Vlcek",
   },
   description:
-    "Premium websites, automation systems, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+    "Custom software, automation and applied AI systems for companies that want cleaner operations, less manual work and better digital infrastructure.",
   keywords: [
     "Daniel Vlcek",
     "Software Developer Vienna",
     "Automation Architect",
-    "Next.js Developer Vienna",
-    "Automation Developer Austria",
+    "Custom Business Software",
     "Business Automation Austria",
-    "Business Automation Systems",
-    "Website Rebuild Austria",
-    "Internal Dashboard Developer",
-    "CRM Automation Developer",
+    "Applied AI Systems",
+    "Internal Platforms",
+    "CRM Automation",
     "Custom Business Systems",
-    "Premium Website Developer Austria",
+    "Next.js Developer Vienna",
   ],
   authors: [{ name: "Daniel Vlcek" }],
   creator: "Daniel Vlcek",
@@ -48,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Daniel Vlcek | Software Developer & Automation Architect",
     description:
-      "Premium websites, platform rebuilds, automation systems, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+      "Custom software, automation and applied AI systems built around how your business actually works.",
     url: "https://danielvlcek.com",
     siteName: "Daniel Vlcek",
     type: "website",
@@ -66,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Daniel Vlcek | Software Developer & Automation Architect",
     description:
-      "Premium websites, business automation, internal dashboards, CRM workflows, and custom business systems for companies in Austria and Europe.",
+      "Custom software, automation and applied AI systems built around how your business actually works.",
     images: ["/images/daniel-vlcek.jpg"],
   },
   robots: {
@@ -88,12 +80,12 @@ const personJsonLd = {
     addressCountry: "AT",
   },
   knowsAbout: [
-    "Next.js development",
+    "custom software development",
     "business automation",
+    "applied AI",
     "CRM workflows",
-    "internal dashboards",
-    "website rebuilds",
-    "custom business systems",
+    "internal platforms",
+    "business systems architecture",
   ],
 };
 
@@ -109,12 +101,12 @@ const serviceJsonLd = {
     addressCountry: "AT",
   },
   serviceType: [
-    "Premium website development",
-    "Platform rebuilds",
+    "Custom business software",
     "Business automation",
-    "Internal dashboard development",
+    "Applied AI systems",
+    "Internal platform development",
     "CRM automation",
-    "Custom business systems",
+    "Web and client platforms",
   ],
 };
 
@@ -124,7 +116,7 @@ const websiteJsonLd = {
   name: "Daniel Vlcek",
   url: "https://danielvlcek.com",
   description:
-    "Software Developer & Automation Architect building premium websites, automation systems, internal dashboards, CRM workflows, and custom business systems.",
+    "Software Developer & Automation Architect building custom software, automation and applied AI systems for companies.",
 };
 
 export default function RootLayout({
@@ -134,9 +126,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${headingFont.variable} ${bodyFont.variable} tech-bg min-h-screen overflow-x-hidden bg-site-bg text-white antialiased`}
-      >
+      <body className={`${inter.variable} min-h-screen overflow-x-hidden bg-[#06101b] text-white antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -150,13 +140,10 @@ export default function RootLayout({
 
         <TransitionProvider>
           <PageTransition />
-
           <SiteHeader />
-
           <main id="main-content" tabIndex={-1}>
             {children}
           </main>
-
           <SiteFooter />
         </TransitionProvider>
       </body>

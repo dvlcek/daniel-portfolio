@@ -3,108 +3,102 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-function createEarthTexture() {
+function drawPolygon(
+  ctx: CanvasRenderingContext2D,
+  points: Array<[number, number]>,
+  fill: string,
+) {
+  ctx.beginPath();
+  points.forEach(([x, y], index) => {
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+}
+
+function createSurfaceTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = 2048;
   canvas.height = 1024;
   const ctx = canvas.getContext("2d");
-
   if (!ctx) return null;
 
-  const ocean = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  ocean.addColorStop(0, "#0b1b2d");
-  ocean.addColorStop(0.55, "#06121f");
-  ocean.addColorStop(1, "#020813");
+  const ocean = ctx.createLinearGradient(0, 0, 0, 1024);
+  ocean.addColorStop(0, "#0c2034");
+  ocean.addColorStop(0.52, "#071523");
+  ocean.addColorStop(1, "#020914");
   ctx.fillStyle = ocean;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, 2048, 1024);
 
-  const drawLand = (points: Array<[number, number]>, fill: string) => {
-    ctx.beginPath();
-    points.forEach(([x, y], index) => {
-      if (index === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    });
-    ctx.closePath();
-    ctx.fillStyle = fill;
-    ctx.fill();
-  };
+  const land = "#17354b";
+  const landDark = "#112b3f";
 
-  const land = "rgba(29, 56, 75, 0.92)";
-  const landSoft = "rgba(20, 45, 65, 0.78)";
+  drawPolygon(ctx, [[85,265],[150,220],[245,195],[340,225],[420,278],[448,340],[405,408],[350,450],[300,505],[236,492],[195,425],[132,392],[100,325]], land);
+  drawPolygon(ctx, [[385,490],[452,520],[500,595],[510,680],[474,758],[420,842],[382,802],[360,720],[350,635]], landDark);
+  drawPolygon(ctx, [[890,225],[980,178],[1080,185],[1178,225],[1260,215],[1345,242],[1430,232],[1538,272],[1635,302],[1668,355],[1592,395],[1502,388],[1432,430],[1358,425],[1290,468],[1208,454],[1140,408],[1065,392],[1008,338],[948,326]], land);
+  drawPolygon(ctx, [[1005,392],[1080,410],[1155,472],[1192,555],[1170,655],[1115,762],[1060,742],[1018,658],[985,572],[950,500]], landDark);
+  drawPolygon(ctx, [[1532,586],[1602,564],[1688,580],[1755,630],[1715,682],[1632,704],[1564,672]], land);
 
-  drawLand(
-    [
-      [100, 265], [180, 210], [275, 208], [345, 250], [410, 265], [450, 325],
-      [432, 395], [375, 418], [350, 485], [290, 540], [245, 510], [190, 430],
-      [145, 390], [120, 328],
-    ],
-    land,
-  );
-
-  drawLand(
-    [
-      [405, 520], [475, 540], [520, 610], [535, 690], [490, 765], [445, 845],
-      [405, 810], [385, 735], [365, 650],
-    ],
-    landSoft,
-  );
-
-  drawLand(
-    [
-      [920, 205], [1010, 175], [1110, 188], [1170, 230], [1260, 215], [1340, 245],
-      [1425, 225], [1510, 270], [1600, 295], [1640, 350], [1580, 390], [1490, 385],
-      [1430, 430], [1355, 428], [1300, 465], [1220, 455], [1150, 405], [1085, 390],
-      [1020, 338], [960, 330], [905, 285],
-    ],
-    land,
-  );
-
-  drawLand(
-    [
-      [1015, 390], [1090, 410], [1160, 470], [1195, 555], [1175, 660], [1115, 770],
-      [1060, 755], [1020, 670], [985, 590], [955, 500],
-    ],
-    landSoft,
-  );
-
-  drawLand(
-    [
-      [1540, 590], [1615, 565], [1705, 585], [1760, 635], [1710, 690], [1625, 705],
-      [1560, 670],
-    ],
-    land,
-  );
-
-  const glow = ctx.createRadialGradient(1050, 420, 10, 1050, 420, 700);
-  glow.addColorStop(0, "rgba(63, 115, 161, .10)");
-  glow.addColorStop(1, "rgba(0, 0, 0, 0)");
-  ctx.fillStyle = glow;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const lightClusters: Array<[number, number, number]> = [
-    [1090, 310, 140], [1200, 330, 110], [1320, 330, 130], [1450, 350, 115],
-    [330, 330, 110], [240, 300, 95], [420, 580, 70], [1050, 485, 80],
-    [1590, 625, 90], [1515, 330, 70],
-  ];
-
-  ctx.globalCompositeOperation = "screen";
-  for (const [cx, cy, radius] of lightClusters) {
-    for (let i = 0; i < 95; i += 1) {
-      const angle = Math.random() * Math.PI * 2;
-      const distance = Math.pow(Math.random(), 1.7) * radius;
-      const x = cx + Math.cos(angle) * distance;
-      const y = cy + Math.sin(angle) * distance * 0.55;
-      const size = Math.random() * 2.4 + 0.5;
-      ctx.fillStyle = Math.random() > 0.28 ? "rgba(255, 184, 98, .78)" : "rgba(142, 197, 255, .55)";
-      ctx.fillRect(x, y, size, size);
-    }
-  }
-  ctx.globalCompositeOperation = "source-over";
+  const haze = ctx.createRadialGradient(1050, 360, 40, 1050, 360, 820);
+  haze.addColorStop(0, "rgba(63, 118, 162, 0.15)");
+  haze.addColorStop(0.55, "rgba(25, 66, 101, 0.045)");
+  haze.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = haze;
+  ctx.fillRect(0, 0, 2048, 1024);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 4;
   texture.wrapS = THREE.RepeatWrapping;
+  texture.anisotropy = 4;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function createLightsTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 2048;
+  canvas.height = 1024;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, 2048, 1024);
+  ctx.globalCompositeOperation = "screen";
+
+  const clusters: Array<[number, number, number, number]> = [
+    [1060, 320, 170, 160],
+    [1210, 332, 150, 125],
+    [1380, 330, 175, 145],
+    [1515, 350, 115, 105],
+    [310, 315, 150, 130],
+    [220, 295, 105, 95],
+    [430, 585, 85, 70],
+    [1030, 500, 85, 78],
+    [1600, 625, 105, 95],
+  ];
+
+  clusters.forEach(([cx, cy, rx, ry]) => {
+    for (let i = 0; i < 165; i += 1) {
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.pow(Math.random(), 1.8);
+      const x = cx + Math.cos(angle) * rx * distance;
+      const y = cy + Math.sin(angle) * ry * distance;
+      const radius = Math.random() * 1.7 + 0.45;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = Math.random() > 0.22
+        ? `rgba(255, ${Math.floor(165 + Math.random() * 55)}, ${Math.floor(92 + Math.random() * 52)}, ${0.32 + Math.random() * 0.58})`
+        : `rgba(120, 190, 255, ${0.22 + Math.random() * 0.42})`;
+      ctx.fill();
+    }
+  });
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.anisotropy = 4;
   texture.needsUpdate = true;
   return texture;
 }
@@ -112,7 +106,6 @@ function createEarthTexture() {
 function pointOnSphere(radius: number, lat: number, lon: number) {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lon + 180) * (Math.PI / 180);
-
   return new THREE.Vector3(
     -radius * Math.sin(phi) * Math.cos(theta),
     radius * Math.cos(phi),
@@ -128,114 +121,162 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     if (!mount) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(0, 0.25, 7.3);
+    const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+    camera.position.set(0, 0.35, 8.2);
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
-    const group = new THREE.Group();
-    group.position.set(0, -2.65, 0);
-    group.rotation.set(0.02, -0.32, 0);
-    scene.add(group);
+    const earthGroup = new THREE.Group();
+    earthGroup.position.set(0, -4.62, 0);
+    earthGroup.rotation.set(0.015, -0.31, 0);
+    scene.add(earthGroup);
 
-    const texture = createEarthTexture();
-    const globe = new THREE.Mesh(
-      new THREE.SphereGeometry(3.75, 128, 96),
-      new THREE.MeshPhysicalMaterial({
-        map: texture ?? undefined,
-        color: 0x8fb7d4,
-        roughness: 0.86,
-        metalness: 0.02,
-        clearcoat: 0.08,
-        clearcoatRoughness: 0.8,
-      }),
-    );
-    group.add(globe);
+    const surfaceTexture = createSurfaceTexture();
+    const lightsTexture = createLightsTexture();
+    const radius = 4.45;
 
-    const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(3.82, 96, 72),
-      new THREE.MeshBasicMaterial({
-        color: 0x78b8ff,
-        transparent: true,
-        opacity: 0.065,
-        side: THREE.BackSide,
-        blending: THREE.AdditiveBlending,
-      }),
-    );
-    group.add(atmosphere);
-
-    const edgeGlow = new THREE.Mesh(
-      new THREE.SphereGeometry(3.795, 96, 72),
-      new THREE.MeshBasicMaterial({
-        color: 0xa7d4ff,
-        transparent: true,
-        opacity: 0.035,
-        side: THREE.FrontSide,
-        blending: THREE.AdditiveBlending,
-      }),
-    );
-    group.add(edgeGlow);
-
-    scene.add(new THREE.HemisphereLight(0x9dcfff, 0x01040a, 1.7));
-    const key = new THREE.DirectionalLight(0xcbe7ff, 3.4);
-    key.position.set(-1.8, 4.5, 4.8);
-    scene.add(key);
-    const rim = new THREE.PointLight(0x4d8cff, 10, 20);
-    rim.position.set(2.8, 1.8, 4.5);
-    scene.add(rim);
-
-    const arcMaterial = new THREE.LineBasicMaterial({
-      color: 0x8eb8e8,
-      transparent: true,
-      opacity: 0.18,
-      blending: THREE.AdditiveBlending,
+    const globeMaterial = new THREE.MeshPhysicalMaterial({
+      map: surfaceTexture ?? undefined,
+      color: 0x8eb5d2,
+      roughness: 0.94,
+      metalness: 0.01,
+      clearcoat: 0.025,
+      clearcoatRoughness: 0.95,
     });
+    const globe = new THREE.Mesh(
+      new THREE.SphereGeometry(radius, 144, 96),
+      globeMaterial,
+    );
+    earthGroup.add(globe);
+
+    if (lightsTexture) {
+      const lights = new THREE.Mesh(
+        new THREE.SphereGeometry(radius + 0.012, 144, 96),
+        new THREE.MeshBasicMaterial({
+          map: lightsTexture,
+          transparent: true,
+          opacity: 0.72,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+        }),
+      );
+      earthGroup.add(lights);
+    }
+
+    const atmosphereMaterial = new THREE.ShaderMaterial({
+      vertexShader: `
+        varying vec3 vNormalWorld;
+        varying vec3 vWorldPosition;
+        void main() {
+          vNormalWorld = normalize(mat3(modelMatrix) * normal);
+          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+          vWorldPosition = worldPosition.xyz;
+          gl_Position = projectionMatrix * viewMatrix * worldPosition;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormalWorld;
+        varying vec3 vWorldPosition;
+        void main() {
+          vec3 viewDir = normalize(cameraPosition - vWorldPosition);
+          float rim = pow(1.0 - max(dot(normalize(vNormalWorld), viewDir), 0.0), 4.0);
+          float alpha = rim * 0.72;
+          vec3 color = mix(vec3(0.22, 0.52, 0.86), vec3(0.72, 0.90, 1.0), rim);
+          gl_FragColor = vec4(color, alpha);
+        }
+      `,
+      transparent: true,
+      side: THREE.FrontSide,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const atmosphere = new THREE.Mesh(
+      new THREE.SphereGeometry(radius + 0.065, 112, 80),
+      atmosphereMaterial,
+    );
+    earthGroup.add(atmosphere);
+
+    scene.add(new THREE.HemisphereLight(0x7eaad0, 0x01050b, 0.8));
+    const keyLight = new THREE.DirectionalLight(0xc7e5ff, 2.1);
+    keyLight.position.set(-1.6, 5.8, 5.5);
+    scene.add(keyLight);
+    const rimLight = new THREE.PointLight(0x68adff, 6.2, 25);
+    rimLight.position.set(3.8, 2.4, 5.4);
+    scene.add(rimLight);
 
     const routes = [
-      [48, 16, 40, -74], [51, 14, 35, 139], [40, -74, 34, -118],
-      [52, 13, 25, 55], [35, 139, -33, 151], [25, 55, 1, 104],
-      [48, 16, 19, -99], [40, -74, -23, -46], [35, 139, 22, 114],
+      [48, 16, 40, -74],
+      [51, 14, 35, 139],
+      [40, -74, 34, -118],
+      [52, 13, 25, 55],
+      [35, 139, -33, 151],
+      [25, 55, 1, 104],
+      [48, 16, 19, -99],
+      [40, -74, -23, -46],
+      [35, 139, 22, 114],
+      [48, 16, 1, 104],
     ];
 
-    routes.forEach(([latA, lonA, latB, lonB]) => {
-      const a = pointOnSphere(3.79, latA, lonA);
-      const b = pointOnSphere(3.79, latB, lonB);
-      const mid = a.clone().add(b).multiplyScalar(0.5).normalize().multiplyScalar(4.12);
-      const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
-      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(42));
-      group.add(new THREE.Line(geometry, arcMaterial));
+    const routeMaterial = new THREE.LineBasicMaterial({
+      color: 0x8fc7ff,
+      transparent: true,
+      opacity: 0.23,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
 
-    const nodeGeometry = new THREE.SphereGeometry(0.026, 10, 10);
-    const blueNode = new THREE.MeshBasicMaterial({ color: 0x8ec8ff });
-    const amberNode = new THREE.MeshBasicMaterial({ color: 0xffad63 });
+    routes.forEach(([latA, lonA, latB, lonB]) => {
+      const a = pointOnSphere(radius + 0.055, latA, lonA);
+      const b = pointOnSphere(radius + 0.055, latB, lonB);
+      const mid = a
+        .clone()
+        .add(b)
+        .multiplyScalar(0.5)
+        .normalize()
+        .multiplyScalar(radius + 0.34);
+      const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(52));
+      earthGroup.add(new THREE.Line(geometry, routeMaterial));
+    });
+
+    const nodeGeometry = new THREE.SphereGeometry(0.022, 8, 8);
+    const blueNode = new THREE.MeshBasicMaterial({ color: 0xa7d7ff });
+    const amberNode = new THREE.MeshBasicMaterial({ color: 0xffb367 });
     [
       [48, 16], [51, 14], [40, -74], [35, 139], [34, -118], [25, 55],
       [1, 104], [-33, 151], [19, -99], [-23, -46], [22, 114],
     ].forEach(([lat, lon], index) => {
       const node = new THREE.Mesh(nodeGeometry, index % 4 === 0 ? amberNode : blueNode);
-      node.position.copy(pointOnSphere(3.82, lat, lon));
-      group.add(node);
+      node.position.copy(pointOnSphere(radius + 0.09, lat, lon));
+      earthGroup.add(node);
     });
 
     const starPositions: number[] = [];
-    for (let i = 0; i < 170; i += 1) {
+    for (let i = 0; i < 155; i += 1) {
       starPositions.push(
-        (Math.random() - 0.5) * 14,
-        Math.random() * 6 - 0.3,
-        -Math.random() * 4 - 1,
+        (Math.random() - 0.5) * 15,
+        Math.random() * 6.4 - 0.15,
+        -Math.random() * 4.4 - 1.4,
       );
     }
     const starGeometry = new THREE.BufferGeometry();
     starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starPositions, 3));
-    const stars = new THREE.Points(
-      starGeometry,
-      new THREE.PointsMaterial({ color: 0xa8cfff, size: 0.018, transparent: true, opacity: 0.42 }),
-    );
+    const starMaterial = new THREE.PointsMaterial({
+      color: 0xb6d7fb,
+      size: 0.017,
+      transparent: true,
+      opacity: 0.33,
+      depthWrite: false,
+    });
+    const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
 
     const resize = () => {
@@ -250,16 +291,15 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     const observer = new ResizeObserver(resize);
     observer.observe(mount);
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
     let raf = 0;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const render = () => {
       if (!reduceMotion) {
         frame += 1;
-        group.rotation.y = -0.32 + Math.sin(frame * 0.0025) * 0.018;
-        group.rotation.z = Math.sin(frame * 0.0016) * 0.003;
-        stars.rotation.z += 0.000035;
+        earthGroup.rotation.y = -0.31 + Math.sin(frame * 0.0024) * 0.012;
+        stars.rotation.z += 0.000025;
       }
       renderer.render(scene, camera);
       raf = window.requestAnimationFrame(render);
@@ -269,19 +309,18 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     return () => {
       window.cancelAnimationFrame(raf);
       observer.disconnect();
-      texture?.dispose();
+      surfaceTexture?.dispose();
+      lightsTexture?.dispose();
       globe.geometry.dispose();
-      (globe.material as THREE.Material).dispose();
+      globeMaterial.dispose();
       atmosphere.geometry.dispose();
-      (atmosphere.material as THREE.Material).dispose();
-      edgeGlow.geometry.dispose();
-      (edgeGlow.material as THREE.Material).dispose();
-      arcMaterial.dispose();
+      atmosphereMaterial.dispose();
+      routeMaterial.dispose();
       nodeGeometry.dispose();
       blueNode.dispose();
       amberNode.dispose();
       starGeometry.dispose();
-      (stars.material as THREE.Material).dispose();
+      starMaterial.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };

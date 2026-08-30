@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { InnerPageExperience } from "@/components/site/InnerPageExperience";
 import { PageTransition } from "@/components/transition/PageTransitionFour";
 import { TransitionProvider } from "@/components/transition/TransitionProvider";
 
@@ -140,6 +141,7 @@ export default function RootLayout({
 
         <TransitionProvider>
           <PageTransition />
+          <InnerPageExperience />
           <SiteHeader />
           <main id="main-content" tabIndex={-1}>
             {children}

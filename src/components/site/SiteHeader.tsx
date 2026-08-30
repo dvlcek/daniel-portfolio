@@ -21,10 +21,7 @@ export function SiteHeader() {
   const lightHome = isHome && isHomeSurface;
 
   useEffect(() => {
-    if (!isHome) {
-      setIsHomeSurface(false);
-      return;
-    }
+    if (!isHome) return;
 
     let frame = 0;
 

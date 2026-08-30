@@ -2,17 +2,17 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Boxes, Clock3, FileText, Gauge, Users } from "lucide-react";
+import { ArrowRight, Boxes, CreditCard, FileText, Gauge, Users } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SystemEarth } from "@/components/visuals/SystemEarth";
 
 const signals = [
-  { label: "Leads Captured", value: "Automated", icon: Users },
-  { label: "Systems", value: "Connected", icon: Boxes },
-  { label: "Time Saved", value: "Tracked", icon: Clock3 },
-  { label: "Revenue Impact", value: "Measured", icon: Gauge },
-  { label: "Invoices", value: "Generated", icon: FileText },
+  { label: "Bookings", value: "Self-service", icon: Users },
+  { label: "Payments", value: "Connected", icon: CreditCard },
+  { label: "Invoices", value: "Automated", icon: FileText },
+  { label: "Customer Flow", value: "Orchestrated", icon: Boxes },
+  { label: "Operations", value: "Visible", icon: Gauge },
 ] as const;
 
 function NetworkOverlay() {
@@ -152,28 +152,27 @@ export function HeroScrollScene() {
       <div className="hero-light-wash pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[42%] bg-[linear-gradient(180deg,rgba(248,248,246,0)_0%,rgba(248,248,246,0.72)_68%,#f8f8f6_100%)] opacity-0" />
 
       <div className="hero-copy relative z-20 mx-auto flex max-w-[1440px] items-start justify-center px-5 pt-[128px] text-center text-white sm:px-8 md:pt-[112px] lg:px-14">
-        <div className="max-w-[880px]">
+        <div className="max-w-[920px]">
           <h1 className="text-balance text-[clamp(2.55rem,5vw,4.7rem)] font-semibold leading-[0.98] tracking-[-0.052em]">
             I turn operational chaos
             <br className="hidden sm:block" /> into systems that scale.
           </h1>
-          <p className="mx-auto mt-6 max-w-[650px] text-balance text-[14px] leading-6 text-white/63 sm:text-[15px] md:text-[16px] md:leading-7">
-            Custom software, automation and applied AI that remove manual work,
-            connect operations and make your business easier to run.
+          <p className="mx-auto mt-6 max-w-[720px] text-balance text-[14px] leading-6 text-white/63 sm:text-[15px] md:text-[16px] md:leading-7">
+            I work with companies to understand how work actually moves — then design and build the software, automation and applied AI that remove friction and make the business easier to run.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
             <Link
               href="/work"
               className="group inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-5 text-[12px] font-semibold text-[#07111d] shadow-[0_12px_34px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/94"
             >
-              View My Work
+              See Real Systems
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               href="/contact"
               className="group inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/18 bg-white/[0.035] px-5 text-[12px] font-semibold text-white/84 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/28 hover:bg-white/[0.07]"
             >
-              Let&apos;s Talk
+              Discuss Your System
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>

@@ -25,10 +25,10 @@ function createSunGlowTexture() {
 
   const gradient = ctx.createRadialGradient(128, 128, 2, 128, 128, 128);
   gradient.addColorStop(0, "rgba(255,255,255,1)");
-  gradient.addColorStop(0.08, "rgba(222,239,255,0.95)");
-  gradient.addColorStop(0.24, "rgba(145,199,255,0.42)");
-  gradient.addColorStop(0.55, "rgba(91,157,231,0.12)");
-  gradient.addColorStop(1, "rgba(30,91,160,0)");
+  gradient.addColorStop(0.07, "rgba(226,243,255,0.98)");
+  gradient.addColorStop(0.2, "rgba(151,207,255,0.5)");
+  gradient.addColorStop(0.5, "rgba(87,154,226,0.14)");
+  gradient.addColorStop(1, "rgba(32,90,154,0)");
 
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 256, 256);
@@ -60,7 +60,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(compact ? 39 : 35, 1, 0.1, 100);
-    const cameraState = { z: compact ? 8.55 : 8.15 };
+    const cameraState = { z: compact ? 8.55 : 8.2 };
     camera.position.set(0, compact ? 0.42 : 0.3, cameraState.z);
 
     const renderer = new THREE.WebGLRenderer({
@@ -72,7 +72,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.96;
+    renderer.toneMappingExposure = 0.92;
     mount.appendChild(renderer.domElement);
 
     const loader = new THREE.TextureLoader();
@@ -85,8 +85,8 @@ export function SystemEarth({ className = "" }: { className?: string }) {
 
     const radius = compact ? 4.28 : 4.62;
     const earthState = {
-      y: compact ? -4.7 : -5.12,
-      rotationY: compact ? -0.78 : -0.67,
+      y: compact ? -4.74 : -5.18,
+      rotationY: compact ? 0.34 : 0.38,
       rotationX: compact ? 0.035 : 0.045,
     };
 
@@ -95,17 +95,19 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     earthGroup.rotation.set(earthState.rotationX, earthState.rotationY, -0.035);
     scene.add(earthGroup);
 
-    const sunDirection = new THREE.Vector3(-0.62, 0.72, 0.54).normalize();
+    // Light comes from behind/above the planet: the visible face remains mostly night,
+    // while the upper horizon gets a sunrise-style illuminated rim.
+    const sunDirection = new THREE.Vector3(-0.32, 0.9, -0.3).normalize();
 
     const earthMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uDayMap: { value: dayTexture },
         uNightMap: { value: nightTexture },
         uSunDirection: { value: sunDirection },
-        uAmbient: { value: 0.08 },
-        uNightStrength: { value: 1.12 },
+        uAmbient: { value: 0.035 },
+        uNightStrength: { value: 1.58 },
         uSweep: { value: 0 },
-        uSweepStrength: { value: 0.0 },
+        uSweepStrength: { value: 0 },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -142,33 +144,33 @@ export function SystemEarth({ className = "" }: { className?: string }) {
           vec3 nightColor = texture2D(uNightMap, vUv).rgb;
 
           float sunAmount = dot(normalWorld, sunDirection);
-          float dayFactor = smoothstep(-0.16, 0.30, sunAmount);
-          float nightFactor = 1.0 - smoothstep(-0.32, 0.08, sunAmount);
-          float twilight = 1.0 - abs(smoothstep(-0.22, 0.22, sunAmount) * 2.0 - 1.0);
+          float dayFactor = smoothstep(-0.08, 0.34, sunAmount);
+          float nightFactor = 1.0 - smoothstep(-0.26, 0.10, sunAmount);
+          float twilight = 1.0 - abs(smoothstep(-0.18, 0.22, sunAmount) * 2.0 - 1.0);
 
-          vec3 daylight = dayColor * (uAmbient + dayFactor * 0.92);
-          daylight *= mix(vec3(0.72, 0.81, 0.93), vec3(1.02, 1.0, 0.97), dayFactor);
+          vec3 daylight = dayColor * (uAmbient + dayFactor * 0.9);
+          daylight *= mix(vec3(0.68, 0.79, 0.92), vec3(1.02, 1.0, 0.97), dayFactor);
 
           float nightLuminance = max(max(nightColor.r, nightColor.g), nightColor.b);
-          float lightBoost = 0.62 + pow(nightLuminance, 0.72) * 1.85;
+          float lightBoost = 0.72 + pow(nightLuminance, 0.66) * 2.0;
           vec3 cityLights = nightColor * nightFactor * lightBoost * uNightStrength;
 
           float blueDominance = dayColor.b - max(dayColor.r, dayColor.g) * 0.82;
           float oceanMask = smoothstep(0.015, 0.16, blueDominance);
           vec3 halfVector = normalize(sunDirection + viewDirection);
-          float specular = pow(max(dot(normalWorld, halfVector), 0.0), 62.0);
-          specular *= oceanMask * dayFactor * 0.24;
+          float specular = pow(max(dot(normalWorld, halfVector), 0.0), 64.0);
+          specular *= oceanMask * dayFactor * 0.2;
 
-          float fresnel = pow(1.0 - max(dot(normalWorld, viewDirection), 0.0), 3.4);
-          vec3 atmosphereTint = vec3(0.07, 0.20, 0.36) * fresnel * (0.12 + dayFactor * 0.14);
+          float fresnel = pow(1.0 - max(dot(normalWorld, viewDirection), 0.0), 3.5);
+          vec3 atmosphereTint = vec3(0.055, 0.16, 0.30) * fresnel * (0.08 + dayFactor * 0.13);
 
           float sweepPosition = mix(-1.08, 1.08, uSweep);
           float sweepBand = exp(-pow((normalWorld.x - sweepPosition) * 8.0, 2.0));
           float sweep = sweepBand * fresnel * uSweepStrength;
 
           vec3 color = daylight + cityLights + vec3(specular) + atmosphereTint;
-          color += vec3(0.38, 0.68, 1.0) * sweep * 0.58;
-          color += vec3(0.12, 0.18, 0.28) * twilight * 0.055;
+          color += vec3(0.38, 0.68, 1.0) * sweep * 0.56;
+          color += vec3(0.1, 0.16, 0.26) * twilight * 0.04;
 
           gl_FragColor = vec4(color, 1.0);
           #include <tonemapping_fragment>
@@ -195,7 +197,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
       color: 0xdcecff,
       alphaMap: cloudTexture,
       transparent: true,
-      opacity: compact ? 0.14 : 0.18,
+      opacity: compact ? 0.085 : 0.11,
       depthWrite: false,
       shininess: 2,
       blending: THREE.NormalBlending,
@@ -207,7 +209,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     const atmosphereMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uSunDirection: { value: sunDirection },
-        uIntensity: { value: compact ? 0.88 : 1.0 },
+        uIntensity: { value: compact ? 0.78 : 0.88 },
         uSweep: { value: 0 },
         uSweepStrength: { value: 0 },
       },
@@ -237,19 +239,19 @@ export function SystemEarth({ className = "" }: { className?: string }) {
           vec3 sunDirection = normalize(uSunDirection);
 
           float viewAmount = max(dot(normalWorld, viewDirection), 0.0);
-          float rim = pow(1.0 - viewAmount, 4.1);
-          float sunAmount = smoothstep(-0.32, 0.56, dot(normalWorld, sunDirection));
+          float rim = pow(1.0 - viewAmount, 4.15);
+          float sunAmount = smoothstep(-0.28, 0.58, dot(normalWorld, sunDirection));
 
           float sweepPosition = mix(-1.08, 1.08, uSweep);
           float sweepBand = exp(-pow((normalWorld.x - sweepPosition) * 7.2, 2.0));
           float sweep = sweepBand * rim * uSweepStrength;
 
-          vec3 deepBlue = vec3(0.16, 0.40, 0.70);
-          vec3 paleBlue = vec3(0.70, 0.88, 1.0);
-          vec3 color = mix(deepBlue, paleBlue, clamp(sunAmount * 0.72 + rim * 0.35, 0.0, 1.0));
+          vec3 deepBlue = vec3(0.12, 0.33, 0.6);
+          vec3 paleBlue = vec3(0.66, 0.86, 1.0);
+          vec3 color = mix(deepBlue, paleBlue, clamp(sunAmount * 0.78 + rim * 0.28, 0.0, 1.0));
 
-          float alpha = rim * (0.12 + sunAmount * 0.48) * uIntensity;
-          alpha += sweep * 0.48;
+          float alpha = rim * (0.08 + sunAmount * 0.45) * uIntensity;
+          alpha += sweep * 0.46;
 
           gl_FragColor = vec4(color, alpha);
           #include <tonemapping_fragment>
@@ -264,7 +266,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     atmosphereMaterial.toneMapped = true;
 
     const atmosphereGeometry = new THREE.SphereGeometry(
-      radius + 0.075,
+      radius + 0.07,
       compact ? 80 : 128,
       compact ? 52 : 84,
     );
@@ -272,8 +274,8 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     atmosphere.renderOrder = 4;
     earthGroup.add(atmosphere);
 
-    scene.add(new THREE.HemisphereLight(0x8eb9dd, 0x02060b, 0.34));
-    const cloudLight = new THREE.DirectionalLight(0xd8ecff, 1.15);
+    scene.add(new THREE.HemisphereLight(0x8eb9dd, 0x02060b, 0.24));
+    const cloudLight = new THREE.DirectionalLight(0xd8ecff, 0.95);
     cloudLight.position.copy(sunDirection.clone().multiplyScalar(8));
     scene.add(cloudLight);
 
@@ -291,7 +293,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     const routeMaterial = new THREE.LineBasicMaterial({
       color: 0x9dccff,
       transparent: true,
-      opacity: compact ? 0.06 : 0.11,
+      opacity: compact ? 0.05 : 0.085,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -348,7 +350,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
       color: 0xc3def9,
       size: compact ? 0.014 : 0.016,
       transparent: true,
-      opacity: 0.24,
+      opacity: 0.22,
       depthWrite: false,
     });
     const stars = new THREE.Points(starGeometry, starMaterial);
@@ -361,15 +363,17 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     if (sunGlowTexture) {
       sunGlowMaterial = new THREE.SpriteMaterial({
         map: sunGlowTexture,
+        color: 0xe2f2ff,
         transparent: true,
-        opacity: compact ? 0.34 : 0.48,
+        opacity: compact ? 0.42 : 0.62,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         depthTest: false,
       });
+      sunGlowMaterial.toneMapped = false;
       sunGlow = new THREE.Sprite(sunGlowMaterial);
-      sunGlow.scale.set(compact ? 1.5 : 1.9, compact ? 1.5 : 1.9, 1);
-      sunGlow.position.set(-0.5, compact ? -0.42 : -0.36, 0.4);
+      sunGlow.scale.set(compact ? 1.15 : 1.35, compact ? 1.15 : 1.35, 1);
+      sunGlow.position.set(-0.2, compact ? -0.42 : -0.46, 0.55);
       scene.add(sunGlow);
     }
 
@@ -402,20 +406,20 @@ export function SystemEarth({ className = "" }: { className?: string }) {
         });
 
         scrollTimeline
-          .to(earthState, { rotationY: earthState.rotationY + 0.18, y: earthState.y + 0.2, ease: "none", duration: 0.54 }, 0)
-          .to(cameraState, { z: cameraState.z - 0.42, ease: "none", duration: 0.54 }, 0)
-          .to(routeMaterial, { opacity: compact ? 0.1 : 0.23, ease: "none", duration: 0.32 }, 0.07)
+          .to(earthState, { rotationY: earthState.rotationY + 0.16, y: earthState.y + 0.18, ease: "none", duration: 0.54 }, 0)
+          .to(cameraState, { z: cameraState.z - 0.38, ease: "none", duration: 0.54 }, 0)
+          .to(routeMaterial, { opacity: compact ? 0.09 : 0.2, ease: "none", duration: 0.32 }, 0.07)
           .to(earthMaterial.uniforms.uSweepStrength, { value: 1, ease: "none", duration: 0.12 }, 0.18)
-          .to(atmosphereMaterial.uniforms.uSweepStrength, { value: 1.25, ease: "none", duration: 0.12 }, 0.18)
+          .to(atmosphereMaterial.uniforms.uSweepStrength, { value: 1.2, ease: "none", duration: 0.12 }, 0.18)
           .to(earthMaterial.uniforms.uSweep, { value: 1, ease: "none", duration: 0.42 }, 0.22)
           .to(atmosphereMaterial.uniforms.uSweep, { value: 1, ease: "none", duration: 0.42 }, 0.22)
-          .to(atmosphereMaterial.uniforms.uIntensity, { value: compact ? 1.15 : 1.42, ease: "none", duration: 0.34 }, 0.32)
-          .to(earthMaterial.uniforms.uNightStrength, { value: 1.34, ease: "none", duration: 0.3 }, 0.42)
-          .to(sunGlowMaterial ?? {}, { opacity: compact ? 0.48 : 0.7, ease: "none", duration: 0.28 }, 0.42)
-          .to(earthState, { rotationY: earthState.rotationY + 0.31, y: earthState.y + 0.32, ease: "none", duration: 0.32 }, 0.66)
-          .to(cameraState, { z: cameraState.z - 0.7, ease: "none", duration: 0.32 }, 0.66)
+          .to(atmosphereMaterial.uniforms.uIntensity, { value: compact ? 1.05 : 1.3, ease: "none", duration: 0.34 }, 0.32)
+          .to(earthMaterial.uniforms.uNightStrength, { value: 1.78, ease: "none", duration: 0.3 }, 0.42)
+          .to(sunGlowMaterial ?? {}, { opacity: compact ? 0.55 : 0.8, ease: "none", duration: 0.28 }, 0.42)
+          .to(earthState, { rotationY: earthState.rotationY + 0.29, y: earthState.y + 0.3, ease: "none", duration: 0.32 }, 0.66)
+          .to(cameraState, { z: cameraState.z - 0.64, ease: "none", duration: 0.32 }, 0.66)
           .to(earthMaterial.uniforms.uSweepStrength, { value: 0.12, ease: "none", duration: 0.22 }, 0.72)
-          .to(atmosphereMaterial.uniforms.uSweepStrength, { value: 0.2, ease: "none", duration: 0.22 }, 0.72);
+          .to(atmosphereMaterial.uniforms.uSweepStrength, { value: 0.18, ease: "none", duration: 0.22 }, 0.72);
       }
     }
 
@@ -427,11 +431,11 @@ export function SystemEarth({ className = "" }: { className?: string }) {
 
       earthGroup.position.y = earthState.y;
       earthGroup.rotation.x = earthState.rotationX;
-      earthGroup.rotation.y = earthState.rotationY + (reduceMotion ? 0 : Math.sin(frame * 0.0018) * 0.008);
+      earthGroup.rotation.y = earthState.rotationY + (reduceMotion ? 0 : Math.sin(frame * 0.0018) * 0.007);
       camera.position.z = cameraState.z;
 
       if (!reduceMotion) {
-        clouds.rotation.y += 0.000045;
+        clouds.rotation.y += 0.00004;
         stars.rotation.z += 0.000014;
       }
 

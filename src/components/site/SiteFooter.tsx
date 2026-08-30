@@ -11,7 +11,7 @@ export function SiteFooter() {
         <p className="text-[#8a95a4]">© {new Date().getFullYear()} Daniel Vlcek. All rights reserved.</p>
 
         <div className="flex items-center gap-5 text-[#7b8797]">
-          <Link href="/privacy" className="transition hover:text-[#101722]">Privacy Policy</Link>
+          <Link href="/work" className="transition hover:text-[#101722]">Work</Link>
           <Link href="/contact" className="transition hover:text-[#101722]">Contact</Link>
         </div>
       </div>

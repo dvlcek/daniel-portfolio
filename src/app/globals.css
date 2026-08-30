@@ -75,17 +75,58 @@ canvas {
   scroll-margin-top: var(--nav-height);
 }
 
+.home-redesign,
+.experience-page {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 .home-redesign {
   --home-paper: #f8f8f6;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .home-redesign h1,
 .home-redesign h2,
 .home-redesign h3,
-.home-redesign p {
+.home-redesign p,
+.experience-page h1,
+.experience-page h2,
+.experience-page h3,
+.experience-page p {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+.experience-page {
+  min-height: 100vh;
+  background: #f8f8f6;
+  color: #101722;
+}
+
+.experience-page-hero {
+  background-position: 50% 0%;
+}
+
+.experience-page-horizon {
+  border-top: 1px solid rgba(198, 227, 251, 0.22);
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(182, 219, 251, 0.20) 0%,
+    rgba(76, 136, 196, 0.09) 26%,
+    rgba(6, 16, 27, 0) 66%
+  );
+  box-shadow:
+    0 -1px 0 rgba(232, 245, 255, 0.11),
+    0 -28px 100px rgba(74, 143, 207, 0.08);
+}
+
+.experience-page-grid {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 78%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 78%);
 }
 
 .apple-glass {
@@ -157,15 +198,12 @@ canvas {
 
 .glass-icon {
   border: 1px solid rgba(205, 216, 229, 0.82);
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(238, 244, 250, 0.72));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(238, 244, 250, 0.72));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 1),
     0 8px 22px rgba(34, 60, 90, 0.06);
 }
 
-/* Optical glass is deliberately restrained. The pointer only moves reflected light,
-   never the card itself, so the interface feels physical without becoming gimmicky. */
 .optical-glass {
   --glass-x: 50%;
   --glass-y: 0%;
@@ -182,13 +220,12 @@ canvas {
   pointer-events: none;
   border-radius: inherit;
   opacity: calc(var(--glass-strength) * 0.72);
-  background:
-    radial-gradient(
-      460px circle at var(--glass-x) var(--glass-y),
-      rgba(255, 255, 255, 0.56),
-      rgba(180, 211, 240, 0.11) 24%,
-      transparent 48%
-    );
+  background: radial-gradient(
+    460px circle at var(--glass-x) var(--glass-y),
+    rgba(255, 255, 255, 0.56),
+    rgba(180, 211, 240, 0.11) 24%,
+    transparent 48%
+  );
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
   transition: opacity 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -253,8 +290,7 @@ canvas {
 
 .final-horizon-glow {
   border-top: 1px solid rgba(201, 229, 255, 0.25);
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(187, 222, 255, 0.24) 0%, rgba(74, 133, 194, 0.12) 24%, rgba(6, 16, 27, 0) 64%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(187, 222, 255, 0.24) 0%, rgba(74, 133, 194, 0.12) 24%, rgba(6, 16, 27, 0) 64%);
   box-shadow:
     0 -1px 0 rgba(232, 245, 255, 0.16),
     0 -24px 90px rgba(78, 147, 214, 0.10);
@@ -305,6 +341,11 @@ canvas {
 
   .optical-glass::after {
     display: none;
+  }
+
+  .experience-page-grid {
+    background-size: 44px 44px;
+    opacity: 0.14;
   }
 }
 

@@ -87,6 +87,10 @@ canvas {
   margin-block-end: 0;
 }
 
+.home-redesign img[alt="Daniel Vlcek"] {
+  object-position: 50% 68% !important;
+}
+
 .apple-glass {
   position: relative;
   isolation: isolate;

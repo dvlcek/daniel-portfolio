@@ -22,11 +22,9 @@ export function HomeExperience() {
           gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
             gsap.fromTo(
               element,
-              { y: 34, opacity: 0, filter: "blur(10px)" },
+              { y: 30 },
               {
                 y: 0,
-                opacity: 1,
-                filter: "blur(0px)",
                 duration: 1.05,
                 ease: "power3.out",
                 scrollTrigger: {
@@ -42,10 +40,9 @@ export function HomeExperience() {
           if (serviceCards.length) {
             gsap.fromTo(
               serviceCards,
-              { y: 42, opacity: 0, scale: 0.985 },
+              { y: 38, scale: 0.987 },
               {
                 y: 0,
-                opacity: 1,
                 scale: 1,
                 duration: 1,
                 stagger: 0.11,
@@ -63,7 +60,7 @@ export function HomeExperience() {
           if (workStage) {
             gsap.fromTo(
               workStage,
-              { scale: 0.965, y: 34, rotateX: 2.4, transformPerspective: 1300 },
+              { scale: 0.97, y: 28, rotateX: 2.1, transformPerspective: 1300 },
               {
                 scale: 1,
                 y: 0,
@@ -83,9 +80,9 @@ export function HomeExperience() {
           if (dashboard) {
             gsap.fromTo(
               dashboard,
-              { y: 24 },
+              { y: 20 },
               {
-                y: -14,
+                y: -12,
                 ease: "none",
                 scrollTrigger: {
                   trigger: dashboard,
@@ -116,7 +113,7 @@ export function HomeExperience() {
           gsap.utils.toArray<HTMLElement>("[data-process-step]").forEach((step, index) => {
             gsap.fromTo(
               step,
-              { opacity: 0.4, y: 18 },
+              { opacity: 0.72, y: 14 },
               {
                 opacity: 1,
                 y: 0,
@@ -135,10 +132,9 @@ export function HomeExperience() {
           gsap.utils.toArray<HTMLElement>("[data-engagement-step]").forEach((card, index) => {
             gsap.fromTo(
               card,
-              { x: 20 + index * 7, opacity: 0.3 },
+              { x: 18 + index * 6 },
               {
                 x: 0,
-                opacity: 1,
                 ease: "none",
                 scrollTrigger: {
                   trigger: card,
@@ -155,7 +151,7 @@ export function HomeExperience() {
           if (finalScene && finalGlow) {
             gsap.fromTo(
               finalGlow,
-              { yPercent: 16, scale: 0.88, opacity: 0.25 },
+              { yPercent: 16, scale: 0.9, opacity: 0.38 },
               {
                 yPercent: -8,
                 scale: 1.12,

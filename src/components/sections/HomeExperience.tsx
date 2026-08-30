@@ -13,12 +13,12 @@ export function HomeExperience() {
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const pointerCleanups: Array<() => void> = [];
+    const media = gsap.matchMedia();
 
     const context = gsap.context(() => {
       if (!reduceMotion) {
-        const mm = gsap.matchMedia();
-
-        mm.add("(min-width: 768px)", () => {
+        media.add("(min-width: 768px)", () => {
           gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
             gsap.fromTo(
               element,
@@ -170,16 +170,11 @@ export function HomeExperience() {
               },
             );
           }
-
-          return () => mm.revert();
         });
       }
 
       if (finePointer && !reduceMotion) {
-        const glassCards = gsap.utils.toArray<HTMLElement>("[data-optical-glass]");
-        const cleanups: Array<() => void> = [];
-
-        glassCards.forEach((card) => {
+        gsap.utils.toArray<HTMLElement>("[data-optical-glass]").forEach((card) => {
           const onMove = (event: PointerEvent) => {
             const rect = card.getBoundingClientRect();
             const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -195,18 +190,22 @@ export function HomeExperience() {
 
           card.addEventListener("pointermove", onMove);
           card.addEventListener("pointerleave", onLeave);
-          cleanups.push(() => {
+          pointerCleanups.push(() => {
             card.removeEventListener("pointermove", onMove);
             card.removeEventListener("pointerleave", onLeave);
           });
         });
-
-        return () => cleanups.forEach((cleanup) => cleanup());
       }
     }, root);
 
-    ScrollTrigger.refresh();
-    return () => context.revert();
+    const refresh = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+
+    return () => {
+      window.cancelAnimationFrame(refresh);
+      pointerCleanups.forEach((cleanup) => cleanup());
+      media.revert();
+      context.revert();
+    };
   }, []);
 
   return null;

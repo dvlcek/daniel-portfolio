@@ -53,12 +53,19 @@ const partnerItems = [
   { icon: Workflow, title: "Long-term partner", description: "I stay involved to optimize, improve and scale with you." },
 ] as const;
 
-const packages = [
+const packages: Array<{
+  title: string;
+  price: string;
+  description: string;
+  items: string[];
+  recommended: boolean;
+}> = [
   {
     title: "Systems Audit & Roadmap",
     price: "€2.5k",
     description: "Identify opportunities, risks and priorities with a clear action plan.",
     items: ["Process & systems audit", "Opportunity roadmap", "Recommendations report"],
+    recommended: false,
   },
   {
     title: "Automation & AI Implementation",
@@ -72,8 +79,9 @@ const packages = [
     price: "€10k",
     description: "Custom software and platforms built around your operations.",
     items: ["Custom web applications", "Client portals & dashboards", "Ongoing support"],
+    recommended: false,
   },
-] as const;
+];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#738096]">{children}</p>;

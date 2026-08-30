@@ -76,6 +76,7 @@ canvas {
 }
 
 .home-redesign {
+  --home-paper: #f8f8f6;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -85,10 +86,6 @@ canvas {
 .home-redesign p {
   margin-block-start: 0;
   margin-block-end: 0;
-}
-
-.home-redesign img[alt="Daniel Vlcek"] {
-  object-position: 50% 68% !important;
 }
 
 .apple-glass {
@@ -167,6 +164,103 @@ canvas {
     0 8px 22px rgba(34, 60, 90, 0.06);
 }
 
+/* Optical glass is deliberately restrained. The pointer only moves reflected light,
+   never the card itself, so the interface feels physical without becoming gimmicky. */
+.optical-glass {
+  --glass-x: 50%;
+  --glass-y: 0%;
+  --glass-strength: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.optical-glass::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: calc(var(--glass-strength) * 0.72);
+  background:
+    radial-gradient(
+      460px circle at var(--glass-x) var(--glass-y),
+      rgba(255, 255, 255, 0.56),
+      rgba(180, 211, 240, 0.11) 24%,
+      transparent 48%
+    );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+  transition: opacity 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.optical-glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+.light-experience::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 11rem;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(210, 229, 247, 0.18), rgba(248, 248, 246, 0));
+}
+
+.experience-ambient {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+.experience-ambient-a {
+  width: 34rem;
+  height: 34rem;
+  top: 4rem;
+  left: -17rem;
+  background: radial-gradient(circle, rgba(165, 199, 231, 0.13), rgba(248, 248, 246, 0) 68%);
+}
+
+.experience-ambient-b {
+  width: 42rem;
+  height: 42rem;
+  right: -22rem;
+  top: 12%;
+  background: radial-gradient(circle, rgba(191, 211, 231, 0.16), rgba(248, 248, 246, 0) 70%);
+}
+
+.experience-ambient-c {
+  width: 38rem;
+  height: 38rem;
+  left: 17%;
+  bottom: -16rem;
+  background: radial-gradient(circle, rgba(181, 203, 224, 0.14), rgba(248, 248, 246, 0) 68%);
+}
+
+.monogram-portrait {
+  border: 1px solid rgba(210, 219, 229, 0.9);
+  background:
+    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.98), transparent 31%),
+    radial-gradient(circle at 72% 74%, rgba(151, 189, 229, 0.22), transparent 34%),
+    linear-gradient(145deg, #f7fafc 0%, #e9f0f6 46%, #dfe8f1 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(155, 177, 201, 0.18),
+    0 18px 44px rgba(36, 58, 83, 0.10);
+}
+
+.final-horizon-glow {
+  border-top: 1px solid rgba(201, 229, 255, 0.25);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(187, 222, 255, 0.24) 0%, rgba(74, 133, 194, 0.12) 24%, rgba(6, 16, 27, 0) 64%);
+  box-shadow:
+    0 -1px 0 rgba(232, 245, 255, 0.16),
+    0 -24px 90px rgba(78, 147, 214, 0.10);
+  filter: blur(0.2px);
+}
+
 .skip-link {
   position: fixed;
   left: 1rem;
@@ -199,6 +293,18 @@ canvas {
       inset 0 -1px 0 rgba(208, 216, 226, 0.35),
       0 24px 70px rgba(25, 39, 58, 0.075),
       0 3px 12px rgba(25, 39, 58, 0.03);
+  }
+}
+
+@media (max-width: 767px) {
+  .experience-ambient {
+    width: 22rem;
+    height: 22rem;
+    opacity: 0.46;
+  }
+
+  .optical-glass::after {
+    display: none;
   }
 }
 

@@ -28,23 +28,23 @@ function createSurfaceTexture() {
   if (!ctx) return null;
 
   const ocean = ctx.createLinearGradient(0, 0, 0, 1024);
-  ocean.addColorStop(0, "#0d2136");
-  ocean.addColorStop(0.48, "#071624");
-  ocean.addColorStop(1, "#020914");
+  ocean.addColorStop(0, "#0c1d2e");
+  ocean.addColorStop(0.48, "#06131f");
+  ocean.addColorStop(1, "#010711");
   ctx.fillStyle = ocean;
   ctx.fillRect(0, 0, 2048, 1024);
 
-  const land = "#17374e";
-  const landDark = "#102c40";
+  const land = "#1d4059";
+  const landDark = "#143348";
   drawPolygon(ctx, [[85,265],[150,220],[245,195],[340,225],[420,278],[448,340],[405,408],[350,450],[300,505],[236,492],[195,425],[132,392],[100,325]], land);
   drawPolygon(ctx, [[385,490],[452,520],[500,595],[510,680],[474,758],[420,842],[382,802],[360,720],[350,635]], landDark);
   drawPolygon(ctx, [[890,225],[980,178],[1080,185],[1178,225],[1260,215],[1345,242],[1430,232],[1538,272],[1635,302],[1668,355],[1592,395],[1502,388],[1432,430],[1358,425],[1290,468],[1208,454],[1140,408],[1065,392],[1008,338],[948,326]], land);
   drawPolygon(ctx, [[1005,392],[1080,410],[1155,472],[1192,555],[1170,655],[1115,762],[1060,742],[1018,658],[985,572],[950,500]], landDark);
   drawPolygon(ctx, [[1532,586],[1602,564],[1688,580],[1755,630],[1715,682],[1632,704],[1564,672]], land);
 
-  const haze = ctx.createRadialGradient(1050, 360, 40, 1050, 360, 820);
-  haze.addColorStop(0, "rgba(68, 126, 170, 0.14)");
-  haze.addColorStop(0.55, "rgba(25, 66, 101, 0.045)");
+  const haze = ctx.createRadialGradient(1080, 330, 30, 1080, 330, 780);
+  haze.addColorStop(0, "rgba(77, 137, 181, 0.12)");
+  haze.addColorStop(0.55, "rgba(27, 72, 105, 0.035)");
   haze.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = haze;
   ctx.fillRect(0, 0, 2048, 1024);
@@ -69,23 +69,23 @@ function createLightsTexture() {
   ctx.globalCompositeOperation = "screen";
 
   const clusters: Array<[number, number, number, number]> = [
-    [1060, 320, 170, 160], [1210, 332, 150, 125], [1380, 330, 175, 145],
-    [1515, 350, 115, 105], [310, 315, 150, 130], [220, 295, 105, 95],
-    [430, 585, 85, 70], [1030, 500, 85, 78], [1600, 625, 105, 95],
+    [1060, 320, 180, 165], [1210, 332, 155, 130], [1380, 330, 185, 150],
+    [1515, 350, 125, 110], [310, 315, 158, 135], [220, 295, 112, 100],
+    [430, 585, 90, 75], [1030, 500, 92, 84], [1600, 625, 110, 100],
   ];
 
   clusters.forEach(([cx, cy, rx, ry]) => {
-    for (let i = 0; i < 165; i += 1) {
+    for (let i = 0; i < 210; i += 1) {
       const angle = Math.random() * Math.PI * 2;
-      const distance = Math.pow(Math.random(), 1.8);
+      const distance = Math.pow(Math.random(), 1.85);
       const x = cx + Math.cos(angle) * rx * distance;
       const y = cy + Math.sin(angle) * ry * distance;
-      const radius = Math.random() * 1.65 + 0.42;
+      const radius = Math.random() * 1.55 + 0.42;
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = Math.random() > 0.22
-        ? `rgba(255, ${Math.floor(165 + Math.random() * 55)}, ${Math.floor(92 + Math.random() * 52)}, ${0.3 + Math.random() * 0.56})`
-        : `rgba(120, 190, 255, ${0.2 + Math.random() * 0.4})`;
+      ctx.fillStyle = Math.random() > 0.18
+        ? `rgba(255, ${Math.floor(170 + Math.random() * 50)}, ${Math.floor(95 + Math.random() * 50)}, ${0.38 + Math.random() * 0.56})`
+        : `rgba(130, 195, 255, ${0.24 + Math.random() * 0.44})`;
       ctx.fill();
     }
   });
@@ -117,7 +117,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
-    const cameraState = { z: 8.2 };
+    const cameraState = { z: 8.35 };
     camera.position.set(0, 0.35, cameraState.z);
 
     const renderer = new THREE.WebGLRenderer({
@@ -131,22 +131,22 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     mount.appendChild(renderer.domElement);
 
     const earthGroup = new THREE.Group();
-    const earthState = { y: -4.62, rotationY: -0.31 };
+    const earthState = { y: -5.08, rotationY: -0.31 };
     earthGroup.position.set(0, earthState.y, 0);
     earthGroup.rotation.set(0.015, earthState.rotationY, 0);
     scene.add(earthGroup);
 
     const surfaceTexture = createSurfaceTexture();
     const lightsTexture = createLightsTexture();
-    const radius = 4.45;
+    const radius = 4.55;
 
     const globeMaterial = new THREE.MeshPhysicalMaterial({
       map: surfaceTexture ?? undefined,
-      color: 0x8eb5d2,
-      roughness: 0.95,
-      metalness: 0.01,
-      clearcoat: 0.025,
-      clearcoatRoughness: 0.95,
+      color: 0xffffff,
+      roughness: 0.98,
+      metalness: 0.0,
+      clearcoat: 0.015,
+      clearcoatRoughness: 0.98,
     });
     const globe = new THREE.Mesh(
       new THREE.SphereGeometry(radius, 144, 96),
@@ -161,7 +161,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
         new THREE.MeshBasicMaterial({
           map: lightsTexture,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0.94,
           blending: THREE.AdditiveBlending,
           depthWrite: false,
         }),
@@ -170,9 +170,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     }
 
     const atmosphereMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uIntensity: { value: 1 },
-      },
+      uniforms: { uIntensity: { value: 1 } },
       vertexShader: `
         varying vec3 vNormalWorld;
         varying vec3 vWorldPosition;
@@ -189,9 +187,9 @@ export function SystemEarth({ className = "" }: { className?: string }) {
         varying vec3 vWorldPosition;
         void main() {
           vec3 viewDir = normalize(cameraPosition - vWorldPosition);
-          float rim = pow(1.0 - max(dot(normalize(vNormalWorld), viewDir), 0.0), 4.2);
-          float alpha = rim * 0.64 * uIntensity;
-          vec3 color = mix(vec3(0.22, 0.50, 0.84), vec3(0.80, 0.93, 1.0), rim);
+          float rim = pow(1.0 - max(dot(normalize(vNormalWorld), viewDir), 0.0), 4.35);
+          float alpha = rim * 0.62 * uIntensity;
+          vec3 color = mix(vec3(0.20, 0.46, 0.80), vec3(0.82, 0.94, 1.0), rim);
           gl_FragColor = vec4(color, alpha);
         }
       `,
@@ -206,11 +204,11 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     );
     earthGroup.add(atmosphere);
 
-    scene.add(new THREE.HemisphereLight(0x7eaad0, 0x01050b, 0.78));
-    const keyLight = new THREE.DirectionalLight(0xc7e5ff, 2.05);
+    scene.add(new THREE.HemisphereLight(0x79a5c8, 0x01050b, 0.48));
+    const keyLight = new THREE.DirectionalLight(0xbadfff, 1.25);
     keyLight.position.set(-1.6, 5.8, 5.5);
     scene.add(keyLight);
-    const rimLight = new THREE.PointLight(0x68adff, 5.8, 25);
+    const rimLight = new THREE.PointLight(0x68adff, 4.9, 25);
     rimLight.position.set(3.8, 2.4, 5.4);
     scene.add(rimLight);
 
@@ -222,9 +220,9 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     ];
 
     const routeMaterial = new THREE.LineBasicMaterial({
-      color: 0x8fc7ff,
+      color: 0x93c9ff,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.17,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -239,7 +237,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     });
 
     const nodeGeometry = new THREE.SphereGeometry(0.022, 8, 8);
-    const blueNode = new THREE.MeshBasicMaterial({ color: 0xa7d7ff });
+    const blueNode = new THREE.MeshBasicMaterial({ color: 0xb4dcff });
     const amberNode = new THREE.MeshBasicMaterial({ color: 0xffb367 });
     [
       [48, 16], [51, 14], [40, -74], [35, 139], [34, -118], [25, 55],
@@ -251,7 +249,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     });
 
     const starPositions: number[] = [];
-    for (let i = 0; i < 150; i += 1) {
+    for (let i = 0; i < 135; i += 1) {
       starPositions.push(
         (Math.random() - 0.5) * 15,
         Math.random() * 6.4 - 0.15,
@@ -262,9 +260,9 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starPositions, 3));
     const starMaterial = new THREE.PointsMaterial({
       color: 0xb6d7fb,
-      size: 0.017,
+      size: 0.016,
       transparent: true,
-      opacity: 0.31,
+      opacity: 0.27,
       depthWrite: false,
     });
     const stars = new THREE.Points(starGeometry, starMaterial);
@@ -293,22 +291,22 @@ export function SystemEarth({ className = "" }: { className?: string }) {
           scrollTrigger: {
             trigger: hero,
             start: "top top",
-            end: "bottom bottom",
-            scrub: 0.85,
+            end: "bottom top",
+            scrub: 0.78,
             invalidateOnRefresh: true,
           },
         });
 
         scrollTimeline
-          .to(earthState, { rotationY: -0.12, y: -4.43, ease: "none", duration: 0.58 }, 0)
-          .to(cameraState, { z: 7.72, ease: "none", duration: 0.58 }, 0)
-          .to(routeMaterial, { opacity: 0.37, ease: "none", duration: 0.3 }, 0.08)
-          .to(atmosphereMaterial.uniforms.uIntensity, { value: 1.72, ease: "none", duration: 0.34 }, 0.2)
-          .to(rimLight, { intensity: 8.8, ease: "none", duration: 0.28 }, 0.26)
-          .to(atmosphereMaterial.uniforms.uIntensity, { value: 2.15, ease: "none", duration: 0.22 }, 0.58)
-          .to(rimLight, { intensity: 11.2, ease: "none", duration: 0.22 }, 0.58)
-          .to(earthState, { rotationY: 0.02, y: -4.18, ease: "none", duration: 0.3 }, 0.66)
-          .to(cameraState, { z: 7.45, ease: "none", duration: 0.3 }, 0.66);
+          .to(earthState, { rotationY: -0.15, y: -4.88, ease: "none", duration: 0.56 }, 0)
+          .to(cameraState, { z: 7.82, ease: "none", duration: 0.56 }, 0)
+          .to(routeMaterial, { opacity: 0.31, ease: "none", duration: 0.3 }, 0.1)
+          .to(atmosphereMaterial.uniforms.uIntensity, { value: 1.68, ease: "none", duration: 0.34 }, 0.22)
+          .to(rimLight, { intensity: 7.8, ease: "none", duration: 0.28 }, 0.27)
+          .to(atmosphereMaterial.uniforms.uIntensity, { value: 2.05, ease: "none", duration: 0.22 }, 0.58)
+          .to(rimLight, { intensity: 10.2, ease: "none", duration: 0.22 }, 0.58)
+          .to(earthState, { rotationY: 0.01, y: -4.68, ease: "none", duration: 0.3 }, 0.66)
+          .to(cameraState, { z: 7.58, ease: "none", duration: 0.3 }, 0.66);
       }
     }
 
@@ -317,9 +315,9 @@ export function SystemEarth({ className = "" }: { className?: string }) {
     const render = () => {
       if (!reduceMotion) frame += 1;
       earthGroup.position.y = earthState.y;
-      earthGroup.rotation.y = earthState.rotationY + (reduceMotion ? 0 : Math.sin(frame * 0.0022) * 0.01);
+      earthGroup.rotation.y = earthState.rotationY + (reduceMotion ? 0 : Math.sin(frame * 0.0022) * 0.009);
       camera.position.z = cameraState.z;
-      if (!reduceMotion) stars.rotation.z += 0.00002;
+      if (!reduceMotion) stars.rotation.z += 0.000018;
       renderer.render(scene, camera);
       raf = window.requestAnimationFrame(render);
     };

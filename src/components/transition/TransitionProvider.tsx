@@ -29,9 +29,6 @@ export function usePageTransition() {
   return ctx;
 }
 
-// Keep the transition short enough that navigation stays responsive while the
-// existing logo sequence still has room to read.
-
 export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -43,7 +40,6 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
     for (const timeoutId of timeoutIdsRef.current) {
       window.clearTimeout(timeoutId);
     }
-
     timeoutIdsRef.current = [];
   }, []);
 
@@ -58,35 +54,26 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
     (href: string) => {
       if (lockRef.current) return;
       lockRef.current = true;
-
       clearScheduledTransitions();
 
       if (prefersReducedMotion) {
-        startTransition(() => {
-          router.push(href);
-        });
+        startTransition(() => router.push(href));
         lockRef.current = false;
         return;
       }
 
       setPhase("cover");
-
-      schedule(() => {
-        startTransition(() => {
-          router.push(href);
-        });
-      }, 220);
-
-      schedule(() => setPhase("logo-in"), 280);
-      schedule(() => setPhase("logo-hold"), 1200);
-      schedule(() => setPhase("logo-out"), 1450);
-      schedule(() => setPhase("uncover"), 1650);
+      schedule(() => startTransition(() => router.push(href)), 190);
+      schedule(() => setPhase("logo-in"), 240);
+      schedule(() => setPhase("logo-hold"), 620);
+      schedule(() => setPhase("logo-out"), 790);
+      schedule(() => setPhase("uncover"), 940);
       schedule(() => {
         setPhase("idle");
         lockRef.current = false;
-      }, 2200);
+      }, 1420);
     },
-    [clearScheduledTransitions, prefersReducedMotion, router, schedule]
+    [clearScheduledTransitions, prefersReducedMotion, router, schedule],
   );
 
   const value = useMemo(
@@ -95,7 +82,7 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
       isTransitioning: phase !== "idle",
       start,
     }),
-    [phase, start]
+    [phase, start],
   );
 
   return <TransitionContext.Provider value={value}>{children}</TransitionContext.Provider>;

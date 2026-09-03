@@ -1,282 +1,156 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
-import { Container } from "@/components/ui/Container";
+import { BriefcaseBusiness, Check, Code2, Search, Sparkles, Workflow } from "lucide-react";
+import { ExperienceClose, ExperienceHero, PageEyebrow } from "@/components/site/ExperiencePage";
 
 export const metadata: Metadata = {
-  title: "About Daniel Vlcek | Software Developer Vienna",
+  title: "About Daniel Vlcek | Software Developer & Automation Architect",
   description:
-    "Learn how Daniel Vlcek combines software development, automation, and business thinking to build websites, dashboards, CRM workflows, and custom business systems.",
-  alternates: {
-    canonical: "/about",
-  },
+    "How Daniel Vlcek combines software development, automation, and business thinking to design systems around real company operations.",
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About Daniel Vlcek | Software Developer & Automation Architect",
     description:
-      "A technical business partner for companies that need better websites, lead flow, internal tools, and automation.",
+      "A technical partner focused on understanding operations, finding leverage, and building systems that make companies easier to run.",
     url: "/about",
     type: "website",
   },
 };
 
-const businessPrinciples = [
+const principles = [
   {
-    title: "Every business is different",
-    text: "I do not force the same solution on every company. I first look at the offer, customers, tools, handoffs, and where friction appears.",
+    icon: Search,
+    title: "Understand before building",
+    text: "I want to know why a process exists, who touches it, what information moves through it and where people lose time before deciding what the software should be.",
   },
   {
+    icon: BriefcaseBusiness,
     title: "Business value before features",
-    text: "A feature only makes sense if it improves lead flow, saves time, supports delivery, or makes the customer experience stronger.",
+    text: "A feature earns its place when it removes friction, improves the customer journey, gives the team more control or creates a better foundation for growth.",
   },
   {
-    title: "Long-term structure",
-    text: "The goal is not a quick one-time delivery. The goal is a clean digital foundation the team can keep using and improving.",
+    icon: Workflow,
+    title: "Think in systems",
+    text: "The website, payment flow, CRM, dashboard, emails and internal admin are often one process seen from different angles. I design them to work together.",
   },
-];
+] as const;
 
-const capabilities = [
-  "Premium websites",
-  "Website and platform rebuilds",
-  "Lead intake flows",
-  "CRM pipelines",
-  "Internal dashboards",
-  "Client portals",
-  "Booking and payment flows",
-  "Business automation",
-  "API integrations",
-];
-
-const partnerValues = [
-  "I think about the offer and customer journey before the interface",
-  "I question what is really needed before building",
-  "I explain technical decisions in business language",
-  "I keep the build maintainable so it can improve after launch",
-];
+const workingStyle = [
+  "Question the process, not only the interface",
+  "Explain technical decisions in business language",
+  "Build maintainable systems the company can own",
+  "Prefer one coherent workflow over disconnected tools",
+  "Use automation and AI only when they create real leverage",
+  "Stay close enough to improve what happens after launch",
+] as const;
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-site-bg py-16 md:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-blue/[0.07] blur-3xl" />
-        <div className="absolute -right-44 top-[34rem] h-[34rem] w-[34rem] rounded-full bg-brand-blue-deep/20 blur-3xl" />
-        <div className="absolute inset-x-0 bottom-0 h-96 bg-linear-to-t from-site-bg-deep/70 to-transparent" />
-      </div>
-
-      <Container className="relative z-10 max-w-7xl">
-        {/* Hero */}
-        <section className="grid gap-10 border-b border-white/[0.08] pb-14 lg:grid-cols-[1fr_0.72fr] lg:items-center">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.32em] text-brand-blue md:text-sm">
-              About Daniel Vlcek
-            </p>
-
-            <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
-              Not just a developer. A technical partner for websites, operations, and growth.
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/62 md:text-lg">
-              I combine software development, automation, and entrepreneurial
-              thinking to help companies make better digital decisions. The
-              focus is not only to ship a finished project, but to improve how
-              the website, lead flow, tools, and internal operations work
-              together.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
-              >
-                Book a Strategy Call
-                <ArrowUpRight size={15} />
-              </Link>
-
-              <Link
-                href="/work"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.018] px-5 py-3 text-sm font-medium text-white/72 transition duration-300 hover:border-brand-blue/25 hover:text-white"
-              >
-                View selected work
-              </Link>
-            </div>
-          </div>
-
-          {/* Personal image */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.022] p-3 backdrop-blur-xl">
-              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-blue-soft/60 to-transparent" />
-
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-site-bg-deep">
-                <Image
-                  src="/images/daniel-vlcek.jpg"
-                  alt="Daniel Vlcek"
-                  fill
-                  priority
-                  className="object-cover object-[75%_center]"
-                />
+    <main className="experience-page">
+      <ExperienceHero
+        eyebrow="About"
+        title="I like understanding how a business works — then making it work better."
+        description="Software is the craft. Systems thinking is the real work. I combine development, automation and business context to turn messy processes into digital infrastructure people can actually use every day."
+        aside={
+          <div data-optical-glass className="apple-glass-dark optical-glass rounded-[28px] p-6 text-white">
+            <div className="flex items-center gap-4">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.045] text-[25px] font-semibold tracking-[-0.05em] text-white">DV</div>
+              <div>
+                <p className="text-[13px] font-semibold text-white/88">Daniel Vlcek</p>
+                <p className="mt-1 text-[9px] leading-4 text-white/42">Software Developer<br />& Automation Architect</p>
               </div>
             </div>
-
-            <div className="mt-4 rounded-3xl border border-white/[0.08] bg-white/[0.018] p-5 backdrop-blur-xl">
-              <p className="text-sm font-semibold text-white">Daniel Vlcek</p>
-
-              <p className="mt-1 text-sm text-white/48">
-                Software Developer & Automation Architect
-              </p>
-            </div>
+            <p className="mt-5 border-t border-white/[0.08] pt-4 text-[10px] leading-5 text-white/46">Direct collaboration, technical depth and the mindset of someone who cares about the operation behind the build.</p>
           </div>
-        </section>
+        }
+      />
 
-        {/* Positioning */}
-        <section className="grid gap-8 border-b border-white/[0.08] py-14 lg:grid-cols-[0.42fr_1fr]">
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-brand-blue">
-              Positioning
-            </p>
-
-            <h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              Technical execution with a business owner&apos;s mindset.
-            </h2>
-          </div>
-
-          <div>
-            <p className="max-w-4xl text-lg leading-9 text-white/64 md:text-xl">
-              A website, dashboard, CRM flow, or automation should never exist
-              only because it looks good or because it is technically possible.
-              It should create clarity, save time, improve customer flow,
-              support the team, or make growth easier to handle.
-            </p>
-          </div>
-        </section>
-
-        {/* Business principles */}
-        <section className="py-14">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-brand-blue">
-              How I think
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              I value the business behind the build.
-            </h2>
-
-            <p className="mt-4 text-sm leading-relaxed text-white/55 md:text-base">
-              The strongest results come from understanding the company first,
-              then creating the right technical structure around how it sells,
-              serves customers, and handles work.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {businessPrinciples.map((item, index) => (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.022] p-6 transition-[background-color,border-color] duration-300 hover:border-brand-blue/20 hover:bg-white/[0.032]"
-              >
-                <p className="font-mono text-xs text-brand-blue-light">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-relaxed text-white/56">
-                  {item.text}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Capabilities */}
-        <section className="grid gap-6 border-y border-white/[0.08] py-14 lg:grid-cols-[0.8fr_1fr] lg:items-start">
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-brand-blue">
-              What I create
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              Practical digital infrastructure for modern companies.
-            </h2>
-
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/56 md:text-base">
-              The work can start with a website, but the real value appears
-              when the public experience connects to lead intake, CRM follow-up,
-              dashboards, payments, and internal admin tools.
-            </p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            {capabilities.map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4"
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-brand-blue/25 bg-brand-blue/10 text-brand-blue-light">
-                  <Check size={13} />
-                </span>
-
-                <span className="text-sm text-white/62">{item}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Partner section */}
-        <section className="grid gap-8 py-14 lg:grid-cols-[0.42fr_1fr]">
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-brand-blue">
-              Working together
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              A partner mindset, not a done-and-gone delivery.
-            </h2>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {partnerValues.map((item) => (
-              <div key={item} className="border-t border-white/[0.08] pt-4">
-                <p className="text-sm leading-relaxed text-white/58">
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="border-y border-white/[0.08] py-10 md:py-12">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-brand-blue">
-                Start with clarity
-              </p>
-
-              <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                Want to make your website, leads, and operations work better
-                together?
+      <section className="relative overflow-hidden bg-[#f8f8f6] px-5 py-20 sm:px-8 md:py-28 lg:px-14 xl:px-20">
+        <div className="experience-ambient experience-ambient-a" aria-hidden="true" />
+        <div className="mx-auto max-w-[1160px]">
+          <div data-page-reveal className="grid gap-8 lg:grid-cols-[0.68fr_1.32fr] lg:items-start">
+            <div className="lg:sticky lg:top-28">
+              <PageEyebrow>Why I Work This Way</PageEyebrow>
+              <h2 className="mt-4 text-[clamp(2rem,4vw,3.15rem)] font-semibold leading-[1.02] tracking-[-0.048em] text-[#101722]">
+                The code matters. What it changes matters more.
               </h2>
-
-              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/55 md:text-base">
-                Start with a strategy call. We will look at your current setup,
-                identify the highest-leverage bottleneck, and define the most
-                realistic next step.
+              <p className="mt-5 max-w-[470px] text-[12px] leading-5.5 text-[#687486]">
+                I enjoy the technical side deeply, but the most interesting part is seeing how the pieces affect a real company: what a customer experiences, what the team has to do next, and what becomes possible once the process is cleaner.
               </p>
             </div>
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-blue-vivid px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-brand-blue"
-            >
-              Book a Strategy Call
-              <ArrowUpRight size={15} />
-            </Link>
+            <div className="grid gap-5">
+              {principles.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} data-page-reveal data-optical-glass className="apple-glass optical-glass grid gap-5 rounded-[28px] p-6 sm:grid-cols-[auto_1fr_auto] sm:items-start md:p-7">
+                    <span className="glass-icon flex h-11 w-11 items-center justify-center rounded-[14px] text-[#315fae]"><Icon size={18} /></span>
+                    <div>
+                      <h3 className="text-[20px] font-semibold tracking-[-0.035em] text-[#101722]">{item.title}</h3>
+                      <p className="mt-3 max-w-[620px] text-[11px] leading-5 text-[#6c7788]">{item.text}</p>
+                    </div>
+                    <span className="text-[9px] font-semibold tracking-[0.16em] text-[#a0aab7]">0{index + 1}</span>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </section>
-      </Container>
+        </div>
+      </section>
+
+      <section className="relative bg-[#f8f8f6] px-5 pb-28 sm:px-8 md:pb-36 lg:px-14 xl:px-20">
+        <div className="mx-auto max-w-[1160px]">
+          <div className="grid gap-5 lg:grid-cols-[0.88fr_1.12fr]">
+            <article data-page-reveal data-optical-glass className="apple-glass optical-glass rounded-[30px] p-6 md:p-8">
+              <PageEyebrow>What You Get</PageEyebrow>
+              <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-[1.03] tracking-[-0.045em] text-[#101722]">One person who can connect the business conversation to the technical implementation.</h2>
+              <p className="mt-4 text-[12px] leading-5.5 text-[#687486]">That means fewer translation layers between “this is what is painful” and “this is how the system should work.”</p>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                {workingStyle.map((item) => (
+                  <div key={item} className="flex gap-2.5 rounded-[16px] border border-[#e2e7ed] bg-white/55 p-3.5">
+                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-[#cfd9e4] bg-white text-[#2563eb]"><Check size={8} /></span>
+                    <p className="text-[9px] leading-4 text-[#5f6c7e]">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article data-page-reveal className="relative min-h-[430px] overflow-hidden rounded-[30px] bg-[#07111d] p-6 text-white shadow-[0_24px_80px_rgba(7,17,29,0.15)] md:p-8">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(86,151,215,0.19),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.018),transparent_50%)]" />
+              <div className="relative z-10 flex h-full flex-col">
+                <PageEyebrow light>My Role</PageEyebrow>
+                <h2 className="mt-5 max-w-[560px] text-[clamp(2rem,3.4vw,3rem)] font-semibold leading-[1.01] tracking-[-0.05em]">Not an extra pair of hands. A technical owner for the problem.</h2>
+                <p className="mt-5 max-w-[560px] text-[12px] leading-6 text-white/50">I want enough context to challenge the brief when there is a better way, enough technical control to implement the answer properly, and enough continuity to improve it after real users touch it.</p>
+
+                <div className="mt-auto grid gap-3 pt-9 sm:grid-cols-3">
+                  {[
+                    [Code2, "Build", "Production-ready implementation"],
+                    [Sparkles, "Simplify", "Less friction and clearer flows"],
+                    [Workflow, "Connect", "Systems that work together"],
+                  ].map(([Icon, title, text]) => {
+                    const Component = Icon as typeof Code2;
+                    return (
+                      <div key={String(title)} className="rounded-[17px] border border-white/[0.08] bg-white/[0.035] p-4 backdrop-blur-xl">
+                        <Component size={15} className="text-[#acd5ff]" />
+                        <p className="mt-3 text-[10px] font-semibold text-white/80">{String(title)}</p>
+                        <p className="mt-1 text-[8px] leading-4 text-white/38">{String(text)}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <ExperienceClose
+        eyebrow="Work Together"
+        title="The best starting point is not a feature list. It is the thing in your business that should work better."
+        description="Bring the current process, the constraints and what you want to improve. I can help turn that into a realistic technical direction."
+        primaryLabel="Discuss the problem"
+        secondaryLabel="See case studies"
+        secondaryHref="/work"
+      />
     </main>
   );
 }

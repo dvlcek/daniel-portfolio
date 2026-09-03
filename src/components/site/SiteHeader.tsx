@@ -1,156 +1,160 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/Button";
 import { TransitionAnchor } from "@/components/transition/TransitionAnchor";
 
 const navItems = [
   { href: "/work", label: "Work" },
-  { href: "#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#process", label: "Process" },
+  { href: "/insights", label: "Insights" },
 ] as const;
+
+const adaptiveRoutes = new Set(["/", "/work", "/services", "/about", "/insights"]);
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLightSurface, setIsLightSurface] = useState(false);
+  const adaptive = adaptiveRoutes.has(pathname);
+  const lightSurface = adaptive && isLightSurface;
+
+  useEffect(() => {
+    if (!adaptive) return;
+
+    let frame = 0;
+
+    const update = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const hero = document.querySelector<HTMLElement>("[data-hero-scene], .experience-page-hero");
+        if (!hero) return;
+        setIsLightSurface(hero.getBoundingClientRect().bottom <= 96);
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [adaptive, pathname]);
 
   const closeMenu = () => setIsMenuOpen(false);
-
-  const isActiveLink = (href: string) => {
-    if (href.startsWith("#")) return false;
-    return pathname === href;
-  };
+  const isActive = (href: string) => !href.includes("#") && pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-site-bg/82 backdrop-blur-2xl">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.14),transparent_38%)]" />
-
-      <div className="relative flex h-16 w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <TransitionAnchor
-          href="/"
-          className="group flex items-center gap-3"
-          onClick={closeMenu}
-        >
-          <div className="relative h-9 w-9 overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.04] shadow-lg shadow-black/30 ring-1 ring-white/[0.06] transition duration-300 group-hover:border-brand-blue/40 group-hover:bg-brand-blue/10 group-hover:shadow-brand-blue/10">
-            <Image
-              src="/logo.svg"
-              alt="Daniel Vlcek Logo"
-              fill
-              className="object-contain p-1.5"
-              priority
-            />
-          </div>
-
-          <div className="leading-tight">
-            <p className="text-sm font-semibold tracking-tight text-white transition duration-300 group-hover:text-brand-blue-pale">
-              Daniel Vlcek
-            </p>
-            <p className="text-xs text-white/45 transition duration-300 group-hover:text-white/60">
-              Systems & Automation
-            </p>
-          </div>
+    <header
+      className={[
+        "pointer-events-none fixed inset-x-0 top-0 z-[100]",
+        !adaptive ? "border-b border-white/[0.055] bg-[#06101b]/82 backdrop-blur-2xl supports-[backdrop-filter]:bg-[#06101b]/72" : "",
+      ].join(" ")}
+    >
+      <div
+        className={[
+          "pointer-events-auto mx-auto flex w-full items-center justify-between transition-[height,max-width,margin,padding,background-color,border-color,box-shadow,border-radius] duration-500 ease-out",
+          adaptive
+            ? lightSurface
+              ? "mt-3 h-[54px] max-w-[900px] rounded-full border border-[#d8e0e8]/80 bg-white/78 px-4 shadow-[0_12px_34px_rgba(27,43,62,0.09)] backdrop-blur-2xl sm:px-5 md:h-14"
+              : "h-16 max-w-[1600px] px-5 sm:px-8 md:h-[72px] md:px-10 lg:px-14 xl:px-20"
+            : "h-16 max-w-[1600px] px-5 sm:px-8 md:h-[72px] md:px-10 lg:px-14 xl:px-20",
+        ].join(" ")}
+      >
+        <TransitionAnchor href="/" onClick={closeMenu} className="group inline-flex items-center gap-3">
+          <span className={`text-[13px] font-semibold uppercase tracking-[0.22em] transition-colors sm:text-[14px] ${lightSurface ? "text-[#101722]" : "text-white/92 group-hover:text-white"}`}>
+            Daniel Vlcek
+          </span>
         </TransitionAnchor>
 
-        <nav
-          className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-lg shadow-black/20 backdrop-blur-xl md:flex"
-          aria-label="Primary"
-        >
-          {navItems.map((item) => {
-            const active = isActiveLink(item.href);
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <TransitionAnchor
+              key={item.href}
+              href={item.href}
+              className={[
+                "relative py-2 text-[12px] font-medium transition-colors duration-200",
+                lightSurface
+                  ? isActive(item.href) ? "text-[#101722]" : "text-[#566274] hover:text-[#101722]"
+                  : isActive(item.href) ? "text-white" : "text-white/68 hover:text-white",
+              ].join(" ")}
+            >
+              {item.label}
+              {isActive(item.href) ? <span className={`absolute inset-x-0 -bottom-0.5 h-px ${lightSurface ? "bg-[#101722]/40" : "bg-white/55"}`} /> : null}
+            </TransitionAnchor>
+          ))}
+        </nav>
 
-            return (
+        <div className="hidden lg:block">
+          <TransitionAnchor
+            href="/contact"
+            className={[
+              "group inline-flex h-10 items-center gap-2 rounded-full px-5 text-[12px] font-medium transition-all duration-300",
+              lightSurface
+                ? "bg-[#07111d] text-white shadow-[0_8px_22px_rgba(7,17,29,0.14)] hover:-translate-y-0.5 hover:bg-[#0b1928]"
+                : "border border-white/18 bg-white/[0.025] text-white/88 backdrop-blur-xl hover:border-white/30 hover:bg-white/[0.065] hover:text-white",
+            ].join(" ")}
+          >
+            Let&apos;s Talk
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          </TransitionAnchor>
+        </div>
+
+        <button
+          type="button"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMenuOpen((value) => !value)}
+          className={[
+            "flex h-10 w-10 items-center justify-center rounded-xl transition lg:hidden",
+            lightSurface
+              ? "border border-[#d6dee7] bg-white/76 text-[#101722] shadow-[0_6px_18px_rgba(25,39,58,0.06)] backdrop-blur-xl hover:bg-white"
+              : "border border-white/14 bg-white/[0.035] text-white backdrop-blur-xl hover:bg-white/[0.07]",
+          ].join(" ")}
+        >
+          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      {isMenuOpen ? (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className={[
+            "pointer-events-auto absolute inset-x-4 top-[calc(100%+0.6rem)] overflow-hidden rounded-[22px] p-2 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:inset-x-8 lg:hidden",
+            lightSurface ? "border border-[#dce3ea] bg-white/90" : "border border-white/12 bg-[#08131f]/90",
+          ].join(" ")}
+        >
+          <div className="space-y-1">
+            {navItems.map((item) => (
               <TransitionAnchor
                 key={item.href}
                 href={item.href}
+                onClick={closeMenu}
                 className={[
-                  "rounded-full px-4 py-2 text-sm transition duration-300",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/70 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg",
-                  active
-                    ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
-                    : "text-white/58 hover:bg-white/[0.06] hover:text-white",
+                  "flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition",
+                  lightSurface ? "text-[#586577] hover:bg-[#f1f4f7] hover:text-[#101722]" : "text-white/72 hover:bg-white/[0.055] hover:text-white",
                 ].join(" ")}
               >
                 {item.label}
+                <ArrowRight size={14} className={lightSurface ? "text-[#8b96a5]" : "text-white/34"} />
               </TransitionAnchor>
-            );
-          })}
+            ))}
+          </div>
+
+          <TransitionAnchor href="/contact" onClick={closeMenu} className={`mt-2 flex h-12 items-center justify-between rounded-xl px-4 text-sm font-semibold ${lightSurface ? "bg-[#07111d] text-white" : "bg-white text-[#07111d]"}`}>
+            Let&apos;s Talk
+            <ArrowRight size={15} />
+          </TransitionAnchor>
         </nav>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <Button href="/contact" variant="primary">
-            Book a Call
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <Button href="/contact" variant="secondary" onClick={closeMenu}>
-            Book Call
-          </Button>
-
-          <button
-            type="button"
-            aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-controls="mobile-navigation"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.05] text-white shadow-lg shadow-black/25 transition duration-300 hover:border-brand-blue/35 hover:bg-brand-blue/10 hover:text-brand-blue-pale focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/80 focus-visible:ring-offset-2 focus-visible:ring-offset-site-bg"
-          >
-            {isMenuOpen ? (
-              <X size={18} aria-hidden="true" />
-            ) : (
-              <Menu size={18} aria-hidden="true" />
-            )}
-          </button>
-        </div>
-
-        {isMenuOpen ? (
-          <nav
-            id="mobile-navigation"
-            aria-label="Mobile"
-            className="absolute inset-x-5 top-[calc(100%+0.75rem)] overflow-hidden rounded-3xl border border-white/[0.10] bg-site-bg/96 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:inset-x-8 md:hidden"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,47,228,0.16),transparent_42%)]" />
-
-            <div className="relative flex flex-col gap-1">
-              {navItems.map((item) => {
-                const active = isActiveLink(item.href);
-
-                return (
-                  <TransitionAnchor
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMenu}
-                    className={[
-                      "flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition duration-300",
-                      active
-                        ? "bg-brand-blue/16 text-white ring-1 ring-brand-blue/25"
-                        : "text-white/65 hover:bg-white/[0.06] hover:text-white",
-                    ].join(" ")}
-                  >
-                    <span>{item.label}</span>
-                    <span className="text-white/25">↗</span>
-                  </TransitionAnchor>
-                );
-              })}
-
-              <Button
-                href="/contact"
-                variant="primary"
-                className="mt-3 w-full justify-center"
-                onClick={closeMenu}
-              >
-                Book a Call
-              </Button>
-            </div>
-          </nav>
-        ) : null}
-      </div>
+      ) : null}
     </header>
   );
 }

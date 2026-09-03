@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { usePageTransition } from "./TransitionProvider";
 import { usePrefersReducedMotion } from "@/components/animations/usePrefersReducedMotion";
 
@@ -8,9 +7,7 @@ export function PageTransition() {
   const { phase } = usePageTransition();
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  if (prefersReducedMotion) {
-    return null;
-  }
+  if (prefersReducedMotion) return null;
 
   const active = phase !== "idle";
   const covering =
@@ -18,128 +15,54 @@ export function PageTransition() {
     phase === "logo-in" ||
     phase === "logo-hold" ||
     phase === "logo-out";
-
-  const logoVisible = phase === "logo-in" || phase === "logo-hold";
+  const uncovering = phase === "uncover";
+  const markVisible = phase === "logo-in" || phase === "logo-hold";
 
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-[999] pointer-events-none"
-      style={{
-        visibility: active ? "visible" : "hidden",
-      }}
+      className="pointer-events-none fixed inset-0 z-[999] overflow-hidden"
+      style={{ visibility: active ? "visible" : "hidden" }}
     >
-      {/* Solid black background */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-[#06101b]"
         style={{
-          backgroundColor: "#000000",
-          opacity: covering ? 1 : 0,
-          transition: "opacity 0.55s cubic-bezier(0.76,0,0.24,1) 0s",
+          clipPath: covering
+            ? "inset(0% 0% 0% 0%)"
+            : uncovering
+              ? "inset(0% 0% 100% 0%)"
+              : "inset(100% 0% 0% 0%)",
+          transition: uncovering
+            ? "clip-path 0.46s cubic-bezier(0.76,0,0.24,1)"
+            : "clip-path 0.42s cubic-bezier(0.76,0,0.24,1)",
         }}
-      />
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_54%,rgba(91,151,211,0.13),transparent_28%),linear-gradient(180deg,#07111d_0%,#06101b_100%)]" />
 
-      {/* Logo parts */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: 200, height: 200 }}>
+        <div
+          className="absolute left-1/2 top-1/2 h-px w-[min(46vw,520px)] -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,transparent,rgba(213,237,255,0.72),transparent)] shadow-[0_0_30px_rgba(139,201,247,0.24)]"
+          style={{
+            opacity: markVisible ? 0.72 : 0,
+            transform: markVisible
+              ? "translate(-50%,-50%) scaleX(1)"
+              : "translate(-50%,-50%) scaleX(0.25)",
+            transition: "opacity 0.28s ease, transform 0.5s cubic-bezier(0.2,0.8,0.2,1)",
+          }}
+        />
 
-          {/* Glow behind logo */}
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(29,78,216,0.35) 0%, rgba(0,0,0,0) 70%)",
-              filter: "blur(32px)",
-              transform: "scale(1.9)",
-              opacity: logoVisible ? 0.9 : 0,
-              transition: "opacity 0.3s ease-out 0.1s",
-            }}
-          />
-
-          {/* Part 1 — slides in from bottom */}
-          <div
-            className="absolute inset-0"
-            style={{
-              opacity: logoVisible ? 1 : 0,
-              transform: logoVisible ? "translateY(0%)" : "translateY(180%)",
-              transition: logoVisible
-                ? "opacity 0.45s ease-out 0.0s, transform 0.55s cubic-bezier(0.34,1.3,0.64,1) 0.0s"
-                : "opacity 0.2s ease-in, transform 0.25s ease-in",
-            }}
-          >
-            <Image
-              src="/part1.svg"
-              alt=""
-              fill
-              priority
-              className="object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            opacity: markVisible ? 1 : 0,
+            transform: markVisible ? "translateY(0px)" : "translateY(9px)",
+            transition: "opacity 0.3s ease, transform 0.45s cubic-bezier(0.2,0.8,0.2,1)",
+          }}
+        >
+          <div className="mt-20 flex items-center gap-3 text-white">
+            <span className="text-[22px] font-semibold tracking-[-0.05em]">DV</span>
+            <span className="h-4 w-px bg-white/18" />
+            <span className="text-[9px] font-semibold uppercase tracking-[0.24em] text-white/52">Daniel Vlcek</span>
           </div>
-
-          {/* Part 2 — slides in from top */}
-          <div
-            className="absolute inset-0"
-            style={{
-              opacity: logoVisible ? 1 : 0,
-              transform: logoVisible ? "translateY(0%)" : "translateY(-180%)",
-              transition: logoVisible
-                ? "opacity 0.45s ease-out 0.3s, transform 0.55s cubic-bezier(0.34,1.3,0.64,1) 0.15s"
-                : "opacity 0.2s ease-in, transform 0.25s ease-in",
-            }}
-          >
-            <Image
-              src="/part2.svg"
-              alt=""
-              fill
-              priority
-              className="object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
-          </div>
-
-          {/* Part 3 — slides in from left */}
-          <div
-            className="absolute inset-0"
-            style={{
-              opacity: logoVisible ? 1 : 0,
-              transform: logoVisible ? "translateX(0%)" : "translateX(180%)",
-              transition: logoVisible
-                ? "opacity 0.45s ease-out 0.6s, transform 0.55s cubic-bezier(0.34,1.3,0.64,1) 0.3s"
-                : "opacity 0.2s ease-in, transform 0.25s ease-in",
-            }}
-          >
-            <Image
-              src="/part3.svg"
-              alt=""
-              fill
-              priority
-              className="object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
-          </div>
-
-          {/* Part 4 — slides in from left, slight delay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              opacity: logoVisible ? 1 : 0,
-              transform: logoVisible ? "translateX(0%)" : "translateX(180%)",
-              transition: logoVisible
-                ? "opacity 0.45s ease-out 0.9s, transform 0.55s cubic-bezier(0.34,1.3,0.64,1) 0.45s"
-                : "opacity 0.2s ease-in, transform 0.25s ease-in",
-            }}
-          >
-            <Image
-              src="/part4.svg"
-              alt=""
-              fill
-              priority
-              className="object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
-          </div>
-
         </div>
       </div>
     </div>

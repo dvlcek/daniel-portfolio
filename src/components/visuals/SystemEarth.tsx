@@ -18,20 +18,39 @@ function pointOnSphere(radius: number, lat: number, lon: number) {
 
 function createSunGlowTexture() {
   const canvas = document.createElement("canvas");
-  canvas.width = 256;
+  canvas.width = 512;
   canvas.height = 256;
   const context = canvas.getContext("2d");
   if (!context) return null;
 
-  const gradient = context.createRadialGradient(128, 128, 2, 128, 128, 128);
-  gradient.addColorStop(0, "rgba(255,255,250,1)");
-  gradient.addColorStop(0.055, "rgba(255,239,210,0.98)");
-  gradient.addColorStop(0.16, "rgba(255,168,88,0.62)");
-  gradient.addColorStop(0.42, "rgba(255,106,0,0.17)");
-  gradient.addColorStop(1, "rgba(255,106,0,0)");
+  const radial = context.createRadialGradient(256, 128, 2, 256, 128, 116);
+  radial.addColorStop(0, "rgba(255,255,252,1)");
+  radial.addColorStop(0.05, "rgba(255,244,220,0.98)");
+  radial.addColorStop(0.14, "rgba(255,171,92,0.54)");
+  radial.addColorStop(0.38, "rgba(255,106,0,0.12)");
+  radial.addColorStop(1, "rgba(255,106,0,0)");
+  context.fillStyle = radial;
+  context.fillRect(0, 0, 512, 256);
 
-  context.fillStyle = gradient;
-  context.fillRect(0, 0, 256, 256);
+  const horizontal = context.createLinearGradient(36, 128, 476, 128);
+  horizontal.addColorStop(0, "rgba(255,139,53,0)");
+  horizontal.addColorStop(0.42, "rgba(255,151,64,0.08)");
+  horizontal.addColorStop(0.49, "rgba(255,228,194,0.34)");
+  horizontal.addColorStop(0.5, "rgba(255,255,250,0.92)");
+  horizontal.addColorStop(0.51, "rgba(255,228,194,0.34)");
+  horizontal.addColorStop(0.58, "rgba(255,151,64,0.08)");
+  horizontal.addColorStop(1, "rgba(255,139,53,0)");
+  context.fillStyle = horizontal;
+  context.fillRect(36, 123, 440, 10);
+
+  const vertical = context.createLinearGradient(256, 54, 256, 202);
+  vertical.addColorStop(0, "rgba(255,168,86,0)");
+  vertical.addColorStop(0.46, "rgba(255,215,175,0.05)");
+  vertical.addColorStop(0.5, "rgba(255,255,248,0.34)");
+  vertical.addColorStop(0.54, "rgba(255,215,175,0.05)");
+  vertical.addColorStop(1, "rgba(255,168,86,0)");
+  context.fillStyle = vertical;
+  context.fillRect(252, 54, 8, 148);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -368,15 +387,15 @@ export function SystemEarth({ className = "" }: { className?: string }) {
         map: sunGlowTexture,
         color: 0xffd0a1,
         transparent: true,
-        opacity: compact ? 0.42 : 0.62,
+        opacity: compact ? 0.38 : 0.52,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         depthTest: false,
         toneMapped: false,
       });
       const sunGlow = new THREE.Sprite(sunGlowMaterial);
-      sunGlow.scale.set(compact ? 0.95 : 1.18, compact ? 0.95 : 1.18, 1);
-      sunGlow.position.set(compact ? -1.55 : -2.35, compact ? -0.36 : -0.48, 0.52);
+      sunGlow.scale.set(compact ? 1.65 : 2.25, compact ? 0.72 : 0.9, 1);
+      sunGlow.position.set(compact ? -1.55 : -2.35, compact ? -0.52 : -0.66, 0.52);
       scene.add(sunGlow);
     }
 
@@ -427,7 +446,7 @@ export function SystemEarth({ className = "" }: { className?: string }) {
           .to(atmosphereMaterial.uniforms.uSweep, { value: 1, ease: "none", duration: 0.42 }, 0.22)
           .to(atmosphereMaterial.uniforms.uIntensity, { value: compact ? 0.68 : 0.78, ease: "none", duration: 0.34 }, 0.32)
           .to(earthMaterial.uniforms.uNightStrength, { value: 1.58, ease: "none", duration: 0.3 }, 0.42)
-          .to(sunGlowMaterial ?? {}, { opacity: compact ? 0.5 : 0.72, ease: "none", duration: 0.28 }, 0.42)
+          .to(sunGlowMaterial ?? {}, { opacity: compact ? 0.46 : 0.64, ease: "none", duration: 0.28 }, 0.42)
           .to(
             earthState,
             {

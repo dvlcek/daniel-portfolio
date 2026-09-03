@@ -9,37 +9,31 @@ import {
   Globe2,
   Network,
   Search,
+  ShieldCheck,
   Sparkles,
   Target,
   TrendingUp,
-  Users,
   Workflow,
 } from "lucide-react";
 import { HeroScrollScene } from "@/components/sections/HeroScrollScene";
 import { HomeExperience } from "@/components/sections/HomeExperience";
 import { caseStudies } from "@/lib/siteContent";
 
-const services = [
+const capabilities = [
   {
     icon: Network,
-    title: "Connect the operation",
-    label: "Custom business software",
-    description:
-      "Replace scattered tools, spreadsheets and handoffs with one system built around how your company actually works.",
+    title: "Custom Business Software",
+    text: "Web apps and internal platforms tailored to your operation, data and workflows.",
   },
   {
     icon: Bot,
-    title: "Remove repetitive work",
-    label: "Automation & applied AI",
-    description:
-      "Automate the steps that waste time, create errors or slow people down — and use AI only where it adds real value.",
+    title: "Automation & Applied AI",
+    text: "Automation that removes repetitive work and applies AI where it creates measurable value.",
   },
   {
     icon: Globe2,
-    title: "Make the journey easier",
-    label: "Web & client platforms",
-    description:
-      "Create customer-facing experiences that make buying, booking, communicating and managing services simpler.",
+    title: "Web & Client Platforms",
+    text: "Customer-facing platforms that make buying, booking and working with your company easier.",
   },
 ] as const;
 
@@ -47,153 +41,212 @@ const process = [
   {
     number: "01",
     icon: Search,
-    title: "Learn the operation",
-    description: "I get close to the real process — what people do, where information moves and where work gets stuck.",
+    title: "Understand",
+    text: "Learn how the business actually works and where friction is created.",
   },
   {
     number: "02",
     icon: Target,
     title: "Find the leverage",
-    description: "We decide what removes the most friction or creates the most value first. No feature list for its own sake.",
+    text: "Identify the opportunity that creates the most meaningful improvement first.",
   },
   {
     number: "03",
     icon: Code2,
-    title: "Build the system",
-    description: "I design and build the software, automation and integrations as one working flow around the business.",
+    title: "Build",
+    text: "Design and build the system, automation and integrations as one coherent flow.",
   },
   {
     number: "04",
     icon: TrendingUp,
-    title: "Improve from reality",
-    description: "After launch, we use real usage and real bottlenecks to decide what deserves to be improved or expanded.",
+    title: "Improve",
+    text: "Use real usage and business feedback to optimize what deserves to evolve next.",
   },
 ] as const;
 
-const partnerItems = [
-  {
-    icon: Users,
-    title: "Direct technical partner",
-    description: "You talk to the person understanding, designing and building the system — not through account layers.",
-  },
+const trust = [
   {
     icon: BriefcaseBusiness,
-    title: "Business before tools",
-    description: "I care about the bottleneck, outcome and economics first. The technology comes second.",
+    title: "Direct technical ownership",
+    text: "You work directly with the person understanding and building the system.",
   },
   {
-    icon: Sparkles,
-    title: "Built for ownership",
-    description: "Clean architecture, clear workflows and systems your company can actually understand and operate.",
+    icon: Target,
+    title: "Business-first thinking",
+    text: "Decisions start with outcomes, bottlenecks and leverage — not features.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Clean engineering",
+    text: "Maintainable architecture, clear workflows and systems built to last.",
   },
   {
     icon: Workflow,
-    title: "Long-term improvement",
-    description: "Launch is the first feedback loop, not the end. Strong systems evolve with the company using them.",
+    title: "Long-term partnership",
+    text: "Launch is the first feedback loop, not the end of the relationship.",
   },
 ] as const;
 
-const engagement = [
+const engagements = [
   {
     number: "01",
-    title: "Understand",
-    text: "Map the operation, bottlenecks, dependencies and opportunities before deciding what to build.",
+    title: "Systems Audit",
+    text: "Map how the operation works, identify friction and define the highest-leverage opportunity.",
   },
   {
     number: "02",
-    title: "Build the highest-leverage V1",
-    text: "Deliver the smallest complete system that creates meaningful operational or customer value.",
+    title: "High-Leverage Build",
+    text: "Design and build the system that solves the right problem first and creates measurable value.",
   },
   {
     number: "03",
-    title: "Review, improve, expand",
-    text: "Use real behavior and business results to decide where the next investment earns its place.",
+    title: "Ongoing Optimization",
+    text: "Improve and expand the system as usage, bottlenecks and business needs evolve.",
   },
 ] as const;
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#738096]">{children}</p>;
-}
-
-function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
+function Label({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <Link
-      href={href}
-      className="group inline-flex items-center gap-2 text-[11px] font-semibold text-[#1d4ed8] transition-colors hover:text-[#123a9c]"
-    >
+    <p className={`text-[9px] font-semibold uppercase tracking-[0.18em] ${dark ? "text-[#ff7a1a]" : "text-[#e75f00]"}`}>
       {children}
-      <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-    </Link>
+    </p>
   );
 }
 
-function DashboardPreview() {
-  const events = [
-    ["Reservation", "Confirmed"],
-    ["Payment", "Received"],
-    ["Invoice", "Generated"],
-    ["Contract", "Prepared"],
-    ["Access", "Scheduled"],
-  ] as const;
+function ProblemDiagram() {
+  const before = ["Spreadsheets", "Email & Chat", "Manual Work", "Siloed Systems"];
+  const after = ["One source of truth", "Automated workflows", "Real-time insight", "Scalable operations"];
 
   return (
-    <div
-      data-dashboard-preview
-      className="grid min-h-[340px] overflow-hidden rounded-[22px] border border-[#dfe4ea]/90 bg-[#0a1522] shadow-[0_24px_70px_rgba(20,33,50,0.10)] sm:grid-cols-[104px_1fr]"
-    >
-      <aside className="hidden border-r border-white/7 bg-[#0a1522] p-3.5 sm:block">
-        <p className="text-[9px] font-semibold text-white/72">Mini Sklady</p>
-        <div className="mt-5 space-y-1 text-[8px] text-white/34">
-          {["Overview", "Customers", "Rentals", "Contracts", "Payments", "Units", "Reports"].map((item, index) => (
-            <div key={item} className={`rounded-md px-2 py-1.5 ${index === 0 ? "bg-white/[0.07] text-white/72" : ""}`}>
-              {item}
+    <div className="grid gap-6 lg:grid-cols-[1fr_76px_1fr] lg:items-center">
+      <div>
+        <p className="mb-3 text-[8px] font-semibold uppercase tracking-[0.16em] text-white/35">Before · disconnected & manual</p>
+        <div className="space-y-2">
+          {before.map((item) => (
+            <div key={item} className="flex items-center gap-3">
+              <div className="min-w-[126px] rounded-[9px] border border-white/12 bg-white/[0.025] px-3 py-2 text-[10px] text-white/58">
+                {item}
+              </div>
+              <div className="relative h-px flex-1 bg-white/10">
+                <span className="absolute left-[42%] top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full border border-white/25 bg-[#09111a]" />
+                <span className="absolute right-[18%] top-1/2 h-1 w-1 -translate-y-1/2 rounded-full bg-white/24" />
+              </div>
             </div>
           ))}
         </div>
-      </aside>
+      </div>
 
-      <div className="bg-[#f7f8fa] p-3.5 text-[#101722] sm:p-4.5">
-        <div className="flex items-center justify-between">
-          <p className="text-[11px] font-semibold">Operations overview</p>
-          <span className="rounded-full border border-[#e2e6eb] bg-white px-2 py-1 text-[7px] text-[#8b96a5]">Live system</span>
-        </div>
+      <div className="hidden items-center justify-center lg:flex">
+        <ArrowRight size={23} className="text-white/42" />
+      </div>
 
-        <div className="mt-3 grid grid-cols-3 gap-2">
-          {[["Customers", "36"], ["Active rentals", "~30"], ["Rental lifecycle", "Automated"]].map(([label, value]) => (
-            <div key={label} className="rounded-[10px] border border-[#e4e8ed] bg-white p-2.5 shadow-[0_5px_16px_rgba(15,23,42,0.025)]">
-              <p className="text-[6px] uppercase tracking-[0.05em] text-[#9aa4b2]">{label}</p>
-              <p className="mt-1 text-[11px] font-semibold tracking-[-0.02em] sm:text-[12px]">{value}</p>
+      <div>
+        <p className="mb-3 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#ff7a1a]">After · connected & automated</p>
+        <div className="grid grid-cols-[58px_1fr] items-stretch gap-3">
+          <div className="flex items-center justify-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#ff6a00] bg-[#ff6a00]/5 shadow-[0_0_34px_rgba(255,106,0,0.16)]">
+              <Sparkles size={15} className="text-[#ff7a1a]" />
             </div>
-          ))}
-        </div>
-
-        <div className="mt-2.5 rounded-[11px] border border-[#e4e8ed] bg-white p-3 shadow-[0_5px_16px_rgba(15,23,42,0.025)]">
-          <div className="flex items-center justify-between">
-            <p className="text-[8px] font-semibold">One connected rental flow</p>
-            <span className="text-[7px] text-[#9aa4b2]">Triggered automatically</span>
           </div>
-
-          <div className="mt-3 space-y-1.5">
-            {events.map(([label, value], index) => (
-              <div key={label} className="flex items-center justify-between rounded-[8px] border border-[#edf0f3] bg-[#fbfcfd] px-2.5 py-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#edf4ff] text-[#2563eb]">
-                    <Check size={8} strokeWidth={2} />
-                  </span>
-                  <span className="text-[7px] font-medium text-[#566274]">{label}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {index < events.length - 1 ? <span className="text-[7px] text-[#c1c8d1]">→</span> : null}
-                  <span className="text-[7px] font-semibold text-[#334155]">{value}</span>
-                </div>
+          <div className="space-y-2">
+            {after.map((item) => (
+              <div key={item} className="rounded-[9px] border border-white/12 bg-white/[0.025] px-3 py-2 text-[10px] text-white/66">
+                {item}
               </div>
             ))}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        <div className="mt-2 grid grid-cols-2 gap-2 text-[7px] text-[#667085]">
-          <div className="rounded-[9px] border border-[#e4e8ed] bg-white px-2.5 py-2">Payments connected to rental status</div>
-          <div className="rounded-[9px] border border-[#e4e8ed] bg-white px-2.5 py-2">Availability updated from one system</div>
+function StackVisual() {
+  const layers = [
+    ["Customer Experience", "Delight customers and drive loyalty."],
+    ["Operations", "Streamline workflows and reduce friction."],
+    ["Automation", "Eliminate manual work and human error."],
+    ["Data & Insights", "Turn data into real-time intelligence."],
+    ["Business Foundation", "A strong, secure foundation that scales."],
+  ] as const;
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-[0.85fr_1.2fr] lg:items-center">
+      <div className="space-y-4">
+        {layers.map(([title, text], index) => (
+          <div key={title} className="grid grid-cols-[150px_1fr] gap-5 border-b border-[#dedbd6] pb-3 last:border-b-0">
+            <div className="flex items-center gap-3">
+              <span className={`h-1.5 w-1.5 rounded-full ${index === 2 ? "bg-[#ff6a00]" : "bg-[#b9b6b1]"}`} />
+              <span className={`text-[10px] font-semibold ${index === 2 ? "text-[#e85f00]" : "text-[#343331]"}`}>{title}</span>
+            </div>
+            <p className="text-[9px] leading-4 text-[#79756f]">{text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="relative mx-auto h-[330px] w-full max-w-[500px]">
+        {[0, 1, 2, 3, 4].map((layer) => (
+          <div
+            key={layer}
+            className={`absolute left-1/2 h-[84px] w-[70%] -translate-x-1/2 -skew-x-[18deg] rounded-[14px] border shadow-[0_16px_36px_rgba(42,36,30,0.07)] ${layer === 2 ? "border-[#e96812]/70 bg-[linear-gradient(145deg,#ff8c3a,#ef6b12)] shadow-[0_18px_45px_rgba(239,107,18,0.20)]" : "border-[#dedbd6] bg-[linear-gradient(145deg,#ffffff,#efeeeb)]"}`}
+            style={{ top: `${28 + layer * 47}px`, zIndex: 10 - layer }}
+          >
+            <div className={`absolute inset-x-4 bottom-2 h-px ${layer === 2 ? "bg-white/28" : "bg-black/[0.035]"}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CaseStudyStage() {
+  const featured = caseStudies[0];
+
+  return (
+    <div data-work-stage className="grid overflow-hidden rounded-[18px] border border-white/8 bg-[#07111a] text-white shadow-[0_30px_70px_rgba(18,24,30,0.12)] lg:grid-cols-[0.72fr_1.48fr]">
+      <div className="flex flex-col border-b border-white/8 p-6 sm:p-8 lg:border-b-0 lg:border-r">
+        <Label dark>Featured work</Label>
+        <h2 className="mt-3 text-[30px] font-medium tracking-[-0.04em]">Mini Sklady</h2>
+        <p className="mt-2 max-w-[310px] text-[12px] leading-5 text-white/50">
+          From manual rental administration to one connected operating platform.
+        </p>
+
+        <ul className="mt-7 space-y-3">
+          {["36 customers managed", "~30 active monthly rentals", "End-to-end rental lifecycle automated", "One dashboard for daily operations"].map((item) => (
+            <li key={item} className="flex items-center gap-2.5 text-[11px] text-white/64">
+              <Check size={13} className="text-[#ff6a00]" />
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto pt-7">
+          <Link
+            href={featured ? `/work/${featured.slug}` : "/work"}
+            className="group inline-flex h-10 items-center gap-2 rounded-full border border-white/18 px-4 text-[10px] font-semibold text-white/78 transition hover:border-white/35 hover:text-white"
+          >
+            View Case Study
+            <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+      </div>
+
+      <div data-dashboard-preview className="relative min-h-[360px] overflow-hidden bg-[#0b141e] p-4 sm:p-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(255,106,0,0.06),transparent_32%)]" />
+        <div className="relative h-full min-h-[320px] overflow-hidden rounded-[14px] border border-white/8 bg-[#0c1722]">
+          {featured ? (
+            <Image
+              src={featured.image}
+              alt="Mini Sklady operations platform"
+              fill
+              sizes="(max-width: 1024px) 100vw, 65vw"
+              className="object-cover object-top opacity-88"
+            />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08111a]/40 via-transparent to-transparent" />
+          <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-[#07111a]/75 px-3 py-1.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-white/56 backdrop-blur-md">
+            Live operating platform
+          </div>
         </div>
       </div>
     </div>
@@ -201,150 +254,109 @@ function DashboardPreview() {
 }
 
 export function HomeRedesign() {
-  const featured = caseStudies[0];
-  const supporting = caseStudies.slice(1, 3);
-
   return (
-    <div className="home-redesign overflow-hidden bg-[#f8f8f6] text-[#101722]">
+    <div className="home-redesign overflow-hidden bg-[#f7f4ef] text-[#111318]">
       <HomeExperience />
       <HeroScrollScene />
 
-      <section id="services" className="light-experience relative overflow-hidden bg-[#f8f8f6] px-5 py-24 sm:px-8 md:py-32 lg:px-14 xl:px-20">
-        <div className="experience-ambient experience-ambient-a" aria-hidden="true" />
-        <div className="mx-auto max-w-[1160px]">
-          <div data-reveal className="mx-auto max-w-[760px] text-center">
-            <Eyebrow>How I Help</Eyebrow>
-            <h2 className="mt-5 text-balance text-[clamp(2rem,4vw,3.45rem)] font-semibold leading-[1.02] tracking-[-0.048em] text-[#101722]">
-              I don&apos;t start with software. I start with how your business works.
+      <section className="relative bg-[#07111a] px-5 py-20 text-white sm:px-8 md:py-24 lg:px-14 xl:px-20">
+        <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div data-reveal>
+            <Label dark>The problem</Label>
+            <h2 className="mt-4 max-w-[480px] text-[clamp(2.05rem,3.5vw,3.25rem)] font-medium leading-[1.04] tracking-[-0.045em]">
+              Most companies don&apos;t have a software problem.
+              <br />They have a <span className="text-[#ff6a00]">system problem.</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-[650px] text-balance text-[13px] leading-6 text-[#687486] sm:text-[14px]">
-              Where does information get copied? What waits for a person? What becomes painful as volume grows? Those are usually the places where a better system creates the most leverage.
+            <p className="mt-5 max-w-[420px] text-[12px] leading-5.5 text-white/47">
+              Disconnected tools. Manual handoffs. Hidden work. It&apos;s not just inefficient — it becomes expensive as the business grows.
             </p>
           </div>
-
-          <div data-services-grid className="mt-12 grid gap-4 md:grid-cols-3 md:gap-5">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={service.title}
-                  data-service-card
-                  data-optical-glass
-                  className="apple-glass optical-glass group flex min-h-[304px] flex-col rounded-[26px] p-6 md:p-7"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="glass-icon flex h-11 w-11 items-center justify-center rounded-[14px] text-[#2860cf]">
-                      <Icon size={20} strokeWidth={1.55} />
-                    </span>
-                    <span className="text-[9px] font-semibold tracking-[0.18em] text-[#a2acb9]">0{index + 1}</span>
-                  </div>
-                  <p className="mt-7 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#8893a3]">{service.label}</p>
-                  <h3 className="mt-2 max-w-[250px] text-[20px] font-semibold leading-[1.12] tracking-[-0.035em] text-[#101722]">{service.title}</h3>
-                  <p className="mt-3 max-w-[315px] text-[12px] leading-5.5 text-[#677386]">{service.description}</p>
-                  <div className="mt-auto pt-6"><TextLink href="/work">See the work</TextLink></div>
-                </article>
-              );
-            })}
+          <div data-reveal>
+            <ProblemDiagram />
           </div>
         </div>
       </section>
 
-      <section id="work" className="relative overflow-hidden bg-[#f8f8f6] px-5 pb-28 sm:px-8 md:pb-36 lg:px-14 xl:px-20">
-        <div className="experience-ambient experience-ambient-b" aria-hidden="true" />
-        <div className="mx-auto max-w-[1160px]">
-          <div data-reveal className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <Eyebrow>Proof, Not Promises</Eyebrow>
-              <h2 className="mt-3 max-w-[720px] text-[clamp(1.9rem,3vw,2.75rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-[#101722]">
-                Systems already running inside real businesses.
+      <section id="services" className="relative bg-[#f7f4ef] px-5 py-22 sm:px-8 md:py-28 lg:px-14 xl:px-20">
+        <div className="mx-auto max-w-[1180px]">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+            <div data-reveal>
+              <Label>The shift</Label>
+              <h2 className="mt-4 text-[clamp(2.1rem,3.8vw,3.4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
+                Software isn&apos;t the goal.
+                <br />A better-running business is.
               </h2>
+              <p className="mt-5 max-w-[430px] text-[12px] leading-5.5 text-[#706c66]">
+                The right systems, built in the right order, create clarity, speed and compounding operational leverage.
+              </p>
+              <Link href="/services" className="group mt-6 inline-flex items-center gap-2 text-[10px] font-semibold text-[#111318]">
+                Learn how it works
+                <ArrowRight size={11} className="text-[#ff6a00] transition-transform group-hover:translate-x-0.5" />
+              </Link>
             </div>
-            <TextLink href="/work">View all case studies</TextLink>
+            <div data-reveal>
+              <StackVisual />
+            </div>
           </div>
 
-          <div data-work-stage data-optical-glass className="apple-glass optical-glass rounded-[30px] p-4 sm:p-5 md:p-6">
-            <div className="grid gap-4 xl:grid-cols-[0.78fr_1.35fr_0.87fr] xl:gap-5">
-              <div className="flex min-h-[340px] flex-col rounded-[22px] border border-[#e1e6ec]/85 bg-white/64 p-5 md:p-6">
-                <p className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#7c8798]">Featured transformation</p>
-                <h3 className="mt-3 text-[24px] font-semibold tracking-[-0.04em] text-[#101722]">Mini Sklady</h3>
-                <p className="mt-3 max-w-[280px] text-[14px] font-semibold leading-[1.35] tracking-[-0.025em] text-[#263244]">
-                  From manual rental administration to one connected operating system.
-                </p>
-                <p className="mt-3 max-w-[285px] text-[10px] leading-[1.7] text-[#677386]">
-                  Booking, Stripe payments, invoices, contracts, access delivery, communication, cancellations and internal operations now work as one rental flow.
-                </p>
-                <ul className="mt-5 space-y-2.5">
-                  {["36 customers managed", "~30 active monthly rentals", "Full rental lifecycle automated", "One dashboard for daily operations"].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-[10px] font-medium text-[#4f5d70]">
-                      <span className="flex h-4 w-4 items-center justify-center rounded-full border border-[#ced8e4] bg-white text-[#2563eb]"><Check size={9} /></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto pt-6">
-                  <Link
-                    href={featured ? `/work/${featured.slug}` : "/work"}
-                    className="group inline-flex h-10 items-center gap-2 rounded-full border border-[#d8dee6] bg-white px-4 text-[10px] font-semibold text-[#101722] shadow-[0_8px_22px_rgba(15,23,42,0.045)] transition hover:-translate-y-0.5 hover:border-[#c5cfdb]"
-                  >
-                    See the full transformation <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
-              </div>
-
-              <DashboardPreview />
-
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-                {supporting.map((study) => (
-                  <Link
-                    key={study.slug}
-                    href={`/work/${study.slug}`}
-                    data-optical-glass
-                    className="optical-glass group grid min-h-[162px] overflow-hidden rounded-[20px] border border-[#e1e6ec]/85 bg-white/66 p-4 transition hover:bg-white/82 sm:grid-cols-[1fr_0.8fr] xl:grid-cols-[1fr_0.85fr]"
-                  >
-                    <div className="flex flex-col pr-3">
-                      <p className="text-[7px] font-semibold uppercase tracking-[0.15em] text-[#8993a2]">{study.categoryLabel}</p>
-                      <h3 className="mt-2 text-[13px] font-semibold leading-4 tracking-[-0.02em] text-[#101722]">{study.company}</h3>
-                      <p className="mt-2 line-clamp-3 text-[9px] leading-4 text-[#6c7788]">{study.result}</p>
-                      <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-[8px] font-semibold text-[#1d4ed8]">View case study <ArrowRight size={9} className="transition-transform group-hover:translate-x-0.5" /></span>
-                    </div>
-                    <div className="relative min-h-[118px] overflow-hidden rounded-[14px] border border-[#e4e8ed] bg-[#eef2f6]">
-                      <Image src={study.image} alt={`${study.company} project preview`} fill sizes="(max-width: 768px) 40vw, 16vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
-                    </div>
-                  </Link>
-                ))}
+          <div className="mt-14 border-t border-[#dcd7d0] pt-7">
+            <div className="grid gap-8 md:grid-cols-[0.65fr_2.35fr]">
+              <Label>What I build</Label>
+              <div className="grid gap-7 md:grid-cols-3">
+                {capabilities.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.title} data-service-card className="border-l border-[#dcd7d0] pl-5 first:border-l-0 first:pl-0 md:first:border-l md:first:pl-5">
+                      <div className="flex items-start gap-3">
+                        <Icon size={18} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#ff6a00]" />
+                        <div>
+                          <h3 className="text-[12px] font-semibold tracking-[-0.02em]">{item.title}</h3>
+                          <p className="mt-2 text-[10px] leading-[1.55] text-[#77726c]">{item.text}</p>
+                          <Link href="/services" className="group mt-4 inline-flex items-center gap-2 text-[9px] font-semibold text-[#262523]">
+                            Learn more
+                            <ArrowRight size={10} className="text-[#ff6a00] transition-transform group-hover:translate-x-0.5" />
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="process" className="relative overflow-hidden bg-[#f8f8f6] px-5 pb-28 sm:px-8 md:pb-36 lg:px-14 xl:px-20">
-        <div className="mx-auto max-w-[1160px]">
-          <div data-reveal className="mx-auto mb-9 max-w-[680px] text-center">
-            <Eyebrow>How I Work</Eyebrow>
-            <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.65rem)] font-semibold leading-[1.04] tracking-[-0.045em] text-[#101722]">
-              Understand first. Build only what earns its place.
-            </h2>
-          </div>
+      <section id="work" className="bg-[#f7f4ef] px-5 pb-20 sm:px-8 md:pb-28 lg:px-14 xl:px-20">
+        <div className="mx-auto max-w-[1180px]">
+          <CaseStudyStage />
+        </div>
+      </section>
 
-          <div data-process-track data-optical-glass className="apple-glass optical-glass relative rounded-[28px] px-5 py-7 md:px-8 md:py-9">
-            <div className="absolute left-8 right-8 top-[59px] hidden h-px bg-[#d9e0e8] md:block" aria-hidden="true">
-              <div data-process-progress className="h-full w-full bg-[linear-gradient(90deg,#8bb7ef,#2f6ed2,#8bb7ef)] shadow-[0_0_12px_rgba(65,117,191,0.22)]" />
+      <section id="process" className="bg-[#f7f4ef] px-5 pb-18 sm:px-8 md:pb-24 lg:px-14 xl:px-20">
+        <div className="mx-auto max-w-[1180px] border-y border-[#dcd7d0] py-8">
+          <div className="grid gap-8 lg:grid-cols-[0.62fr_2.38fr]">
+            <div>
+              <Label>My process</Label>
+              <h2 className="mt-3 text-[26px] font-medium leading-[1.05] tracking-[-0.04em]">A clear process.<br />Built around your business.</h2>
             </div>
-            <div className="grid gap-8 md:grid-cols-4 md:gap-0">
+
+            <div data-process-track className="relative grid gap-7 md:grid-cols-4">
+              <div className="absolute left-5 right-5 top-[21px] hidden h-px bg-[#d2cec8] md:block" />
+              <div data-process-progress className="absolute left-5 right-5 top-[21px] hidden h-px origin-left bg-[#ff6a00] md:block" />
               {process.map((step) => {
                 const Icon = step.icon;
                 return (
-                  <div key={step.title} data-process-step className="relative min-w-0 md:px-5 first:md:pl-0 last:md:pr-0">
-                    <div className="flex items-start gap-3">
-                      <span className="glass-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#1f4fa9]"><Icon size={16} strokeWidth={1.55} /></span>
-                      <div>
-                        <p className="text-[8px] font-semibold text-[#8b96a5]">{step.number}</p>
-                        <h3 className="mt-1 text-[12px] font-semibold tracking-[-0.02em] text-[#101722]">{step.title}</h3>
-                      </div>
+                  <article key={step.number} data-process-step className="relative">
+                    <div className="flex items-center gap-3">
+                      <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#d6d2cb] bg-[#f7f4ef] text-[10px] font-semibold text-[#111318]">
+                        {step.number.slice(1)}
+                      </span>
+                      <Icon size={17} strokeWidth={1.4} className="text-[#8b8781]" />
                     </div>
-                    <p className="mt-4 text-[10px] leading-5 text-[#6c7788]">{step.description}</p>
-                  </div>
+                    <h3 className="mt-4 text-[11px] font-semibold">{step.title}</h3>
+                    <p className="mt-2 max-w-[190px] text-[9px] leading-4 text-[#76716b]">{step.text}</p>
+                  </article>
                 );
               })}
             </div>
@@ -352,110 +364,89 @@ export function HomeRedesign() {
         </div>
       </section>
 
-      <section id="about" className="relative overflow-hidden bg-[#f8f8f6] px-5 pb-32 sm:px-8 md:pb-40 lg:px-14 xl:px-20">
-        <div className="experience-ambient experience-ambient-c" aria-hidden="true" />
-        <div className="mx-auto max-w-[1160px]">
-          <div className="grid gap-5 xl:grid-cols-[0.95fr_1.35fr]">
-            <article data-reveal data-optical-glass className="apple-glass optical-glass rounded-[30px] p-5 md:p-7">
-              <Eyebrow>Working With Me</Eyebrow>
-              <h2 className="mt-4 max-w-[430px] text-[clamp(1.9rem,3vw,2.65rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-[#101722]">
-                You don&apos;t hand me a ticket. We solve the business together.
+      <section id="about" className="bg-[#07111a] px-5 py-10 text-white sm:px-8 lg:px-14 xl:px-20">
+        <div className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.72fr_2.28fr] lg:items-center">
+          <div>
+            <Label dark>Working with me</Label>
+            <h2 className="mt-3 max-w-[340px] text-[26px] font-medium leading-[1.06] tracking-[-0.04em]">
+              A partner you can trust to build what matters.
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {trust.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="border-l border-white/10 pl-5 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-5">
+                  <Icon size={17} strokeWidth={1.45} className="text-[#ff6a00]" />
+                  <h3 className="mt-3 text-[10px] font-semibold text-white/86">{item.title}</h3>
+                  <p className="mt-1.5 text-[8px] leading-4 text-white/42">{item.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7f4ef] px-5 py-18 sm:px-8 md:py-22 lg:px-14 xl:px-20">
+        <div className="mx-auto max-w-[1180px]">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <Label>A good fit when</Label>
+              <h2 className="mt-3 max-w-[460px] text-[30px] font-medium leading-[1.05] tracking-[-0.04em]">
+                Your business has outgrown the way it currently works.
               </h2>
-              <p className="mt-4 max-w-[480px] text-[12px] leading-5.5 text-[#687486]">
-                I like getting close to the operation, asking why things work the way they do and finding the part of the system that is actually holding the company back. I&apos;m not interested in adding software for the sake of software. I want the result to make the business feel simpler, faster and more in control.
-              </p>
+              <ul className="mt-6 space-y-2.5">
+                {["Your team repeats the same admin every day.", "Important information lives across too many tools.", "Growth creates more manual work instead of leverage.", "Customers experience unnecessary friction."].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[10px] leading-4.5 text-[#6f6a64]">
+                    <Check size={12} className="mt-0.5 shrink-0 text-[#ff6a00]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              <div className="mt-8 grid gap-6 sm:grid-cols-[128px_1fr]">
-                <div className="monogram-portrait mx-auto flex h-[126px] w-[126px] items-center justify-center rounded-full text-[31px] font-semibold tracking-[-0.05em] text-[#132238]">DV</div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {partnerItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.title} className="flex gap-2.5">
-                        <span className="glass-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] text-[#315fae]"><Icon size={13} strokeWidth={1.55} /></span>
-                        <div>
-                          <h3 className="text-[10px] font-semibold text-[#263244]">{item.title}</h3>
-                          <p className="mt-1 text-[9px] leading-4 text-[#7a8595]">{item.description}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+            <div>
+              <Label>How engagements start</Label>
+              <h2 className="mt-3 max-w-[580px] text-[25px] font-medium leading-[1.08] tracking-[-0.035em]">
+                Every engagement starts by understanding the system before defining the solution.
+              </h2>
+              <div className="mt-7 grid gap-5 md:grid-cols-3">
+                {engagements.map((item) => (
+                  <article key={item.number} data-engagement-step className="border-t border-[#d5d0c9] pt-4">
+                    <p className="text-[9px] font-semibold text-[#111318]">{item.number}</p>
+                    <h3 className="mt-2 text-[11px] font-semibold">{item.title}</h3>
+                    <p className="mt-2 text-[9px] leading-4.5 text-[#77726b]">{item.text}</p>
+                  </article>
+                ))}
               </div>
-            </article>
-
-            <div className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
-              <article data-reveal data-optical-glass className="apple-glass optical-glass rounded-[30px] p-5 md:p-7">
-                <Eyebrow>How Engagements Start</Eyebrow>
-                <h2 className="mt-4 text-[clamp(1.75rem,2.6vw,2.35rem)] font-semibold leading-[1.04] tracking-[-0.045em] text-[#101722]">
-                  Scope follows the system. Not a generic package.
-                </h2>
-                <p className="mt-3 max-w-[520px] text-[11px] leading-5 text-[#687486]">
-                  Every company has different constraints, so the first job is to understand the operation and decide what deserves investment.
-                </p>
-
-                <div className="mt-6 space-y-3">
-                  {engagement.map((item) => (
-                    <div key={item.number} data-engagement-step className="rounded-[17px] border border-[#e2e7ed]/90 bg-white/58 px-4 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
-                      <div className="flex gap-3">
-                        <span className="text-[8px] font-semibold text-[#2563eb]">{item.number}</span>
-                        <div>
-                          <h3 className="text-[11px] font-semibold text-[#263244]">{item.title}</h3>
-                          <p className="mt-1 text-[9px] leading-4 text-[#758091]">{item.text}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="mt-5 text-[9px] leading-4 text-[#7a8595]">
-                  Most implementation engagements start from €5k. Final scope is defined after discovery, based on the business problem and expected leverage.
-                </p>
-              </article>
-
-              <article data-reveal className="relative flex min-h-[380px] flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#07111d] p-5 text-white shadow-[0_24px_70px_rgba(7,17,29,0.18)] md:p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_16%,rgba(72,129,192,0.22),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_48%)]" />
-                <div className="absolute -bottom-20 -right-16 h-52 w-52 rounded-full border border-white/[0.055] shadow-[0_0_80px_rgba(91,148,205,0.08)]" aria-hidden="true" />
-                <div className="relative z-10">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/42">Let&apos;s Work Together</p>
-                  <h2 className="mt-5 text-[clamp(1.7rem,2.5vw,2.25rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
-                    Show me how your business works. I&apos;ll show you where it can work better.
-                  </h2>
-                  <p className="mt-4 text-[10px] leading-5 text-white/52">The first conversation is about your operation, bottlenecks and goals — not a sales deck.</p>
-                </div>
-
-                <div className="relative z-10 mt-auto pt-8">
-                  <Link href="/contact" className="group inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-[11px] font-semibold text-[#07111d] shadow-[0_12px_30px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5">
-                    Discuss your system <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                  <p className="mt-3 text-[8px] text-white/34">No obligation. We start by understanding the problem.</p>
-                </div>
-              </article>
+              <div className="mt-7 rounded-[10px] bg-[#ece8e2] px-4 py-3.5 text-[9px] leading-4 text-[#615d57]">
+                Most implementation engagements start from €5k. Scope depends on the complexity and leverage of the system.
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section data-final-scene className="relative isolate overflow-hidden bg-[#06101b] px-5 py-28 text-white sm:px-8 md:py-36 lg:px-14 xl:px-20">
-        <div data-final-glow className="final-horizon-glow absolute inset-x-[-18%] bottom-[-58%] h-[115%] rounded-[50%]" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(71,126,188,0.13),transparent_34%),linear-gradient(180deg,#07111d_0%,#06101b_100%)]" />
-        <div data-reveal className="relative z-10 mx-auto max-w-[850px] text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/38">Build The Better System</p>
-          <h2 className="mt-6 text-balance text-[clamp(2.25rem,4.8vw,4.3rem)] font-semibold leading-[0.98] tracking-[-0.052em]">
-            Your business already has a system. The question is whether it is helping you grow — or quietly slowing you down.
+      <section data-final-scene className="relative overflow-hidden bg-[#07111a] px-5 py-16 text-center text-white sm:px-8 md:py-20 lg:px-14">
+        <div data-final-glow className="pointer-events-none absolute inset-x-0 bottom-[-110px] mx-auto h-[220px] max-w-[1300px] rounded-[50%] border-t border-[#ff7a1a]/20 bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.10),transparent_65%)]" />
+        <div className="relative z-10 mx-auto max-w-[760px]">
+          <h2 className="text-balance text-[clamp(2rem,3.7vw,3.25rem)] font-medium leading-[1.03] tracking-[-0.045em]">
+            Your business already has a system.
+            <br />The question is whether it&apos;s helping you grow — or quietly slowing you down.
           </h2>
-          <p className="mx-auto mt-6 max-w-[640px] text-balance text-[13px] leading-6 text-white/52 sm:text-[14px]">
-            Show me the operation. We&apos;ll find the friction, decide what is worth changing and build the part that creates the most leverage.
+          <p className="mx-auto mt-4 max-w-[540px] text-[11px] leading-5 text-white/44">
+            Show me how your operation works. We&apos;ll find the friction, define what deserves investment and decide the smartest next move.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/contact" className="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-[12px] font-semibold text-[#07111d] shadow-[0_16px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5">
-              Discuss your business <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+          <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
+            <Link href="/contact" className="group inline-flex h-11 items-center gap-2 rounded-full bg-[#ff6a00] px-5 text-[11px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#ff781f]">
+              Discuss Your Business
+              <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link href="/work" className="group inline-flex h-12 items-center gap-2 rounded-full border border-white/14 bg-white/[0.035] px-6 text-[12px] font-semibold text-white/78 backdrop-blur-xl transition hover:bg-white/[0.07] hover:text-white">
-              See real systems <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+            <Link href="/work" className="group inline-flex h-11 items-center gap-2 rounded-full border border-white/18 px-5 text-[11px] font-semibold text-white/72 transition hover:border-white/32 hover:text-white">
+              See Real Systems
+              <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
-          <p className="mt-9 text-[11px] font-medium text-white/28">Better software is useful. A better-running business is the point.</p>
         </div>
       </section>
     </div>
